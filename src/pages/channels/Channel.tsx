@@ -101,26 +101,26 @@ export const Channel = observer(
         const state = useApplicationState();
 
         if (!client.channels.exists(id)) {
-            if (server_id) {
-                const server = client.servers.get(server_id);
-                if (server && server.channel_ids.length > 0) {
-                    let target_id = server.channel_ids[0];
-                    const last_id = state.layout.getLastOpened(server_id);
-                    if (last_id) {
-                        if (client.channels.has(last_id)) {
-                            target_id = last_id;
-                        }
-                    }
+            // if (server_id) {
+            //     const server = client.servers.get(server_id);
+            //     if (server && server.channel_ids.length > 0) {
+            //         let target_id = server.channel_ids[0];
+            //         const last_id = state.layout.getLastOpened(server_id);
+            //         if (last_id) {
+            //             if (client.channels.has(last_id)) {
+            //                 target_id = last_id;
+            //             }
+            //         }
 
-                    return (
-                        <Redirect
-                            to={`/server/${server_id}/channel/${target_id}`}
-                        />
-                    );
-                }
-            } else {
-                return <Redirect to="/" />;
-            }
+            //         return (
+            //             <Redirect
+            //                 to={`/server/${server_id}/channel/${target_id}`}
+            //             />
+            //         );
+            //     }
+            // } else {
+            //     return <Redirect to="/" />;
+            // }
 
             return <ChannelPlaceholder />;
         }
@@ -187,7 +187,7 @@ const TextChannel = observer(({ channel }: { channel: ChannelI }) => {
                     channel.nsfw
                 )
             }>
-            <ChannelHeader channel={channel} />
+            {/* <ChannelHeader channel={channel} /> */}
             <ChannelMain>
                 <ErrorBoundary section="renderer">
                     <ChannelContent>
@@ -199,10 +199,10 @@ const TextChannel = observer(({ channel }: { channel: ChannelI }) => {
                         <MessageBox channel={channel} />
                     </ChannelContent>
                 </ErrorBoundary>
-                {!isTouchscreenDevice &&
+                {/* {!isTouchscreenDevice &&
                     layout.getSectionState(SIDEBAR_MEMBERS, true) && (
                         <RightSidebar />
-                    )}
+                    )} */}
             </ChannelMain>
         </AgeGate>
     );
@@ -242,8 +242,11 @@ function ChannelPlaceholder() {
 }
 
 export default function ChannelComponent() {
-    const { channel, server } =
-        useParams<{ channel: string; server: string }>();
+    // const { channel, server } =
+    //     useParams<{ channel: string; server: string }>();
+
+    const channel = '01H3CRHPH4YJX65ZS2YYQ20SKA';
+    const server = '';
 
     return <Channel id={channel} server_id={server} key={channel} />;
 }

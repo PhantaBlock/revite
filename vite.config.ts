@@ -5,6 +5,7 @@ import { readFileSync } from "fs";
 import { resolve } from "path";
 import { defineConfig } from "vite";
 import { VitePWA } from "vite-plugin-pwa";
+import qiankun from "vite-plugin-qiankun";
 
 import preact from "@preact/preset-vite";
 
@@ -44,6 +45,9 @@ function getVersion() {
 
 export default defineConfig({
     plugins: [
+        qiankun('ChatRoom', {
+            useDevMode: true,
+        }),
         preact(),
         macrosPlugin(),
         legacy({
@@ -123,7 +127,8 @@ export default defineConfig({
         },
     },
     optimizeDeps: {
-        exclude: ["revolt.js", "preact-context-menu", "@revoltchat/ui"],
+        // exclude: ["revolt.js", "preact-context-menu", "@revoltchat/ui"],
+        exclude: ["revolt.js", "preact-context-menu"],
     },
     resolve: {
         preserveSymlinks: true,
