@@ -23,7 +23,7 @@ interface Props {
 }
 
 export const Friend = observer(({ user }: Props) => {
-    const history = useHistory();
+    // const history = useHistory();
 
     const actions: Children[] = [];
     let subtext: Children = null;
@@ -41,7 +41,7 @@ export const Friend = observer(({ user }: Props) => {
                             user
                                 .openDM()
                                 .then(voiceState.connect)
-                                .then((x) => history.push(`/channel/${x._id}`)),
+                                // .then((x) => history.push(`/channel/${x._id}`)),
                         )
                     }>
                     <PhoneCall size={20} />
@@ -54,9 +54,9 @@ export const Friend = observer(({ user }: Props) => {
                             ev,
                             user
                                 .openDM()
-                                .then((channel) =>
-                                    history.push(`/channel/${channel._id}`),
-                                ),
+                                // .then((channel) =>
+                                //     history.push(`/channel/${channel._id}`),
+                                // ),
                         )
                     }>
                     <Envelope size={20} />

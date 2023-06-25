@@ -72,12 +72,6 @@ export default observer(() => {
                     <Text id="app.navigation.tabs.friends" />
                 </div>
                 <div className={styles.actions}>
-                    {/*<Tooltip content={"Create Category"} placement="bottom">
-                        <IconButton onClick={() => openScreen({ id: 'special_input', type: 'create_group' })}>
-                            <ListPlus size={28} />
-                        </IconButton>
-                    </Tooltip>
-                    <div className={styles.divider} />*/}
                     <Tooltip content={"Create Group"} placement="bottom">
                         <IconButton
                             onClick={() =>
@@ -98,14 +92,6 @@ export default observer(() => {
                             <UserPlus size={27} />
                         </IconButton>
                     </Tooltip>
-                    {/* 
-                    <div className={styles.divider} />
-                    <Tooltip content={"Friend Activity"} placement="bottom">
-                        <IconButton>
-                            <TennisBall size={24} />
-                        </IconButton>            
-                    </Tooltip>
-                    */}
                 </div>
             </PageHeader>
             <div data-scroll-offset="true" data-avoids-navigation="true">
