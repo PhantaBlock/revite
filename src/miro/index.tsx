@@ -3,18 +3,28 @@ import { Masks, Preloader } from "@revoltchat/ui";
 
 import Context from "../context";
 
-const Friends = lazy(() => import("../pages/friends/Friends"));
+enum ComponentName {
+    Friends = "Friends",
+}
+
+const Register = {
+    [ComponentName.Friends]: lazy(() => import("../pages/friends/Friends")),
+};
 
 const LoadSuspense: React.FC = ({ children }) => (
     // @ts-expect-error Typing issue between Preact and Preact.
     <Suspense fallback={<Preloader type="ring" />}>{children}</Suspense>
 );
 
-export function MiroApp() {
+export function MiroApp({ exposeComponent = ComponentName.Friends }: {
+    exposeComponent: ComponentName
+}) {
+    const Component = Register[exposeComponent];
+
     return (
         <Context>
             <LoadSuspense>
-                <Friends />
+                <Component />
             </LoadSuspense>
         </Context>
     );

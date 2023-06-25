@@ -37,6 +37,7 @@ import Markdown from "../../../../components/markdown/Markdown";
 import { useSession } from "../../../../controllers/client/ClientController";
 import { modalController } from "../../../../controllers/modals/ModalController";
 import { ModalProps } from "../../types";
+import { isMiroMode } from "../../../../lib/global";
 
 export const UserProfile = observer(
     ({
@@ -45,6 +46,8 @@ export const UserProfile = observer(
         placeholderProfile,
         ...props
     }: ModalProps<"user_profile">) => {
+        const isMiro = isMiroMode()
+
         const [profile, setProfile] = useState<
             undefined | null | API.UserProfile
         >(undefined);
@@ -176,8 +179,8 @@ export const UserProfile = observer(
                                     onClick={() =>
                                         modalController.writeText(
                                             user.username +
-                                                "#" +
-                                                user.discriminator,
+                                            "#" +
+                                            user.discriminator,
                                         )
                                     }>
                                     <Localizer>
@@ -215,14 +218,19 @@ export const UserProfile = observer(
                                     <IconButton
                                         onClick={() => {
                                             props.onClose?.();
-                                            history.push(`/open/${user_id}`);
+
+                                            if (isMiro) {
+
+                                            } else {
+                                                history.push(`/open/${user_id}`);
+                                            }
                                         }}>
                                         <Envelope size={30} />
                                     </IconButton>
                                 </Tooltip>
                             </Localizer>
                         )}
-                        {user.relationship === "User" && !isPlaceholder && (
+                        {user.relationship === "User" && !isPlaceholder && !isMiro && (
                             <IconButton
                                 onClick={() => {
                                     props.onClose?.();

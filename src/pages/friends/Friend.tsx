@@ -18,12 +18,15 @@ import UserIcon from "../../components/common/user/UserIcon";
 import UserStatus from "../../components/common/user/UserStatus";
 import { modalController } from "../../controllers/modals/ModalController";
 
+import { isMiroMode } from "../../lib/global";
+
 interface Props {
     user: User;
 }
 
 export const Friend = observer(({ user }: Props) => {
-    // const history = useHistory();
+    const isMiro = isMiroMode();
+    const history = useHistory();
 
     const actions: Children[] = [];
     let subtext: Children = null;
@@ -32,20 +35,24 @@ export const Friend = observer(({ user }: Props) => {
         subtext = <UserStatus user={user} />;
         actions.push(
             <>
-                <IconButton
-                    shape="circle"
-                    className={classNames(styles.button, styles.success)}
-                    onClick={(ev) =>
-                        stopPropagation(
-                            ev,
-                            user
-                                .openDM()
-                                .then(voiceState.connect)
-                                // .then((x) => history.push(`/channel/${x._id}`)),
-                        )
-                    }>
-                    <PhoneCall size={20} />
-                </IconButton>
+                {!isMiro && (
+                    <IconButton
+                        shape="circle"
+                        className={classNames(styles.button, styles.success)}
+                        onClick={(ev) =>
+                            stopPropagation(
+                                ev,
+                                user
+                                    .openDM()
+                                    .then(voiceState.connect)
+                                    .then((x) => {
+                                        history.push(`/channel/${x._id}`);
+                                    }),
+                            )
+                        }>
+                        <PhoneCall size={20} />
+                    </IconButton>
+                )}
                 <IconButton
                     shape="circle"
                     className={styles.button}
@@ -54,9 +61,13 @@ export const Friend = observer(({ user }: Props) => {
                             ev,
                             user
                                 .openDM()
-                                // .then((channel) =>
-                                //     history.push(`/channel/${channel._id}`),
-                                // ),
+                                .then((channel) => {
+                                    if (isMiro) {
+
+                                    } else {
+                                        history.push(`/channel/${channel._id}`);
+                                    }
+                                }),
                         )
                     }>
                     <Envelope size={20} />
@@ -100,9 +111,9 @@ export const Friend = observer(({ user }: Props) => {
                         ev,
                         user.relationship === "Friend"
                             ? modalController.push({
-                                  type: "unfriend_user",
-                                  target: user,
-                              })
+                                type: "unfriend_user",
+                                target: user,
+                            })
                             : user.removeFriend(),
                     )
                 }>

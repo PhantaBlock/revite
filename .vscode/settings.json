@@ -3,5 +3,8 @@
     "editor.formatOnSave": true,
     "cSpell.words": [
         "Qiankun"
-    ]
+    ],
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    }
 }

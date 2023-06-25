@@ -20,7 +20,10 @@ import { useClient } from "../../controllers/client/ClientController";
 import { modalController } from "../../controllers/modals/ModalController";
 import { Friend } from "./Friend";
 
+import { isMiroMode } from "../../lib/global";
+
 export default observer(() => {
+    const isMiro = isMiroMode();
     const client = useClient();
     const users = [...client.users.values()];
     users.sort((a, b) => a.username.localeCompare(b.username));
@@ -64,39 +67,57 @@ export default observer(() => {
     const isEmpty = lists.reduce((p: number, n) => p + n.length, 0) === 0;
     return (
         <>
-            <PageHeader
-                icon={<UserDetail size={24} />}
-                withTransparency
-                noBurger>
-                <div className={styles.title}>
-                    <Text id="app.navigation.tabs.friends" />
-                </div>
-                <div className={styles.actions}>
-                    <Tooltip content={"Create Group"} placement="bottom">
-                        <IconButton
-                            onClick={() =>
-                                modalController.push({
-                                    type: "create_group",
-                                })
-                            }>
-                            <MessageAdd size={24} />
-                        </IconButton>
-                    </Tooltip>
-                    <Tooltip content={"Add Friend"} placement="bottom">
-                        <IconButton
-                            onClick={() =>
-                                modalController.push({
-                                    type: "add_friend",
-                                })
-                            }>
-                            <UserPlus size={27} />
-                        </IconButton>
-                    </Tooltip>
-                </div>
-            </PageHeader>
+            {!isMiro && (
+                <PageHeader
+                    icon={<UserDetail size={24} />}
+                    withTransparency
+                    noBurger>
+                    <div className={styles.title}>
+                        <Text id="app.navigation.tabs.friends" />
+                    </div>
+                    <div className={styles.actions}>
+                        {/*<Tooltip content={"Create Category"} placement="bottom">
+                            <IconButton onClick={() => openScreen({ id: 'special_input', type: 'create_group' })}>
+                                <ListPlus size={28} />
+                            </IconButton>
+                        </Tooltip>
+                        <div className={styles.divider} />*/}
+                        <Tooltip content={"Create Group"} placement="bottom">
+                            <IconButton
+                                onClick={() =>
+                                    modalController.push({
+                                        type: "create_group",
+                                    })
+                                }>
+                                <MessageAdd size={24} />
+                            </IconButton>
+                        </Tooltip>
+                        <Tooltip content={"Add Friend"} placement="bottom">
+                            <IconButton
+                                onClick={() =>
+                                    modalController.push({
+                                        type: "add_friend",
+                                    })
+                                }>
+                                <UserPlus size={27} />
+                            </IconButton>
+                        </Tooltip>
+                        {/* 
+                        <div className={styles.divider} />
+                        <Tooltip content={"Friend Activity"} placement="bottom">
+                            <IconButton>
+                                <TennisBall size={24} />
+                            </IconButton>            
+                        </Tooltip>
+                        */}
+                    </div>
+                </PageHeader>
+            )}
             <div data-scroll-offset="true" data-avoids-navigation="true">
                 <div
-                    className={classNames(styles.list, "with-padding")}
+                    className={classNames(styles.list, {
+                        'with-padding': !isMiro,
+                    })}
                     data-empty={isEmpty}
                     data-mobile={isTouchscreenDevice}>
                     {isEmpty && (
