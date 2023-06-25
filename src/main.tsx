@@ -3,13 +3,14 @@ import { render } from "preact";
 
 import "../external/lang/Languages.patch";
 import { App } from "./pages/app";
+import { MiroApp } from "./miro";
 import "./updateWorker";
 
 import { renderWithQiankun, qiankunWindow, QiankunProps } from 'vite-plugin-qiankun/dist/helper'
 
 const renderApp = (props?: QiankunProps) => {
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    render(<App />, props?.container || document.getElementById("app")!);
+    render(<MiroApp />, props?.container || document.getElementById("app")!);
 };
 
 const initQianKun = () => {

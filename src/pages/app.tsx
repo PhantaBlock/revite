@@ -26,7 +26,7 @@ export function App() {
             <Context>
                 <Masks />
                 <Switch>
-                    {/* <Route path="/login/verify/:token">
+                    <Route path="/login/verify/:token">
                         <LoadSuspense>
                             <Login />
                         </LoadSuspense>
@@ -57,13 +57,6 @@ export function App() {
                         </CheckAuth>
                     </Route>
                     <Route path="/">
-                        <CheckAuth auth>
-                            <LoadSuspense>
-                                <RevoltApp />
-                            </LoadSuspense>
-                        </CheckAuth>
-                    </Route> */}
-                    <Route path="*">
                         <CheckAuth auth>
                             <LoadSuspense>
                                 <RevoltApp />
