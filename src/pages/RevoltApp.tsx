@@ -63,7 +63,7 @@ const StatusBar = styled.div`
     }
 `;
 
-const Routes = styled.div.attrs({ "data-component": "routes" })<{
+const Routes = styled.div.attrs({ "data-component": "routes" }) <{
     borders: boolean;
 }>`
     min-width: 0;
