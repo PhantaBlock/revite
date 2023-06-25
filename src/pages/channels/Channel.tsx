@@ -245,8 +245,8 @@ export default function ChannelComponent() {
     // const { channel, server } =
     //     useParams<{ channel: string; server: string }>();
 
-    const channel = '01H3CRHPH4YJX65ZS2YYQ20SKA';
-    const server = '';
+    const channel = "01H3RVPWC2ZSEXNYT6T78P31W3";
+    const server = "";
 
     return <Channel id={channel} server_id={server} key={channel} />;
 }

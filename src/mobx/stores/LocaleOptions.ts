@@ -17,7 +17,7 @@ export interface Data {
 export function findLanguage(lang?: string): Language {
     if (!lang) {
         if (typeof navigator === "undefined") {
-            lang = Language.ENGLISH;
+            lang = Language.CHINESE_SIMPLIFIED;
         } else {
             lang = navigator.language;
         }
@@ -46,7 +46,7 @@ export function findLanguage(lang?: string): Language {
         }
     }
 
-    return Language.ENGLISH;
+    return Language.CHINESE_SIMPLIFIED;
 }
 
 /**
