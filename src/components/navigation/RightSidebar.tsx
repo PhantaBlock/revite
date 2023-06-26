@@ -1,4 +1,5 @@
-import { Route, Switch } from "react-router";
+import { Switch } from "react-router";
+import { Route, HashRouter } from "react-router-dom";
 
 import { useEffect, useState } from "preact/hooks";
 
@@ -34,10 +35,15 @@ export default function RightSidebar() {
 
     return (
         <SidebarBase>
-            <Switch>
-                <Route path="/server/:server/channel/:channel">{content}</Route>
-                <Route path="/channel/:channel">{content}</Route>
-            </Switch>
+            {isMiro ?
+                <HashRouter>
+                    <Route path="/server/:server/channel/:channel">{content}</Route>
+                    <Route path="/channel/:channel">{content}</Route>
+                </HashRouter> :
+                <Switch>
+                    <Route path="/server/:server/channel/:channel">{content}</Route>
+                    <Route path="/channel/:channel">{content}</Route>
+                </Switch>}
         </SidebarBase>
     );
 }
