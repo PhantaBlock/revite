@@ -25,8 +25,9 @@ const uiContext = {
  * This component provides all of the application's context layers.
  * @param param0 Provided children
  */
-export default function Context({ children, onReady }: {
+export default function Context({ children, miro = false, onReady }: {
     children: Children,
+    miro?: boolean,
     onReady?: () => void,
 }) {
     const [ready, setReady] = useState(false);
@@ -39,6 +40,21 @@ export default function Context({ children, onReady }: {
     }, []);
 
     if (!ready) return <Preloader type="spinner" />;
+
+    if (miro) {
+        return (
+            <>
+                <UIProvider value={uiContext}>
+                    <Locale>
+                        <>{children}</>
+                        <Binder />
+                        <ModalRenderer miro />
+                    </Locale>
+                </UIProvider>
+                <Theme />
+            </>
+        )
+    }
 
     return (
         <Router history={history}>

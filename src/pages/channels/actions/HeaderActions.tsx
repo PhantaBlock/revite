@@ -24,6 +24,7 @@ import { SIDEBAR_MEMBERS } from "../../../mobx/stores/Layout";
 import UpdateIndicator from "../../../components/common/UpdateIndicator";
 import { modalController } from "../../../controllers/modals/ModalController";
 import { ChannelHeaderProps } from "../ChannelHeader";
+import { isMiroMode } from "../../../lib/global";
 
 const Container = styled.div`
     display: flex;
@@ -73,6 +74,8 @@ const SearchBar = styled.div`
 export default function HeaderActions({ channel }: ChannelHeaderProps) {
     const layout = useApplicationState().layout;
     const history = useHistory();
+    const isMiro = isMiroMode();
+
 
     function slideOpen() {
         if (!isTouchscreenDevice) return;
@@ -132,13 +135,13 @@ export default function HeaderActions({ channel }: ChannelHeaderProps) {
                         </IconButton>
                     </>
                 )}
-                <VoiceActions channel={channel} />
+                {!isMiro && <VoiceActions channel={channel} />}
                 {(channel.channel_type === "Group" ||
                     channel.channel_type === "TextChannel") && (
-                    <IconButton onClick={openMembers}>
-                        <Group size={25} />
-                    </IconButton>
-                )}
+                        <IconButton onClick={openMembers}>
+                            <Group size={25} />
+                        </IconButton>
+                    )}
                 {channel.channel_type !== "VoiceChannel" && (
                     /*<SearchBar>
                         <input

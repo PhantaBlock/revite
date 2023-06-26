@@ -27,6 +27,7 @@ import { useClient } from "../../controllers/client/ClientController";
 import ChannelHeader from "./ChannelHeader";
 import { MessageArea } from "./messaging/MessageArea";
 import VoiceHeader from "./voice/VoiceHeader";
+import { isMiroMode } from "../../lib/global";
 
 const ChannelMain = styled.div.attrs({ "data-component": "channel" })`
     flex-grow: 1;
@@ -34,6 +35,8 @@ const ChannelMain = styled.div.attrs({ "data-component": "channel" })`
     min-height: 0;
     overflow: hidden;
     flex-direction: row;
+    width: 100%;
+    height: 100%;
 `;
 
 const ChannelContent = styled.div.attrs({
@@ -97,10 +100,11 @@ const PlaceholderBase = styled.div`
 
 export const Channel = observer(
     ({ id, server_id }: { id: string; server_id: string }) => {
+        const isMiro = isMiroMode();
         const client = useClient();
         const state = useApplicationState();
 
-        if (!client.channels.exists(id)) {
+        if (!client.channels.exists(id) && !isMiro) {
             if (server_id) {
                 const server = client.servers.get(server_id);
                 if (server && server.channel_ids.length > 0) {
@@ -126,7 +130,7 @@ export const Channel = observer(
         }
 
         const channel = client.channels.get(id)!;
-        if (channel.channel_type === "VoiceChannel") {
+        if (channel.channel_type === "VoiceChannel" && !isMiro) {
             return <VoiceChannel channel={channel} />;
         }
 
@@ -136,6 +140,7 @@ export const Channel = observer(
 
 export const TextChannel = observer(({ channel, tempMode }: { channel: ChannelI, tempMode?: boolean }) => {
     const layout = useApplicationState().layout;
+    const isMiro = isMiroMode();
 
     // Store unread location.
     const [lastId, setLastId] = useState<string | undefined>(undefined);

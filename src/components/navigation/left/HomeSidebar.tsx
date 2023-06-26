@@ -27,6 +27,7 @@ import { modalController } from "../../../controllers/modals/ModalController";
 import { GenericSidebarBase, GenericSidebarList } from "../SidebarBase";
 import ButtonItem, { ChannelButton } from "../items/ButtonItem";
 import ConnectionStatus from "../items/ConnectionStatus";
+import { isMiroMode } from "../../../lib/global";
 
 const Navbar = styled.div`
     display: flex;
@@ -44,6 +45,7 @@ const Navbar = styled.div`
 `;
 
 export default observer(() => {
+    const isMiro = isMiroMode();
     const { pathname } = useLocation();
     const client = useClient();
     const state = useApplicationState();
@@ -72,58 +74,66 @@ export default observer(() => {
 
     return (
         <GenericSidebarBase mobilePadding>
-            <Navbar>
-                <Text id="app.home.directs" />
-            </Navbar>
-            <ConnectionStatus />
+            {!isMiro && (
+                <>
+                    <Navbar>
+                        <Text id="app.home.directs" />
+                    </Navbar>
+                    <ConnectionStatus />
+                </>
+            )}
             <GenericSidebarList>
-                <ConditionalLink active={pathname === "/"} to="/">
-                    <ButtonItem active={pathname === "/"}>
-                        <Home size={20} />
-                        <span>
-                            <Text id="app.navigation.tabs.home" />
-                        </span>
-                    </ButtonItem>
-                </ConditionalLink>
-                {!isTouchscreenDevice && (
+                {!isMiro && (
                     <>
-                        <ConditionalLink
-                            active={pathname === "/friends"}
-                            to="/friends">
-                            <ButtonItem
-                                active={pathname === "/friends"}
-                                alert={
-                                    incoming.length > 0 ? "mention" : undefined
-                                }
-                                alertCount={incoming.length}>
-                                <UserDetail size={20} />
+                        <ConditionalLink active={pathname === "/"} to="/">
+                            <ButtonItem active={pathname === "/"}>
+                                <Home size={20} />
                                 <span>
-                                    <Text id="app.navigation.tabs.friends" />
+                                    <Text id="app.navigation.tabs.home" />
                                 </span>
                             </ButtonItem>
                         </ConditionalLink>
+                        {!isTouchscreenDevice && (
+                            <>
+                                <ConditionalLink
+                                    active={pathname === "/friends"}
+                                    to="/friends">
+                                    <ButtonItem
+                                        active={pathname === "/friends"}
+                                        alert={
+                                            incoming.length > 0 ? "mention" : undefined
+                                        }
+                                        alertCount={incoming.length}>
+                                        <UserDetail size={20} />
+                                        <span>
+                                            <Text id="app.navigation.tabs.friends" />
+                                        </span>
+                                    </ButtonItem>
+                                </ConditionalLink>
+                            </>
+                        )}
+                        <ConditionalLink
+                            active={channel?.channel_type === "SavedMessages"}
+                            to="/open/saved">
+                            <ButtonItem
+                                active={channel?.channel_type === "SavedMessages"}>
+                                <Notepad size={20} />
+                                <span>
+                                    <Text id="app.navigation.tabs.saved" />
+                                </span>
+                            </ButtonItem>
+                        </ConditionalLink>
+                        {import.meta.env.DEV && (
+                            <Link to="/dev">
+                                <ButtonItem active={pathname === "/dev"}>
+                                    <Wrench size={20} />
+                                    <span>
+                                        <Text id="app.navigation.tabs.dev" />
+                                    </span>
+                                </ButtonItem>
+                            </Link>
+                        )}
                     </>
-                )}
-                <ConditionalLink
-                    active={channel?.channel_type === "SavedMessages"}
-                    to="/open/saved">
-                    <ButtonItem
-                        active={channel?.channel_type === "SavedMessages"}>
-                        <Notepad size={20} />
-                        <span>
-                            <Text id="app.navigation.tabs.saved" />
-                        </span>
-                    </ButtonItem>
-                </ConditionalLink>
-                {import.meta.env.DEV && (
-                    <Link to="/dev">
-                        <ButtonItem active={pathname === "/dev"}>
-                            <Wrench size={20} />
-                            <span>
-                                <Text id="app.navigation.tabs.dev" />
-                            </span>
-                        </ButtonItem>
-                    </Link>
                 )}
                 <Category>
                     <Text id="app.main.categories.conversations" />
@@ -165,8 +175,8 @@ export default observer(() => {
                                     mentionCount > 0
                                         ? "mention"
                                         : isUnread
-                                        ? "unread"
-                                        : undefined
+                                            ? "unread"
+                                            : undefined
                                 }
                                 alertCount={mentionCount}
                                 active={channel._id === channel_id}
@@ -174,7 +184,7 @@ export default observer(() => {
                         </ConditionalLink>
                     );
                 })}
-                <PaintCounter />
+                {!isMiro && <PaintCounter />}
             </GenericSidebarList>
         </GenericSidebarBase>
     );

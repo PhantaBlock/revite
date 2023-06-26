@@ -6,12 +6,14 @@ import { clientController, useSession } from "../controllers/client/ClientContro
 
 enum ComponentName {
     Friends = "Friends",
-    TempChannel = "tempChannel",
+    TempChannel = "TempChannel",
+    Channels = "Channel",
 }
 
 const Register = {
     [ComponentName.Friends]: lazy(() => import("../pages/friends/Friends")),
     [ComponentName.TempChannel]: lazy(() => import("./tempChannel")),
+    [ComponentName.Channels]: lazy(() => import("./channels")),
 };
 
 const LoadSuspense: React.FC = ({ children }) => (
@@ -23,7 +25,7 @@ export function MiroApp(props: {
     exposeComponent: ComponentName;
     token: string;
 }) {
-    const { exposeComponent = ComponentName.Friends, token, ...extra } = props;
+    const { exposeComponent = ComponentName.Channels, token, ...extra } = props;
     const Component = Register[exposeComponent];
     const [ready, setReady] = useState<boolean>();
 
@@ -35,7 +37,7 @@ export function MiroApp(props: {
     }, [ready]);
 
     return (
-        <Context onReady={() => setReady(true)}>
+        <Context onReady={() => setReady(true)} miro>
             <LoadSuspense>
                 <Component {...extra} />
             </LoadSuspense>
