@@ -3,21 +3,23 @@
     pointer-events: none;
 }
 
-::-webkit-scrollbar {
-    width: var(--scrollbar-thickness);
-    height: var(--scrollbar-thickness);
-}
-
-::-webkit-scrollbar-track {
-    background: var(--scrollbar-track);
-}
-
-::-webkit-scrollbar-thumb {
-    min-width: 30px;
-    min-height: 30px;
-
-    background-clip: content-box;
-    background: var(--scrollbar-thumb);
+#app {
+    ::-webkit-scrollbar {
+        width: var(--scrollbar-thickness);
+        height: var(--scrollbar-thickness);
+    }
+    
+    ::-webkit-scrollbar-track {
+        background: var(--scrollbar-track);
+    }
+    
+    ::-webkit-scrollbar-thumb {
+        min-width: 30px;
+        min-height: 30px;
+    
+        background-clip: content-box;
+        background: var(--scrollbar-thumb);
+    }
 }
 
 [data-scroll-offset] {
