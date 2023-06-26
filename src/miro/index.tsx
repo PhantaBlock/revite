@@ -18,7 +18,7 @@ const LoadSuspense: React.FC = ({ children }) => (
     <Suspense fallback={<Preloader type="ring" />}>{children}</Suspense>
 );
 
-export function MiroApp({ exposeComponent = ComponentName.TempChannel }: {
+export function MiroApp({ exposeComponent = ComponentName.Friends }: {
     exposeComponent: ComponentName
 }) {
     const Component = Register[exposeComponent];

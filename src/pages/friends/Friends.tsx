@@ -102,12 +102,12 @@ export default observer(() => {
                                 <UserPlus size={27} />
                             </IconButton>
                         </Tooltip>
-                        {/* 
+                        {/*
                         <div className={styles.divider} />
                         <Tooltip content={"Friend Activity"} placement="bottom">
                             <IconButton>
                                 <TennisBall size={24} />
-                            </IconButton>            
+                            </IconButton>
                         </Tooltip>
                         */}
                     </div>
@@ -145,10 +145,10 @@ export default observer(() => {
                                                 size={64}
                                                 mask={
                                                     i <
-                                                    Math.min(
-                                                        incoming.length - 1,
-                                                        2,
-                                                    )
+                                                        Math.min(
+                                                            incoming.length - 1,
+                                                            2,
+                                                        )
                                                         ? "url(#overlap)"
                                                         : undefined
                                                 }

@@ -63,7 +63,7 @@ export const Friend = observer(({ user }: Props) => {
                                 .openDM()
                                 .then((channel) => {
                                     if (isMiro) {
-
+                                        // TODO
                                     } else {
                                         history.push(`/channel/${channel._id}`);
                                     }

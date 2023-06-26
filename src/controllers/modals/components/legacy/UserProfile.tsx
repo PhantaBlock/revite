@@ -220,7 +220,7 @@ export const UserProfile = observer(
                                             props.onClose?.();
 
                                             if (isMiro) {
-
+                                                // TODO
                                             } else {
                                                 history.push(`/open/${user_id}`);
                                             }
@@ -290,11 +290,11 @@ export const UserProfile = observer(
                                     onClick={() => setTab("groups")}>
                                     <Text id="app.special.popovers.user_profile.mutual_groups" />
                                 </div>
-                                <div
+                                {!isMiro && <div
                                     data-active={tab === "servers"}
                                     onClick={() => setTab("servers")}>
                                     <Text id="app.special.popovers.user_profile.mutual_servers" />
-                                </div>
+                                </div>}
                             </>
                         )}
                     </div>
@@ -417,7 +417,7 @@ export const UserProfile = observer(
                                 {mutualGroups.map(
                                     (x) =>
                                         x?.channel_type === "Group" && (
-                                            <Link to={`/channel/${x._id}`}>
+                                            !isMiro ? <Link to={`/channel/${x._id}`}>
                                                 <div
                                                     className={styles.entry}
                                                     key={x._id}>
@@ -427,7 +427,19 @@ export const UserProfile = observer(
                                                     />
                                                     <span>{x.name}</span>
                                                 </div>
-                                            </Link>
+                                            </Link> : <div
+                                                className={styles.entry}
+                                                key={x._id}
+                                                onClick={() => {
+                                                    // TODO 打开群组页面
+                                                }}
+                                            >
+                                                <ChannelIcon
+                                                    target={x}
+                                                    size={32}
+                                                />
+                                                <span>{x.name}</span>
+                                            </div>
                                         ),
                                 )}
                             </div>
