@@ -6,9 +6,12 @@ import { internalSubscribe } from "../../lib/eventEmitter";
 
 import SidebarBase from "./SidebarBase";
 import MemberSidebar from "./right/MemberSidebar";
+import { isMiroMode } from "../../lib/global";
 import { SearchSidebar } from "./right/Search";
 
+
 export default function RightSidebar() {
+    const isMiro = isMiroMode();
     const [sidebar, setSidebar] = useState<"search" | undefined>();
     const close = () => setSidebar(undefined);
 
