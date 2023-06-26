@@ -200,7 +200,7 @@ export const TextChannel = observer(({ channel, tempMode }: { channel: ChannelI,
                         <MessageBox channel={channel} />
                     </ChannelContent>
                 </ErrorBoundary>
-                {!isTouchscreenDevice &&
+                {!isTouchscreenDevice && !tempMode &&
                     layout.getSectionState(SIDEBAR_MEMBERS, true) && (
                         <RightSidebar />
                     )}
