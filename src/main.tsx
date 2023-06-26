@@ -35,4 +35,4 @@ const initQianKun = () => {
 // qiankunWindow.__POWERED_BY_QIANKUN__ ? initQianKun() : renderApp(); // 判断是否使用 qiankun ，保证项目可以独立运行
 
 qiankunWindow.__POWERED_BY_QIANKUN__ = true;
-render(<MiroApp />, document.getElementById("app")!);
+render(<MiroApp token="z9Hgcp1GmyQDf/1MgwXnkjwZ1zxNkJ3lsntLAj2RmCgpQSFgHuL9wGAtCEFJPefE" />, document.getElementById("app")!);

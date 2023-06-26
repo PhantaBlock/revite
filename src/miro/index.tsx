@@ -1,7 +1,8 @@
-import { lazy, Suspense } from "preact/compat";
+import { lazy, Suspense, useEffect } from "preact/compat";
 import { Masks, Preloader } from "@revoltchat/ui";
 
 import Context from "../context";
+import { clientController } from "../controllers/client/ClientController";
 
 enum ComponentName {
     Friends = "Friends",
@@ -18,10 +19,16 @@ const LoadSuspense: React.FC = ({ children }) => (
     <Suspense fallback={<Preloader type="ring" />}>{children}</Suspense>
 );
 
-export function MiroApp({ exposeComponent = ComponentName.TempChannel }: {
-    exposeComponent: ComponentName
+export function MiroApp({ exposeComponent = ComponentName.Friends, token }: {
+    exposeComponent: ComponentName;
+    token: string;
 }) {
     const Component = Register[exposeComponent];
+
+    useEffect(() => {
+        // @ts-ignore-next-line
+        clientController.login(undefined, token);
+    }, []);
 
     return (
         <Context>
