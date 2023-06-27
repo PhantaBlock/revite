@@ -29,6 +29,7 @@ import { Reactions } from "./attachments/Reactions";
 import { MessageOverlayBar } from "./bars/MessageOverlayBar";
 import Embed from "./embed/Embed";
 import InviteList from "./embed/EmbedInvite";
+import { inSingleWebView } from "../../../lib/global";
 
 interface Props {
     attachContext?: boolean;
@@ -52,6 +53,7 @@ const Message = observer(
         queued,
         hideReply,
     }: Props) => {
+        const isSingle = inSingleWebView();
         const client = message.client;
         const user = message.author;
 
@@ -61,18 +63,20 @@ const Message = observer(
 
         const userContext = attachContext
             ? useTriggerEvents("Menu", {
-                  user: message.author_id,
-                  contextualChannel: message.channel_id,
-                  contextualMessage: message._id,
-                  // eslint-disable-next-line
-              })
+                user: message.author_id,
+                contextualChannel: message.channel_id,
+                contextualMessage: message._id,
+                // eslint-disable-next-line
+            })
             : undefined;
 
-        const openProfile = () =>
+        const openProfile = () => {
+            if (!isSingle) return;
             modalController.push({
                 type: "user_profile",
                 user_id: message.author_id,
             });
+        }
 
         const handleUserClick = (e: MouseEvent) => {
             if (e.shiftKey && user?._id) {
@@ -110,11 +114,11 @@ const Message = observer(
                         hideReply
                             ? false
                             : (head &&
-                                  !(
-                                      message.reply_ids &&
-                                      message.reply_ids.length > 0
-                                  )) ??
-                              false
+                                !(
+                                    message.reply_ids &&
+                                    message.reply_ids.length > 0
+                                )) ??
+                            false
                     }
                     contrast={contrast}
                     sending={typeof queued !== "undefined"}
@@ -126,10 +130,10 @@ const Message = observer(
                     failed={typeof queued?.error !== "undefined"}
                     {...(attachContext
                         ? useTriggerEvents("Menu", {
-                              message,
-                              contextualChannel: message.channel_id,
-                              queued,
-                          })
+                            message,
+                            contextualChannel: message.channel_id,
+                            queued,
+                        })
                         : undefined)}
                     onMouseEnter={() => setAnimate(true)}
                     onMouseLeave={() => setAnimate(false)}>

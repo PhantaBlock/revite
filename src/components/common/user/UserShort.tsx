@@ -15,6 +15,7 @@ import { useClient } from "../../../controllers/client/ClientController";
 import { modalController } from "../../../controllers/modals/ModalController";
 import Tooltip from "../Tooltip";
 import UserIcon from "./UserIcon";
+import { inSingleWebView } from '../../../lib/global';
 
 const BotBadge = styled.div`
     display: inline-block;
@@ -180,9 +181,12 @@ export default function UserShort({
     masquerade?: API.Masquerade;
     showServerIdentity?: boolean;
 }) {
-    const openProfile = () =>
+    const isSingle = inSingleWebView();
+    const openProfile = () => {
+        if (!isSingle) return;
         user &&
-        modalController.push({ type: "user_profile", user_id: user._id });
+            modalController.push({ type: "user_profile", user_id: user._id });
+    }
 
     const handleUserClick = (e: MouseEvent) => {
         if (e.shiftKey && user?._id) {
