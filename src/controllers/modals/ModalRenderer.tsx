@@ -5,7 +5,7 @@ import { useEffect } from "preact/hooks";
 
 import { modalController } from "./ModalController";
 
-export default observer(({ miro = false }: { miro: boolean }) => {
+export default observer(() => {
     const history = useHistory();
 
     useEffect(() => {
@@ -25,21 +25,19 @@ export default observer(({ miro = false }: { miro: boolean }) => {
     return (
         <>
             {modalController.rendered}
-            {!miro && (
-                <Prompt
-                    when={modalController.isVisible}
-                    message={(_, action) => {
-                        if (action === "POP") {
-                            modalController.pop("close");
-                            setTimeout(() => history.push(history.location), 0);
+            <Prompt
+                when={modalController.isVisible}
+                message={(_, action) => {
+                    if (action === "POP") {
+                        modalController.pop("close");
+                        setTimeout(() => history.push(history.location), 0);
 
-                            return false;
-                        }
+                        return false;
+                    }
 
-                        return true;
-                    }}
-                />
-            )}
+                    return true;
+                }}
+            />
         </>
     );
 });

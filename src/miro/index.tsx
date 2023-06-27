@@ -37,7 +37,7 @@ export function MiroApp(props: {
     }, [ready]);
 
     return (
-        <Context onReady={() => setReady(true)} miro>
+        <Context onReady={() => setReady(true)}>
             <LoadSuspense>
                 <Component {...extra} />
             </LoadSuspense>
