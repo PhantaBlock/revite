@@ -20,6 +20,9 @@ const initQianKun = () => {
     },
     mount(props) { // 获取主应用传入数据
       console.log('微应用：mount', props);
+      if (props.inSingleWebView) {
+        qiankunWindow.__IN_SINGLE_WEB_VIEW__ = true;
+      }
 
       render((
         <MiroApp
@@ -40,4 +43,5 @@ const initQianKun = () => {
 // qiankunWindow.__POWERED_BY_QIANKUN__ ? initQianKun() : renderApp(); // 判断是否使用 qiankun ，保证项目可以独立运行
 
 qiankunWindow.__POWERED_BY_QIANKUN__ = true;
+qiankunWindow.__IN_SINGLE_WEB_VIEW__ = false;
 render(<MiroApp token="gco83tFUeonU9llse25BKzV2p5G2Wy+VaU+r3bkYmUmnlkc9L0N8x4mlC+NheCIp" />, document.getElementById("app")!);

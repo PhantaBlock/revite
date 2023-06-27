@@ -27,14 +27,24 @@ export default function Open() {
         if (id === "saved") {
             for (const channel of [...client.channels.values()]) {
                 if (channel?.channel_type === "SavedMessages") {
-                    history.push(`/channel/${channel._id}`);
+                    try {
+                        history.push(`/channel/${channel._id}`);
+                    } catch (error) {
+                        window.location.hash = `/channel/${channel._id}`
+                    }
                     return;
                 }
             }
 
             client
                 .user!.openDM()
-                .then((channel) => history.push(`/channel/${channel?._id}`))
+                .then((channel) => {
+                    try {
+                        history.push(`/channel/${channel._id}`);
+                    } catch (error) {
+                        window.location.hash = `/channel/${channel._id}`
+                    }
+                })
                 .catch((error) =>
                     modalController.push({
                         type: "error",
@@ -56,12 +66,22 @@ export default function Open() {
             )?._id;
 
             if (channel) {
-                history.push(`/channel/${channel}`);
+                try {
+                    history.push(`/channel/${channel}`);
+                } catch (error) {
+                    window.location.hash = `/channel/${channel}`
+                }
             } else {
                 client.users
                     .get(id)
                     ?.openDM()
-                    .then((channel) => history.push(`/channel/${channel?._id}`))
+                    .then((channel) => {
+                        try {
+                            history.push(`/channel/${channel._id}`);
+                        } catch (error) {
+                            window.location.hash = `/channel/${channel._id}`
+                        }
+                    })
                     .catch((error) =>
                         modalController.push({
                             type: "error",
@@ -73,7 +93,11 @@ export default function Open() {
             return;
         }
 
-        history.push("/");
+        try {
+            history.push("/");
+        } catch (error) {
+            window.location.hash = `/`
+        }
     });
 
     return (

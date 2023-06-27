@@ -36,8 +36,11 @@ export default function CreateGroup({ ...props }: ModalProps<"create_group">) {
                         users: [],
                     })
                     .catch(mapError);
-
-                history.push(`/channel/${group._id}`);
+                try {
+                    history.push(`/channel/${group._id}`);
+                } catch (error) {
+                    window.location.hash = `#/channel/${group._id}`;
+                }
             }}
             submit={{
                 children: <Text id="app.special.modals.actions.create" />,

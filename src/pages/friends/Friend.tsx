@@ -26,6 +26,7 @@ interface Props {
 
 export const Friend = observer(({ user }: Props) => {
     const isMiro = isMiroMode();
+
     const history = useHistory();
 
     const actions: Children[] = [];
@@ -63,7 +64,7 @@ export const Friend = observer(({ user }: Props) => {
                                 .openDM()
                                 .then((channel) => {
                                     if (isMiro) {
-                                        // TODO
+                                        // TODO 点击打开新的webView
                                     } else {
                                         history.push(`/channel/${channel._id}`);
                                     }

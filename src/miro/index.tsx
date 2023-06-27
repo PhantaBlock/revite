@@ -25,7 +25,7 @@ export function MiroApp(props: {
     exposeComponent: ComponentName;
     token: string;
 }) {
-    const { exposeComponent = ComponentName.Channels, token, ...extra } = props;
+    const { exposeComponent = ComponentName.TempChannel, token, ...extra } = props;
     const Component = Register[exposeComponent];
     const [ready, setReady] = useState<boolean>();
 

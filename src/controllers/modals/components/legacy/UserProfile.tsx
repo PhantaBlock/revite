@@ -37,7 +37,7 @@ import Markdown from "../../../../components/markdown/Markdown";
 import { useSession } from "../../../../controllers/client/ClientController";
 import { modalController } from "../../../../controllers/modals/ModalController";
 import { ModalProps } from "../../types";
-import { isMiroMode } from "../../../../lib/global";
+import { isMiroMode, inSingleWebView } from "../../../../lib/global";
 
 export const UserProfile = observer(
     ({
@@ -46,7 +46,8 @@ export const UserProfile = observer(
         placeholderProfile,
         ...props
     }: ModalProps<"user_profile">) => {
-        const isMiro = isMiroMode()
+        const isMiro = isMiroMode();
+        const isSingle = inSingleWebView();
 
         const [profile, setProfile] = useState<
             undefined | null | API.UserProfile
@@ -220,7 +221,11 @@ export const UserProfile = observer(
                                             props.onClose?.();
 
                                             if (isMiro) {
-                                                // TODO
+                                                if (isSingle) {
+                                                    window.location.hash = `/open/${user_id}`
+                                                } else {
+                                                    // TODO 打开个人聊天弹框 url:  `/open/${user_id}`
+                                                }
                                             } else {
                                                 history.push(`/open/${user_id}`);
                                             }
@@ -431,7 +436,11 @@ export const UserProfile = observer(
                                                 className={styles.entry}
                                                 key={x._id}
                                                 onClick={() => {
-                                                    // TODO 打开群组页面
+                                                    if (isSingle) {
+                                                        window.location.hash = `/channel/${x._id}`
+                                                    } else {
+                                                        // TODO 打开群组弹框
+                                                    }
                                                 }}
                                             >
                                                 <ChannelIcon

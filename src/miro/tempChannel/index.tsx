@@ -3,7 +3,7 @@ import { observer } from "mobx-react-lite";
 import { TextChannel } from "../../pages/channels/Channel";
 import { useClient } from "../../controllers/client/ClientController";
 
-export default observer(({ channelId = "01H3S1WJM7GSGW03BXWA3CVESW" }: {
+export default observer(({ channelId = "01H3XJK1BS5HESJJW4P8KPGTWF" }: {
     channelId: string;
 }) => {
     const [channel, setChannel] = useState<any>();
@@ -22,5 +22,5 @@ export default observer(({ channelId = "01H3S1WJM7GSGW03BXWA3CVESW" }: {
         return null;
     }
 
-    return <TextChannel channel={channel} tempMode={false} />;
+    return <TextChannel channel={channel} tempMode />;
 });

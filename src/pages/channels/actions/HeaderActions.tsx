@@ -127,12 +127,12 @@ export default function HeaderActions({ channel }: ChannelHeaderProps) {
                             }>
                             <UserPlus size={27} />
                         </IconButton>
-                        <IconButton
+                        {!isMiro && <IconButton
                             onClick={() =>
                                 history.push(`/channel/${channel._id}/settings`)
                             }>
                             <Cog size={24} />
-                        </IconButton>
+                        </IconButton>}
                     </>
                 )}
                 {!isMiro && <VoiceActions channel={channel} />}
