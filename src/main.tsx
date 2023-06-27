@@ -40,7 +40,7 @@ const initQianKun = () => {
   });
 }
 
-qiankunWindow.__POWERED_BY_QIANKUN__ ? initQianKun() : renderApp(); // 判断是否使用 qiankun ，保证项目可以独立运行
+// qiankunWindow.__POWERED_BY_QIANKUN__ ? initQianKun() : renderApp(); // 判断是否使用 qiankun ，保证项目可以独立运行
 
 qiankunWindow.__POWERED_BY_QIANKUN__ = true;
 qiankunWindow.__IN_SINGLE_WEB_VIEW__ = false;
