@@ -2,7 +2,7 @@ import { lazy, Suspense, useEffect, useState } from "preact/compat";
 import { Masks, Preloader } from "@revoltchat/ui";
 
 import Context from "../context";
-import { clientController, useSession } from "../controllers/client/ClientController";
+import { clientController } from "../controllers/client/ClientController";
 
 import localforage from "localforage";
 import Auth from "../mobx/stores/Auth";
@@ -29,19 +29,32 @@ export function MicroApp(props: {
     token: string;
     userId: string;
 }) {
-    const { exposeComponent = ComponentName.TempChannel, token, userId, ...extra } = props;
+    const { exposeComponent = ComponentName.Friends, token, userId, ...extra } = props;
     const Component = Register[exposeComponent];
 
     const beforeHydrate = async () => {
         const auth: any = await localforage.getItem('auth');
 
         if (auth && typeof auth === 'object') {
-            const sessions = Object.keys(auth.sessions || {});
-            const current = sessions.find(item => item === userId);
+            const sessions = Object.values(auth.sessions || {});
+            const current: any = sessions.find((item: any) => item.session.user_id === userId);
+
+            console.log('##', current);
 
             if (!current) {
+                // 清除历史accounts
+                await localforage.removeItem("auth");
                 // @ts-ignore-next-line
                 await clientController.login(undefined, token);
+            } else {
+                const _auth = {
+                    sessions: {
+                        [current.session.user_id]: current,
+                    }
+                };
+
+                // 清除其余accounts
+                await localforage.setItem("auth", _auth);
             }
         }
     };

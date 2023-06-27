@@ -47,13 +47,16 @@ export default function Context({ children, beforeHydrate }: {
         _hydrate();
     }, []);
 
-    if (!ready) return <Preloader type="spinner" />;
+    // if (!ready) return <Preloader type="spinner" />;
 
     return (
         <Router history={history}>
             <UIProvider value={uiContext}>
                 <Locale>
-                    <>{children}</>
+                    {ready ? (
+                        <>{children}</>
+                    ) : <Preloader type="spinner" />}
+                    {/* Binder注册了state的监听写入localforage，需要先挂载 */}
                     <Binder />
                     <ModalRenderer />
                 </Locale>
