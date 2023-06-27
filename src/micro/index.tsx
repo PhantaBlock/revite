@@ -39,7 +39,7 @@ export function MicroApp(props: {
             const sessions = Object.values(auth.sessions || {});
             const current: any = sessions.find((item: any) => item.session.user_id === userId);
 
-            console.log('##', current);
+            console.log('##', sessions, current, userId);
 
             if (!current) {
                 // 清除历史accounts
