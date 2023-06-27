@@ -32,8 +32,8 @@ export function MiroApp(props: {
     useEffect(() => {
         console.log('##', clientController.isLoggedIn());
         // @ts-ignore-next-line
-        // clientController.login(undefined, token).then(() => {
-        // });
+        clientController.login(undefined, token).then(() => {
+        });
     }, [ready]);
 
     return (
