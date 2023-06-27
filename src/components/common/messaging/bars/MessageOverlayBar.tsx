@@ -24,7 +24,7 @@ import { QueuedMessage } from "../../../../mobx/stores/MessageQueue";
 import { modalController } from "../../../../controllers/modals/ModalController";
 import Tooltip from "../../../common/Tooltip";
 import { ReactionWrapper } from "../attachments/Reactions";
-import { isMiroMode } from "../../../../lib/global";
+import { isMicroMode } from "../../../../lib/global";
 
 interface Props {
     reactionsOpen: boolean;
@@ -89,7 +89,7 @@ const Divider = styled.div`
 
 export const MessageOverlayBar = observer(
     ({ reactionsOpen, setReactionsOpen, message, queued }: Props) => {
-        const isMiro = isMiroMode();
+        const isMicro = isMicroMode();
         const client = message.client;
         const isAuthor = message.author_id === client.user!._id;
 
@@ -166,7 +166,7 @@ export const MessageOverlayBar = observer(
                     </Tooltip>
                 ) : undefined}
                 {
-                    !isMiro &&
+                    !isMicro &&
                     <Tooltip content="More">
                         <Entry
                             onClick={() =>

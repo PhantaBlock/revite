@@ -18,14 +18,14 @@ import UserIcon from "../../components/common/user/UserIcon";
 import UserStatus from "../../components/common/user/UserStatus";
 import { modalController } from "../../controllers/modals/ModalController";
 
-import { isMiroMode } from "../../lib/global";
+import { isMicroMode } from "../../lib/global";
 
 interface Props {
     user: User;
 }
 
 export const Friend = observer(({ user }: Props) => {
-    const isMiro = isMiroMode();
+    const isMicro = isMicroMode();
 
     const history = useHistory();
 
@@ -36,7 +36,7 @@ export const Friend = observer(({ user }: Props) => {
         subtext = <UserStatus user={user} />;
         actions.push(
             <>
-                {!isMiro && (
+                {!isMicro && (
                     <IconButton
                         shape="circle"
                         className={classNames(styles.button, styles.success)}
@@ -63,7 +63,7 @@ export const Friend = observer(({ user }: Props) => {
                             user
                                 .openDM()
                                 .then((channel) => {
-                                    if (isMiro) {
+                                    if (isMicro) {
                                         // TODO 点击打开新的webView
                                     } else {
                                         history.push(`/channel/${channel._id}`);

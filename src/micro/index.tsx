@@ -24,7 +24,7 @@ const LoadSuspense: React.FC = ({ children }) => (
     <Suspense fallback={<Preloader type="ring" />}>{children}</Suspense>
 );
 
-export function MiroApp(props: {
+export function MicroApp(props: {
     exposeComponent: ComponentName;
     token: string;
     userId: string;

@@ -24,7 +24,7 @@ import { SIDEBAR_MEMBERS } from "../../../mobx/stores/Layout";
 import UpdateIndicator from "../../../components/common/UpdateIndicator";
 import { modalController } from "../../../controllers/modals/ModalController";
 import { ChannelHeaderProps } from "../ChannelHeader";
-import { isMiroMode } from "../../../lib/global";
+import { isMicroMode } from "../../../lib/global";
 
 const Container = styled.div`
     display: flex;
@@ -74,7 +74,7 @@ const SearchBar = styled.div`
 export default function HeaderActions({ channel }: ChannelHeaderProps) {
     const layout = useApplicationState().layout;
     const history = useHistory();
-    const isMiro = isMiroMode();
+    const isMicro = isMicroMode();
 
 
     function slideOpen() {
@@ -127,7 +127,7 @@ export default function HeaderActions({ channel }: ChannelHeaderProps) {
                             }>
                             <UserPlus size={27} />
                         </IconButton>
-                        {!isMiro && <IconButton
+                        {!isMicro && <IconButton
                             onClick={() =>
                                 history.push(`/channel/${channel._id}/settings`)
                             }>
@@ -135,7 +135,7 @@ export default function HeaderActions({ channel }: ChannelHeaderProps) {
                         </IconButton>}
                     </>
                 )}
-                {!isMiro && <VoiceActions channel={channel} />}
+                {!isMicro && <VoiceActions channel={channel} />}
                 {(channel.channel_type === "Group" ||
                     channel.channel_type === "TextChannel") && (
                         <IconButton onClick={openMembers}>

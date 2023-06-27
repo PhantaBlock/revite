@@ -20,10 +20,10 @@ import { useClient } from "../../controllers/client/ClientController";
 import { modalController } from "../../controllers/modals/ModalController";
 import { Friend } from "./Friend";
 
-import { isMiroMode } from "../../lib/global";
+import { isMicroMode } from "../../lib/global";
 
 export default observer(() => {
-    const isMiro = isMiroMode();
+    const isMicro = isMicroMode();
     const client = useClient();
     const users = [...client.users.values()];
     users.sort((a, b) => a.username.localeCompare(b.username));
@@ -67,7 +67,7 @@ export default observer(() => {
     const isEmpty = lists.reduce((p: number, n) => p + n.length, 0) === 0;
     return (
         <>
-            {!isMiro && (
+            {!isMicro && (
                 <PageHeader
                     icon={<UserDetail size={24} />}
                     withTransparency
@@ -116,7 +116,7 @@ export default observer(() => {
             <div data-scroll-offset="true" data-avoids-navigation="true">
                 <div
                     className={classNames(styles.list, {
-                        'with-padding': !isMiro,
+                        'with-padding': !isMicro,
                     })}
                     data-empty={isEmpty}
                     data-mobile={isTouchscreenDevice}>

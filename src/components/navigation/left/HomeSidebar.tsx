@@ -27,7 +27,7 @@ import { modalController } from "../../../controllers/modals/ModalController";
 import { GenericSidebarBase, GenericSidebarList } from "../SidebarBase";
 import ButtonItem, { ChannelButton } from "../items/ButtonItem";
 import ConnectionStatus from "../items/ConnectionStatus";
-import { isMiroMode } from "../../../lib/global";
+import { isMicroMode } from "../../../lib/global";
 
 const Navbar = styled.div`
     display: flex;
@@ -45,7 +45,7 @@ const Navbar = styled.div`
 `;
 
 export default observer(() => {
-    const isMiro = isMiroMode();
+    const isMicro = isMicroMode();
     const { pathname } = useLocation();
     const client = useClient();
     const state = useApplicationState();
@@ -74,7 +74,7 @@ export default observer(() => {
 
     return (
         <GenericSidebarBase mobilePadding>
-            {!isMiro && (
+            {!isMicro && (
                 <>
                     <Navbar>
                         <Text id="app.home.directs" />
@@ -83,7 +83,7 @@ export default observer(() => {
                 </>
             )}
             <GenericSidebarList>
-                {!isMiro && (
+                {!isMicro && (
                     <>
                         <ConditionalLink active={pathname === "/"} to="/">
                             <ButtonItem active={pathname === "/"}>
@@ -184,7 +184,7 @@ export default observer(() => {
                         </ConditionalLink>
                     );
                 })}
-                {!isMiro && <PaintCounter />}
+                {!isMicro && <PaintCounter />}
             </GenericSidebarList>
         </GenericSidebarBase>
     );

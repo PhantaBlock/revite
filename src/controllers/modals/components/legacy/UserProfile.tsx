@@ -37,7 +37,7 @@ import Markdown from "../../../../components/markdown/Markdown";
 import { useSession } from "../../../../controllers/client/ClientController";
 import { modalController } from "../../../../controllers/modals/ModalController";
 import { ModalProps } from "../../types";
-import { isMiroMode, inSingleWebView } from "../../../../lib/global";
+import { isMicroMode, inSingleWebView } from "../../../../lib/global";
 
 export const UserProfile = observer(
     ({
@@ -46,7 +46,7 @@ export const UserProfile = observer(
         placeholderProfile,
         ...props
     }: ModalProps<"user_profile">) => {
-        const isMiro = isMiroMode();
+        const isMicro = isMicroMode();
         const isSingle = inSingleWebView();
 
         const [profile, setProfile] = useState<
@@ -220,7 +220,7 @@ export const UserProfile = observer(
                                         onClick={() => {
                                             props.onClose?.();
 
-                                            if (isMiro) {
+                                            if (isMicro) {
                                                 if (isSingle) {
                                                     window.location.hash = `/open/${user_id}`
                                                 } else {
@@ -235,7 +235,7 @@ export const UserProfile = observer(
                                 </Tooltip>
                             </Localizer>
                         )}
-                        {user.relationship === "User" && !isPlaceholder && !isMiro && (
+                        {user.relationship === "User" && !isPlaceholder && !isMicro && (
                             <IconButton
                                 onClick={() => {
                                     props.onClose?.();
@@ -295,7 +295,7 @@ export const UserProfile = observer(
                                     onClick={() => setTab("groups")}>
                                     <Text id="app.special.popovers.user_profile.mutual_groups" />
                                 </div>
-                                {!isMiro && <div
+                                {!isMicro && <div
                                     data-active={tab === "servers"}
                                     onClick={() => setTab("servers")}>
                                     <Text id="app.special.popovers.user_profile.mutual_servers" />
@@ -422,7 +422,7 @@ export const UserProfile = observer(
                                 {mutualGroups.map(
                                     (x) =>
                                         x?.channel_type === "Group" && (
-                                            !isMiro ? <Link to={`/channel/${x._id}`}>
+                                            !isMicro ? <Link to={`/channel/${x._id}`}>
                                                 <div
                                                     className={styles.entry}
                                                     key={x._id}>

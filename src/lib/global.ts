@@ -1,6 +1,6 @@
 import { qiankunWindow } from "vite-plugin-qiankun/dist/helper";
 
-export function isMiroMode() {
+export function isMicroMode() {
     return !!qiankunWindow.__POWERED_BY_QIANKUN__;
 }
 

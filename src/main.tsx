@@ -3,7 +3,7 @@ import { render } from "preact";
 
 import "../external/lang/Languages.patch";
 import { App } from "./pages/app";
-import { MiroApp } from "./miro";
+import { MicroApp } from "./micro";
 import "./updateWorker";
 
 import { renderWithQiankun, qiankunWindow, QiankunProps } from 'vite-plugin-qiankun/dist/helper';
@@ -25,7 +25,7 @@ const initQianKun = () => {
       }
 
       render((
-        <MiroApp
+        <MicroApp
           exposeComponent={props.exposeComponent}
           token={props.token}
         />
@@ -45,7 +45,7 @@ const initQianKun = () => {
 qiankunWindow.__POWERED_BY_QIANKUN__ = true;
 qiankunWindow.__IN_SINGLE_WEB_VIEW__ = false;
 render((
-  <MiroApp
+  <MicroApp
     token="gco83tFUeonU9llse25BKzV2p5G2Wy+VaU+r3bkYmUmnlkc9L0N8x4mlC+NheCIp"
     userId="02c482c1b4994b6d9daa39a26a0ab633"
   />
