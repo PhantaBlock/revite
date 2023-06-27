@@ -37,7 +37,7 @@ const initQianKun = () => {
   });
 }
 
-// qiankunWindow.__POWERED_BY_QIANKUN__ ? initQianKun() : renderApp(); // 判断是否使用 qiankun ，保证项目可以独立运行
+qiankunWindow.__POWERED_BY_QIANKUN__ ? initQianKun() : renderApp(); // 判断是否使用 qiankun ，保证项目可以独立运行
 
-qiankunWindow.__POWERED_BY_QIANKUN__ = true;
-render(<MiroApp token="gco83tFUeonU9llse25BKzV2p5G2Wy+VaU+r3bkYmUmnlkc9L0N8x4mlC+NheCIp" />, document.getElementById("app")!);
+// qiankunWindow.__POWERED_BY_QIANKUN__ = true;
+// render(<MiroApp token="gco83tFUeonU9llse25BKzV2p5G2Wy+VaU+r3bkYmUmnlkc9L0N8x4mlC+NheCIp" />, document.getElementById("app")!);
