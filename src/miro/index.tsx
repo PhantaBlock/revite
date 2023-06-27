@@ -4,6 +4,9 @@ import { Masks, Preloader } from "@revoltchat/ui";
 import Context from "../context";
 import { clientController, useSession } from "../controllers/client/ClientController";
 
+import localforage from "localforage";
+import Auth from "../mobx/stores/Auth";
+
 enum ComponentName {
     Friends = "Friends",
     TempChannel = "TempChannel",
@@ -24,20 +27,27 @@ const LoadSuspense: React.FC = ({ children }) => (
 export function MiroApp(props: {
     exposeComponent: ComponentName;
     token: string;
+    userId: string;
 }) {
-    const { exposeComponent = ComponentName.TempChannel, token, ...extra } = props;
+    const { exposeComponent = ComponentName.TempChannel, token, userId, ...extra } = props;
     const Component = Register[exposeComponent];
-    const [ready, setReady] = useState<boolean>();
 
-    useEffect(() => {
-        console.log('##', clientController.isLoggedIn());
-        // @ts-ignore-next-line
-        clientController.login(undefined, token).then(() => {
-        });
-    }, [ready]);
+    const beforeHydrate = async () => {
+        const auth: any = await localforage.getItem('auth');
+
+        if (auth && typeof auth === 'object') {
+            const sessions = Object.keys(auth.sessions || {});
+            const current = sessions.find(item => item === userId);
+
+            if (!current) {
+                // @ts-ignore-next-line
+                await clientController.login(undefined, token);
+            }
+        }
+    };
 
     return (
-        <Context onReady={() => setReady(true)}>
+        <Context beforeHydrate={beforeHydrate}>
             <LoadSuspense>
                 <Component {...extra} />
             </LoadSuspense>

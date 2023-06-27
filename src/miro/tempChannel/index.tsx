@@ -3,20 +3,22 @@ import { observer } from "mobx-react-lite";
 import { TextChannel } from "../../pages/channels/Channel";
 import { useClient } from "../../controllers/client/ClientController";
 
-export default observer(({ channelId = "01H3XJK1BS5HESJJW4P8KPGTWF" }: {
+export default observer(({ channelId = "01H3S1WJM7GSGW03BXWA3CVESW" }: {
     channelId: string;
 }) => {
     const [channel, setChannel] = useState<any>();
 
     useEffect(() => {
+        // 这里channel可能会拉取的慢了，需要看看怎么搞
         setTimeout(() => {
             const client = useClient();
-            setChannel(client.channels.get(channelId)!)
+            const _channel = client.channels.get(channelId)!;
+
+            console.log('##', _channel);
+
+            setChannel(_channel);
         }, 1000)
     }, [channelId])
-
-    // 这里channel可能会拉取的慢了，需要看看怎么搞
-    // console.log('##', client, channel);
 
     if (!channel) {
         return null;

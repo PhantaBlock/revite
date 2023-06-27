@@ -25,17 +25,26 @@ const uiContext = {
  * This component provides all of the application's context layers.
  * @param param0 Provided children
  */
-export default function Context({ children, onReady }: {
-    children: Children,
-    onReady?: () => void,
+export default function Context({ children, beforeHydrate }: {
+    children: Children;
+    beforeHydrate?: () => Promise<void>;
 }) {
     const [ready, setReady] = useState(false);
 
-    useEffect(() => {
+    const _hydrate = async () => {
+        try {
+            await beforeHydrate?.();
+        } catch (e) {
+            console.log('##', e);
+        }
+
         state.hydrate().then(() => {
             setReady(true);
-            onReady && onReady();
         });
+    };
+
+    useEffect(() => {
+        _hydrate();
     }, []);
 
     if (!ready) return <Preloader type="spinner" />;
