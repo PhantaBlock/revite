@@ -39,7 +39,7 @@ export function MicroApp(props: {
     const Component = Register[exposeComponent];
 
     const beforeHydrate = async () => {
-        if (!needHandleAuthenticate) return false;
+        if (!needHandleAuthenticate) return;
 
         const auth: any = await localforage.getItem('auth');
         let current: any = undefined;
@@ -51,24 +51,25 @@ export function MicroApp(props: {
         }
 
         if (!current) {
-            // 清除历史accounts
-            await localforage.removeItem("auth");
+            console.log('##authenticate');
             // @ts-ignore-next-line
-            await clientController.login(undefined, token);
+            const session = await clientController.apiClient.api.post("/users/authenticate", {
+                token
+            });
 
-            return true;
-        } else {
-            const _auth = {
-                sessions: {
-                    [current.session.user_id]: current,
-                }
-            };
-
-            // 清除其余accounts
-            await localforage.setItem("auth", _auth);
+            current = { session };
         }
 
-        return false;
+        console.log('##current:', current);
+
+        const _auth = {
+            sessions: {
+                [current.session.user_id]: current,
+            }
+        };
+
+        await localforage.removeItem("auth");
+        await localforage.setItem("auth", _auth);
     };
 
     return (

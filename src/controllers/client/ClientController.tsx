@@ -179,7 +179,7 @@ class ClientController {
      * Login given a set of credentials
      * @param credentials Credentials
      */
-    async login(credentials: API.DataLogin, token?: string) {
+    async login(credentials: API.DataLogin) {
         const browser = detect();
 
         // Generate a friendly name for this browser
@@ -206,23 +206,13 @@ class ClientController {
             friendly_name = "Unknown Device";
         }
 
-        let session;
-
-        if (token) {
-            // @ts-ignore-next-line
-            session = await this.apiClient.api.post("/users/authenticate", {
-                token
-            });
-        } else {
-            // Try to login with given credentials
-            session = await this.apiClient.api.post("/auth/session/login", {
-                ...credentials,
-                friendly_name,
-            });
-        }
+        // Try to login with given credentials
+        let session = await this.apiClient.api.post("/auth/session/login", {
+            ...credentials,
+            friendly_name,
+        });
 
         // Prompt for MFA verificaiton if necessary
-        // @ts-ignore-next-line
         if (session.result === "MFA") {
             const { allowed_methods } = session;
             while (session.result === "MFA") {

@@ -28,32 +28,24 @@ const uiContext = {
  */
 export default function Context({ children, beforeHydrate, delayForTest }: {
     children: Children;
-    beforeHydrate?: () => Promise<boolean>;
+    beforeHydrate?: () => Promise<void>;
     delayForTest?: boolean;
 }) {
     const [ready, setReady] = useState(false);
 
     const _hydrate = async () => {
-        let skipClientHydrate = false;
+        await beforeHydrate?.();
+        await state.hydrate();
 
-        try {
-            const res = await beforeHydrate?.();
-            skipClientHydrate = !!res;
-        } catch (e) {
-            console.log('##', e);
+        if (delayForTest) {
+            await delayTime(1000);
         }
 
-        state.hydrate(skipClientHydrate).then(async () => {
-            if (delayForTest) {
-                await delayTime(1000);
-            }
-
-            setReady(true);
-        });
+        setReady(true);
     };
 
     useEffect(() => {
-        _hydrate();
+        _hydrate().catch(e => console.log('##', e));
     }, []);
 
     // if (!ready) return <Preloader type="spinner" />;
