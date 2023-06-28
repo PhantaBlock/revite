@@ -5,7 +5,6 @@ import Context from "../context";
 import { clientController } from "../controllers/client/ClientController";
 
 import localforage from "localforage";
-import Auth from "../mobx/stores/Auth";
 
 enum ComponentName {
     Friends = "Friends",
@@ -34,29 +33,33 @@ export function MicroApp(props: {
 
     const beforeHydrate = async () => {
         const auth: any = await localforage.getItem('auth');
+        let current: any = undefined;
 
         if (auth && typeof auth === 'object') {
             const sessions = Object.values(auth.sessions || {});
-            const current: any = sessions.find((item: any) => item.session.user_id === userId);
-
+            current = sessions.find((item: any) => item.session.user_id === userId);
             console.log('##', sessions, current, userId);
-
-            if (!current) {
-                // 清除历史accounts
-                await localforage.removeItem("auth");
-                // @ts-ignore-next-line
-                await clientController.login(undefined, token);
-            } else {
-                const _auth = {
-                    sessions: {
-                        [current.session.user_id]: current,
-                    }
-                };
-
-                // 清除其余accounts
-                await localforage.setItem("auth", _auth);
-            }
         }
+
+        if (!current) {
+            // 清除历史accounts
+            await localforage.removeItem("auth");
+            // @ts-ignore-next-line
+            await clientController.login(undefined, token);
+
+            return true;
+        } else {
+            const _auth = {
+                sessions: {
+                    [current.session.user_id]: current,
+                }
+            };
+
+            // 清除其余accounts
+            await localforage.setItem("auth", _auth);
+        }
+
+        return false;
     };
 
     return (

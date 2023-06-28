@@ -27,18 +27,21 @@ const uiContext = {
  */
 export default function Context({ children, beforeHydrate }: {
     children: Children;
-    beforeHydrate?: () => Promise<void>;
+    beforeHydrate?: () => Promise<boolean>;
 }) {
     const [ready, setReady] = useState(false);
 
     const _hydrate = async () => {
+        let skipClientHydrate = false;
+
         try {
-            await beforeHydrate?.();
+            const res = await beforeHydrate?.();
+            skipClientHydrate = !!res;
         } catch (e) {
             console.log('##', e);
         }
 
-        state.hydrate().then(() => {
+        state.hydrate(skipClientHydrate).then(() => {
             setReady(true);
         });
     };

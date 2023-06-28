@@ -16,22 +16,22 @@ type State = "Ready" | "Connecting" | "Online" | "Disconnected" | "Offline";
  */
 type Transition =
     | {
-          action: "LOGIN";
-          apiUrl?: string;
-          session: SessionPrivate;
-          configuration?: API.RevoltConfig;
+        action: "LOGIN";
+        apiUrl?: string;
+        session: SessionPrivate;
+        configuration?: API.RevoltConfig;
 
-          knowledge: "new" | "existing";
-      }
+        knowledge: "new" | "existing";
+    }
     | {
-          action:
-              | "SUCCESS"
-              | "DISCONNECT"
-              | "RETRY"
-              | "LOGOUT"
-              | "ONLINE"
-              | "OFFLINE";
-      };
+        action:
+        | "SUCCESS"
+        | "DISCONNECT"
+        | "RETRY"
+        | "LOGOUT"
+        | "ONLINE"
+        | "OFFLINE";
+    };
 
 /**
  * Client lifecycle finite state machine

@@ -286,7 +286,7 @@ export default class State {
     /**
      * Load data stores from local storage.
      */
-    async hydrate() {
+    async hydrate(skipClientHydrate?: boolean) {
         // Load MobX store.
         const sync = (await localforage.getItem("sync")) as DataSync;
         const { revision } = sync ?? { revision: {} };
@@ -304,8 +304,10 @@ export default class State {
         // Post-hydration, init plugins.
         this.plugins.init();
 
-        // Push authentication information forwards to client controller.
-        clientController.hydrate(this.auth);
+        if (!skipClientHydrate) {
+            // Push authentication information forwards to client controller.
+            clientController.hydrate(this.auth);
+        }
     }
 
     /**
