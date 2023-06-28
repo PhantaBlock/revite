@@ -2,7 +2,7 @@ import { lazy, Suspense, useEffect, useState } from "preact/compat";
 import { Masks, Preloader } from "@revoltchat/ui";
 
 import Context from "../context";
-import { clientController } from "../controllers/client/ClientController";
+import { useApi } from "../controllers/client/ClientController";
 
 import localforage from "localforage";
 
@@ -52,8 +52,9 @@ export function MicroApp(props: {
 
         if (!current) {
             console.log('##authenticate');
+            const API = useApi();
             // @ts-ignore-next-line
-            const session = await clientController.apiClient.api.post("/users/authenticate", {
+            const session = await API.post("/users/authenticate", {
                 token
             });
 
