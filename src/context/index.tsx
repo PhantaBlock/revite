@@ -13,6 +13,7 @@ import ModalRenderer from "../controllers/modals/ModalRenderer";
 import Locale from "./Locale";
 import Theme from "./Theme";
 import { history } from "./history";
+import { delayTime } from "../lib/global";
 
 const uiContext = {
     Link,
@@ -25,9 +26,10 @@ const uiContext = {
  * This component provides all of the application's context layers.
  * @param param0 Provided children
  */
-export default function Context({ children, beforeHydrate }: {
+export default function Context({ children, beforeHydrate, delayForTest }: {
     children: Children;
     beforeHydrate?: () => Promise<boolean>;
+    delayForTest?: boolean;
 }) {
     const [ready, setReady] = useState(false);
 
@@ -41,7 +43,11 @@ export default function Context({ children, beforeHydrate }: {
             console.log('##', e);
         }
 
-        state.hydrate(skipClientHydrate).then(() => {
+        state.hydrate(skipClientHydrate).then(async () => {
+            if (delayForTest) {
+                await delayTime(1000);
+            }
+
             setReady(true);
         });
     };

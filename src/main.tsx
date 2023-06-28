@@ -20,11 +20,13 @@ const initQianKun = () => {
     },
     mount(props) { // 获取主应用传入数据
       console.log('微应用：mount', props);
-      const { inSingleWebView, ...rest } = props;
+      const { inSingleWebView, SKY, ...rest } = props;
 
       if (inSingleWebView) {
         qiankunWindow.__IN_SINGLE_WEB_VIEW__ = true;
       }
+
+      qiankunWindow.__SKY__ = SKY;
 
       render((
         <MicroApp {...rest} />

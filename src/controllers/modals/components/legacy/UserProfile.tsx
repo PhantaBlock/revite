@@ -37,7 +37,7 @@ import Markdown from "../../../../components/markdown/Markdown";
 import { useSession } from "../../../../controllers/client/ClientController";
 import { modalController } from "../../../../controllers/modals/ModalController";
 import { ModalProps } from "../../types";
-import { isMicroMode, inSingleWebView } from "../../../../lib/global";
+import { isMicroMode, inSingleWebView, openMicroChannelPage } from "../../../../lib/global";
 
 export const UserProfile = observer(
     ({
@@ -222,9 +222,9 @@ export const UserProfile = observer(
 
                                             if (isMicro) {
                                                 if (isSingle) {
-                                                    window.location.hash = `/open/${user_id}`
+                                                    window.location.hash = `/open/${user_id}`;
                                                 } else {
-                                                    // TODO 打开个人聊天弹框 url:  `/open/${user_id}`
+                                                    openMicroChannelPage(`/open/${user_id}`);
                                                 }
                                             } else {
                                                 history.push(`/open/${user_id}`);

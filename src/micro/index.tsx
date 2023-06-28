@@ -9,7 +9,7 @@ import localforage from "localforage";
 enum ComponentName {
     Friends = "Friends",
     TempChannel = "TempChannel",
-    Channels = "Channel",
+    Channels = "Channels",
 }
 
 const Register = {
@@ -27,11 +27,20 @@ export function MicroApp(props: {
     exposeComponent: ComponentName;
     token: string;
     userId: string;
+    needHandleAuthenticate?: boolean;
 }) {
-    const { exposeComponent = ComponentName.Friends, token, userId, ...extra } = props;
+    const {
+        exposeComponent = ComponentName.Friends,
+        token,
+        userId,
+        needHandleAuthenticate = true,
+        ...extra
+    } = props;
     const Component = Register[exposeComponent];
 
     const beforeHydrate = async () => {
+        if (!needHandleAuthenticate) return false;
+
         const auth: any = await localforage.getItem('auth');
         let current: any = undefined;
 
@@ -63,7 +72,10 @@ export function MicroApp(props: {
     };
 
     return (
-        <Context beforeHydrate={beforeHydrate}>
+        <Context
+            beforeHydrate={beforeHydrate}
+            delayForTest={!needHandleAuthenticate}
+        >
             <LoadSuspense>
                 <Component {...extra} />
             </LoadSuspense>

@@ -18,7 +18,7 @@ import UserIcon from "../../components/common/user/UserIcon";
 import UserStatus from "../../components/common/user/UserStatus";
 import { modalController } from "../../controllers/modals/ModalController";
 
-import { isMicroMode } from "../../lib/global";
+import { isMicroMode, openMicroChannelPage } from "../../lib/global";
 
 interface Props {
     user: User;
@@ -65,6 +65,7 @@ export const Friend = observer(({ user }: Props) => {
                                 .then((channel) => {
                                     if (isMicro) {
                                         // TODO 点击打开新的webView
+                                        openMicroChannelPage(`/channel/${channel._id}`);
                                     } else {
                                         history.push(`/channel/${channel._id}`);
                                     }
