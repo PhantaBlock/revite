@@ -203,7 +203,7 @@ export default observer(() => {
                                 large
                                 summary={
                                     <div className="title" style={{
-                                        fontSize: '2.6rem'
+                                        fontSize: '22px'
                                     }}>
                                         <Text id={i18n} /> — {list.length}
                                     </div>
