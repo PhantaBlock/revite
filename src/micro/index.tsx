@@ -60,7 +60,7 @@ export function MicroApp(props: {
             current = { session };
         }
 
-        console.log('##current:', current);
+        console.log('##current auth:', current);
 
         const _auth = {
             sessions: {
@@ -68,6 +68,7 @@ export function MicroApp(props: {
             }
         };
 
+        // 覆写 current auth
         await localforage.removeItem("auth");
         await localforage.setItem("auth", _auth);
     };
