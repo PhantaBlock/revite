@@ -26,20 +26,15 @@ const uiContext = {
  * This component provides all of the application's context layers.
  * @param param0 Provided children
  */
-export default function Context({ children, beforeHydrate, delayForTest }: {
+export default function Context({ children, beforeHydrate }: {
     children: Children;
     beforeHydrate?: () => Promise<void>;
-    delayForTest?: boolean;
 }) {
     const [ready, setReady] = useState(false);
 
     const _hydrate = async () => {
         await beforeHydrate?.();
         await state.hydrate();
-
-        if (delayForTest) {
-            await delayTime(1000);
-        }
 
         setReady(true);
     };

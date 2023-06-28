@@ -75,10 +75,7 @@ export function MicroApp(props: {
     };
 
     return (
-        <Context
-            beforeHydrate={beforeHydrate}
-            delayForTest={!needHandleAuthenticate}
-        >
+        <Context beforeHydrate={beforeHydrate}>
             <LoadSuspense>
                 <Component {...extra} />
             </LoadSuspense>

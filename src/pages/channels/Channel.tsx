@@ -104,7 +104,11 @@ export const Channel = observer(
         const client = useClient();
         const state = useApplicationState();
 
-        if (!client.channels.exists(id) && !isMicro) {
+        if (!client.channels.exists(id)) {
+            if (isMicro) {
+                return <ChannelPlaceholder />;
+            }
+
             if (server_id) {
                 const server = client.servers.get(server_id);
                 if (server && server.channel_ids.length > 0) {
@@ -130,7 +134,7 @@ export const Channel = observer(
         }
 
         const channel = client.channels.get(id)!;
-        if (channel.channel_type === "VoiceChannel" && !isMicro) {
+        if (channel?.channel_type === "VoiceChannel" && !isMicro) {
             return <VoiceChannel channel={channel} />;
         }
 
