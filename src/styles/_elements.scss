@@ -8,15 +8,15 @@
         width: var(--scrollbar-thickness);
         height: var(--scrollbar-thickness);
     }
-    
+
     ::-webkit-scrollbar-track {
         background: var(--scrollbar-track);
     }
-    
+
     ::-webkit-scrollbar-thumb {
         min-width: 30px;
         min-height: 30px;
-    
+
         background-clip: content-box;
         background: var(--scrollbar-thumb);
     }
@@ -65,7 +65,7 @@ a:link,
 a:visited,
 a:hover {
     text-decoration: none;
-    color: var(--accent);
+    // color: var(--accent);
 }
 
 hr {
@@ -74,6 +74,6 @@ hr {
     flex-grow: 1;
 }
 
-foreignObject > svg {
+foreignObject>svg {
     vertical-align: top !important;
 }

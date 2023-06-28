@@ -202,7 +202,9 @@ export default observer(() => {
                                 sticky
                                 large
                                 summary={
-                                    <div className="title">
+                                    <div className="title" style={{
+                                        fontSize: '2.6rem'
+                                    }}>
                                         <Text id={i18n} /> — {list.length}
                                     </div>
                                 }>

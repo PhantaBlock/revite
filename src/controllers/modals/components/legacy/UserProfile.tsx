@@ -141,7 +141,9 @@ export const UserProfile = observer(
         const flags = user.flags ?? 0;
 
         const children = (
-            <>
+            <div style={{
+                display: 'block'
+            }}>
                 <div
                     className={styles.header}
                     data-force={profile?.background ? "light" : undefined}
@@ -150,6 +152,7 @@ export const UserProfile = observer(
                             backgroundURL &&
                             `linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7) ), url('${backgroundURL}')`,
                         paddingBottom: "1px",
+                        display: 'block'
                     }}>
                     <div className={styles.profile}>
                         <UserIcon
@@ -480,7 +483,7 @@ export const UserProfile = observer(
                             </div>
                         ))}
                 </div>
-            </>
+            </div>
         );
 
         if (isPlaceholder) return <div>{children}</div>;
