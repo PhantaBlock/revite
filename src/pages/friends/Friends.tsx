@@ -65,9 +65,55 @@ export default observer(() => {
     for (let i = incoming.length - 1; i > 0; i--) userlist.splice(i, 0, ", ");
 
     const isEmpty = lists.reduce((p: number, n) => p + n.length, 0) === 0;
+
+    const renderHeaderActions = () => {
+        return (
+            <div className={styles.actions}>
+                {/*<Tooltip content={"Create Category"} placement="bottom">
+                            <IconButton onClick={() => openScreen({ id: 'special_input', type: 'create_group' })}>
+                                <ListPlus size={28} />
+                            </IconButton>
+                        </Tooltip>
+                        <div className={styles.divider} />*/}
+                <Tooltip content={"Create Group"} placement="bottom">
+                    <IconButton
+                        onClick={() =>
+                            modalController.push({
+                                type: "create_group",
+                            })
+                        }>
+                        <MessageAdd size={24} />
+                    </IconButton>
+                </Tooltip>
+                <Tooltip content={"Add Friend"} placement="bottom">
+                    <IconButton
+                        onClick={() =>
+                            modalController.push({
+                                type: "add_friend",
+                            })
+                        }>
+                        <UserPlus size={27} />
+                    </IconButton>
+                </Tooltip>
+                {/*
+                    <div className={styles.divider} />
+                    <Tooltip content={"Friend Activity"} placement="bottom">
+                        <IconButton>
+                            <TennisBall size={24} />
+                        </IconButton>
+                    </Tooltip>
+                    */}
+            </div>
+        );
+    };
+
     return (
         <>
-            {!isMicro && (
+            {isMicro ? (
+                <div>
+                    {renderHeaderActions()}
+                </div>
+            ) : (
                 <PageHeader
                     icon={<UserDetail size={24} />}
                     withTransparency
@@ -75,42 +121,7 @@ export default observer(() => {
                     <div className={styles.title}>
                         <Text id="app.navigation.tabs.friends" />
                     </div>
-                    <div className={styles.actions}>
-                        {/*<Tooltip content={"Create Category"} placement="bottom">
-                            <IconButton onClick={() => openScreen({ id: 'special_input', type: 'create_group' })}>
-                                <ListPlus size={28} />
-                            </IconButton>
-                        </Tooltip>
-                        <div className={styles.divider} />*/}
-                        <Tooltip content={"Create Group"} placement="bottom">
-                            <IconButton
-                                onClick={() =>
-                                    modalController.push({
-                                        type: "create_group",
-                                    })
-                                }>
-                                <MessageAdd size={24} />
-                            </IconButton>
-                        </Tooltip>
-                        <Tooltip content={"Add Friend"} placement="bottom">
-                            <IconButton
-                                onClick={() =>
-                                    modalController.push({
-                                        type: "add_friend",
-                                    })
-                                }>
-                                <UserPlus size={27} />
-                            </IconButton>
-                        </Tooltip>
-                        {/*
-                        <div className={styles.divider} />
-                        <Tooltip content={"Friend Activity"} placement="bottom">
-                            <IconButton>
-                                <TennisBall size={24} />
-                            </IconButton>
-                        </Tooltip>
-                        */}
-                    </div>
+                    {renderHeaderActions()}
                 </PageHeader>
             )}
             <div data-scroll-offset="true" data-avoids-navigation="true">

@@ -13,7 +13,7 @@ enum ComponentName {
 }
 
 const Register = {
-    [ComponentName.Friends]: lazy(() => import("../pages/friends/Friends")),
+    [ComponentName.Friends]: lazy(() => import("./friends")),
     [ComponentName.TempChannel]: lazy(() => import("./tempChannel")),
     [ComponentName.Channels]: lazy(() => import("./channels")),
 };
