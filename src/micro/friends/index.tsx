@@ -4,11 +4,12 @@ import { TextChannel } from "../../pages/channels/Channel";
 import { useClient } from "../../controllers/client/ClientController";
 import Friends from "../../pages/friends/Friends";
 
-export default observer(() => {
-
+export default observer(({ onInviteFriend }: {
+    onInviteFriend: (userId: string) => void;
+}) => {
     return (
         <div style={{ flexDirection: 'column', alignItems: 'flex-start' }}>
-            <Friends />
+            <Friends onInviteFriend={onInviteFriend} />
         </div>
     );
 });

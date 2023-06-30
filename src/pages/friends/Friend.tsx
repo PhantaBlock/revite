@@ -22,9 +22,10 @@ import { isMicroMode, openMicroChannelPage } from "../../lib/global";
 
 interface Props {
     user: User;
+    onInviteFriend?: () => void;
 }
 
-export const Friend = observer(({ user }: Props) => {
+export const Friend = observer(({ user, onInviteFriend }: Props) => {
     const isMicro = isMicroMode();
 
     const history = useHistory();
@@ -52,6 +53,18 @@ export const Friend = observer(({ user }: Props) => {
                             )
                         }>
                         <PhoneCall size={20} />
+                    </IconButton>
+                )}
+                {isMicro && (
+                    <IconButton
+                        shape="circle"
+                        className={classNames(styles.button, styles.inviteButton)}
+                        onClick={(ev) => {
+                            stopPropagation(ev);
+                            onInviteFriend && onInviteFriend();
+                        }}
+                    >
+                        邀请
                     </IconButton>
                 )}
                 <IconButton

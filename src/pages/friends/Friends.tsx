@@ -22,7 +22,9 @@ import { Friend } from "./Friend";
 
 import { isMicroMode } from "../../lib/global";
 
-export default observer(() => {
+export default observer(({ onInviteFriend }: {
+    onInviteFriend: (userId: string) => void;
+}) => {
     const isMicro = isMicroMode();
     const client = useClient();
     const users = [...client.users.values()];
@@ -220,7 +222,7 @@ export default observer(() => {
                                     </div>
                                 }>
                                 {list.map((x) => (
-                                    <Friend key={x._id} user={x} />
+                                    <Friend key={x._id} user={x} onInviteFriend={() => onInviteFriend(x._id)} />
                                 ))}
                             </CollapsibleSection>
                         );

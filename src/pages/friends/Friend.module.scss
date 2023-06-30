@@ -85,6 +85,8 @@
         .button {
             width: 36px;
             height: 36px;
+            align-items: center;
+            justify-content: center;
 
             &:hover.error {
                 background: var(--error);
@@ -93,6 +95,11 @@
             &:hover.success {
                 background: var(--success);
             }
+        }
+
+        .inviteButton {
+            font-size: 12px;
+            line-height: 18px;
         }
     }
 }
