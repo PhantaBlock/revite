@@ -54,7 +54,7 @@
         }
 
         .displayname {
-            font-size: 18px;
+            font-size: 22px;
             font-weight: 600;
         }
 
@@ -81,7 +81,7 @@
     gap: 8px;
     display: flex;
     padding: 0 1.5em;
-    font-size: 22px;
+    font-size: 0.875rem;
     font-weight: 500;
 
     >div {
@@ -164,6 +164,7 @@
 }
 
 .entry {
+    width: 100%;
     gap: 12px;
     font-weight: 500;
     min-width: 0;
