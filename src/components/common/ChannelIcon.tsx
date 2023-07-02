@@ -2,7 +2,7 @@ import { Hash, VolumeFull } from "@styled-icons/boxicons-regular";
 import { observer } from "mobx-react-lite";
 import { Channel } from "revolt.js";
 
-import fallback from "./assets/group.png";
+// import fallback from "./assets/group.png";
 
 import { useClient } from "../../controllers/client/ClientController";
 import { ImageIconBase, IconBaseProps } from "./IconBase";
@@ -64,7 +64,7 @@ export default observer(
                 loading="lazy"
                 aria-hidden="true"
                 borderRadius={borderRadius}
-                src={iconURL ?? fallback}
+                src={iconURL ?? 'https://skyvs.oss-cn-hangzhou.aliyuncs.com/resources/revite/groupIcon.jpeg'}
             />
         );
     },
