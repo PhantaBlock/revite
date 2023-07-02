@@ -32,7 +32,6 @@ export function MicroApp(props: {
     const {
         exposeComponent = ComponentName.Friends,
         token,
-        userId,
         needHandleAuthenticate = true,
         ...extra
     } = props;
@@ -46,8 +45,8 @@ export function MicroApp(props: {
 
         if (auth && typeof auth === 'object') {
             const sessions = Object.values(auth.sessions || {});
-            current = sessions.find((item: any) => item.session.user_id === userId);
-            console.log('##', sessions, current, userId);
+            current = sessions.find((item: any) => item.session.user_id === extra.userId);
+            console.log('##', sessions, current, extra.userId);
         }
 
         if (!current) {
