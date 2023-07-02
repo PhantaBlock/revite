@@ -118,7 +118,6 @@
     padding: 1em;
     display: flex;
     cursor: pointer;
-    margin-top: 1em;
     align-items: center;
     flex-direction: row;
     border-radius: var(--border-radius);
@@ -199,5 +198,25 @@
 @media only screen and (max-width: 768px) {
     .list .remove {
         // display: none;
+    }
+}
+
+.add_firend {
+    background-color: #2A2424;
+    width: 220px;
+    height: 40px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    position: absolute;
+    bottom: 30px;
+    right: 40px;
+    z-index: 10;
+    cursor: pointer;
+
+    &:hover {
+        opacity: 0.8;
     }
 }
