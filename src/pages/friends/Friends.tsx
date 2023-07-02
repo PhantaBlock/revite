@@ -155,7 +155,7 @@ export default observer(({ onInviteFriend }: {
                                         i < 3 && (
                                             <UserIcon
                                                 target={x}
-                                                size={64}
+                                                size={32}
                                                 mask={
                                                     i <
                                                         Math.min(
