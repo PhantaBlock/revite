@@ -44,6 +44,7 @@ function getVersion() {
 }
 
 export default defineConfig({
+    base: './',
     plugins: [
         qiankun('ChatRoom', {
             useDevMode: true,
