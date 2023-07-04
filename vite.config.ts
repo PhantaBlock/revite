@@ -44,9 +44,9 @@ function getVersion() {
 }
 
 export default defineConfig({
-    base: './',
+    base: "http://127.0.0.1:8080/",
     plugins: [
-        qiankun('ChatRoom', {
+        qiankun("ChatRoom", {
             useDevMode: true,
         }),
         preact(),
