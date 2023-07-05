@@ -11,6 +11,7 @@ import { resetMemberSidebarFetched } from "../../components/navigation/right/Mem
 import { modalController } from "../modals/ModalController";
 import Session from "./Session";
 import { takeError } from "./jsx/error";
+import { REVITE_DOMAIN } from "../../serviceDomain";
 
 /**
  * Controls the lifecycles of clients
@@ -38,7 +39,8 @@ class ClientController {
 
     constructor() {
         this.apiClient = new Client({
-            apiURL: import.meta.env.VITE_API_URL,
+            // apiURL: import.meta.env.VITE_API_URL,
+            apiURL: REVITE_DOMAIN
         });
 
         // ! FIXME: loop until success infinitely
