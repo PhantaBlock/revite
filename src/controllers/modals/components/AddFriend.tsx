@@ -16,19 +16,24 @@ export default function AddFriend({ ...props }: ModalProps<"add_friend">) {
     return (
         <ModalForm
             {...props}
-            title="Add Friend"
+            title="添加好友"
             schema={{
                 username: "text",
             }}
             data={{
                 username: {
-                    field: "Username",
-                    placeholder: "username#1234",
+                    field: "用户名",
+                    placeholder: "",
                 },
             }}
             callback={({ username }) =>
                 client.api.post(`/users/friend`, { username }).then(noop)
             }
+            actions={[{
+                onClick: () => true,
+                children: "取消",
+                palette: "plain",
+            }]}
             submit={{
                 children: <Text id="app.special.modals.actions.ok" />,
             }}
