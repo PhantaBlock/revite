@@ -61,7 +61,7 @@ export default class LocaleOptions
      * Construct new LocaleOptions store.
      */
     constructor() {
-        this.lang = findLanguage();
+        this.lang = findLanguage("zh_Hans");
         makeAutoObservable(this);
     }
 
@@ -101,6 +101,6 @@ export default class LocaleOptions
      */
     @action setLanguage(language: Language) {
         if (typeof Languages[language] === "undefined") return;
-        this.lang = language;
+        this.lang = findLanguage("zh_Hans");
     }
 }
