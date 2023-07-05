@@ -3,6 +3,7 @@ import { observer } from "mobx-react-lite";
 import { TextChannel } from "../../pages/channels/Channel";
 import { useClient } from "../../controllers/client/ClientController";
 import Friends from "../../pages/friends/Friends";
+import MenuChecker from "../menuChecker";
 
 export default observer(({ onInviteFriend }: {
     onInviteFriend: (userId: string) => void;
@@ -10,6 +11,7 @@ export default observer(({ onInviteFriend }: {
     return (
         <div style={{ flexDirection: 'column', alignItems: 'flex-start' }}>
             <Friends onInviteFriend={onInviteFriend} />
+            <MenuChecker />
         </div>
     );
 });

@@ -71,20 +71,13 @@ export default observer(({ onInviteFriend }: {
     const renderHeaderActions = () => {
         return (
             <div className={styles.actions}>
-                <div
-                    className={styles.add_firend}
-                    onClick={() =>
-                        modalController.push({
-                            type: "add_friend",
-                        })
-                    }>+ 添加好友</div>
                 {/*<Tooltip content={"Create Category"} placement="bottom">
                             <IconButton onClick={() => openScreen({ id: 'special_input', type: 'create_group' })}>
                                 <ListPlus size={28} />
                             </IconButton>
                         </Tooltip>
                         <div className={styles.divider} />*/}
-                {/* <Tooltip content={"创建群组"} placement="bottom">
+                <Tooltip content={"创建群组"} placement="bottom">
                     <IconButton
                         onClick={() =>
                             modalController.push({
@@ -93,8 +86,8 @@ export default observer(({ onInviteFriend }: {
                         }>
                         <MessageAdd size={24} />
                     </IconButton>
-                </Tooltip> */}
-                {/* <Tooltip content={"添加好友"} placement="bottom">
+                </Tooltip>
+                <Tooltip content={"添加好友"} placement="bottom">
                     <IconButton
                         onClick={() =>
                             modalController.push({
@@ -103,7 +96,7 @@ export default observer(({ onInviteFriend }: {
                         }>
                         <UserPlus size={27} />
                     </IconButton>
-                </Tooltip> */}
+                </Tooltip>
                 {/*
                     <div className={styles.divider} />
                     <Tooltip content={"Friend Activity"} placement="bottom">
@@ -120,7 +113,13 @@ export default observer(({ onInviteFriend }: {
         <>
             {isMicro ? (
                 <div>
-                    {renderHeaderActions()}
+                    <div
+                        className={styles.add_firend}
+                        onClick={() =>
+                            modalController.push({
+                                type: "add_friend",
+                            })
+                        }>+ 添加好友</div>
                 </div>
             ) : (
                 <PageHeader

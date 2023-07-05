@@ -1,7 +1,7 @@
 import { useEffect, useState } from "preact/compat";
 import { observer } from "mobx-react-lite";
 import Channel from "../../pages/channels/Channel";
-import { useClient } from "../../controllers/client/ClientController";
+import { useClient, useSession } from "../../controllers/client/ClientController";
 import { HashRouter, Route, Switch } from "react-router-dom";
 import { Docked, OverlappingPanels, ShowIf } from "react-overlapping-panels";
 import HomeSidebar from "../../components/navigation/left/HomeSidebar";
@@ -11,6 +11,7 @@ import styled, { css } from "styled-components/macro";
 import { useApplicationState } from "../../mobx/State";
 import { SIDEBAR_CHANNELS } from "../../mobx/stores/Layout";
 import Open from "../../pages/Open";
+import MenuChecker from "../menuChecker";
 
 const HomeContent = styled.div.attrs({
     "data-component": "content",
@@ -44,13 +45,14 @@ const Routes = styled.div.attrs({ "data-component": "routes" }) <{
 export default observer(() => {
     const layout = useApplicationState().layout;
     const isOpen = layout.getSectionState(SIDEBAR_CHANNELS, true);
+
     return (
         <HomeContent>
             <HashRouter>
                 <OverlappingPanels
                     width="100vw"
                     height={"var(--app-height)"}
-                    leftPanel={isOpen ? { width: 290, component: <HomeSidebar /> } : ''}
+                    leftPanel={isOpen ? { width: 290, component: <HomeSidebar /> } : undefined}
                     docked={isTouchscreenDevice ? Docked.None : Docked.Left}
                 >
                     <Routes>
@@ -78,6 +80,7 @@ export default observer(() => {
                     </Routes>
                 </OverlappingPanels>
             </HashRouter>
+            <MenuChecker />
         </HomeContent>
     );
 });

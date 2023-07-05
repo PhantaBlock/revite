@@ -53,8 +53,8 @@ export default observer(() => {
 
     const channels = [...client.channels.values()].filter(
         (x) =>
-            (x.channel_type === "DirectMessage" && x.active) ||
-            x.channel_type === "Group",
+            ((x.channel_type === "DirectMessage" && x.active) ||
+                x.channel_type === "Group") && !x.name?.startsWith('#TEAMUP_ROOM_CHANNEL')
     );
 
     const channel = client.channels.get(channel_id);

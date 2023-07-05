@@ -41,7 +41,7 @@ export function MicroApp(props: {
         if (!needHandleAuthenticate) return;
 
         const auth: any = await localforage.getItem('auth');
-        let current: any = undefined;
+        let current: any;
 
         if (auth && typeof auth === 'object') {
             const sessions = Object.values(auth.sessions || {});
