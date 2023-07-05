@@ -115,8 +115,8 @@ export const MessageArea = observer(({ last_id, channel }: Props) => {
                             101,
                             ref.current
                                 ? ref.current.scrollTop +
-                                      (ref.current.scrollHeight -
-                                          scrollState.current.previousHeight)
+                                (ref.current.scrollHeight -
+                                    scrollState.current.previousHeight)
                                 : 101,
                         ),
                         {
@@ -148,8 +148,8 @@ export const MessageArea = observer(({ last_id, channel }: Props) => {
     const atBottom = (offset = 0) =>
         ref.current
             ? Math.floor(ref.current?.scrollHeight - ref.current?.scrollTop) -
-                  offset <=
-              ref.current?.clientHeight
+            offset <=
+            ref.current?.clientHeight
             : true;
 
     const atTop = (offset = 0) =>
