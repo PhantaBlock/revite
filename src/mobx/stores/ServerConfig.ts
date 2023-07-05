@@ -4,6 +4,7 @@ import { API, Client, Nullable } from "revolt.js";
 import { isDebug } from "../../revision";
 import Persistent from "../interfaces/Persistent";
 import Store from "../interfaces/Store";
+import { REVITE_DOMAIN } from "../../serviceDomain";
 
 /**
  * Stores server configuration data.
@@ -42,7 +43,8 @@ export default class ServerConfig
         const client = new Client({
             unreads: true,
             autoReconnect: true,
-            apiURL: import.meta.env.VITE_API_URL,
+            apiURL: REVITE_DOMAIN,
+            // apiURL: import.meta.env.VITE_API_URL,
             debug: isDebug(),
             onPongTimeout: "RECONNECT",
         });

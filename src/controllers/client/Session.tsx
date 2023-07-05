@@ -5,6 +5,7 @@ import { state } from "../../mobx/State";
 
 import { resetMemberSidebarFetched } from "../../components/navigation/right/MemberSidebar";
 import { modalController } from "../modals/ModalController";
+import { REVITE_DOMAIN } from "../../serviceDomain";
 
 /**
  * Current lifecycle state
@@ -113,7 +114,8 @@ export default class Session {
             unreads: true,
             autoReconnect: false,
             onPongTimeout: "EXIT",
-            apiURL: apiUrl ?? import.meta.env.VITE_API_URL,
+            // apiURL: apiUrl ?? import.meta.env.VITE_API_URL,
+            apiURL: apiUrl ?? REVITE_DOMAIN,
         });
 
         this.client.addListener("dropped", this.onDropped);
