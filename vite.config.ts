@@ -44,7 +44,7 @@ function getVersion() {
 }
 
 export default defineConfig({
-    base: "http://127.0.0.1:8080/",
+    base: "https://sky-revite-test.war6sky.com/",
     plugins: [
         qiankun("ChatRoom", {
             useDevMode: true,
