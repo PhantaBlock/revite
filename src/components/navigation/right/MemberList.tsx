@@ -10,6 +10,7 @@ import { internalEmit } from "../../../lib/eventEmitter";
 
 import { modalController } from "../../../controllers/modals/ModalController";
 import { UserButton } from "../items/ButtonItem";
+import { isMicroMode } from "../../../lib/global";
 
 export type MemberListGroup = {
     type: "online" | "offline" | "role" | "no_offline";
@@ -83,13 +84,16 @@ export default function MemberList({
     entries: MemberListGroup[];
     context: Channel;
 }) {
+    const isMicro = isMicroMode();
+
     return (
         <GroupedVirtuoso
             groupCounts={entries.map((x) => x.users.length)}
             groupContent={(index) => {
                 const entry = entries[index];
+
                 return (
-                    <ListCategory first={index === 0}>
+                    <ListCategory first={index === 0 && !isMicro}>
                         {entry.type === "role" ? (
                             <>{entry.name}</>
                         ) : entry.type === "online" ? (
