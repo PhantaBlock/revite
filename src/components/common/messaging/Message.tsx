@@ -29,7 +29,7 @@ import { Reactions } from "./attachments/Reactions";
 import { MessageOverlayBar } from "./bars/MessageOverlayBar";
 import Embed from "./embed/Embed";
 import InviteList from "./embed/EmbedInvite";
-import { inSingleWebView } from "../../../lib/global";
+import { inSingleWebView, isMicroMode } from "../../../lib/global";
 
 interface Props {
     attachContext?: boolean;
@@ -53,6 +53,7 @@ const Message = observer(
         queued,
         hideReply,
     }: Props) => {
+        const isMicro = isMicroMode();
         const isSingle = inSingleWebView();
         const client = message.client;
         const user = message.author;
@@ -200,7 +201,7 @@ const Message = observer(
                         <Reactions message={message} />
                         {(mouseHovering || reactionsOpen) &&
                             !replacement &&
-                            !isTouchscreenDevice && (
+                            !isTouchscreenDevice && !isMicro && (
                                 <MessageOverlayBar
                                     reactionsOpen={reactionsOpen}
                                     setReactionsOpen={setReactionsOpen}
