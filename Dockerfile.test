@@ -1,0 +1,7 @@
+FROM nginx
+
+RUN rm -frv /etc/nginx/conf.d/default.conf
+
+COPY dist/* /usr/share/nginx/html/
+
+COPY nginx-conf.d/revite-test.conf /etc/nginx/conf.d/revite-test.conf
