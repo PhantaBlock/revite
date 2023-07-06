@@ -40,7 +40,7 @@ It is also recommended to run `git submodule update` after you pull from upstrea
 Get revite up and running locally.
 
 ```
-git clone --recursive https://github.com/revoltchat/revite
+git clone --recursive https://github.com/PhantaBlock/revite
 cd revite
 yarn
 yarn build:deps
