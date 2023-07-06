@@ -115,7 +115,7 @@
 }
 
 .pending {
-    padding: 1em;
+    padding: 12px;
     display: flex;
     cursor: pointer;
     align-items: center;
@@ -194,10 +194,56 @@
     }
 }
 
-@media only screen and (max-width: 1200px) {
+.add_firend {
+    background-color: #2A2424;
+    width: 80%;
+    height: 40px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 12;
+    cursor: pointer;
+
+    &:hover {
+        opacity: 0.8;
+    }
+}
+
+@media only screen and (max-width: 1440px) {
     .add_firend {
         height: 30px;
         font-size: 12px;
+    }
+
+    .pending {
+        >svg {
+            transform: scale(0.8);
+            margin-left: -15px;
+        }
+
+        .avatars {
+            margin-inline-end: 10px;
+        }
+
+        .details {
+            >div {
+                font-size: 10px;
+
+                span {
+                    transform: scale(0.8);
+                }
+            }
+
+            >span {
+                font-size: 8px;
+            }
+        }
     }
 
     .list {
@@ -223,27 +269,5 @@
                 }
             }
         }
-    }
-}
-
-
-.add_firend {
-    background-color: #2A2424;
-    width: 80%;
-    height: 40px;
-    border-radius: 4px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: row;
-    position: absolute;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 12;
-    cursor: pointer;
-
-    &:hover {
-        opacity: 0.8;
     }
 }
