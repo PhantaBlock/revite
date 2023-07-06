@@ -60,7 +60,7 @@
         display: flex;
         flex-direction: column;
         text-overflow: ellipsis;
-        overflow: hidden;
+        // overflow: hidden;
 
         span {
             white-space: nowrap;
@@ -194,12 +194,38 @@
     }
 }
 
-// Hide the remove friend button on smaller screens.
-@media only screen and (max-width: 768px) {
-    .list .remove {
-        // display: none;
+@media only screen and (max-width: 1200px) {
+    .add_firend {
+        height: 30px;
+        font-size: 12px;
+    }
+
+    .list {
+        :global(summary .padding) {
+            transform: scale(0.8);
+
+        }
+
+        .actions {
+            transform: scale(0.8);
+        }
+
+        .friend {
+            svg {
+                transform: scale(0.8);
+            }
+
+            .name {
+                font-size: 12px;
+
+                .subtext {
+                    font-size: 8px;
+                }
+            }
+        }
     }
 }
+
 
 .add_firend {
     background-color: #2A2424;
@@ -212,7 +238,8 @@
     flex-direction: row;
     position: absolute;
     bottom: 30px;
-    right: 40px;
+    left: 50%;
+    transform: translateX(-50%);
     z-index: 12;
     cursor: pointer;
 

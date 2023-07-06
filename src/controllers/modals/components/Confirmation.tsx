@@ -67,6 +67,11 @@ export default function Confirmation(
             }
             data={{}}
             schema={{}}
+            actions={[{
+                onClick: () => true,
+                children: "取消",
+                palette: "plain",
+            }]}
             callback={async () => {
                 switch (props.type) {
                     case "unfriend_user":

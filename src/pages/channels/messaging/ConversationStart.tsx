@@ -19,6 +19,15 @@ const StartBase = styled.div`
         margin: 0;
         font-size: 14px;
     }
+    @media only screen and (max-width: 1200px) {
+        margin: 12px 10px 8px 12px;
+        h1 {
+            font-size: 16px;
+        }
+        h4 {
+            font-size: 10px;
+        }
+    }
 `;
 
 interface Props {

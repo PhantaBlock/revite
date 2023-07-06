@@ -111,7 +111,7 @@ export const MessageOverlayBar = observer(
         return (
             <OverlayBar>
                 {message.channel?.havePermission("SendMessage") && (
-                    <Tooltip content="Reply">
+                    <Tooltip content="回复">
                         <Entry
                             onClick={() =>
                                 internalEmit("ReplyBar", "add", message)
@@ -121,7 +121,7 @@ export const MessageOverlayBar = observer(
                     </Tooltip>
                 )}
 
-                {message.channel?.havePermission("React") && (
+                {message.channel?.havePermission("表情") && (
                     <ReactionWrapper
                         open={reactionsOpen}
                         setOpen={setReactionsOpen}
@@ -135,7 +135,7 @@ export const MessageOverlayBar = observer(
                 )}
 
                 {isAuthor && (
-                    <Tooltip content="Edit">
+                    <Tooltip content="编辑">
                         <Entry
                             onClick={() =>
                                 internalEmit(
@@ -151,7 +151,7 @@ export const MessageOverlayBar = observer(
                 {isAuthor ||
                     (message.channel &&
                         message.channel.havePermission("ManageMessages")) ? (
-                    <Tooltip content="Delete">
+                    <Tooltip content="删除">
                         <Entry
                             onClick={(e) =>
                                 e.shiftKey
