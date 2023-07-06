@@ -45,7 +45,7 @@ jobs:
           password: ${{ secrets.ALI_DOCKER_TOKEN }}
 
       - name: Docker meta info
-        id: meta_bonfire
+        id: meta
         uses: docker/metadata-action@v4
         with:
           images: |
