@@ -43,6 +43,7 @@
     cursor: pointer;
     align-items: center;
     border-radius: var(--border-radius);
+    padding: 0 10px;
 
     &:hover {
         background: var(--secondary-background);
@@ -60,7 +61,7 @@
         display: flex;
         flex-direction: column;
         text-overflow: ellipsis;
-        // overflow: hidden;
+        overflow: hidden;
 
         span {
             white-space: nowrap;
@@ -249,7 +250,6 @@
     .list {
         :global(summary .padding) {
             transform: scale(0.8);
-
         }
 
         .actions {

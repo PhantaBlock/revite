@@ -35,9 +35,23 @@ export const Friend = observer(({ user, onInviteFriend }: Props) => {
 
     if (user.relationship === "Friend") {
         subtext = <UserStatus user={user} />;
-        actions.push(
-            <>
-                {!isMicro && (
+
+        if (isMicro) {
+            actions.push(
+                <IconButton
+                    shape="circle"
+                    className={classNames(styles.button, styles.inviteButton)}
+                    onClick={(ev) => {
+                        stopPropagation(ev);
+                        onInviteFriend && onInviteFriend();
+                    }}
+                >
+                    邀请
+                </IconButton>
+            );
+        } else {
+            actions.push(
+                <>
                     <IconButton
                         shape="circle"
                         className={classNames(styles.button, styles.success)}
@@ -54,41 +68,22 @@ export const Friend = observer(({ user, onInviteFriend }: Props) => {
                         }>
                         <PhoneCall size={20} />
                     </IconButton>
-                )}
-                {isMicro && (
                     <IconButton
                         shape="circle"
-                        className={classNames(styles.button, styles.inviteButton)}
-                        onClick={(ev) => {
-                            stopPropagation(ev);
-                            onInviteFriend && onInviteFriend();
-                        }}
-                    >
-                        邀请
+                        className={styles.button}
+                        onClick={(ev) =>
+                            stopPropagation(
+                                ev,
+                                user
+                                    .openDM()
+                                    .then((channel) => history.push(`/channel/${channel._id}`)),
+                            )
+                        }>
+                        <Envelope size={20} />
                     </IconButton>
-                )}
-                <IconButton
-                    shape="circle"
-                    className={styles.button}
-                    onClick={(ev) =>
-                        stopPropagation(
-                            ev,
-                            user
-                                .openDM()
-                                .then((channel) => {
-                                    if (isMicro) {
-                                        // TODO 点击打开新的webView
-                                        openMicroChannelPage(`/channel/${channel._id}`);
-                                    } else {
-                                        history.push(`/channel/${channel._id}`);
-                                    }
-                                }),
-                        )
-                    }>
-                    <Envelope size={20} />
-                </IconButton>
-            </>,
-        );
+                </>,
+            );
+        }
     }
 
     if (user.relationship === "Incoming") {
@@ -109,9 +104,9 @@ export const Friend = observer(({ user, onInviteFriend }: Props) => {
     }
 
     if (
-        user.relationship === "Friend" ||
-        user.relationship === "Outgoing" ||
-        user.relationship === "Incoming"
+        (user.relationship === "Friend" ||
+            user.relationship === "Outgoing" ||
+            user.relationship === "Incoming") && !isMicro
     ) {
         actions.push(
             <IconButton
@@ -151,12 +146,20 @@ export const Friend = observer(({ user, onInviteFriend }: Props) => {
     return (
         <div
             className={styles.friend}
-            onClick={() =>
-                modalController.push({
-                    type: "user_profile",
-                    user_id: user._id,
-                })
-            }
+            onClick={() => {
+                if (isMicro) {
+                    user
+                        .openDM()
+                        .then((channel) => {
+                            openMicroChannelPage(`/channel/${channel._id}`);
+                        });
+                } else {
+                    modalController.push({
+                        type: "user_profile",
+                        user_id: user._id,
+                    })
+                }
+            }}
             {...useTriggerEvents("Menu", {
                 user: user._id,
             })}>

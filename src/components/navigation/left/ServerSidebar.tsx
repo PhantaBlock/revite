@@ -101,8 +101,8 @@ export default observer(() => {
                         mentionCount.length > 0
                             ? "mention"
                             : isUnread
-                            ? "unread"
-                            : undefined
+                                ? "unread"
+                                : undefined
                     }
                     compact
                     muted={state.notifications.isMuted(entry)}
@@ -141,7 +141,8 @@ export default observer(() => {
             <ServerList
                 {...useTriggerEvents("Menu", {
                     server_list: server._id,
-                })}>
+                })}
+            >
                 {elements}
             </ServerList>
             <PaintCounter small />

@@ -35,6 +35,8 @@ interface Props {
 }
 
 export default observer(({ channel }: Props) => {
+    if (channel.name?.startsWith('#TEAMUP_ROOM_CHANNEL')) return null;
+
     return (
         <StartBase>
             <h1>
