@@ -20,6 +20,14 @@ jobs:
         with:
             submodules: "recursive"
 
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: 'yarn'
+
+      - name: Build
+        run: yarn && rimraf build && node scripts/setup_assets.js --check && yarn build:deps && vite build
+
       - name: Setup Qemu
         uses: docker/setup-qemu-action@v2
 
