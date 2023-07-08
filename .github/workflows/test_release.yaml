@@ -26,7 +26,7 @@ jobs:
           cache: 'yarn'
 
       - name: Build
-        run: yarn && yarn install -g rimraf && rimraf build && node scripts/setup_assets.js --check && yarn build:deps && vite build
+        run: yarn && yarn add global rimraf && rimraf build && node scripts/setup_assets.js --check && yarn build:deps && vite build
 
       - name: Setup Qemu
         uses: docker/setup-qemu-action@v2
