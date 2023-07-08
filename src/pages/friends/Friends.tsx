@@ -221,9 +221,7 @@ export default observer(({ onInviteFriend }: {
                                 sticky
                                 large
                                 summary={
-                                    <div className="title" style={{
-                                        fontSize: '18px'
-                                    }}>
+                                    <div className="title title1">
                                         <Text id={i18n} /> — {list.length}
                                     </div>
                                 }>

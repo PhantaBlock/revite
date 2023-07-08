@@ -17,6 +17,16 @@
     user-select: none;
     display: block;
 
+    details {
+        summary {
+            font-size: 0.8125rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--secondary-foreground);
+            cursor: pointer;
+        }
+    }
+
     &[data-empty="true"] {
         img {
             height: 120px;
@@ -198,7 +208,8 @@
 .add_firend {
     background-color: #2A2424;
     width: 80%;
-    height: 40px;
+    font-size: 16px;
+    padding: 10px 0;
     border-radius: 4px;
     display: flex;
     align-items: center;
@@ -213,5 +224,34 @@
 
     &:hover {
         opacity: 0.8;
+    }
+}
+
+.list {
+    :global(summary .padding) {
+        padding: 0 !important;
+
+    }
+
+    :global(summary .title1) {
+        font-size: 16px !important;
+
+    }
+
+    .actions {}
+
+    .friend {
+        svg {
+            width: 32px !important;
+            height: 32px !important;
+        }
+
+        .name {
+            font-size: 16px;
+
+            .subtext {
+                font-size: 12px;
+            }
+        }
     }
 }
