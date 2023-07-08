@@ -3,6 +3,7 @@ import replace from "@rollup/plugin-replace";
 import legacy from "@vitejs/plugin-legacy";
 import { readFileSync } from "fs";
 import { resolve } from "path";
+import postCssPxToRem from "postcss-pxtorem";
 import { defineConfig } from "vite";
 import { VitePWA } from "vite-plugin-pwa";
 import qiankun from "vite-plugin-qiankun";
@@ -119,6 +120,18 @@ export default defineConfig({
             preventAssignment: true,
         }) as any,
     ],
+    css: {
+        postcss: {
+            // ⚠️关键代码
+            plugins: [
+                postCssPxToRem({
+                    // 自适应，px>rem转换
+                    rootValue: 16, // 1rem的大小
+                    propList: ["*"], // 需要转换的属性，这里选择全部都进行转换
+                }),
+            ],
+        },
+    },
     build: {
         sourcemap: true,
         rollupOptions: {

@@ -20,19 +20,6 @@
     }
 }
 
-@media only screen and (max-width: 1440px) {
-    .profile {
-        svg {
-            transform: scale(0.8);
-        }
-
-        .usernameDetail {
-            transform: scale(0.8);
-            transform-origin: left;
-        }
-    }
-}
-
 .profile {
     gap: 16px;
     width: 560px;
