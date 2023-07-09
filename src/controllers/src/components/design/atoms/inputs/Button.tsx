@@ -15,7 +15,7 @@ export interface Props {
 
 export const Button = styled.button<Props>`
     z-index: 1;
-    font-size: 1rem;
+    font-size: 1rem !important;
 
     display: flex;
     align-items: center;
