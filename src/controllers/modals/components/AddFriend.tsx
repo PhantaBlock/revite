@@ -1,6 +1,6 @@
 import { Text } from "preact-i18n";
 
-import { ModalForm } from '../../src/components/tools/form/ModalForm';
+import { ModalForm } from '../../src';
 
 import { noop } from "../../../lib/js";
 
