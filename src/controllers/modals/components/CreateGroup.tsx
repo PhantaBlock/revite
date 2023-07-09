@@ -2,7 +2,7 @@ import { useHistory } from "react-router-dom";
 
 import { Text } from "preact-i18n";
 
-import { ModalForm } from "@revoltchat/ui";
+import { ModalForm } from "../../src/components/tools/form/ModalForm";
 
 import { useClient } from "../../client/ClientController";
 import { mapError } from "../../client/jsx/error";
@@ -42,6 +42,11 @@ export default function CreateGroup({ ...props }: ModalProps<"create_group">) {
                     window.location.hash = `#/channel/${group._id}`;
                 }
             }}
+            actions={[{
+                onClick: () => true,
+                children: "取消",
+                palette: "plain",
+            }]}
             submit={{
                 children: <Text id="app.special.modals.actions.create" />,
             }}

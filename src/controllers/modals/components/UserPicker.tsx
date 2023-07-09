@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Text } from "preact-i18n";
 import { useMemo, useState } from "preact/hooks";
 
-import { Modal } from "@revoltchat/ui";
+import { Modal } from "../../src/components/design";
 
 import UserCheckbox from "../../../components/common/user/UserCheckbox";
 import { useClient } from "../../client/ClientController";
