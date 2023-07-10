@@ -13,13 +13,13 @@
 
     div {
         &.container {
-            max-width: 750px;
+            max-width: 62.5rem;
             flex-grow: 1;
             align-items: left;
         }
 
         &.header {
-            gap: 8px;
+            gap: 0.667rem;
             padding-top: 5em;
             display: flex;
         }
@@ -31,7 +31,7 @@
 
             button {
                 display: block;
-                margin: 24px 0;
+                margin: 2rem 0;
                 margin-left: auto;
             }
         }

@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import { numTonum, pxTorem, remTorem } from '../../../../lib/calculation';
 
 export interface Props {
     readonly compact?: boolean | "icon";
@@ -15,7 +16,6 @@ export interface Props {
 
 export const Button = styled.button<Props>`
     z-index: 1;
-    font-size: 1rem !important;
 
     display: flex;
     align-items: center;
@@ -38,21 +38,21 @@ export const Button = styled.button<Props>`
     ${(props) =>
         props.compact === "icon"
             ? css`
-                  height: 38px;
-                  width: 38px;
+                  height: ${pxTorem(38)};
+                  width: ${pxTorem(38)};
               `
             : props.compact
                 ? css`
-                  min-width: 96px;
-                  font-size: 0.875rem;
-                  height: 32px !important;
-                  padding: 2px 12px !important;
+                  min-width: ${pxTorem(96)};
+                  font-size: ${remTorem(0.8125)};
+                  height: ${pxTorem(32)} !important;
+                  padding:  ${pxTorem(2)} ${pxTorem(12)} !important;
               `
                 : css`
-                  height: 38px;
-                  min-width: 96px;
-                  padding: 2px 16px;
-                  font-size: 0.875rem;
+                  height: ${pxTorem(38)};
+                  min-width: ${pxTorem(96)};
+                  padding: ${pxTorem(2)} ${pxTorem(16)};
+                  font-size: ${remTorem(0.8125)};
               `}
 
     ${(props) => {

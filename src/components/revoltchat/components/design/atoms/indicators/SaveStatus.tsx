@@ -2,12 +2,13 @@ import React from "react";
 import styled from "styled-components";
 import { Pencil } from "@styled-icons/boxicons-solid";
 import { Check, CloudUpload } from "@styled-icons/boxicons-regular";
+import { numTonum, pxTorem } from '../../../../lib/calculation';
 
 const Base = styled.div`
     display: flex;
     align-items: center;
-    gap: 8px;
-    padding: 4px;
+    gap: ${pxTorem(8)};
+    padding: ${pxTorem(4)};
     font-weight: 500;
     color: var(--foreground);
     text-transform: capitalize;
@@ -23,11 +24,11 @@ export function SaveStatus({ status }: Props) {
     return (
         <Base>
             {status === "saved" ? (
-                <Check size={20} />
+                <Check size={numTonum(20)} />
             ) : status === "editing" ? (
-                <Pencil size={20} />
+                <Pencil size={numTonum(20)} />
             ) : (
-                <CloudUpload size={20} />
+                <CloudUpload size={numTonum(20)} />
             )}
             {/* FIXME: add i18n */}
             <span>{status}</span>

@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import { numTonum, pxTorem, remTorem } from '../../../../lib/calculation';
 
 interface Props {
     /**
@@ -23,7 +24,7 @@ interface Props {
 export const Row = styled.div<Props>`
     display: flex;
     flex-direction: row;
-    gap: ${(props) => props.gap ?? "8px"};
+    gap: ${(props) => props.gap ?? `${pxTorem(8)}`};
 
     ${(props) =>
         props.centred &&

@@ -12,6 +12,7 @@ import {
 import { H2 } from "../heading/H2";
 import { H4 } from "../heading/H4";
 import { Button, Props as ButtonProps } from "../inputs/Button";
+import { pxTorem, remTorem } from '../../../../lib/calculation';
 
 export type Action = Omit<React.HTMLAttributes<HTMLButtonElement>, "as"> &
     Omit<ButtonProps, "onClick"> & {
@@ -79,14 +80,14 @@ const Base = styled.div<{ closing?: boolean }>`
 const Container = styled.div<
     Pick<Props, "transparent" | "maxWidth" | "maxHeight"> & { actions: boolean }
 >`
-    min-height: 200px;
-    max-width: min(calc(100vw - 20px), ${(props) => props.maxWidth ?? "450px"});
+    min-height: ${pxTorem(200)};
+    max-width: min(calc(100vw - ${pxTorem(20)}), ${(props) => props.maxWidth ?? `${pxTorem(450)}`});
     max-height: min(
-        calc(100vh - 20px),
-        ${(props) => props.maxHeight ?? "650px"}
+        calc(100vh -${pxTorem(20)}),
+        ${(props) => props.maxHeight ?? `${pxTorem(650)}`}
     );
 
-    margin: 20px;
+    margin: ${pxTorem(20)};
     display: flex;
     flex-direction: column;
 
@@ -110,10 +111,10 @@ const Container = styled.div<
 `;
 
 const Title = styled.div`
-    padding: 1rem;
+    padding: ${remTorem(1)};
     flex-shrink: 0;
     word-break: break-word;
-    gap: 8px;
+    gap: ${pxTorem(8)};
     display: flex;
     flex-direction: column;
 `;
@@ -121,10 +122,10 @@ const Title = styled.div`
 const Content = styled.div<Pick<Props, "transparent" | "padding">>`
     flex-grow: 1;
     padding-top: 0;
-    padding: ${(props) => props.padding ?? "0 1rem 1rem"};
+    padding: ${(props) => props.padding ?? `0 ${remTorem(1)} ${remTorem(1)}`};
 
     overflow-y: auto;
-    font-size: 0.9375rem;
+    font-size: ${remTorem(0.9375)};
 
     display: flex;
     flex-direction: column;
@@ -139,9 +140,9 @@ const Content = styled.div<Pick<Props, "transparent" | "padding">>`
 const Actions = styled.div`
     flex-shrink: 0;
 
-    gap: 8px;
+    gap: ${pxTorem(8)};
     display: flex;
-    padding: 1rem;
+    padding: ${remTorem(1)};
     flex-direction: row-reverse;
 
     background: var(--secondary-background);

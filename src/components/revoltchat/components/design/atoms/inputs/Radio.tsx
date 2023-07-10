@@ -1,6 +1,7 @@
 import React from "react";
 import styled, { css } from "styled-components";
 import { Circle } from "@styled-icons/boxicons-solid";
+import { remTorem, pxTorem, numTonum } from '../../../../lib/calculation';
 
 interface Props {
     title?: React.ReactNode;
@@ -15,9 +16,9 @@ interface BaseProps {
 }
 
 const Base = styled.label<BaseProps>`
-    border: 2px solid var(--tertiary-foreground);
-    padding: 10px;
-    gap: 10px;
+    border: ${pxTorem(2)} solid var(--tertiary-foreground);
+    padding: ${pxTorem(10)};
+    gap: ${pxTorem(10)};
     display: flex;
     cursor: pointer;
     user-select: none;
@@ -34,7 +35,7 @@ const Base = styled.label<BaseProps>`
             color: var(--accent-contrast);
             cursor: default;
             background: var(--accent);
-            border: 2px solid var(--accent);
+            border: ${pxTorem(2)} solid var(--accent);
 
             div {
                 border-color: var(--accent-contrast);
@@ -66,10 +67,10 @@ const RadioCircle = styled.div`
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    border: 2px solid var(--tertiary-foreground);
+    border: ${pxTorem(2)} solid var(--tertiary-foreground);
     border-radius: var(--border-radius-half);
-    height: 20px;
-    width: 20px;
+    height: ${pxTorem(20)};
+    width: ${pxTorem(20)};
     transition: inherit;
 
     svg {
@@ -89,7 +90,7 @@ const Content = styled.div`
 `;
 
 const Title = styled.div<BaseProps>`
-    font-size: 0.95rem;
+    font-size: ${remTorem(0.875)};
     font-weight: 600;
     color: var(--foreground);
     transition: inherit;
@@ -107,7 +108,7 @@ const Title = styled.div<BaseProps>`
 `;
 
 const Description = styled.div<BaseProps>`
-    font-size: 0.6875rem;
+    font-size: ${remTorem(0.6875)};
     font-weight: 500;
     color: var(--secondary-foreground);
     transition: inherit;
@@ -135,7 +136,7 @@ export function Radio({
     return (
         <Base selected={selected}>
             <RadioCircle>
-                <Circle size={12} />
+                <Circle size={numTonum(12)} />
             </RadioCircle>
             <input
                 type="radio"

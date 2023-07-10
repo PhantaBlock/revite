@@ -1,6 +1,6 @@
 import { Text } from "preact-i18n";
 
-import { Column, ModalForm } from "@revoltchat/ui";
+import { Column, ModalForm } from '../../../components/revoltchat';
 
 import UserIcon from "../../../components/common/user/UserIcon";
 import { ModalProps } from "../types";

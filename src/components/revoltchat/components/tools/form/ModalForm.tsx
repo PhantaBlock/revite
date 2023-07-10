@@ -69,14 +69,14 @@ export function ModalForm<T extends FormTemplate>(props: Props<T>) {
             actions={[
                 {
                     onClick: onSubmit,
-                    children: "Submit",
+                    children: "确认",
                     confirmation: true,
                     ...props.submit,
                 },
                 ...(props.actions ?? [
                     {
                         onClick: () => true,
-                        children: "Cancel",
+                        children: "取消",
                         palette: "plain",
                     },
                 ]),

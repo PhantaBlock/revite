@@ -12,6 +12,7 @@ import { Unreads } from "../../../atoms/indicators/Unreads";
 import { UserTooltip } from "../../../atoms/indicators/UserTooltip";
 import { ItemContainer, SwooshOverlay } from "./Item";
 import { Props } from "./ServerList";
+import { numTonum, pxTorem, remTorem } from '../../../../../lib/calculation';
 
 const UserItem = observer(({ client, home, active }: Props) => {
     const Link = useLink();
@@ -21,8 +22,8 @@ const UserItem = observer(({ client, home, active }: Props) => {
     const alertCount = isTouchscreenDevice
         ? 0
         : [...client.users.values()].filter(
-              (x) => x.relationship === "Incoming",
-          ).length;
+            (x) => x.relationship === "Incoming",
+        ).length;
 
     return (
         <Link to={home()}>
@@ -32,11 +33,11 @@ const UserItem = observer(({ client, home, active }: Props) => {
                     <Avatar
                         src={client.user!.generateAvatarURL(
                             {
-                                max_side: 256,
+                                max_side: numTonum(256),
                             },
                             false,
                         )}
-                        size={42}
+                        size={numTonum(42)}
                         interactive
                         holepunch={alertCount ? "right" : "bottom-right"}
                         overlay={
@@ -56,10 +57,10 @@ const UserItem = observer(({ client, home, active }: Props) => {
 });
 
 const List = styled.div`
-    gap: 12px;
+    gap: ${pxTorem(12)};
     display: flex;
-    margin-top: 8px;
-    margin-bottom: 12px;
+    margin-top: ${pxTorem(8)};
+    margin-bottom: ${pxTorem(12)};
     flex-direction: column;
 `;
 
@@ -79,11 +80,11 @@ const ChannelInner = observer(
                 div
                 right>
                 <Avatar
-                    size={42}
+                    size={numTonum(42)}
                     interactive
                     fallback={channel.name}
                     holepunch={unread && "top-right"}
-                    src={channel.generateIconURL({ max_side: 256 }, false)}
+                    src={channel.generateIconURL({ max_side: numTonum(256) }, false)}
                     overlay={<Unreads unread={unread} count={count} />}
                 />
             </Tooltip>

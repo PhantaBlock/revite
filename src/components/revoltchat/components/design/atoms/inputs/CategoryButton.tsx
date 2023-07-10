@@ -1,6 +1,7 @@
 import React from "react";
 import styled, { css } from "styled-components";
 import { ChevronRight, LinkExternal } from "@styled-icons/boxicons-regular";
+import { pxTorem, remTorem } from '../../../../lib/calculation';
 
 interface BaseProps {
     // ! FIXME: Use Pick<>
@@ -12,12 +13,12 @@ interface BaseProps {
 
 const Base = styled.a<BaseProps>`
     // ! FIXME: clean up CSS
-    padding: 9.8px 12px;
+    padding: ${pxTorem(9.8)} ${pxTorem(12)};
     border-radius: var(--border-radius);
-    margin-bottom: 10px;
+    margin-bottom: ${pxTorem(10)};
     color: var(--foreground);
     background: var(--secondary-header);
-    gap: 12px;
+    gap: ${pxTorem(12)};
     display: flex;
     align-items: center;
     flex-direction: row;
@@ -31,7 +32,7 @@ const Base = styled.a<BaseProps>`
         flex-grow: 1;
         flex-direction: column;
         font-weight: 600;
-        font-size: 0.95rem;
+        font-size: ${remTorem(0.875)};
 
         .title {
             display: -webkit-box;
@@ -44,10 +45,10 @@ const Base = styled.a<BaseProps>`
             ${(props) =>
         props.largeDescription
             ? css`
-                          font-size: 0.95rem;
+                          font-size: ${remTorem(0.875)};
                       `
             : css`
-                          font-size: 0.6875rem;
+                          font-size: ${remTorem(0.6875)};
                       `}
 
             font-weight: 400;
@@ -73,7 +74,7 @@ const Base = styled.a<BaseProps>`
             }*/
 
                   .action {
-                      font-size: 0.95rem;
+                      font-size: ${remTorem(0.875)};
                   }
               `
             : css`
@@ -89,7 +90,7 @@ const Base = styled.a<BaseProps>`
     ${(props) =>
         props.account &&
         css`
-            height: 54px;
+            height: ${pxTorem(54)};
 
             .content {
                 text-overflow: ellipsis;
@@ -97,12 +98,12 @@ const Base = styled.a<BaseProps>`
                 white-space: nowrap;
                 .title {
                     text-transform: uppercase;
-                    font-size: 0.9rem;
+                    font-size: ${remTorem(0.75)};
                     color: var(--secondary-foreground);
                 }
 
                 .description {
-                    font-size: 0.9375rem;
+                    font-size: ${remTorem(0.9375)};
                     text-overflow: ellipsis;
                     white-space: nowrap;
                     overflow: hidden;

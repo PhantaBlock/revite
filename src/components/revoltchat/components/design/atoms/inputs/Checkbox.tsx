@@ -1,12 +1,13 @@
 import { Check } from "@styled-icons/boxicons-regular";
 import React, { HTMLAttributes } from "react";
 import styled, { css } from "styled-components";
+import { pxTorem, remTorem } from '../../../../lib/calculation';
 
 // import { VolumeFull } from "@styled-icons/boxicons-solid";
 
 const Base = styled.label`
-    gap: 10px;
-    padding: 4px;
+    gap: ${pxTorem(10)};
+    padding:  ${pxTorem(4)};
     display: flex;
     cursor: pointer;
     user-select: none;
@@ -45,18 +46,18 @@ const Content = styled.div`
     flex-direction: column;
     display: flex;
     flex-grow: 1;
-    gap: 3px;
+    gap: ${pxTorem(3)};
 `;
 
 const TitleContent = styled.div`
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: ${pxTorem(8)};
     color: var(--foreground);
 `;
 
 const Title = styled.div`
-    font-size: 0.9375rem;
+    font-size: ${remTorem(0.9375)};
     font-weight: 600;
     display: -webkit-box;
     -webkit-box-orient: vertical;
@@ -69,8 +70,8 @@ const TitleAction = styled.div`
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    width: 20px;
-    height: 20px;
+    width: ${pxTorem(20)};
+    height: ${pxTorem(20)};
     visibility: hidden;
     opacity: 0;
     transition: 0.1s ease-in-out all;
@@ -87,7 +88,7 @@ const TitleAction = styled.div`
 `;
 
 const Description = styled.div`
-    font-size: 0.9rem;
+    font-size: ${remTorem(0.75)};
     font-weight: 500;
     color: var(--secondary-foreground);
 
@@ -101,13 +102,13 @@ const Checkmark = styled.div<Pick<Props, "value">>`
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 24px;
-    height: 24px;
-    border: 2px solid var(--tertiary-foreground);
+    width: ${pxTorem(24)};
+    height: ${pxTorem(24)};
+    border: ${pxTorem(2)} solid var(--tertiary-foreground);
     border-radius: var(--border-radius);
     background: var(--secondary-background);
     flex-shrink: 0;
-    margin: 4px;
+    margin: ${pxTorem(4)};
     transition: 0.1s ease-in-out all;
 
     .check {

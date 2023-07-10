@@ -1,5 +1,5 @@
 import { observer } from "mobx-react-lite";
-import { Modal } from "@revoltchat/ui";
+import { Modal } from '../../../components/revoltchat';
 import { ModalProps } from "../types";
 
 const ProfileSetting = observer(({ ...props }: ModalProps<"profile_setting">) => {

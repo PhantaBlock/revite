@@ -1,6 +1,7 @@
 import React, { ReactNode } from "react";
 import styled, { css } from "styled-components";
 import { Initials } from "./Initials";
+import { remTorem, numTonum } from '../../../../lib/calculation';
 
 const Image = styled.img`
     width: 100%;
@@ -19,7 +20,7 @@ const FallbackBase = styled.div`
     justify-content: center;
 
     font-weight: 600;
-    font-size: 0.9rem;
+    font-size: ${remTorem(0.75)};
     color: var(--foreground);
     background: var(--secondary-background);
 `;
@@ -91,13 +92,13 @@ export function Avatar({
         <ParentBase
             width={size}
             height={size}
-            viewBox="0 0 32 32"
+            viewBox={`0 0 ${numTonum(32)} ${numTonum(32)}`}
             interactive={interactive}>
             <foreignObject
                 x="0"
                 y="0"
-                width="32"
-                height="32"
+                width={numTonum(32)}
+                height={numTonum(32)}
                 mask={holepunch ? `url(#holepunch-${holepunch})` : undefined}>
                 {src && <Image src={src} />}
                 {!src && (

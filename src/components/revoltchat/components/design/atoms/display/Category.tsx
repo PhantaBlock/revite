@@ -1,19 +1,20 @@
 import styled from "styled-components";
+import { remTorem, pxTorem } from '../../../../lib/calculation';
 
 export interface Props {
     compact?: boolean;
 }
 
 export const Category = styled.div<Props>`
-    font-size: 0.9rem;
+    font-size: ${remTorem(0.75)};
     font-weight: 700;
     color: var(--foreground);
     text-transform: uppercase;
 
-    margin-top: 4px;
-    margin-bottom: 4px;
+    margin-top: ${pxTorem(4)};
+    margin-bottom: ${pxTorem(4)};
     white-space: nowrap;
-    padding: ${(props) => (props.compact ? "0 4px" : "6px 0 6px 8px")};
+    padding: ${(props) => (props.compact ? `0 ${pxTorem(4)}` : `${pxTorem(6)} 0 ${pxTorem(6)} ${pxTorem(8)}`)};
 
     display: flex;
     align-items: center;

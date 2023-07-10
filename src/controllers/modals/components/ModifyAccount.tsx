@@ -3,7 +3,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { Text } from "preact-i18n";
 import { useState } from "preact/hooks";
 
-import { Category, Error, InputBox, Modal, Tip } from "@revoltchat/ui";
+import { Category, Error, InputBox, Modal, Tip } from '../../../components/revoltchat';
 
 import { noopTrue } from "../../../lib/js";
 

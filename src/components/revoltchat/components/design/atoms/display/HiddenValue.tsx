@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useText } from "../../../../lib";
+import { remTorem, pxTorem } from '../../../../lib/calculation';
 
 const Toggle = styled.a`
-    font-size: 13px;
+    font-size: ${pxTorem(13)}
 `;
 
 interface Props {

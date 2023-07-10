@@ -10,6 +10,7 @@ import { isTouchscreenDevice } from "../../../../../lib";
 import { useLink } from "../../../../../lib/context";
 
 import { useDndComponents, useDragEndCustomReorder } from "../../../../common";
+import { numTonum, pxTorem, remTorem } from '../../../../../lib/calculation';
 
 import { Avatar } from "../../../atoms";
 import { Tooltip } from "../../../atoms/indicators/Tooltip";
@@ -57,7 +58,7 @@ type ParentProps = {
 };
 
 const Base = styled.div`
-    width: 56px;
+    width: ${pxTorem(56)};
     display: flex;
     flex-direction: column;
 
@@ -73,7 +74,7 @@ const Base = styled.div`
 
     ${isTouchscreenDevice &&
     css`
-        padding-bottom: 50px;
+        padding-bottom: ${pxTorem(50)};
     `}
 `;
 
@@ -83,8 +84,8 @@ const Shadow = styled.div`
     display: relative;
 
     div {
-        height: 12px;
-        margin-top: -12px;
+        height: ${pxTorem(12)};
+        margin-top: ${pxTorem(-12)};
         display: absolute;
         background: linear-gradient(to bottom, transparent, var(--background));
     }
@@ -173,8 +174,8 @@ export function ServerList(props: Props & ParentProps & FooterProps) {
                 <Link to="/settings">
                     <Tooltip i18n="app.settings.title" div right>
                         <Avatar
-                            size={42}
-                            fallback={<Cog size={18} />}
+                            size={numTonum(42)}
+                            fallback={<Cog size={numTonum(18)} />}
                             interactive
                         />
                     </Tooltip>

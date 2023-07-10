@@ -5,16 +5,17 @@ import { API } from "revolt.js";
 import styled from "styled-components";
 import { Button, ButtonItem } from "../../../design";
 import { Lock } from "@styled-icons/boxicons-solid";
+import { numTonum, pxTorem, remTorem } from '../../../../lib/calculation';
 
 const Base = styled.div`
-    gap: 4px;
+    gap: ${pxTorem(4)}
     display: flex;
     flex-direction: column;
 
     button {
         text-align: left;
 
-        gap: 4px;
+        gap: ${pxTorem(4)}
         display: flex;
         align-items: center;
         flex-direction: row;
@@ -90,7 +91,7 @@ export const RoleList = observer(
                             <Rank>{role_rank}</Rank>
                             {role.name}
                             {typeof rank === "number" && role_rank <= rank && (
-                                <Lock size={16} />
+                                <Lock size={numTonum(16)} />
                             )}
                         </ButtonItem>
                     );

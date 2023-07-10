@@ -1,20 +1,21 @@
 import React from "react";
 import styled, { css } from "styled-components";
+import { remTorem, pxTorem } from '../../../../lib/calculation';
 
 const Base = styled.div<{ unread?: boolean }>`
     display: flex;
     align-items: center;
     height: 0;
-    margin: 17px 12px 5px;
+    margin: ${pxTorem(17)} ${pxTorem(12)} ${pxTorem(5)};
     border-top: thin solid var(--tertiary-foreground);
     user-select: none;
 
     time {
-        margin-top: -2px;
-        font-size: 0.6875rem;
-        line-height: 0.6875rem;
+        margin-top: ${pxTorem(-2)};
+        font-size: ${remTorem(0.6875)};
+        line-height: ${remTorem(0.6875)};
         font-weight: 600;
-        padding-inline: 5px 5px;
+        padding-inline: ${pxTorem(5)} ${pxTorem(5)};
 
         // We set the background to mask the border.
         color: var(--tertiary-foreground);
@@ -29,14 +30,14 @@ const Base = styled.div<{ unread?: boolean }>`
 `;
 
 const Unread = styled.div`
-    font-size: 0.75rem;
+    font-size: ${pxTorem(0.625)};
     font-weight: 600;
     background: var(--accent);
     color: var(--accent-contrast);
 
-    padding: 2px 6px;
-    margin-top: -1px;
-    border-radius: 60px;
+    padding: ${pxTorem(2)} ${pxTorem(6)};
+    margin-top: ${pxTorem(-1)};
+    border-radius: ${pxTorem(60)};
 `;
 
 interface Props {

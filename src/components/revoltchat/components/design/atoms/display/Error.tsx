@@ -1,8 +1,9 @@
 import React from "react";
 import styled from "styled-components";
+import { remTorem, pxTorem } from '../../../../lib/calculation';
 
 const Base = styled.span`
-    gap: 6px;
+    gap: ${pxTorem(6)};
     display: flex;
     align-items: center;
     flex-direction: row;

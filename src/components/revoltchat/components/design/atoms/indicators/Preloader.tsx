@@ -1,5 +1,6 @@
 import React from "react";
 import styled, { keyframes } from "styled-components";
+import { remTorem, pxTorem } from '../../../../lib/calculation';
 
 const skSpinner = keyframes`
     0%, 80%, 100% { 
@@ -30,7 +31,7 @@ const PreloaderBase = styled.div`
     justify-content: center;
 
     .spinner {
-        width: 58px;
+        width: ${pxTorem(58)};
         display: flex;
         text-align: center;
         margin: 100px auto 0;
@@ -38,8 +39,8 @@ const PreloaderBase = styled.div`
     }
 
     .spinner > div {
-        width: 14px;
-        height: 14px;
+        width: ${pxTorem(14)};
+        height: ${pxTorem(14)};
         background-color: var(--tertiary-foreground);
 
         border-radius: 100%;
@@ -58,18 +59,18 @@ const PreloaderBase = styled.div`
     .ring {
         display: inline-block;
         position: relative;
-        width: 48px;
-        height: 52px;
+        width: ${pxTorem(48)};
+        height: ${pxTorem(52)};
     }
 
     .ring div {
-        width: 32px;
-        margin: 8px;
-        height: 32px;
+        width: ${pxTorem(32)};
+        margin: ${pxTorem(8)};
+        height: ${pxTorem(32)};
         display: block;
         position: absolute;
         box-sizing: border-box;
-        border: 2px solid var(--foreground);
+        border: ${pxTorem(2)} solid var(--foreground);
         border-radius: var(--border-radius-half);
         animation: ${prRing} 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
         border-color: var(--foreground) transparent transparent transparent;

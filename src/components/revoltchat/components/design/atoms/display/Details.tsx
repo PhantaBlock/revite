@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import { remTorem, pxTorem } from '../../../../lib/calculation';
 
 export interface Props {
     sticky?: boolean;
@@ -11,7 +12,7 @@ export const Details = styled.details<Props>`
         ${(props) =>
         props.sticky &&
         css`
-                top: -1px;
+                top: ${pxTorem(-1)};
                 z-index: 10;
                 position: sticky;
             `}
@@ -27,7 +28,7 @@ export const Details = styled.details<Props>`
                     /*TOFIX: make this applicable only for the friends list menu, DO NOT REMOVE.*/
                     display: flex;
                     align-items: center;
-                    padding: 5px 0;
+                    padding: ${pxTorem(5)} 0;
                     margin: 0.8em 0px 0.4em;
                     cursor: pointer;
                 }
@@ -40,7 +41,7 @@ export const Details = styled.details<Props>`
         align-items: center;
         transition: 0.2s opacity;
 
-        font-size: 0.9rem;
+        font-size: ${remTorem(0.75)};
         font-weight: 600;
         text-transform: uppercase;
 
@@ -51,7 +52,7 @@ export const Details = styled.details<Props>`
 
         .title {
             flex-grow: 1;
-            margin-top: 1px;
+            margin-top: ${pxTorem(1)};
             text-overflow: ellipsis;
             overflow: hidden;
             white-space: nowrap;
@@ -63,12 +64,12 @@ export const Details = styled.details<Props>`
 
             > svg {
                 flex-shrink: 0;
-                margin-inline-end: 4px;
+                margin-inline-end: ${pxTorem(4)};
                 transition: 0.2s ease transform;
             }
         }
 
-        gap: 4px;
+        gap: ${pxTorem(4)};
         display: flex;
         align-items: center;
     }

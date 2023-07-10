@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import { numTonum, pxTorem, remTorem } from '../../../../lib/calculation';
 
 export interface TextAreaProps {
     code?: boolean;
@@ -11,7 +12,7 @@ export const TextArea = styled.textarea<TextAreaProps>`
     width: 100%;
     resize: none;
     display: block;
-    font-size: 14px;
+    font-size: ${pxTorem(14)};
     color: var(--foreground);
     background: var(--secondary-background);
 
@@ -37,8 +38,8 @@ export const TextArea = styled.textarea<TextAreaProps>`
         outline: none;
 
         ${(props) =>
-            !props.hideBorder &&
-            css`
+        !props.hideBorder &&
+        css`
                 border: var(--input-border-width) solid var(--accent);
             `}
     }
@@ -58,8 +59,8 @@ export const TextArea = styled.textarea<TextAreaProps>`
 export const MarkdownTip = styled.div`
     display: flex;
     align-items: center;
-    margin-top: 8px;
-    gap: 4px;
+    margin-top: ${pxTorem(8)};
+    gap: ${pxTorem(4)};
     user-select: none;
     color: var(--foreground);
 

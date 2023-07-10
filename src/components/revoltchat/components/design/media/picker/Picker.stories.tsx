@@ -4,6 +4,7 @@ import { Server } from "revolt.js";
 
 import { InjectMockClient } from "../../../../lib/internal";
 import { emojiDictionary, parseEmoji } from "../../../../lib/internal/emojis";
+import { numTonum, pxTorem, remTorem } from '../../../../lib/calculation';
 
 import { Picker } from "./Picker";
 
@@ -36,10 +37,10 @@ export default {
                         emoji === "0"
                             ? "https://autumn.revolt.chat/attachments/fTs2qDi4ix0i_BDzJ-WwX2Hgvbr5KRL47dMKyD13Je/image.png"
                             : parseEmoji(
-                                  emojiDictionary[
-                                      emoji as keyof typeof emojiDictionary
-                                  ],
-                              )
+                                emojiDictionary[
+                                emoji as keyof typeof emojiDictionary
+                                ],
+                            )
                     }
                 />
             )),
@@ -113,7 +114,7 @@ const Template: ComponentStory<typeof Picker> = (args) => (
                 </div>
                 <div
                     style={{
-                        height: "48px",
+                        height: `${pxTorem(48)}`,
                         background: "var(--message-box)",
                         flexShrink: 0,
                     }}

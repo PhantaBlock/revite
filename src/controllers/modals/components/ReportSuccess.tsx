@@ -1,6 +1,6 @@
 import { Text } from "preact-i18n";
 
-import { Modal } from "@revoltchat/ui";
+import { Modal } from '../../../components/revoltchat';
 
 import { noopTrue } from "../../../lib/js";
 
@@ -32,33 +32,33 @@ export default function ReportSuccess({
             actions={
                 user
                     ? [
-                          {
-                              palette: "plain",
-                              onClick: async () => {
-                                  user.blockUser();
-                                  return true;
-                              },
-                              children: (
-                                  <Text id="app.special.modals.actions.block" />
-                              ),
-                          },
-                          {
-                              palette: "plain-secondary",
-                              onClick: noopTrue,
-                              children: (
-                                  <Text id="app.special.modals.actions.dont_block" />
-                              ),
-                          },
-                      ]
+                        {
+                            palette: "plain",
+                            onClick: async () => {
+                                user.blockUser();
+                                return true;
+                            },
+                            children: (
+                                <Text id="app.special.modals.actions.block" />
+                            ),
+                        },
+                        {
+                            palette: "plain-secondary",
+                            onClick: noopTrue,
+                            children: (
+                                <Text id="app.special.modals.actions.dont_block" />
+                            ),
+                        },
+                    ]
                     : [
-                          {
-                              palette: "plain",
-                              onClick: noopTrue,
-                              children: (
-                                  <Text id="app.special.modals.actions.done" />
-                              ),
-                          },
-                      ]
+                        {
+                            palette: "plain",
+                            onClick: noopTrue,
+                            children: (
+                                <Text id="app.special.modals.actions.done" />
+                            ),
+                        },
+                    ]
             }
         />
     );
