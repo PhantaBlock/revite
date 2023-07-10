@@ -1,6 +1,6 @@
 import { Text } from "preact-i18n";
 
-import { ModalForm } from '../../src';
+import { ModalForm } from '../../../components/revoltchat';
 
 import { noop } from "../../../lib/js";
 
