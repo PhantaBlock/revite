@@ -1,6 +1,6 @@
 import { Text } from "preact-i18n";
 
-import { Modal } from "@revoltchat/ui";
+import { Modal } from '../../../components/revoltchat';
 
 import { noopTrue } from "../../../lib/js";
 
@@ -36,7 +36,7 @@ export default function LinkWarning({
                         try {
                             const url = new URL(link);
                             settings.security.addTrustedOrigin(url.hostname);
-                        } catch (e) {}
+                        } catch (e) { }
 
                         return callback();
                     },

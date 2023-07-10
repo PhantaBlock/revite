@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { Text } from "preact-i18n";
 import { useState } from "preact/hooks";
 
-import { Category, Centred, Column, InputBox, Modal } from "@revoltchat/ui";
+import { Category, Centred, Column, InputBox, Modal } from '../../../components/revoltchat';
 
 import { ModalProps } from "../types";
 

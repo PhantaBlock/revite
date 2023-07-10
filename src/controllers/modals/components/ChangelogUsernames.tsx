@@ -2,7 +2,7 @@ import Lottie, { LottieRefCurrentProps } from "lottie-react";
 
 import { useEffect, useRef } from "preact/hooks";
 
-import { Button, Column, InputBox, Modal, Row } from "@revoltchat/ui";
+import { Button, Column, InputBox, Modal, Row } from '../../../components/revoltchat';
 
 import { useClient } from "../../client/ClientController";
 import { modalController } from "../ModalController";

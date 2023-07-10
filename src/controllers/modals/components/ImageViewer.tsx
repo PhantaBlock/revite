@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { Modal } from "@revoltchat/ui";
+import { Modal } from '../../../components/revoltchat';
 
 import AttachmentActions from "../../../components/common/messaging/attachments/AttachmentActions";
 import EmbedMediaActions from "../../../components/common/messaging/embed/EmbedMediaActions";

@@ -2,7 +2,7 @@ import { ulid } from "ulid";
 
 import { Text } from "preact-i18n";
 
-import { ModalForm } from "@revoltchat/ui";
+import { ModalForm } from '../../../components/revoltchat';
 
 import { ModalProps } from "../types";
 

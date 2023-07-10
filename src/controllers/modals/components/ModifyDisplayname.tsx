@@ -1,6 +1,6 @@
 import { Text } from "preact-i18n";
 
-import { ModalForm } from "@revoltchat/ui";
+import { ModalForm } from '../../../components/revoltchat';
 
 import { useClient } from "../../client/ClientController";
 import { ModalProps } from "../types";
@@ -33,11 +33,11 @@ export default function ModifyDisplayname({
             callback={({ display_name }) =>
                 display_name && display_name !== client.user!.username
                     ? client.users.edit({
-                          display_name,
-                      } as never)
+                        display_name,
+                    } as never)
                     : client.users.edit({
-                          remove: ["DisplayName"],
-                      } as never)
+                        remove: ["DisplayName"],
+                    } as never)
             }
             submit={{
                 children: <Text id="app.special.modals.actions.save" />,

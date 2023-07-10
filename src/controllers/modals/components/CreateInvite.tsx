@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Text } from "preact-i18n";
 import { useEffect, useState } from "preact/hooks";
 
-import { ModalForm } from "@revoltchat/ui";
+import { ModalForm } from '../../../components/revoltchat';
 
 import { noopAsync } from "../../../lib/js";
 
