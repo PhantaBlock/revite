@@ -54,7 +54,7 @@ import UserPicker from "./components/UserPicker";
 import { OnboardingModal } from "./components/legacy/Onboarding";
 import { UserProfile } from "./components/legacy/UserProfile";
 import { Modal } from "./types";
-import ProfileSetting from "./components/ProfileSetting";
+import ProfileSetting from "../../micro/entry/ProfileSetting";
 
 type Components = Record<string, React.FC<any>>;
 

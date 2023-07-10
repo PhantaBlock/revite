@@ -1,0 +1,39 @@
+.ProfileSetting {
+    &.rewrite {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        width: 600px;
+        margin: 0;
+        padding: 0;
+        max-width: none;
+        max-height: none;
+        background: #242424;
+    }
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        padding: 20px;
+
+        h3 {
+            margin: 0 0 16px;
+            font-size: 14px;
+            line-height: 18px;
+            padding-left: 6px;
+        }
+    }
+
+    .row {
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        margin-bottom: 16px;
+    }
+
+    .saveButton {
+        align-self: flex-end;
+        margin-top: 16px;
+    }
+}
