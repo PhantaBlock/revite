@@ -27,7 +27,6 @@ interface Props {
 
 export const Friend = observer(({ user, onInviteFriend }: Props) => {
     const isMicro = isMicroMode();
-
     const history = useHistory();
 
     const actions: Children[] = [];
@@ -37,18 +36,20 @@ export const Friend = observer(({ user, onInviteFriend }: Props) => {
         subtext = <UserStatus user={user} />;
 
         if (isMicro) {
-            actions.push(
-                <IconButton
-                    shape="circle"
-                    className={classNames(styles.button, styles.inviteButton)}
-                    onClick={(ev) => {
-                        stopPropagation(ev);
-                        onInviteFriend && onInviteFriend();
-                    }}
-                >
-                    邀请
-                </IconButton>
-            );
+            if (user.online) {
+                actions.push(
+                    <IconButton
+                        shape="circle"
+                        className={classNames(styles.button, styles.inviteButton)}
+                        onClick={(ev) => {
+                            stopPropagation(ev);
+                            onInviteFriend && onInviteFriend();
+                        }}
+                    >
+                        邀请
+                    </IconButton>
+                );
+            }
         } else {
             actions.push(
                 <>
@@ -145,7 +146,9 @@ export const Friend = observer(({ user, onInviteFriend }: Props) => {
 
     return (
         <div
-            className={styles.friend}
+            className={classNames(styles.friend, {
+                [styles.isMicro]: isMicro,
+            })}
             onClick={() => {
                 if (isMicro) {
                     user

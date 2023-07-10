@@ -13,15 +13,13 @@ export function getSKY() {
 }
 
 export function openMicroChannelPage(path?: string) {
-    const url = `${location.origin}/microChannel.html#${path}`;
-    console.log('##', url);
+    const url = `${location.origin}/microChannel.html${location.search}#${path}`;
+    console.log('##openMicroChannelPage:', url);
     microOpenUrl(url);
 }
 
 export function microOpenUrl(url: string) {
     const SKY = getSKY();
-
-    console.log('##', SKY);
 
     if (!SKY) return;
 

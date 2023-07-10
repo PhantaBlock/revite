@@ -8,10 +8,18 @@ import { Header } from "@revoltchat/ui";
 
 import { useSession } from "../controllers/client/ClientController";
 import { modalController } from "../controllers/modals/ModalController";
+import { observer } from "mobx-react-lite";
 
-export default function Open() {
+function Open() {
     const history = useHistory();
     const session = useSession()!;
+
+    console.log('##', session);
+
+    if (!session) {
+        return null;
+    }
+
     const client = session.client!;
     const { id } = useParams<{ id: string }>();
 
@@ -106,3 +114,5 @@ export default function Open() {
         </Header>
     );
 }
+
+export default observer(Open);

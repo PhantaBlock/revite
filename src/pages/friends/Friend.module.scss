@@ -228,7 +228,7 @@
     }
 }
 
-.list {
+.list.isMicro {
     :global(summary .padding) {
         padding: 0 !important;
 
@@ -236,23 +236,29 @@
 
     :global(summary .title1) {
         font-size: 16px !important;
-
     }
 
     .actions {}
 
-    .friend {
-        svg {
-            width: 32px !important;
-            height: 32px !important;
-        }
+    summary {
+        display: none;
+    }
+}
 
-        .name {
-            font-size: 16px;
+.friend.isMicro {
+    padding: 0 6px;
 
-            .subtext {
-                font-size: 12px;
-            }
+    svg {
+        width: 36px !important;
+        height: 36px !important;
+    }
+
+    .name {
+        font-size: 16px;
+        margin: 18px;
+
+        .subtext {
+            font-size: 12px;
         }
     }
 }

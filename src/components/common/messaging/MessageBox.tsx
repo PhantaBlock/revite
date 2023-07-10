@@ -45,6 +45,7 @@ import AutoComplete, { useAutoComplete } from "../AutoComplete";
 import { PermissionTooltip } from "../Tooltip";
 import FilePreview from "./bars/FilePreview";
 import ReplyBar from "./bars/ReplyBar";
+import { isMicroMode } from "../../../lib/global";
 
 type Props = {
     channel: Channel;
@@ -214,6 +215,7 @@ export const HackAlertThisFileWillBeReplaced = observer(
 export const CAN_UPLOAD_AT_ONCE = 5;
 
 export default observer(({ channel }: Props) => {
+    const isMicro = isMicroMode();
     const state = useApplicationState();
 
     const [uploadState, setUploadState] = useState<UploadState>({
@@ -666,7 +668,7 @@ export default observer(({ channel }: Props) => {
                     )} */}
                 <ThisCodeWillBeReplacedAnywaysSoIMightAsWellJustDoItThisWay__Padding />
                 <TextAreaAutoSize
-                    autoFocus
+                    autoFocus={!isMicro}
                     hideBorder
                     maxRows={20}
                     id="message"
@@ -746,11 +748,13 @@ export default observer(({ channel }: Props) => {
                     onFocus={onFocus}
                     onBlur={onBlur}
                 />
-                <Action>
-                    <IconButton onClick={() => setPicker(!picker)}>
-                        <HappyBeaming size={24} />
-                    </IconButton>
-                </Action>
+                {!isMicro && (
+                    <Action>
+                        <IconButton onClick={() => setPicker(!picker)}>
+                            <HappyBeaming size={24} />
+                        </IconButton>
+                    </Action>
+                )}
                 <Action>
                     <IconButton
                         className={

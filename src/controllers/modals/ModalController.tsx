@@ -54,6 +54,7 @@ import UserPicker from "./components/UserPicker";
 import { OnboardingModal } from "./components/legacy/Onboarding";
 import { UserProfile } from "./components/legacy/UserProfile";
 import { Modal } from "./types";
+import ProfileSetting from "./components/ProfileSetting";
 
 type Components = Record<string, React.FC<any>>;
 
@@ -300,4 +301,5 @@ export const modalController = new ModalControllerExtended({
     report_success: ReportSuccess,
     modify_displayname: ModifyDisplayname,
     changelog_usernames: ChangelogUsernames,
+    profile_setting: ProfileSetting,
 });

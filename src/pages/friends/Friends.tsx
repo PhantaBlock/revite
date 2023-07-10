@@ -136,6 +136,7 @@ export default observer(({ onInviteFriend }: {
                 <div
                     className={classNames(styles.list, {
                         'with-padding': !isMicro,
+                        [styles.isMicro]: isMicro,
                     })}
                     data-empty={isEmpty}
                     data-mobile={isTouchscreenDevice}>
