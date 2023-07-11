@@ -1,6 +1,6 @@
 import { useCallback, useContext, useEffect, useState } from "preact/hooks";
 import { observer } from "mobx-react-lite";
-import { Modal, Button } from "@revoltchat/ui";
+import { Modal, Button, InputElement } from "@revoltchat/ui";
 import { ModalProps } from "../../../controllers/modals/types";
 import styles from "./index.module.scss";
 import Cls from "classnames";
@@ -13,15 +13,23 @@ import AutoComplete, {
     useAutoComplete,
 } from "../../../components/common/AutoComplete";
 import { useTranslation } from "../../../lib/i18n";
+import UserIcon from "../../../components/common/user/UserIcon";
+
+const avatarList = new Array(41).fill('').map((item, index) => {
+    const _index = index < 9 ? `0${index + 1}` : index + 1;
+    return `https://skyvs.oss-cn-hangzhou.aliyuncs.com/avatars/default/0${_index}.png`;
+})
 
 const ProfileSetting = observer(({ ...props }: ModalProps<"profile_setting">) => {
     const translate = useTranslation();
     const session = useSession()!;
     const client = session.client!;
+    const [avatar, setAvatar] = useState('');
+    const [username, setUsername] = useState('');
+
     const [profile, setProfile] = useState<undefined | API.UserProfile>(
         undefined,
     );
-    const [changed, setChanged] = useState(false);
 
     const refreshProfile = useCallback(() => {
         client
@@ -35,9 +43,15 @@ const ProfileSetting = observer(({ ...props }: ModalProps<"profile_setting">) =>
         }
     }, [profile, session.state, refreshProfile]);
 
+    useEffect(() => {
+        if (client.user) {
+            client.user.avatar_url && setAvatar(client.user.avatar_url);
+            setUsername(client.user.username);
+        }
+    }, [client.user])
+
     function setContent(content?: string) {
         setProfile({ ...profile, content });
-        if (!changed) setChanged(true);
     }
 
     const {
@@ -54,68 +68,74 @@ const ProfileSetting = observer(({ ...props }: ModalProps<"profile_setting">) =>
     const renderContainer = () => {
         return (
             <div className={styles.container}>
-                <div className={styles.row}>
-                    <div className={styles.pfp}>
-                        <h3>头像</h3>
-                        <FileUploader
-                            width={92}
-                            height={92}
-                            style="icon"
-                            fileType="avatars"
-                            behaviour="upload"
-                            maxFileSize={4_000_000}
-                            onUpload={(avatar) => client.users.edit({ avatar })}
-                            remove={() => client.users.edit({ remove: ["Avatar"] })}
-                            defaultPreview={client.user!.generateAvatarURL(
-                                { max_side: 256 },
-                                true,
-                            )}
-                            previewURL={client.user!.generateAvatarURL(
-                                { max_side: 256 },
-                                true,
-                            )}
-                        />
-                    </div>
+                <div className={styles.column}>
+                    <UserIcon
+                        target={client.user!}
+                        size={100}
+                        status={false}
+                        override={avatar}
+                    />
+                    <InputElement
+                        type="text"
+                        value={username}
+                        onChange={(v) => setUsername(v)}
+                    />
+                    <AutoComplete detached {...autoCompleteProps} />
+                    <TextAreaAutoSize
+                        className={styles.textArea}
+                        maxLength={20}
+                        value={profile?.content ?? ""}
+                        disabled={typeof profile === "undefined"}
+                        onChange={(ev) => {
+                            onChange(ev);
+                            setContent(ev.currentTarget.value);
+                        }}
+                        placeholder={translate(
+                            `app.settings.pages.profile.${typeof profile === "undefined"
+                                ? "fetching"
+                                : "placeholder"
+                            }`,
+                        )}
+                        onKeyUp={onKeyUp}
+                        onKeyDown={onKeyDown}
+                        onFocus={onFocus}
+                        onBlur={onBlur}
+                    />
                 </div>
-                <h3>简介</h3>
-                <AutoComplete detached {...autoCompleteProps} />
-                <TextAreaAutoSize
-                    maxRows={10}
-                    minHeight={200}
-                    maxLength={2000}
-                    value={profile?.content ?? ""}
-                    disabled={typeof profile === "undefined"}
-                    onChange={(ev) => {
-                        onChange(ev);
-                        setContent(ev.currentTarget.value);
-                    }}
-                    placeholder={translate(
-                        `app.settings.pages.profile.${typeof profile === "undefined"
-                            ? "fetching"
-                            : "placeholder"
-                        }`,
-                    )}
-                    onKeyUp={onKeyUp}
-                    onKeyDown={onKeyDown}
-                    onFocus={onFocus}
-                    onBlur={onBlur}
-                />
-                <Button
-                    className={styles.saveButton}
-                    palette="secondary"
-                    onClick={() => {
-                        setChanged(false);
-                        client.users.edit({
-                            avatar_url: 'https://skyvs.oss-cn-hangzhou.aliyuncs.com/avatars/default/001.png',
-                            profile: {
-                                content: profile?.content,
-                            },
-                            username: '改下名'
-                        });
-                    }}
-                    disabled={!changed}>
-                    <Text id="app.special.modals.actions.save" />
-                </Button>
+                <div className={styles.column}>
+                    <div className={styles.avatarList}>
+                        {avatarList.map((item => (
+                            <div
+                                className={Cls(styles.avatarItem, {
+                                    [styles.selected]: item === avatar,
+                                })}
+                                key={item}
+                                onClick={() => {
+                                    setAvatar(item);
+                                }}
+                            >
+                                <img src={item} alt=" " />
+                            </div>
+                        )))}
+                    </div>
+                    <Button
+                        className={styles.saveButton}
+                        palette="secondary"
+                        onClick={() => {
+                            client.users.edit({
+                                avatar_url: avatar,
+                                profile: {
+                                    content: profile?.content,
+                                },
+                                username
+                            }).then(() => {
+                                window.Toast('修改成功');
+                            });
+                        }}
+                    >
+                        <Text id="app.special.modals.actions.save" />
+                    </Button>
+                </div>
             </div>
         )
     };
@@ -124,7 +144,7 @@ const ProfileSetting = observer(({ ...props }: ModalProps<"profile_setting">) =>
         <Modal
             {...props}
             // transparent
-            className={Cls(styles.ProfileSetting, styles.rewrite)}
+            className={Cls(styles.ProfileSetting, styles.rewrite, "cusLineationBorder")}
         >
             {renderContainer()}
         </Modal>

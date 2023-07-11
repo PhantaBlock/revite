@@ -3,37 +3,87 @@
         display: flex;
         flex-direction: column;
         align-items: stretch;
-        width: 600px;
+        width: 712.5px;
         margin: 0;
         padding: 0;
         max-width: none;
         max-height: none;
-        background: #242424;
+        background: linear-gradient(180deg, rgba(27, 15, 14, 0.90) 0%, rgba(10, 9, 24, 0.50) 98%);
+        box-sizing: border-box;
+        border-radius: 0;
+        backdrop-filter: blur(10px);
     }
 
     .container {
         display: flex;
-        flex-direction: column;
-        align-items: stretch;
-        padding: 20px;
-
-        h3 {
-            margin: 0 0 16px;
-            font-size: 14px;
-            line-height: 18px;
-            padding-left: 6px;
-        }
+        flex-direction: row;
+        align-items: flex-start;
+        padding: 33.75px;
     }
 
-    .row {
+    .column {
         display: flex;
         align-items: center;
-        flex-direction: row;
-        margin-bottom: 16px;
+        flex-direction: column;
+
+        svg {
+            width: 10rem !important;
+            height: 10rem !important;
+        }
+
+        .textArea {
+            width: 211.5px;
+            height: 130.5px !important;
+        }
+
+        input {
+            margin: 23.25px 0;
+
+            &:hover {
+                background: #1e1e1e;
+            }
+        }
+
+        &+.column {
+            flex: 1;
+            align-self: stretch;
+            margin-left: 40px;
+        }
     }
 
     .saveButton {
         align-self: flex-end;
         margin-top: 16px;
+    }
+
+    .avatarList {
+        align-self: stretch;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        height: 300px;
+        overflow-y: scroll;
+    }
+
+    .avatarItem {
+        width: 73.5px;
+        height: 73.5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 18.75px;
+        margin-bottom: 15px;
+        cursor: pointer;
+        border-radius: 100%;
+
+        &.selected {
+            background: #f6bf6b;
+        }
+
+        img {
+            width: 67.5px;
+            height: 67.5px;
+            border-radius: 100%;
+        }
     }
 }
