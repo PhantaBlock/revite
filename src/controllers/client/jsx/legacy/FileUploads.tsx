@@ -18,42 +18,42 @@ import { takeError } from "../error";
 type BehaviourType =
     | { behaviour: "ask"; onChange: (file: File) => void }
     | {
-          behaviour: "upload";
-          onUpload: (id: string) => Promise<void>;
-          previewAfterUpload?: boolean;
-      }
+        behaviour: "upload";
+        onUpload: (id: string) => Promise<void>;
+        previewAfterUpload?: boolean;
+    }
     | {
-          behaviour: "multi";
-          onChange: (files: File[]) => void;
-          append?: (files: File[]) => void;
-      };
+        behaviour: "multi";
+        onChange: (files: File[]) => void;
+        append?: (files: File[]) => void;
+    };
 
 type StyleType =
     | {
-          style: "icon" | "banner";
-          width?: number;
-          height?: number;
-          previewURL?: string;
-          defaultPreview?: string;
-          desaturateDefault?: boolean;
-      }
+        style: "icon" | "banner";
+        width?: number;
+        height?: number;
+        previewURL?: string;
+        defaultPreview?: string;
+        desaturateDefault?: boolean;
+    }
     | {
-          style: "attachment";
-          attached: boolean;
-          uploading: boolean;
-          cancel: () => void;
-          size?: number;
-      };
+        style: "attachment";
+        attached: boolean;
+        uploading: boolean;
+        cancel: () => void;
+        size?: number;
+    };
 
 type Props = BehaviourType &
     StyleType & {
         fileType:
-            | "backgrounds"
-            | "icons"
-            | "avatars"
-            | "attachments"
-            | "banners"
-            | "emojis";
+        | "backgrounds"
+        | "icons"
+        | "avatars"
+        | "attachments"
+        | "banners"
+        | "emojis";
         maxFileSize: number;
         remove: () => Promise<void>;
     };
@@ -286,20 +286,19 @@ export function FileUploader(props: Props) {
                     className={classNames(
                         styles.image,
                         props.desaturateDefault &&
-                            previewURL == null &&
-                            styles.desaturate,
+                        previewURL == null &&
+                        styles.desaturate,
                     )}
                     style={{
                         backgroundImage:
                             style === "icon"
-                                ? `url('${
-                                      generatedPreviewURL ||
-                                      previewURL ||
-                                      defaultPreview
-                                  }')`
+                                ? `url('${generatedPreviewURL ||
+                                previewURL ||
+                                defaultPreview
+                                }')`
                                 : previewURL
-                                ? `linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('${previewURL}')`
-                                : "none",
+                                    ? `linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('${previewURL}')`
+                                    : "none",
                         width,
                         height,
                     }}

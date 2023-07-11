@@ -1,6 +1,6 @@
 import { useEffect, useState } from "preact/compat";
 import { observer } from "mobx-react-lite";
-import { useClient } from "../../controllers/client/ClientController";
+import { useClient, useSession } from "../../controllers/client/ClientController";
 import Friends from "../../pages/friends/Friends";
 import MenuAdapter from "../menuAdapter";
 import styles from "./index.module.scss";
@@ -12,9 +12,8 @@ import { modalController } from "../../controllers/modals/ModalController";
 export default observer(({ onInviteFriend }: {
     onInviteFriend: (userId: string) => void;
 }) => {
-    const client = useClient();
-    const users = [...client.users.values()];
-    const self = users.find(item => item.relationship === 'User');
+    const session = useSession()!;
+    const self = session?.client?.user;
 
     return (
         <div className={styles.Entry}>

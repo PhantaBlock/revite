@@ -96,7 +96,8 @@ export default observer(
                 }
             }
 
-            url =
+            // @ts-ignore-next-line
+            url = target?.avatar_url ??
                 client.generateFileURL(
                     override ?? target?.avatar ?? attachment ?? undefined,
                     { max_side: 256 },

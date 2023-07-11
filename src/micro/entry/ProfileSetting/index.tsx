@@ -51,8 +51,6 @@ const ProfileSetting = observer(({ ...props }: ModalProps<"profile_setting">) =>
         users: { type: "all" },
     });
 
-    console.log('##', client);
-
     const renderContainer = () => {
         return (
             <div className={styles.container}>
