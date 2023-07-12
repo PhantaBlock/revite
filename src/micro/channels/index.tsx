@@ -11,7 +11,7 @@ import styled, { css } from "styled-components/macro";
 import { useApplicationState } from "../../mobx/State";
 import { SIDEBAR_CHANNELS } from "../../mobx/stores/Layout";
 import Open from "../../pages/Open";
-import MenuChecker from "../menuChecker";
+import MenuAdapter from "../menuAdapter";
 
 const HomeContent = styled.div.attrs({
     "data-component": "content",
@@ -80,7 +80,7 @@ export default observer(() => {
                     </Routes>
                 </OverlappingPanels>
             </HashRouter>
-            <MenuChecker />
+            <MenuAdapter />
         </HomeContent>
     );
 });

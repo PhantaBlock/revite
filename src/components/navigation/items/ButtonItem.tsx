@@ -81,7 +81,7 @@ export const UserButton = observer((props: UserProps) => {
                 {
                     <div className={styles.subText}>
                         {typeof channel?.last_message?.content === "string" &&
-                        alert ? (
+                            alert ? (
                             channel.last_message.content.slice(0, 32)
                         ) : (
                             <UserStatus user={user} tooltip />
@@ -170,8 +170,8 @@ export const ChannelButton = observer((props: ChannelProps) => {
                 {channel.channel_type === "Group" && (
                     <div className={styles.subText}>
                         {typeof channel.last_message?.content === "string" &&
-                        alert &&
-                        !muted ? (
+                            alert &&
+                            !muted ? (
                             channel.last_message.content.slice(0, 32)
                         ) : (
                             <Text

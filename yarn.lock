@@ -3788,6 +3788,7 @@ __metadata:
     mediasoup-client: "npm:@insertish/mediasoup-client@3.6.36-esnext"
     mobx: ^6.6.0
     mobx-react-lite: 3.4.0
+    postcss-pxtorem: ^6.0.0
     preact: ^10.5.14
     preact-context-menu: 0.4.1
     preact-i18n: ^2.4.0-preactx
@@ -7526,6 +7527,15 @@ __metadata:
   version: 2.3.0
   resolution: "picomatch@npm:2.3.0"
   checksum: 16818720ea7c5872b6af110760dee856c8e4cd79aed1c7a006d076b1cc09eff3ae41ca5019966694c33fbd2e1cc6ea617ab10e4adac6df06556168f13be3fca2
+  languageName: node
+  linkType: hard
+
+"postcss-pxtorem@npm:^6.0.0":
+  version: 6.0.0
+  resolution: "postcss-pxtorem@npm:6.0.0"
+  peerDependencies:
+    postcss: ^8.0.0
+  checksum: b798ec6c82aaa57067b983bd61f640f7319bd1f02bd698be84558982da64d1d6574359b7f6ea197058f09e894768d282dc8d8cf1a1d833c6e1a86a577065a3ad
   languageName: node
   linkType: hard
 

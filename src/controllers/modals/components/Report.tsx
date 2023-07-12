@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import { Text } from "preact-i18n";
 
-import { ModalForm, Row } from "@revoltchat/ui";
+import { ModalForm, Row } from '../../../components/revoltchat';
 
 import Message from "../../../components/common/messaging/Message";
 import UserShort from "../../../components/common/user/UserShort";
@@ -97,11 +97,10 @@ export default function ReportContent({
                                 id={
                                     value === "NoneSpecified"
                                         ? "app.special.modals.report.no_reason"
-                                        : `app.special.modals.report.${
-                                              target instanceof User
-                                                  ? "user"
-                                                  : "content"
-                                          }_reason.${value}`
+                                        : `app.special.modals.report.${target instanceof User
+                                            ? "user"
+                                            : "content"
+                                        }_reason.${value}`
                                 }
                             />
                         ),
@@ -122,8 +121,8 @@ export default function ReportContent({
                             target instanceof MessageInterface
                                 ? "Message"
                                 : target instanceof User
-                                ? "User"
-                                : "Server",
+                                    ? "User"
+                                    : "Server",
                         report_reason: reason as any,
                         message_id: messageId,
                     },
@@ -136,8 +135,8 @@ export default function ReportContent({
                         target instanceof MessageInterface
                             ? target.author
                             : target instanceof User
-                            ? target
-                            : undefined,
+                                ? target
+                                : undefined,
                 });
             }}
             submit={{

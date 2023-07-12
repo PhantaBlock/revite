@@ -16,7 +16,7 @@ import {
     InputBox,
     Modal,
     Preloader,
-} from "@revoltchat/ui";
+} from '../../../components/revoltchat';
 
 import { ModalProps } from "../types";
 
@@ -133,54 +133,52 @@ export default function MFAFlow({
             title={<Text id="app.special.modals.confirm" />}
             description={
                 <Text
-                    id={`app.special.modals.mfa.${
-                        selectedMethod ? "confirm" : "select_method"
-                    }`}
+                    id={`app.special.modals.mfa.${selectedMethod ? "confirm" : "select_method"
+                        }`}
                 />
             }
             actions={
                 selectedMethod
                     ? [
-                          {
-                              palette: "primary",
-                              children: (
-                                  <Text id="app.special.modals.actions.confirm" />
-                              ),
-                              onClick: generateTicket,
-                              confirmation: true,
-                          },
-                          {
-                              palette: "plain",
-                              children: (
-                                  <Text
-                                      id={`app.special.modals.actions.${
-                                          methods!.length === 1
-                                              ? "cancel"
-                                              : "back"
-                                      }`}
-                                  />
-                              ),
-                              onClick: () => {
-                                  if (methods!.length === 1) {
-                                      props.callback();
-                                      return true;
-                                  }
-                                  setSelected(undefined);
-                              },
-                          },
-                      ]
+                        {
+                            palette: "primary",
+                            children: (
+                                <Text id="app.special.modals.actions.confirm" />
+                            ),
+                            onClick: generateTicket,
+                            confirmation: true,
+                        },
+                        {
+                            palette: "plain",
+                            children: (
+                                <Text
+                                    id={`app.special.modals.actions.${methods!.length === 1
+                                            ? "cancel"
+                                            : "back"
+                                        }`}
+                                />
+                            ),
+                            onClick: () => {
+                                if (methods!.length === 1) {
+                                    props.callback();
+                                    return true;
+                                }
+                                setSelected(undefined);
+                            },
+                        },
+                    ]
                     : [
-                          {
-                              palette: "plain",
-                              children: (
-                                  <Text id="app.special.modals.actions.cancel" />
-                              ),
-                              onClick: () => {
-                                  props.callback();
-                                  return true;
-                              },
-                          },
-                      ]
+                        {
+                            palette: "plain",
+                            children: (
+                                <Text id="app.special.modals.actions.cancel" />
+                            ),
+                            onClick: () => {
+                                props.callback();
+                                return true;
+                            },
+                        },
+                    ]
             }
             // If we are logging in or have selected a method,
             // don't allow the user to dismiss the modal by clicking off.

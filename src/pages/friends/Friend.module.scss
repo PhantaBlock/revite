@@ -17,6 +17,16 @@
     user-select: none;
     display: block;
 
+    details {
+        summary {
+            font-size: 0.8125rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--secondary-foreground);
+            cursor: pointer;
+        }
+    }
+
     &[data-empty="true"] {
         img {
             height: 120px;
@@ -43,6 +53,7 @@
     cursor: pointer;
     align-items: center;
     border-radius: var(--border-radius);
+    padding: 0 10px;
 
     &:hover {
         background: var(--secondary-background);
@@ -60,7 +71,7 @@
         display: flex;
         flex-direction: column;
         text-overflow: ellipsis;
-        // overflow: hidden;
+        overflow: hidden;
 
         span {
             white-space: nowrap;
@@ -100,6 +111,7 @@
         .inviteButton {
             font-size: 12px;
             line-height: 18px;
+            white-space: nowrap;
         }
     }
 }
@@ -197,7 +209,8 @@
 .add_firend {
     background-color: #2A2424;
     width: 80%;
-    height: 40px;
+    font-size: 16px;
+    padding: 10px 0;
     border-radius: 4px;
     display: flex;
     align-items: center;
@@ -215,59 +228,37 @@
     }
 }
 
-@media only screen and (max-width: 1440px) {
-    .add_firend {
-        height: 30px;
-        font-size: 12px;
+.list.isMicro {
+    :global(summary .padding) {
+        padding: 0 !important;
+
     }
 
-    .pending {
-        >svg {
-            transform: scale(0.8);
-            margin-left: -15px;
-        }
-
-        .avatars {
-            margin-inline-end: 10px;
-        }
-
-        .details {
-            >div {
-                font-size: 10px;
-
-                span {
-                    transform: scale(0.8);
-                }
-            }
-
-            >span {
-                font-size: 8px;
-            }
-        }
+    :global(summary .title1) {
+        font-size: 16px !important;
     }
 
-    .list {
-        :global(summary .padding) {
-            transform: scale(0.8);
+    .actions {}
 
-        }
+    summary {
+        display: none;
+    }
+}
 
-        .actions {
-            transform: scale(0.8);
-        }
+.friend.isMicro {
+    padding: 0 6px;
 
-        .friend {
-            svg {
-                transform: scale(0.8);
-            }
+    svg {
+        width: 36px !important;
+        height: 36px !important;
+    }
 
-            .name {
-                font-size: 12px;
+    .name {
+        font-size: 16px;
+        margin: 18px;
 
-                .subtext {
-                    font-size: 8px;
-                }
-            }
+        .subtext {
+            font-size: 12px;
         }
     }
 }

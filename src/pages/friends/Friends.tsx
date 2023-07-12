@@ -136,6 +136,7 @@ export default observer(({ onInviteFriend }: {
                 <div
                     className={classNames(styles.list, {
                         'with-padding': !isMicro,
+                        [styles.isMicro]: isMicro,
                     })}
                     data-empty={isEmpty}
                     data-mobile={isTouchscreenDevice}>
@@ -221,9 +222,7 @@ export default observer(({ onInviteFriend }: {
                                 sticky
                                 large
                                 summary={
-                                    <div className="title" style={{
-                                        fontSize: '18px'
-                                    }}>
+                                    <div className="title title1">
                                         <Text id={i18n} /> — {list.length}
                                     </div>
                                 }>

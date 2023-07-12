@@ -22,9 +22,10 @@ import {
     IconButton,
     Modal,
     Preloader,
-} from "@revoltchat/ui";
+} from '../../../../components/revoltchat';
 
 import { noop } from "../../../../lib/js";
+import { remTorem, numTonum, pxTorem } from '../../../../components/revoltchat/lib/calculation';
 
 import ChannelIcon from "../../../../components/common/ChannelIcon";
 import ServerIcon from "../../../../components/common/ServerIcon";
@@ -133,7 +134,7 @@ export const UserProfile = observer(
             profile &&
             client.generateFileURL(
                 profile.background as any,
-                { width: 1000 },
+                { width: numTonum(1000) },
                 true,
             );
 
@@ -151,12 +152,12 @@ export const UserProfile = observer(
                         backgroundImage:
                             backgroundURL &&
                             `linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7) ), url('${backgroundURL}')`,
-                        paddingBottom: "1px",
+                        paddingBottom: pxTorem(1),
                         display: 'block'
                     }}>
                     <div className={styles.profile}>
                         <UserIcon
-                            size={80}
+                            size={numTonum(80)}
                             target={user}
                             status
                             animate
@@ -233,7 +234,7 @@ export const UserProfile = observer(
                                                 history.push(`/open/${user_id}`);
                                             }
                                         }}>
-                                        <Envelope size={30} />
+                                        <Envelope size={numTonum(30)} />
                                     </IconButton>
                                 </Tooltip>
                             </Localizer>
@@ -254,12 +255,12 @@ export const UserProfile = observer(
                                 user.relationship === "None" ||
                                 user.relationship === null) && (
                                 <IconButton onClick={() => user.addFriend()}>
-                                    <UserPlus size={28} />
+                                    <UserPlus size={numTonum(28)} />
                                 </IconButton>
                             )}
                         {user.relationship === "Outgoing" && (
                             <IconButton onClick={() => user.removeFriend()}>
-                                <UserX size={28} />
+                                <UserX size={numTonum(28)} />
                             </IconButton>
                         )}
                     </div>
@@ -269,11 +270,11 @@ export const UserProfile = observer(
                                 marginInline: "1em",
                                 padding: "0.5em",
                                 background: "var(--primary-background)",
-                                borderRadius: "8px",
+                                borderRadius: pxTorem(8),
                                 width: "fit-content",
                                 backgroundColor:
                                     "rgba(var(--primary-header-rgb), max(var(--min-opacity), 0.65))",
-                                backdropFilter: "blur(20px)",
+                                backdropFilter: `blur(${pxTorem(20)})`,
                             }}>
                             <UserBadges badges={badges} uid={user._id} />
                         </div>
@@ -375,7 +376,7 @@ export const UserProfile = observer(
                             </div>
                         ) : (
                             <div className={styles.empty}>
-                                <InfoCircle size={72} />
+                                <InfoCircle size={numTonum(72)} />
                                 <Text id="app.special.popovers.user_profile.empty" />
                             </div>
                         ))}
@@ -383,7 +384,7 @@ export const UserProfile = observer(
                         (users ? (
                             users.length === 0 ? (
                                 <div className={styles.empty}>
-                                    <UserPlus size={72} />
+                                    <UserPlus size={numTonum(72)} />
                                     <Text id="app.special.popovers.user_profile.no_users" />
                                 </div>
                             ) : (
@@ -401,7 +402,7 @@ export const UserProfile = observer(
                                                     className={styles.entry}
                                                     key={x._id}>
                                                     <UserIcon
-                                                        size={32}
+                                                        size={numTonum(32)}
                                                         target={x}
                                                         status
                                                     />
@@ -417,7 +418,7 @@ export const UserProfile = observer(
                     {tab === "groups" &&
                         (mutualGroups.length === 0 ? (
                             <div className={styles.empty}>
-                                <Group size="72" />
+                                <Group size={numTonum(72)} />
                                 <Text id="app.special.popovers.user_profile.no_groups" />
                             </div>
                         ) : (
@@ -431,7 +432,7 @@ export const UserProfile = observer(
                                                     key={x._id}>
                                                     <ChannelIcon
                                                         target={x}
-                                                        size={32}
+                                                        size={numTonum(32)}
                                                     />
                                                     <span>{x.name}</span>
                                                 </div>
@@ -448,7 +449,7 @@ export const UserProfile = observer(
                                             >
                                                 <ChannelIcon
                                                     target={x}
-                                                    size={32}
+                                                    size={numTonum(32)}
                                                 />
                                                 <span>{x.name}</span>
                                             </div>
@@ -459,7 +460,7 @@ export const UserProfile = observer(
                     {tab === "servers" &&
                         (!mutualServers || mutualServers.length === 0 ? (
                             <div className={styles.empty}>
-                                <ListUl size="72" />
+                                <ListUl size={numTonum(72)} />
                                 <Text id="app.special.popovers.user_profile.no_servers" />
                             </div>
                         ) : (
@@ -473,7 +474,7 @@ export const UserProfile = observer(
                                                     key={x._id}>
                                                     <ServerIcon
                                                         target={x}
-                                                        size={32}
+                                                        size={numTonum(32)}
                                                     />
                                                     <span>{x.name}</span>
                                                 </div>
@@ -493,7 +494,7 @@ export const UserProfile = observer(
                 {...props}
                 nonDismissable={isPlaceholder}
                 transparent
-                maxWidth="560px">
+                maxWidth={pxTorem(560)}>
                 {children}
             </Modal>
         );

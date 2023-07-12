@@ -4,12 +4,15 @@
         transform: scale(1.2);
         opacity: 0;
     }
+
     20% {
         opacity: 0.5;
     }
+
     50% {
         opacity: 1;
     }
+
     100% {
         transform: scale(1);
     }
@@ -19,12 +22,15 @@
     0% {
         transform: scale(1);
     }
+
     20% {
         opacity: 1;
     }
+
     50% {
         opacity: 0.5;
     }
+
     100% {
         opacity: 0;
         transform: scale(1.2);
@@ -53,6 +59,7 @@
         .scrollbox {
             width: 100%;
         }
+
         .version {
             place-items: center;
         }
@@ -154,7 +161,7 @@
             user-select: text;
             display: grid;
 
-            > div {
+            >div {
                 gap: 2px;
                 display: flex;
                 flex-direction: column;
@@ -237,7 +244,7 @@
             font-size: 0.75rem;
             font-weight: 500;
 
-            > a:hover {
+            >a:hover {
                 text-decoration: underline;
             }
         }
@@ -296,9 +303,11 @@
             svg {
                 color: var(--secondary-foreground);
             }
+
             &:hover {
                 background: var(--secondary-header);
             }
+
             &:active {
                 transform: translateY(2px);
             }

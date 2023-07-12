@@ -54,6 +54,7 @@ import UserPicker from "./components/UserPicker";
 import { OnboardingModal } from "./components/legacy/Onboarding";
 import { UserProfile } from "./components/legacy/UserProfile";
 import { Modal } from "./types";
+import ProfileSetting from "../../micro/entry/ProfileSetting";
 
 type Components = Record<string, React.FC<any>>;
 
@@ -67,6 +68,7 @@ class ModalController<T extends Modal> {
     constructor(components: Components) {
         this.components = components;
 
+        console.warn(components, '=====')
         makeObservable(this, {
             stack: observable,
             push: action,
@@ -131,10 +133,12 @@ class ModalController<T extends Modal> {
                     return (
                         // ESLint does not understand spread operator
                         // eslint-disable-next-line
-                        <Component
-                            {...modal}
-                            onClose={() => this.remove(modal.key!)}
-                        />
+                        <div className="modelWrap">
+                            <Component
+                                {...modal}
+                                onClose={() => this.remove(modal.key!)}
+                            />
+                        </div>
                     );
                 })}
             </>
@@ -297,4 +301,5 @@ export const modalController = new ModalControllerExtended({
     report_success: ReportSuccess,
     modify_displayname: ModifyDisplayname,
     changelog_usernames: ChangelogUsernames,
+    profile_setting: ProfileSetting,
 });

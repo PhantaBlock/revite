@@ -152,10 +152,10 @@ export const Profile = observer(() => {
                         previewURL={
                             profile?.background
                                 ? client.generateFileURL(
-                                      profile.background,
-                                      { width: 1000 },
-                                      true,
-                                  )
+                                    profile.background,
+                                    { width: 1000 },
+                                    true,
+                                )
                                 : undefined
                         }
                     />
@@ -176,10 +176,9 @@ export const Profile = observer(() => {
                     setContent(ev.currentTarget.value);
                 }}
                 placeholder={translate(
-                    `app.settings.pages.profile.${
-                        typeof profile === "undefined"
-                            ? "fetching"
-                            : "placeholder"
+                    `app.settings.pages.profile.${typeof profile === "undefined"
+                        ? "fetching"
+                        : "placeholder"
                     }`,
                 )}
                 onKeyUp={onKeyUp}

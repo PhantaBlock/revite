@@ -103,8 +103,10 @@ export const Channel = observer(
         const isMicro = isMicroMode();
         const client = useClient();
         const state = useApplicationState();
+        const exist = client.channels.exists(id);
+        const channel = client.channels.get(id);
 
-        if (!client.channels.exists(id)) {
+        if (!exist && !channel) {
             if (isMicro) {
                 return <ChannelPlaceholder />;
             }
@@ -133,7 +135,6 @@ export const Channel = observer(
             return <ChannelPlaceholder />;
         }
 
-        const channel = client.channels.get(id)!;
         if (channel?.channel_type === "VoiceChannel" && !isMicro) {
             return <VoiceChannel channel={channel} />;
         }

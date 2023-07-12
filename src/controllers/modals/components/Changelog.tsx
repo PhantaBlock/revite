@@ -4,7 +4,7 @@ import styled, { css } from "styled-components";
 import { Text } from "preact-i18n";
 import { useMemo, useState } from "preact/hooks";
 
-import { CategoryButton, Column, Modal } from "@revoltchat/ui";
+import { CategoryButton, Column, Modal } from '../../../components/revoltchat';
 import type { Action } from "@revoltchat/ui/esm/components/design/atoms/display/Modal";
 
 import { noopTrue } from "../../../lib/js";

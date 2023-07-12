@@ -35,6 +35,7 @@ import { takeError } from "../controllers/client/jsx/error";
 import { modalController } from "../controllers/modals/ModalController";
 import { internalEmit } from "./eventEmitter";
 import { getRenderer } from "./renderer/Singleton";
+import { isMicroMode } from "./global";
 
 interface ContextMenuData {
     user?: string;
@@ -87,37 +88,38 @@ type Action =
     | { action: "create_channel"; target: Server }
     | { action: "create_category"; target: Server }
     | {
-          action: "create_invite";
-          target: Channel;
-      }
+        action: "create_invite";
+        target: Channel;
+    }
     | { action: "leave_group"; target: Channel }
     | {
-          action: "delete_channel";
-          target: Channel;
-      }
+        action: "delete_channel";
+        target: Channel;
+    }
     | { action: "close_dm"; target: Channel }
     | { action: "leave_server"; target: Server }
     | { action: "delete_server"; target: Server }
     | { action: "edit_identity"; target: Member }
     | {
-          action: "open_notification_options";
-          channel?: Channel;
-          server?: Server;
-      }
+        action: "open_notification_options";
+        channel?: Channel;
+        server?: Server;
+    }
     | { action: "open_settings" }
     | { action: "open_channel_settings"; id: string }
     | { action: "open_server_settings"; id: string }
     | { action: "open_server_channel_settings"; server: string; id: string }
     | {
-          action: "set_notification_state";
-          key: string;
-          state?: NotificationState;
-      }
+        action: "set_notification_state";
+        key: string;
+        state?: NotificationState;
+    }
     | { action: "report"; target: User | Server | Message; messageId?: string };
 
 // ! FIXME: I dare someone to re-write this
 // Tip: This should just be split into separate context menus per logical area.
 export default function ContextMenus() {
+    const isMicro = isMicroMode();
     const session = useSession()!;
     const client = session.client!;
     const userId = client.user!._id;
@@ -497,9 +499,8 @@ export default function ContextMenus() {
                             <MenuItem data={action} disabled={disabled}>
                                 <span style={{ color }}>
                                     <Text
-                                        id={`app.context_menu.${
-                                            locale ?? action.action
-                                        }`}
+                                        id={`app.context_menu.${locale ?? action.action
+                                            }`}
                                     />
                                 </span>
                                 {tip && <div className="tip">{tip}</div>}
@@ -556,8 +557,8 @@ export default function ContextMenus() {
                     const user = uid ? client.users.get(uid) : undefined;
                     const serverChannel =
                         targetChannel &&
-                        (targetChannel.channel_type === "TextChannel" ||
-                            targetChannel.channel_type === "VoiceChannel")
+                            (targetChannel.channel_type === "TextChannel" ||
+                                targetChannel.channel_type === "VoiceChannel")
                             ? targetChannel
                             : undefined;
 
@@ -569,8 +570,8 @@ export default function ContextMenus() {
                         (server
                             ? server.permission
                             : serverChannel
-                            ? serverChannel.server?.permission
-                            : 0) || 0;
+                                ? serverChannel.server?.permission
+                                : 0) || 0;
                     const userPermissions = (user ? user.permission : 0) || 0;
 
                     if (unread) {
@@ -648,7 +649,7 @@ export default function ContextMenus() {
                             });
                         }
 
-                        if (user._id !== userId) {
+                        if (user._id !== userId && !isMicro) {
                             if (userPermissions & UserPermission.SendMessage) {
                                 generateAction({
                                     action: "message_user",
@@ -864,8 +865,8 @@ export default function ContextMenus() {
                                 type === "Image"
                                     ? "open_image"
                                     : type === "Video"
-                                    ? "open_video"
-                                    : "open_file",
+                                        ? "open_video"
+                                        : "open_file",
                             );
 
                             generateAction(
@@ -876,8 +877,8 @@ export default function ContextMenus() {
                                 type === "Image"
                                     ? "save_image"
                                     : type === "Video"
-                                    ? "save_video"
-                                    : "save_file",
+                                        ? "save_video"
+                                        : "save_file",
                             );
 
                             generateAction(
@@ -913,8 +914,8 @@ export default function ContextMenus() {
                             type === "Image"
                                 ? "open_image"
                                 : type === "Video"
-                                ? "open_video"
-                                : "open_file",
+                                    ? "open_video"
+                                    : "open_file",
                         );
 
                         generateAction(
@@ -925,8 +926,8 @@ export default function ContextMenus() {
                             type === "Image"
                                 ? "save_image"
                                 : type === "Video"
-                                ? "save_video"
-                                : "save_file",
+                                    ? "save_video"
+                                    : "save_file",
                         );
 
                         generateAction(
@@ -943,7 +944,7 @@ export default function ContextMenus() {
                         pushDivider();
 
                         if (channel) {
-                            if (channel.channel_type !== "VoiceChannel") {
+                            if (channel.channel_type !== "VoiceChannel" && !isMicro) {
                                 generateAction(
                                     {
                                         action: "open_notification_options",
@@ -958,13 +959,16 @@ export default function ContextMenus() {
                             switch (channel.channel_type) {
                                 case "Group":
                                     // ! generateAction({ action: "create_invite", target: channel }); FIXME: add support for group invites
-                                    generateAction(
-                                        {
-                                            action: "open_channel_settings",
-                                            id: channel._id,
-                                        },
-                                        "open_group_settings",
-                                    );
+                                    if (!isMicro) {
+                                        generateAction(
+                                            {
+                                                action: "open_channel_settings",
+                                                id: channel._id,
+                                            },
+                                            "open_group_settings",
+                                        );
+                                    }
+
                                     generateAction(
                                         {
                                             action: "leave_group",
@@ -1099,7 +1103,7 @@ export default function ContextMenus() {
                             }
                         }
 
-                        if (message) {
+                        if (message && !isMicro) {
                             generateAction({
                                 action: "copy_message_link",
                                 message,
@@ -1112,8 +1116,8 @@ export default function ContextMenus() {
                                 cid
                                     ? "copy_cid"
                                     : message
-                                    ? "copy_mid"
-                                    : "copy_uid",
+                                        ? "copy_mid"
+                                        : "copy_uid",
                             );
                         }
                     }

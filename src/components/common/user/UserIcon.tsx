@@ -27,10 +27,10 @@ export function useStatusColour(user?: User) {
         ? user?.status?.presence === "Idle"
             ? theme.getVariable("status-away")
             : user?.status?.presence === "Focus"
-            ? theme.getVariable("status-focus")
-            : user?.status?.presence === "Busy"
-            ? theme.getVariable("status-busy")
-            : theme.getVariable("status-online")
+                ? theme.getVariable("status-focus")
+                : user?.status?.presence === "Busy"
+                    ? theme.getVariable("status-busy")
+                    : theme.getVariable("status-online")
         : theme.getVariable("status-invisible");
 }
 
@@ -96,7 +96,8 @@ export default observer(
                 }
             }
 
-            url =
+            // @ts-ignore-next-line
+            url = target?.avatar_url ??
                 client.generateFileURL(
                     override ?? target?.avatar ?? attachment ?? undefined,
                     { max_side: 256 },

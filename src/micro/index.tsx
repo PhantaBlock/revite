@@ -7,20 +7,21 @@ import { useApi } from "../controllers/client/ClientController";
 import localforage from "localforage";
 
 enum ComponentName {
-    Friends = "Friends",
+    Entry = "Entry",
     TempChannel = "TempChannel",
     Channels = "Channels",
 }
 
 const Register = {
-    [ComponentName.Friends]: lazy(() => import("./friends")),
+    [ComponentName.Entry]: lazy(() => import("./entry")),
     [ComponentName.TempChannel]: lazy(() => import("./tempChannel")),
     [ComponentName.Channels]: lazy(() => import("./channels")),
 };
 
 const LoadSuspense: React.FC = ({ children }) => (
     // @ts-expect-error Typing issue between Preact and Preact.
-    <Suspense fallback={<Preloader type="ring" />}>{children}</Suspense>
+    // <Suspense fallback={<Preloader type="ring" />}>{children}</Suspense>
+    <Suspense>{children}</Suspense>
 );
 
 export function MicroApp(props: {
@@ -30,7 +31,7 @@ export function MicroApp(props: {
     needHandleAuthenticate?: boolean;
 }) {
     const {
-        exposeComponent = ComponentName.Friends,
+        exposeComponent = ComponentName.Entry,
         token,
         needHandleAuthenticate = true,
         ...extra
