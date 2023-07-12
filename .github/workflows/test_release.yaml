@@ -29,7 +29,7 @@ jobs:
         run: yarn
 
       - name: Build targets
-        run: NODE_OPTIONS=--max-old-space-size=32768 yarn build
+        run: NODE_OPTIONS=--max-old-space-size=32768 yarn build --mode test
 
       - name: Setup Qemu
         uses: docker/setup-qemu-action@v2
