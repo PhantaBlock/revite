@@ -97,12 +97,12 @@ export default observer(
             }
 
             // @ts-ignore-next-line
-            url = target?.avatar_url ??
+            url = target?.avatar_url || (
                 client.generateFileURL(
                     override ?? target?.avatar ?? attachment ?? undefined,
                     { max_side: 256 },
                     animate,
-                ) ?? (target ? target.defaultAvatarURL : fallback);
+                ) ?? (target ? target.defaultAvatarURL : fallback));
         }
 
         return (
