@@ -122,6 +122,7 @@ const Title = styled.div`
 const Content = styled.div<Pick<Props, "transparent" | "padding">>`
     flex-grow: 1;
     padding-top: 0;
+
     padding: ${(props) => props.padding ?? `0 ${remTorem(1)} ${remTorem(1)}`};
 
     overflow-y: auto;
@@ -148,6 +149,15 @@ const Actions = styled.div`
     background: var(--secondary-background);
     border-radius: 0 0 var(--border-radius) var(--border-radius);
 `;
+
+const SkyThemeWrapper = styled.div`
+    border: 2px solid;
+    background: linear-gradient(180deg, rgba(27,15,14,0.45) 0%, rgba(10,9,24,0.25) 98%);
+    border-image: linear-gradient(180deg, #FFB24F 0%, rgba(255,231,138,0.68) 98%);
+    backdrop-filter: blur(27.2px);
+    box-sizing: border-box;
+    border-image-slice: 1;
+`
 
 export const Modal: (props: Props) => JSX.Element = ({
     children,
@@ -190,37 +200,40 @@ export const Modal: (props: Props) => JSX.Element = ({
         }
     }, [signal]);
 
+    console.log('props', props)
     return createPortal(
         <Base closing={closing} onClick={() => !nonDismissable && closeModal()}>
-            <Container
-                {...props}
-                actions={actions ? actions.length > 0 : false}
-                onClick={(e) => e.stopPropagation()}>
-                {(title || description) && (
-                    <Title>
-                        {title && <H2>{title}</H2>}
-                        {description && <H4>{description}</H4>}
-                    </Title>
-                )}
-                <Content {...props}>{children}</Content>
-                {actions && actions.length > 0 && (
-                    <Actions>
-                        {actions.map((x, index) => (
-                            // @ts-expect-error cope
-                            <Button
-                                disabled={disabled}
-                                key={index}
-                                {...x}
-                                onClick={async () => {
-                                    if (await x.onClick()) {
-                                        closeModal();
-                                    }
-                                }}
-                            />
-                        ))}
-                    </Actions>
-                )}
-            </Container>
+            <SkyThemeWrapper>
+                <Container
+                    {...props}
+                    actions={actions ? actions.length > 0 : false}
+                    onClick={(e) => e.stopPropagation()}>
+                    {(title || description) && (
+                        <Title>
+                            {title && <H2>{title}</H2>}
+                            {description && <H4>{description}</H4>}
+                        </Title>
+                    )}
+                    <Content {...props}>{children}</Content>
+                    {actions && actions.length > 0 && (
+                        <Actions>
+                            {actions.map((x, index) => (
+                                // @ts-expect-error cope
+                                <Button
+                                    disabled={disabled}
+                                    key={index}
+                                    {...x}
+                                    onClick={async () => {
+                                        if (await x.onClick()) {
+                                            closeModal();
+                                        }
+                                    }}
+                                />
+                            ))}
+                        </Actions>
+                    )}
+                </Container>
+            </SkyThemeWrapper>
         </Base>,
         document.body,
     );
