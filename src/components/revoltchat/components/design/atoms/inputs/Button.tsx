@@ -37,40 +37,6 @@ export const Button = styled.button<Props>`
     }
 
     ${(props) =>
-        props.skyTheme ? css`
-            border-radius: 0 !important;
-            flex-direction: column;
-            background-color: #FED06D;
-            background-image: linear-gradient(0deg, #FED06D, #FED77D);
-            position: relative;
-            color: #1C1616;
-            &::before {
-                content: '';
-                width: 100%;
-                height: 50%;
-                position: absolute;
-                left: 0;
-                bottom: 0;
-                background-image: linear-gradient(180deg, #FFB65A, rgba(239, 176, 97, 0));
-            }
-        
-            &:hover,  &:active {
-                // animation: shodowBreathing 2.5s infinite;
-                will-change: box-shadow;
-                &::after {
-                content: '';
-                width: calc(100% - 16px);
-                height: calc(100% - 16px);
-                background: transparent;
-                position: absolute;
-                left: 50%;
-                top: 50%;
-                transform: translate(-50%, -50%);
-                }
-            }
-        ` : ''}
-
-    ${(props) =>
         props.compact === "icon"
             ? css`
                   height: ${pxTorem(38)};
@@ -91,12 +57,12 @@ export const Button = styled.button<Props>`
               `}
 
     ${(props) => {
-        if (props.skyTheme)
-            return
+        // if (props.skyTheme)
+        //     return
         switch (props.palette) {
             case "secondary":
                 return css`
-                    font-weight: 500;
+                    font-weight: 400;
                     color: var(--foreground);
                     background: var(--secondary-header);
 
@@ -115,6 +81,7 @@ export const Button = styled.button<Props>`
             case "plain":
             case "plain-secondary":
                 return css`
+                    font-weight: 500;
                     color: ${props.palette === "plain"
                         ? "var(--foreground)"
                         : "var(--secondary-foreground)"};
@@ -156,22 +123,38 @@ export const Button = styled.button<Props>`
             default:
             case "primary":
                 return css`
-                    font-weight: 500;
-                    color: var(--foreground);
-                    background: var(--primary-background);
-
-                    &:hover {
-                        background: var(--secondary-header);
+                    font-weight: 700;
+                    border-radius: 0 !important;
+                    flex-direction: column;
+                    background: #FED06D !important;
+                    background-image: linear-gradient(0deg, #FED06D, #FED77D) !important;
+                    position: relative;
+                    color: #1C1616 !important;
+                    &::before {
+                        content: '';
+                        width: 100%;
+                        height: 50%;
+                        position: absolute;
+                        left: 0;
+                        bottom: 0;
+                        background-image: linear-gradient(180deg, #FFB65A, rgba(239, 176, 97, 0));
                     }
+                    // color: var(--foreground);
+                    // background: var(--primary-background);
 
-                    &:disabled {
-                        background: var(--primary-background);
-                    }
+                    // &:hover {
+                    //     background: var(--secondary-header);
+                    // }
 
-                    &:active {
-                        background: var(--secondary-background);
-                    }
+                    // &:disabled {
+                    //     background: var(--primary-background);
+                    // }
+
+                    // &:active {
+                    //     background: var(--secondary-background);
+                    // }
                 `;
         }
-    }}
+    }
+    }
 `;
