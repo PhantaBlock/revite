@@ -68,73 +68,82 @@ const ProfileSetting = observer(({ ...props }: ModalProps<"profile_setting">) =>
     const renderContainer = () => {
         return (
             <div className={styles.container}>
-                <div className={styles.column}>
-                    <UserIcon
-                        target={client.user!}
-                        size={100}
-                        status={false}
-                        override={avatar}
-                    />
-                    <InputElement
-                        type="text"
-                        value={username}
-                        onChange={(v) => setUsername(v)}
-                    />
-                    <AutoComplete detached {...autoCompleteProps} />
-                    <TextAreaAutoSize
-                        className={styles.textArea}
-                        maxLength={20}
-                        value={profile?.content ?? ""}
-                        disabled={typeof profile === "undefined"}
-                        onChange={(ev) => {
-                            onChange(ev);
-                            setContent(ev.currentTarget.value);
-                        }}
-                        placeholder={translate(
-                            `app.settings.pages.profile.${typeof profile === "undefined"
-                                ? "fetching"
-                                : "placeholder"
-                            }`,
-                        )}
-                        onKeyUp={onKeyUp}
-                        onKeyDown={onKeyDown}
-                        onFocus={onFocus}
-                        onBlur={onBlur}
-                    />
+                <div className={styles.header}>
+                    <div>编辑资料</div>
                 </div>
-                <div className={styles.column}>
-                    <div className={styles.avatarList}>
-                        {avatarList.map((item => (
-                            <div
-                                className={Cls(styles.avatarItem, {
-                                    [styles.selected]: item === avatar,
-                                })}
-                                key={item}
-                                onClick={() => {
-                                    setAvatar(item);
-                                }}
-                            >
-                                <img src={item} alt=" " />
-                            </div>
-                        )))}
+                <div
+                    className={Cls(styles.saveButton, "cusLineation")}
+                    onClick={() => {
+                        client.users.edit({
+                            avatar_url: avatar,
+                            profile: {
+                                content: profile?.content,
+                            },
+                            username,
+                            token: props.token,
+                        }).then(() => {
+                            props.onUpdateProfile && props.onUpdateProfile();
+                            window.Toast('修改成功');
+                        });
+                    }}
+                >
+                    保存
+                </div>
+                <div className={styles.body}>
+                    <div className={styles.column}>
+                        <UserIcon
+                            target={client.user!}
+                            size={100}
+                            status={false}
+                            override={avatar}
+                        />
+                        <InputElement
+                            type="text"
+                            value={username}
+                            onChange={(v) => setUsername(v)}
+                        />
+                        <AutoComplete detached {...autoCompleteProps} />
+                        <TextAreaAutoSize
+                            className={styles.textArea}
+                            maxLength={20}
+                            value={profile?.content ?? ""}
+                            disabled={typeof profile === "undefined"}
+                            onChange={(ev) => {
+                                onChange(ev);
+                                setContent(ev.currentTarget.value);
+                            }}
+                            placeholder={translate(
+                                `app.settings.pages.profile.${typeof profile === "undefined"
+                                    ? "fetching"
+                                    : "placeholder"
+                                }`,
+                            )}
+                            onKeyUp={onKeyUp}
+                            onKeyDown={onKeyDown}
+                            onFocus={onFocus}
+                            onBlur={onBlur}
+                        />
                     </div>
-                    <Button
-                        className={styles.saveButton}
-                        palette="secondary"
-                        onClick={() => {
-                            client.users.edit({
-                                avatar_url: avatar,
-                                profile: {
-                                    content: profile?.content,
-                                },
-                                username
-                            }).then(() => {
-                                window.Toast('修改成功');
-                            });
-                        }}
-                    >
-                        <Text id="app.special.modals.actions.save" />
-                    </Button>
+                    <div className={styles.column}>
+                        <div className={styles.tabWrap}>
+                            <div className={styles.tabItem}>头像</div>
+                        </div>
+                        <div className={styles.avatarList}>
+                            {avatarList.map((item => (
+                                <div
+                                    className={Cls(styles.avatarItem, {
+                                        [styles.selected]: item === avatar,
+                                    })}
+                                    key={item}
+                                    onClick={() => {
+                                        setAvatar(item);
+                                    }}
+                                >
+                                    <img src={item} alt=" " />
+                                </div>
+                            )))}
+                        </div>
+                    </div>
                 </div>
             </div>
         )

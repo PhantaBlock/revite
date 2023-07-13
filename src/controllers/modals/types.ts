@@ -192,6 +192,8 @@ export type Modal = {
     }
     | {
       type: "profile_setting";
+      token: string;
+      onUpdateProfile: () => void;
     }
   );
 

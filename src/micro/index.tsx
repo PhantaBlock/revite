@@ -32,7 +32,6 @@ export function MicroApp(props: {
 }) {
     const {
         exposeComponent = ComponentName.Entry,
-        token,
         needHandleAuthenticate = true,
         ...extra
     } = props;
@@ -55,7 +54,7 @@ export function MicroApp(props: {
             const API = useApi();
             // @ts-ignore-next-line
             const session = await API.post("/users/authenticate", {
-                token
+                token: extra.token,
             });
 
             current = { session };
