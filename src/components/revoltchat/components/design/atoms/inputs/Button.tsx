@@ -12,6 +12,7 @@ export interface Props {
     | "success"
     | "warning"
     | "error";
+    skyTheme?: boolean;
 }
 
 export const Button = styled.button<Props>`
@@ -56,10 +57,12 @@ export const Button = styled.button<Props>`
               `}
 
     ${(props) => {
+        // if (props.skyTheme)
+        //     return
         switch (props.palette) {
             case "secondary":
                 return css`
-                    font-weight: 500;
+                    font-weight: 400;
                     color: var(--foreground);
                     background: var(--secondary-header);
 
@@ -78,6 +81,7 @@ export const Button = styled.button<Props>`
             case "plain":
             case "plain-secondary":
                 return css`
+                    font-weight: 500;
                     color: ${props.palette === "plain"
                         ? "var(--foreground)"
                         : "var(--secondary-foreground)"};
@@ -119,22 +123,38 @@ export const Button = styled.button<Props>`
             default:
             case "primary":
                 return css`
-                    font-weight: 500;
-                    color: var(--foreground);
-                    background: var(--primary-background);
-
-                    &:hover {
-                        background: var(--secondary-header);
+                    font-weight: 700;
+                    border-radius: 0 !important;
+                    flex-direction: column;
+                    background: #FED06D !important;
+                    background-image: linear-gradient(0deg, #FED06D, #FED77D) !important;
+                    position: relative;
+                    color: #1C1616 !important;
+                    &::before {
+                        content: '';
+                        width: 100%;
+                        height: 50%;
+                        position: absolute;
+                        left: 0;
+                        bottom: 0;
+                        background-image: linear-gradient(180deg, #FFB65A, rgba(239, 176, 97, 0));
                     }
+                    // color: var(--foreground);
+                    // background: var(--primary-background);
 
-                    &:disabled {
-                        background: var(--primary-background);
-                    }
+                    // &:hover {
+                    //     background: var(--secondary-header);
+                    // }
 
-                    &:active {
-                        background: var(--secondary-background);
-                    }
+                    // &:disabled {
+                    //     background: var(--primary-background);
+                    // }
+
+                    // &:active {
+                    //     background: var(--secondary-background);
+                    // }
                 `;
         }
-    }}
+    }
+    }
 `;

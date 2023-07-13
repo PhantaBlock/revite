@@ -31,6 +31,7 @@ import Markdown from "../../markdown/Markdown";
 import Tooltip from "../Tooltip";
 import UserShort from "../user/UserShort";
 import MessageBase, { MessageDetail, MessageInfo } from "./MessageBase";
+import { isMicroMode } from "../../../lib/global";
 
 const SystemContent = styled.div`
     gap: 4px;
@@ -84,6 +85,7 @@ const iconDictionary = {
 
 export const SystemMessage = observer(
     ({ attachContext, message, highlight, hideInfo }: Props) => {
+        const isMicro = isMicroMode();
         const data = message.asSystemMessage;
         if (!data) return null;
 
@@ -99,11 +101,10 @@ export const SystemMessage = observer(
             case "user_remove":
                 children = (
                     <TextReact
-                        id={`app.main.channel.system.${
-                            data.type === "user_added"
-                                ? "added_by"
-                                : "removed_by"
-                        }`}
+                        id={`app.main.channel.system.${data.type === "user_added"
+                            ? "added_by"
+                            : "removed_by"
+                            }`}
                         fields={{
                             user: <UserShort user={data.user} />,
                             other_user: <UserShort user={data.by} />,
@@ -128,7 +129,7 @@ export const SystemMessage = observer(
                             createdAt &&
                             (settings.get("appearance:show_account_age") ||
                                 Date.now() - createdAt <
-                                    1000 * 60 * 60 * 24 * 7) && (
+                                1000 * 60 * 60 * 24 * 7) && (
                                 <Tooltip
                                     content={
                                         <Text
@@ -190,11 +191,11 @@ export const SystemMessage = observer(
         return (
             <MessageBase
                 highlight={highlight}
-                {...(attachContext
+                {...((attachContext && !isMicro)
                     ? useTriggerEvents("Menu", {
-                          message,
-                          contextualChannel: message.channel,
-                      })
+                        message,
+                        contextualChannel: message.channel,
+                    })
                     : undefined)}>
                 {!hideInfo && (
                     <MessageInfo click={false}>
