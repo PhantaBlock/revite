@@ -7,7 +7,10 @@ import styles from "./Panes.module.scss";
 import { Text } from "preact-i18n";
 import { useEffect, useState } from "preact/hooks";
 
-import { IconButton, Preloader } from "@revoltchat/ui";
+import {
+    IconButton, Preloader
+} from '../../../components/revoltchat';
+import { remTorem, pxTorem, numTonum } from '../../../lib/calculation';
 
 import UserIcon from "../../../components/common/user/UserIcon";
 import { Username } from "../../../components/common/user/UserShort";
@@ -29,7 +32,7 @@ const Inner = observer(({ invite, server, removeSelf }: InnerProps) => {
         <div className={styles.invite} data-deleting={deleting}>
             <code>{invite._id}</code>
             <span>
-                <UserIcon target={user} size={24} />{" "}
+                <UserIcon target={user} size={numTonum(24)} />{" "}
                 <Username user={user} showServerIdentity="both" />
             </span>
             <span>
@@ -40,7 +43,7 @@ const Inner = observer(({ invite, server, removeSelf }: InnerProps) => {
                     setDelete(true);
                     server.client.deleteInvite(invite._id).then(removeSelf);
                 }}>
-                <XCircle size={24} />
+                <XCircle size={numTonum(24)} />
             </IconButton>
         </div>
     );

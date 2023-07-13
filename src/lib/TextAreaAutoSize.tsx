@@ -3,8 +3,9 @@ import styled from "styled-components/macro";
 import { RefObject } from "preact";
 import { useEffect, useLayoutEffect, useRef } from "preact/hooks";
 
-import { TextArea } from "@revoltchat/ui";
-import type { TextAreaProps } from "@revoltchat/ui/esm/components/design/atoms/inputs/TextArea";
+import { TextArea } from '../components/revoltchat';
+import { pxTorem, remTorem, numTonum } from "./calculation"
+import type { TextAreaProps } from "../components/revoltchat/components/design/atoms/inputs/TextArea";
 
 import { internalSubscribe } from "./eventEmitter";
 import { isTouchscreenDevice } from "./isTouchscreenDevice";
@@ -152,9 +153,9 @@ export default function TextAreaAutoSize(props: TextAreaAutoSizeProps) {
                 <div ref={ghost} style={{ padding }}>
                     {props.value
                         ? props.value
-                              .split("\n")
-                              .map((x) => `\u200e${x}`)
-                              .join("\n")
+                            .split("\n")
+                            .map((x) => `\u200e${x}`)
+                            .join("\n")
                         : undefined ?? "‎\n"}
                 </div>
             </Ghost>

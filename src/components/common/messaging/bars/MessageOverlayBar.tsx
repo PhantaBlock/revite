@@ -26,6 +26,8 @@ import Tooltip from "../../../common/Tooltip";
 import { ReactionWrapper } from "../attachments/Reactions";
 import { isMicroMode } from "../../../../lib/global";
 
+import { remTorem, pxTorem, numTonum } from '../../../../lib/calculation';
+
 interface Props {
     reactionsOpen: boolean;
     setReactionsOpen: (v: boolean) => void;
@@ -41,21 +43,21 @@ const OverlayBar = styled.div`
     align-content: center;
     justify-content: center;
     right: 0;
-    top: -18px;
+    top: ${pxTorem(-18)};
     z-index: 0;
     transition: box-shadow 0.1s ease-out;
-    border-radius: 5px;
+    border-radius: ${pxTorem(5)};
     background: var(--primary-header);
-    border: 1px solid var(--background);
+    border: ${pxTorem(1)} solid var(--background);
 
     &:hover {
-        box-shadow: rgb(0 0 0 / 20%) 0px 2px 10px;
+        box-shadow: rgb(0 0 0 / 20%) 0px ${pxTorem(2)} ${pxTorem(10)};
     }
 `;
 
 const Entry = styled.div`
-    height: 32px;
-    width: 32px;
+    height: ${pxTorem(32)};
+    width: ${pxTorem(32)};
     display: flex;
     align-items: center;
     justify-content: center;
@@ -76,14 +78,14 @@ const Entry = styled.div`
 
     &:active {
         svg {
-            transform: translateY(1px);
+            transform: translateY(${pxTorem(1)});
         }
     }
 `;
 
 const Divider = styled.div`
-    margin: 6px 4px;
-    width: 0.5px;
+    margin: ${pxTorem(6)} ${pxTorem(4)};
+    width: ${pxTorem(0.5)};
     background: var(--tertiary-background);
 `;
 
@@ -116,7 +118,7 @@ export const MessageOverlayBar = observer(
                             onClick={() =>
                                 internalEmit("ReplyBar", "add", message)
                             }>
-                            <Share size={18} />
+                            <Share size={numTonum(18)} />
                         </Entry>
                     </Tooltip>
                 )}
@@ -128,7 +130,7 @@ export const MessageOverlayBar = observer(
                         message={message}>
                         <Tooltip content="React">
                             <Entry>
-                                <HappyBeaming size={18} />
+                                <HappyBeaming size={numTonum(18)} />
                             </Entry>
                         </Tooltip>
                     </ReactionWrapper>
@@ -144,7 +146,7 @@ export const MessageOverlayBar = observer(
                                     message._id,
                                 )
                             }>
-                            <Pencil size={18} />
+                            <Pencil size={numTonum(18)} />
                         </Entry>
                     </Tooltip>
                 )}
@@ -161,7 +163,7 @@ export const MessageOverlayBar = observer(
                                         target: message,
                                     })
                             }>
-                            <Trash size={18} color={"var(--error)"} />
+                            <Trash size={numTonum(18)} color={"var(--error)"} />
                         </Entry>
                     </Tooltip>
                 ) : undefined}
@@ -176,7 +178,7 @@ export const MessageOverlayBar = observer(
                                     queued,
                                 })
                             }>
-                            <DotsVerticalRounded size={18} />
+                            <DotsVerticalRounded size={numTonum(18)} />
                         </Entry>
                     </Tooltip>
                 }
@@ -206,7 +208,7 @@ export const MessageOverlayBar = observer(
                                     );
                                     message.channel?.ack(unread_id, true);
                                 }}>
-                                <Notification size={18} />
+                                <Notification size={numTonum(18)} />
                             </Entry>
                         </Tooltip>
                         <Tooltip
@@ -219,7 +221,7 @@ export const MessageOverlayBar = observer(
                                     setCopied("link");
                                     modalController.writeText(message.url);
                                 }}>
-                                <LinkAlt size={18} />
+                                <LinkAlt size={numTonum(18)} />
                             </Entry>
                         </Tooltip>
                         <Tooltip
@@ -230,7 +232,7 @@ export const MessageOverlayBar = observer(
                                     setCopied("id");
                                     modalController.writeText(message._id);
                                 }}>
-                                <InfoSquare size={18} />
+                                <InfoSquare size={numTonum(18)} />
                             </Entry>
                         </Tooltip>
                     </>

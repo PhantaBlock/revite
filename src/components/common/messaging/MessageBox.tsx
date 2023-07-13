@@ -9,7 +9,8 @@ import { Text } from "preact-i18n";
 import { memo } from "preact/compat";
 import { useCallback, useEffect, useMemo, useState } from "preact/hooks";
 
-import { IconButton, Picker } from "@revoltchat/ui";
+import { IconButton, Picker } from "../../../components/revoltchat";
+import { remTorem, pxTorem, numTonum } from '../../../lib/calculation';
 
 import TextAreaAutoSize from "../../../lib/TextAreaAutoSize";
 import { debounce } from "../../../lib/debounce";
@@ -105,8 +106,8 @@ const Blocked = styled.div`
 
 const Action = styled.div`
     > a {
-        height: 48px;
-        width: 48px;
+        height: ${pxTorem(48)};
+        width: ${pxTorem(48)};
         display: flex;
         align-items: center;
         justify-content: center;
@@ -128,8 +129,8 @@ const Action = styled.div`
 
 const FileAction = styled.div`
     > a {
-        height: 48px;
-        width: 62px;
+        height: ${pxTorem(48)};
+        width: ${pxTorem(62)};
         display: flex;
         align-items: center;
         justify-content: center;
@@ -141,7 +142,7 @@ const FloatingLayer = styled.div`
 `;
 
 const ThisCodeWillBeReplacedAnywaysSoIMightAsWellJustDoItThisWay__Padding = styled.div`
-    width: 16px;
+    width: ${pxTorem(16)};
 `;
 
 // For sed replacement
@@ -239,7 +240,7 @@ export default observer(({ channel }: Props) => {
                         <PermissionTooltip
                             permission="SendMessages"
                             placement="top">
-                            <ShieldX size={22} />
+                            <ShieldX size={numTonum(22)} />
                         </PermissionTooltip>
                     </Action>
                     <div className="text">
@@ -267,7 +268,7 @@ export default observer(({ channel }: Props) => {
                         <PermissionTooltip
                             permission="SendMessages"
                             placement="top">
-                            <ShieldX size={22} />
+                            <ShieldX size={numTonum(22)} />
                         </PermissionTooltip>
                     </Action>
                     <div className="text">
@@ -751,7 +752,7 @@ export default observer(({ channel }: Props) => {
                 {!isMicro && (
                     <Action>
                         <IconButton onClick={() => setPicker(!picker)}>
-                            <HappyBeaming size={24} />
+                            <HappyBeaming size={numTonum(24)} />
                         </IconButton>
                     </Action>
                 )}
@@ -764,7 +765,7 @@ export default observer(({ channel }: Props) => {
                         }
                         onClick={send}
                         onMouseDown={(e) => e.preventDefault()}>
-                        <Send size={20} />
+                        <Send size={numTonum(20)} />
                     </IconButton>
                 </Action>
             </Base>

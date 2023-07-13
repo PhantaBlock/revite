@@ -1,6 +1,7 @@
 import { Text } from "preact-i18n";
 
 import { Column, ModalForm } from '../../../components/revoltchat';
+import { pxTorem, numTonum } from "../../../lib/calculation";
 
 import UserIcon from "../../../components/common/user/UserIcon";
 import { ModalProps } from "../types";
@@ -23,7 +24,7 @@ export default function KickMember({
                 member: {
                     element: (
                         <Column centred>
-                            <UserIcon target={member.user} size={64} />
+                            <UserIcon target={member.user} size={numTonum(64)} />
                             <Text
                                 id="app.special.modals.prompt.confirm_kick"
                                 fields={{ name: member.user?.username }}

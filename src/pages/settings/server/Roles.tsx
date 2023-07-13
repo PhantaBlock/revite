@@ -7,6 +7,7 @@ import styled from "styled-components";
 import { Text } from "preact-i18n";
 import { useMemo, useState } from "preact/hooks";
 
+
 import {
     Button,
     PermissionsLayout,
@@ -15,8 +16,9 @@ import {
     Checkbox,
     ColourSwatches,
     InputBox,
-    Category,
-} from "@revoltchat/ui";
+    Category
+} from '../../../components/revoltchat';
+import { remTorem, pxTorem, numTonum } from '../../../lib/calculation';
 
 import Tooltip from "../../../components/common/Tooltip";
 import { PermissionList } from "../../../components/settings/roles/PermissionList";
@@ -57,11 +59,11 @@ export const Roles = observer(({ server }: Props) => {
     const currentRoles = useRoles(server);
 
     const RoleId = styled.div`
-        gap: 4px;
+        gap: ${pxTorem(4)};
         display: flex;
         align-items: center;
 
-        font-size: 12px;
+        font-size: ${pxTorem(12)};
         font-weight: 600;
         color: var(--tertiary-foreground);
 
@@ -71,7 +73,7 @@ export const Roles = observer(({ server }: Props) => {
     `;
 
     const DeleteRoleButton = styled(Button)`
-        margin: 16px 0;
+        margin: ${pxTorem(16)} 0;
     `;
 
     return (
@@ -113,9 +115,9 @@ export const Roles = observer(({ server }: Props) => {
                             typeof permsValue === "number"
                                 ? permsValue
                                 : {
-                                      allow: permsValue.a,
-                                      deny: permsValue.d,
-                                  },
+                                    allow: permsValue.a,
+                                    deny: permsValue.d,
+                                },
                         );
                     }
 

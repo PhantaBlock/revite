@@ -6,10 +6,11 @@ import styled from "styled-components/macro";
 import { Text } from "preact-i18n";
 import { useState } from "preact/hooks";
 
-import { Button, Checkbox } from "@revoltchat/ui";
 
 import { useApplicationState } from "../../mobx/State";
 import { SECTION_NSFW } from "../../mobx/stores/Layout";
+import { Button, Checkbox } from "../../components/revoltchat";
+import { remTorem, pxTorem, numTonum } from '../../lib/calculation';
 
 const Base = styled.div`
     display: flex;
@@ -18,22 +19,22 @@ const Base = styled.div`
     align-items: center;
     justify-content: center;
     user-select: none;
-    padding: 12px;
+    padding: ${pxTorem(12)};
 
     img {
-        height: 150px;
+        height: ${pxTorem(150)};
     }
 
     .subtext {
         color: var(--secondary-foreground);
-        margin-bottom: 12px;
-        font-size: 14px;
+        margin-bottom: ${pxTorem(12)};
+        font-size: ${pxTorem(14)};
     }
 
     .actions {
-        margin-top: 20px;
+        margin-top: ${pxTorem(20)};
         display: flex;
-        gap: 12px;
+        gap: ${pxTorem(12)};
     }
 `;
 

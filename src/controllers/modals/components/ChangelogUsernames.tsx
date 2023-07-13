@@ -3,6 +3,7 @@ import Lottie, { LottieRefCurrentProps } from "lottie-react";
 import { useEffect, useRef } from "preact/hooks";
 
 import { Button, Column, InputBox, Modal, Row } from '../../../components/revoltchat';
+import { pxTorem, remTorem } from "../../../lib/calculation";
 
 import { useClient } from "../../client/ClientController";
 import { modalController } from "../ModalController";
@@ -35,8 +36,8 @@ export default function ChangelogUsernames({
                         <div
                             style={{
                                 background: "black",
-                                borderStartStartRadius: "12px",
-                                borderStartEndRadius: "12px",
+                                borderStartStartRadius: pxTorem(12),
+                                borderStartEndRadius: pxTorem(12),
                                 display: "grid",
                                 placeItems: "center",
                                 padding: "1.5em",
@@ -46,7 +47,7 @@ export default function ChangelogUsernames({
                                 animationData={usernameAnim}
                                 autoplay={false}
                                 loop={false}
-                                style={{ width: "240px" }}
+                                style={{ width: pxTorem(240) }}
                             />
                         </div>
                         <div
@@ -56,7 +57,7 @@ export default function ChangelogUsernames({
                                 textAlign: "center",
                             }}>
                             <Column
-                                gap="6px"
+                                gap={pxTorem(6)}
                                 style={{
                                     alignItems: "center",
                                 }}>
@@ -64,7 +65,7 @@ export default function ChangelogUsernames({
                                     style={{
                                         fontSize: "1.5em",
                                         fontWeight: 700,
-                                        marginBottom: "12px",
+                                        marginBottom: pxTorem(12),
                                     }}>
                                     Usernames are Changing
                                 </span>
@@ -93,7 +94,7 @@ export default function ChangelogUsernames({
                                         client.user!.username
                                     }
                                     style={{
-                                        maxWidth: "180px",
+                                        maxWidth: pxTorem(180),
                                     }}
                                     disabled
                                 />
@@ -104,7 +105,7 @@ export default function ChangelogUsernames({
                                         client.user.discriminator
                                     }
                                     style={{
-                                        maxWidth: "180px",
+                                        maxWidth: pxTorem(180),
                                     }}
                                     disabled
                                 />
@@ -118,8 +119,8 @@ export default function ChangelogUsernames({
                         <Row
                             style={{
                                 padding: "1em",
-                                borderEndStartRadius: "12px",
-                                borderEndEndRadius: "12px",
+                                borderEndStartRadius: pxTorem(12),
+                                borderEndEndRadius: pxTorem(12),
                                 background: "var(--secondary-background)",
                                 textAlign: "center",
                                 justifyContent: "end",

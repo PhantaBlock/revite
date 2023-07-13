@@ -82,7 +82,7 @@ const Base = styled.div<{ closing?: boolean }>`
 const Container = styled.div<
     Pick<Props, "transparent" | "maxWidth" | "maxHeight"> & { actions: boolean }
 >`
-    max-width: min(calc(100vw - ${pxTorem(20)}), ${(props) => props.maxWidth ?? `${pxTorem(649)}`});
+    max-width: min(calc(100vw - ${pxTorem(50)}), ${(props) => props.maxWidth ?? `${pxTorem(649)}`});
     max-height: min(
         calc(100vh -${pxTorem(20)}),
         ${(props) => props.maxHeight ?? `${pxTorem(388)}`}

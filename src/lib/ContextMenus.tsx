@@ -20,7 +20,8 @@ import {
 } from "preact-context-menu";
 import { Text } from "preact-i18n";
 
-import { Column, IconButton, LineDivider } from "@revoltchat/ui";
+import { Column, IconButton, LineDivider } from '../components/revoltchat';
+import { pxTorem, remTorem, numTonum } from "./calculation"
 
 import { useApplicationState } from "../mobx/State";
 import { QueuedMessage } from "../mobx/stores/MessageQueue";
@@ -1176,7 +1177,7 @@ export default function ContextMenus() {
                                 <IconButton>
                                     <MenuItem
                                         data={{ action: "open_settings" }}>
-                                        <Cog size={22} />
+                                        <Cog size={numTonum(22)} />
                                     </MenuItem>
                                 </IconButton>
                             </div>
@@ -1230,13 +1231,13 @@ export default function ContextMenus() {
                             <MenuItem
                                 data={{ action: "set_status" }}
                                 disabled={!isOnline}>
-                                <UserVoice size={18} />
+                                <UserVoice size={numTonum(18)} />
                                 <Text id={`app.context_menu.custom_status`} />
                                 {client.user!.status?.text && (
                                     <IconButton>
                                         <MenuItem
                                             data={{ action: "clear_status" }}>
-                                            <Trash size={18} />
+                                            <Trash size={numTonum(18)} />
                                         </MenuItem>
                                     </IconButton>
                                 )}

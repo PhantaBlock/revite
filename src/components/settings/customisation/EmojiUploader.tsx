@@ -3,9 +3,11 @@ import { Server } from "revolt.js";
 import { Text } from "preact-i18n";
 import { useState } from "preact/hooks";
 
-import { Button, Column, Form, FormElement, Row } from "@revoltchat/ui";
 
 import { FileUploader } from "../../../controllers/client/jsx/legacy/FileUploads";
+
+import { Button, Column, Form, FormElement, Row } from "../../../components/revoltchat";
+import { remTorem, pxTorem, numTonum } from '../../../lib/calculation';
 
 interface Props {
     server: Server;
@@ -33,8 +35,8 @@ export function EmojiUploader({ server }: Props) {
                         element: (
                             <FileUploader
                                 style="icon"
-                                width={100}
-                                height={100}
+                                width={numTonum(100)}
+                                height={numTonum(100)}
                                 fileType="emojis"
                                 behaviour="upload"
                                 previewAfterUpload

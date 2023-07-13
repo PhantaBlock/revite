@@ -12,7 +12,8 @@ import styled, { css } from "styled-components";
 import { createPortal } from "preact/compat";
 import { useCallback, useRef, useState } from "preact/hooks";
 
-import { IconButton } from "@revoltchat/ui";
+import { IconButton } from "../../../../components/revoltchat";
+import { remTorem, pxTorem, numTonum } from '../../../../lib/calculation';
 
 import { emojiDictionary } from "../../../../assets/emojis";
 import { useClient } from "../../../../controllers/client/ClientController";
@@ -46,8 +47,8 @@ const List = styled.div`
  * List divider
  */
 const Divider = styled.div`
-    width: 1px;
-    height: 14px;
+    width: ${pxTorem(1)};
+    height: ${pxTorem(14)};
     background: var(--tertiary-foreground);
 `;
 
@@ -59,7 +60,7 @@ const Reaction = styled.div<{ active: boolean }>`
     cursor: pointer;
     user-select: none;
     vertical-align: middle;
-    border: 1px solid transparent;
+    border: ${pxTorem(1)} solid transparent;
     color: var(--secondary-foreground);
     border-radius: var(--border-radius);
     background: var(--secondary-background);
@@ -155,7 +156,7 @@ export const Reactions = observer(({ message }: Props) => {
                     open={showPicker}
                     setOpen={setPicker}>
                     <IconButton className={showPicker ? "" : "add"}>
-                        <Plus size={20} />
+                        <Plus size={numTonum(20)} />
                     </IconButton>
                 </ReactionWrapper>
             )}
@@ -180,8 +181,8 @@ export const ReactionWrapper: React.FC<{
     const { x, y, reference, floating, strategy } = useFloating({
         open,
         middleware: [
-            offset(4),
-            shift({ mainAxis: true, crossAxis: true, padding: 4 }),
+            offset(numTonum(4)),
+            shift({ mainAxis: true, crossAxis: true, padding: numTonum(4) }),
             autoPlacement(),
         ],
     });
@@ -223,7 +224,7 @@ export const ReactionWrapper: React.FC<{
                                 onSelect={(emoji) =>
                                     message.react(
                                         emojiDictionary[
-                                            emoji as keyof typeof emojiDictionary
+                                        emoji as keyof typeof emojiDictionary
                                         ] ?? emoji,
                                     )
                                 }

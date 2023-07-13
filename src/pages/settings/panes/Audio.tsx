@@ -2,7 +2,8 @@ import styles from "./Panes.module.scss";
 import { Text } from "preact-i18n";
 import { useEffect, useState } from "preact/hooks";
 
-import { Button, Category, ComboBox, Tip } from "@revoltchat/ui";
+import { Button, Category, ComboBox, Tip } from '../../../components/revoltchat';
+import { remTorem, pxTorem, numTonum } from '../../../lib/calculation';
 
 import { stopPropagation } from "../../../lib/stopPropagation";
 import { voiceState } from "../../../lib/vortex/VoiceState";
@@ -252,7 +253,7 @@ export function Audio() {
             </div>
             <hr />
             <div className={styles.opus}>
-                <img height="20" src={opusSVG} draggable={false} />
+                <img height={numTonum(20)} src={opusSVG} draggable={false} />
                 Audio codec powered by Opus
             </div>
         </>

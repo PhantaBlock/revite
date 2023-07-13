@@ -3,7 +3,7 @@ import { X } from "@styled-icons/boxicons-regular";
 import { Text } from "preact-i18n";
 
 import { Column, H1, IconButton, Modal, Row } from '../../../components/revoltchat';
-
+import { pxTorem, numTonum } from "../../../lib/calculation";
 import Markdown from "../../../components/markdown/Markdown";
 import { report } from "../../safety";
 import { modalController } from "../ModalController";
@@ -22,7 +22,7 @@ export default function ServerInfo({
                         <H1>{server.name}</H1>
                     </Column>
                     <IconButton onClick={modalController.close}>
-                        <X size={36} />
+                        <X size={numTonum(36)} />
                     </IconButton>
                 </Row>
             }

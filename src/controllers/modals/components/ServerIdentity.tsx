@@ -16,6 +16,7 @@ import {
     Row,
     Message,
 } from '../../../components/revoltchat';
+import { pxTorem, numTonum } from "../../../lib/calculation";
 
 import { noop } from "../../../lib/js";
 
@@ -55,7 +56,7 @@ export default observer(
                         fields={{ server: member.server!.name }}
                     />
                 }>
-                <Column gap="18px">
+                <Column gap={pxTorem(18)}>
                     <Column>
                         <Category compact>
                             <Text id="app.special.popovers.server_identity.nickname" />
@@ -75,7 +76,7 @@ export default observer(
                                     nickname === member.nickname || !nickname
                                 }
                                 onClick={() => member.edit({ nickname })}>
-                                <Save size={24} />
+                                <Save size={numTonum(24)} />
                             </Button>
                             <Button
                                 compact="icon"
@@ -86,7 +87,7 @@ export default observer(
                                         .edit({ remove: ["Nickname"] })
                                         .then(() => setNickname(""))
                                 }>
-                                <X size={24} />
+                                <X size={numTonum(24)} />
                             </Button>
                         </Row>
                     </Column>
@@ -96,8 +97,8 @@ export default observer(
                                 <Text id="app.special.popovers.server_identity.avatar" />
                             </Category>
                             <FileUploader
-                                width={80}
-                                height={80}
+                                width={numTonum(80)}
+                                height={numTonum(80)}
                                 style="icon"
                                 fileType="avatars"
                                 behaviour="upload"
@@ -112,13 +113,13 @@ export default observer(
                                 }
                                 defaultPreview={member.user?.generateAvatarURL(
                                     {
-                                        max_side: 256,
+                                        max_side: numTonum(256),
                                     },
                                     false,
                                 )}
                                 previewURL={member.client.generateFileURL(
                                     member.avatar ?? undefined,
-                                    { max_side: 256 },
+                                    { max_side: numTonum(256) },
                                     true,
                                 )}
                                 desaturateDefault

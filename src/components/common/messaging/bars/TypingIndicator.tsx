@@ -3,6 +3,8 @@ import { Channel } from "revolt.js";
 import styled from "styled-components/macro";
 
 import { Text } from "preact-i18n";
+import { IconButton } from "../../../../components/revoltchat";
+import { remTorem, pxTorem, numTonum } from '../../../../lib/calculation';
 
 interface Props {
     channel: Channel;
@@ -12,13 +14,13 @@ const Base = styled.div`
     position: relative;
 
     > div {
-        height: 26px;
-        top: -26px;
+        height: ${pxTorem(26)};
+        top: ${pxTorem(-26)};
         position: absolute;
-        font-size: 13px;
-        gap: 8px;
+        font-size: ${pxTorem(13)};
+        gap: ${pxTorem(8)};
         display: flex;
-        padding: 0 10px;
+        padding: 0 ${pxTorem(10)};
         user-select: none;
         align-items: center;
         flex-direction: row;
@@ -28,30 +30,30 @@ const Base = styled.div`
             var(--secondary-background-rgb),
             max(var(--min-opacity), 0.75)
         );
-        backdrop-filter: blur(10px);
+        backdrop-filter: blur(${pxTorem(10)});
     }
 
     .avatars {
         display: flex;
 
         img {
-            width: 16px;
-            height: 16px;
+            width: ${pxTorem(16)};
+            height: ${pxTorem(16)};
             object-fit: cover;
             border-radius: var(--border-radius-half);
             background: var(--secondary-background);
             //background-clip: border-box;
-            border: 2px solid var(--secondary-background);
+            border: ${pxTorem(2)} solid var(--secondary-background);
 
             &:not(:first-child) {
-                margin-left: -6px;
+                margin-left: ${pxTorem(-6)};
             }
         }
     }
 
     .usernames {
         min-width: 0;
-        font-size: 13px;
+        font-size: ${pxTorem(13)};
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;

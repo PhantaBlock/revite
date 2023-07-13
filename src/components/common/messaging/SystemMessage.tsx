@@ -19,7 +19,8 @@ import { decodeTime } from "ulid";
 import { useTriggerEvents } from "preact-context-menu";
 import { Text } from "preact-i18n";
 
-import { Row } from "@revoltchat/ui";
+import { Row } from "../../../components/revoltchat";
+import { remTorem, pxTorem, numTonum } from '../../../lib/calculation';
 
 import { TextReact } from "../../../lib/i18n";
 
@@ -34,13 +35,13 @@ import MessageBase, { MessageDetail, MessageInfo } from "./MessageBase";
 import { isMicroMode } from "../../../lib/global";
 
 const SystemContent = styled.div`
-    gap: 4px;
+    gap: ${pxTorem(4)};
     display: flex;
-    padding: 2px 0;
+    padding: ${pxTorem(2)} 0;
     flex-wrap: wrap;
     align-items: center;
     flex-direction: row;
-    font-size: 14px;
+    font-size: ${pxTorem(14)};
     color: var(--secondary-foreground);
 
     span {
@@ -49,7 +50,7 @@ const SystemContent = styled.div`
     }
 
     svg {
-        margin-inline-end: 4px;
+        margin-inline-end: ${pxTorem(4)};
     }
 
     svg,

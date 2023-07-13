@@ -1,6 +1,7 @@
 import { useCallback, useContext, useEffect, useState } from "preact/hooks";
 import { observer } from "mobx-react-lite";
-import { Modal, Button, InputElement } from "@revoltchat/ui";
+import { Modal, Button, InputElement } from '../../../components/revoltchat';
+import { remTorem, pxTorem, numTonum } from '../../../lib/calculation';
 import { ModalProps } from "../../../controllers/modals/types";
 import styles from "./index.module.scss";
 import Cls from "classnames";

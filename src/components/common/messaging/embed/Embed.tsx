@@ -11,14 +11,16 @@ import Markdown from "../../../markdown/Markdown";
 import Attachment from "../attachments/Attachment";
 import EmbedMedia from "./EmbedMedia";
 
+import { remTorem, pxTorem, numTonum } from '../../../../lib/calculation';
+
 interface Props {
     embed: API.Embed;
 }
 
-const MAX_EMBED_WIDTH = 480;
-const MAX_EMBED_HEIGHT = 640;
-const CONTAINER_PADDING = 24;
-const MAX_PREVIEW_SIZE = 150;
+const MAX_EMBED_WIDTH = numTonum(480);
+const MAX_EMBED_HEIGHT = numTonum(640);
+const CONTAINER_PADDING = numTonum(24);
+const MAX_PREVIEW_SIZE = numTonum(150);
 
 export default function Embed({ embed }: Props) {
     const client = useClient();
@@ -53,7 +55,7 @@ export default function Embed({ embed }: Props) {
                 embed.type === "Text"
                     ? typeof embed.media !== "undefined"
                     : (embed.special && embed.special.type !== "None") ||
-                      embed.image?.size === "Large";
+                    embed.image?.size === "Large";
 
             if (embed.type === "Text") {
                 mw = MAX_EMBED_WIDTH;
@@ -62,15 +64,15 @@ export default function Embed({ embed }: Props) {
                 switch (embed.special?.type) {
                     case "YouTube":
                     case "Bandcamp": {
-                        mw = embed.video?.width ?? 1280;
-                        mh = embed.video?.height ?? 720;
+                        mw = embed.video?.width ?? numTonum(1280);
+                        mh = embed.video?.height ?? numTonum(720);
                         break;
                     }
                     case "Twitch":
                     case "Lightspeed":
                     case "Streamable": {
-                        mw = 1280;
-                        mh = 720;
+                        mw = numTonum(1280);
+                        mh = numTonum(720);
                         break;
                     }
                     default: {
@@ -115,26 +117,26 @@ export default function Embed({ embed }: Props) {
                         {(embed.type === "Text"
                             ? embed.title
                             : embed.site_name) && (
-                            <div className={styles.siteinfo}>
-                                {embed.icon_url && (
-                                    <img
-                                        loading="lazy"
-                                        className={styles.favicon}
-                                        src={client.proxyFile(embed.icon_url)}
-                                        draggable={false}
-                                        onError={(e) =>
+                                <div className={styles.siteinfo}>
+                                    {embed.icon_url && (
+                                        <img
+                                            loading="lazy"
+                                            className={styles.favicon}
+                                            src={client.proxyFile(embed.icon_url)}
+                                            draggable={false}
+                                            onError={(e) =>
                                             (e.currentTarget.style.display =
                                                 "none")
-                                        }
-                                    />
-                                )}
-                                <div className={styles.site}>
-                                    {embed.type === "Text"
-                                        ? embed.title
-                                        : embed.site_name}{" "}
+                                            }
+                                        />
+                                    )}
+                                    <div className={styles.site}>
+                                        {embed.type === "Text"
+                                            ? embed.title
+                                            : embed.site_name}{" "}
+                                    </div>
                                 </div>
-                            </div>
-                        )}
+                            )}
 
                         {/*<span><a href={embed.url} target={"_blank"} className={styles.author}>Author</a></span>*/}
                         {embed.type === "Website" && embed.title && (

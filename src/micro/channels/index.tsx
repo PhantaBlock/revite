@@ -12,12 +12,16 @@ import { useApplicationState } from "../../mobx/State";
 import { SIDEBAR_CHANNELS } from "../../mobx/stores/Layout";
 import Open from "../../pages/Open";
 import MenuAdapter from "../menuAdapter";
+import { remTorem, pxTorem, numTonum } from '../../lib/calculation';
 
 const HomeContent = styled.div.attrs({
     "data-component": "content",
 })`
     width: 100%;
     height: 100%;
+    // padding-top: ${pxTorem(40)};
+    // height: 100vh;
+    // box-sizing: border-box;
 
     > div {
         width: 100%;
@@ -46,13 +50,17 @@ export default observer(() => {
     const layout = useApplicationState().layout;
     const isOpen = layout.getSectionState(SIDEBAR_CHANNELS, true);
 
+    useEffect(() => {
+        document.documentElement.style.fontSize = '12px';
+    }, [])
+
     return (
         <HomeContent>
             <HashRouter>
                 <OverlappingPanels
                     width="100vw"
                     height={"var(--app-height)"}
-                    leftPanel={isOpen ? { width: 290, component: <HomeSidebar /> } : undefined}
+                    leftPanel={isOpen ? { width: numTonum(290), component: <HomeSidebar /> } : undefined}
                     docked={isTouchscreenDevice ? Docked.None : Docked.Left}
                 >
                     <Routes>

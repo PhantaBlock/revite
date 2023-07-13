@@ -1,28 +1,28 @@
 .item {
-    height: 42px;
+    height: 3.5rem;
     display: flex;
-    padding: 0 8px;
+    padding: 0 0.667rem;
     user-select: none;
-    margin-bottom: 2px;
+    margin-bottom: 0.167rem;
     border-radius: var(--border-radius);
 
-    gap: 8px;
+    gap: 0.667rem;
     align-items: center;
     flex-direction: row;
 
     cursor: pointer;
-    font-size: 16px;
+    font-size: 1.33rem;
     transition: 0.1s ease-in-out background-color;
 
     color: var(--tertiary-foreground);
 
     &.normal {
-        height: 42px;
+        height: 3.5rem;
     }
 
     &.compact {
         /* TOFIX: Introduce two separate compact items, one for settings, other for channels. */
-        height: 32px;
+        height: 2.6rem;
     }
 
     &.user {
@@ -47,7 +47,7 @@
         transition: color 0.1s ease-in-out;
 
         &.content {
-            gap: 10px;
+            gap: 0.833rem;
             flex-grow: 1;
             min-width: 0;
             display: flex;
@@ -74,13 +74,13 @@
             flex-grow: 1;
             display: flex;
             font-weight: 600;
-            font-size: 0.90625rem;
+            font-size: 1.33333rem;
             flex-direction: column;
 
             .subText {
-                margin-top: -1px;
+                margin-top: -0.13rem;
                 font-weight: 500;
-                font-size: 0.6875rem;
+                font-size: 0.9167rem;
                 color: var(--tertiary-foreground);
             }
         }
@@ -131,26 +131,26 @@
     }
 
     &[data-margin="true"] {
-        margin: 0 6px;
+        margin: 0 0.2rem;
     }
 }
 
 .alert {
-    width: 6px;
-    height: 6px;
-    margin: 9px;
+    width: 0.2rem;
+    height: 0.2rem;
+    margin: 0.75rem;
     flex-shrink: 0;
     background: var(--foreground);
     border-radius: var(--border-radius-half);
 
     display: grid;
-    font-size: 10px;
+    font-size: 0.833rem;
     font-weight: 600;
     place-items: center;
 
     &[data-style="mention"] {
-        width: 16px;
-        height: 16px;
+        width: 1.33rem;
+        height: 1.33rem;
         color: white;
         background: var(--error);
     }
@@ -158,17 +158,17 @@
 
 @media (pointer: coarse) {
     .item {
-        height: 50px;
+        height: 4.167rem;
 
         &.compact {
-            height: 50px;
+            height: 4.167rem;
 
-            > div {
-                gap: 20px;
+            >div {
+                gap: 1.667rem;
 
-                > svg {
-                    height: 24px;
-                    width: 24px;
+                >svg {
+                    height: 2rem;
+                    width: 2rem;
                 }
             }
         }

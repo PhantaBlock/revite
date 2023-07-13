@@ -2,7 +2,9 @@ import { observer } from "mobx-react-lite";
 
 import { Text } from "preact-i18n";
 
-import { ObservedInputElement } from "@revoltchat/ui";
+
+import { ObservedInputElement } from "../../../components/revoltchat";
+import { remTorem, pxTorem, numTonum } from '../../../lib/calculation';
 
 import TextAreaAutoSize from "../../../lib/TextAreaAutoSize";
 
@@ -27,7 +29,7 @@ export const ShimThemeCustomCSS = observer(() => {
             </h3>
             <TextAreaAutoSize
                 maxRows={20}
-                minHeight={480}
+                minHeight={numTonum(480)}
                 code
                 value={theme.getCSS() ?? ""}
                 onChange={(ev) => theme.setCSS(ev.currentTarget.value)}

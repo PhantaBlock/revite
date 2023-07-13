@@ -11,7 +11,8 @@ import styles from "./AttachmentActions.module.scss";
 import classNames from "classnames";
 import { useContext } from "preact/hooks";
 
-import { IconButton } from "@revoltchat/ui";
+import { IconButton } from "../../../../components/revoltchat";
+import { remTorem, pxTorem, numTonum } from '../../../../lib/calculation';
 
 import { determineFileSize } from "../../../../lib/fileSize";
 
@@ -45,7 +46,7 @@ export default function AttachmentActions({ attachment }: Props) {
                         className={styles.iconType}
                         rel="noreferrer">
                         <IconButton>
-                            <LinkExternal size={24} />
+                            <LinkExternal size={numTonum(24)} />
                         </IconButton>
                     </a>
                     <a
@@ -55,7 +56,7 @@ export default function AttachmentActions({ attachment }: Props) {
                         target={isFirefox || window.native ? "_blank" : "_self"}
                         rel="noreferrer">
                         <IconButton>
-                            <Download size={24} />
+                            <Download size={numTonum(24)} />
                         </IconButton>
                     </a>
                 </div>
@@ -63,7 +64,7 @@ export default function AttachmentActions({ attachment }: Props) {
         case "Audio":
             return (
                 <div className={classNames(styles.actions, styles.audioAction)}>
-                    <Headphone size={24} className={styles.iconType} />
+                    <Headphone size={numTonum(24)} className={styles.iconType} />
                     <span className={styles.filename}>{filename}</span>
                     <span className={styles.filesize}>{filesize}</span>
                     <a
@@ -73,7 +74,7 @@ export default function AttachmentActions({ attachment }: Props) {
                         target={isFirefox || window.native ? "_blank" : "_self"}
                         rel="noreferrer">
                         <IconButton>
-                            <Download size={24} />
+                            <Download size={numTonum(24)} />
                         </IconButton>
                     </a>
                 </div>
@@ -81,7 +82,7 @@ export default function AttachmentActions({ attachment }: Props) {
         case "Video":
             return (
                 <div className={classNames(styles.actions, styles.videoAction)}>
-                    <Video size={24} className={styles.iconType} />
+                    <Video size={numTonum(24)} className={styles.iconType} />
                     <span className={styles.filename}>{filename}</span>
                     <span className={styles.filesize}>
                         {`${metadata.width}x${metadata.height}`} ({filesize})
@@ -93,7 +94,7 @@ export default function AttachmentActions({ attachment }: Props) {
                         target={isFirefox || window.native ? "_blank" : "_self"}
                         rel="noreferrer">
                         <IconButton>
-                            <Download size={24} />
+                            <Download size={numTonum(24)} />
                         </IconButton>
                     </a>
                 </div>
@@ -101,7 +102,7 @@ export default function AttachmentActions({ attachment }: Props) {
         default:
             return (
                 <div className={styles.actions}>
-                    <File size={24} className={styles.iconType} />
+                    <File size={numTonum(24)} className={styles.iconType} />
                     <span className={styles.filename}>{filename}</span>
                     <span className={styles.filesize}>{filesize}</span>
                     {metadata.type === "Text" && (
@@ -111,7 +112,7 @@ export default function AttachmentActions({ attachment }: Props) {
                             className={styles.externalType}
                             rel="noreferrer">
                             <IconButton>
-                                <LinkExternal size={24} />
+                                <LinkExternal size={numTonum(24)} />
                             </IconButton>
                         </a>
                     )}
@@ -122,7 +123,7 @@ export default function AttachmentActions({ attachment }: Props) {
                         target={isFirefox || window.native ? "_blank" : "_self"}
                         rel="noreferrer">
                         <IconButton>
-                            <Download size={24} />
+                            <Download size={numTonum(24)} />
                         </IconButton>
                     </a>
                 </div>

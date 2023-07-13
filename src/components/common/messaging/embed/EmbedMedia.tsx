@@ -36,9 +36,8 @@ export default function EmbedMedia({ embed, width, height }: Props) {
         case "Twitch":
             return (
                 <iframe
-                    src={`https://player.twitch.tv/?${embed.special.content_type.toLowerCase()}=${
-                        embed.special.id
-                    }&parent=${window.location.hostname}&autoplay=false`}
+                    src={`https://player.twitch.tv/?${embed.special.content_type.toLowerCase()}=${embed.special.id
+                        }&parent=${window.location.hostname}&autoplay=false`}
                     frameBorder="0"
                     allowFullScreen
                     scrolling="no"
@@ -83,9 +82,8 @@ export default function EmbedMedia({ embed, width, height }: Props) {
         case "Bandcamp": {
             return (
                 <iframe
-                    src={`https://bandcamp.com/EmbeddedPlayer/${embed.special.content_type.toLowerCase()}=${
-                        embed.special.id
-                    }/size=large/bgcol=181a1b/linkcol=056cc4/tracklist=false/transparent=true/`}
+                    src={`https://bandcamp.com/EmbeddedPlayer/${embed.special.content_type.toLowerCase()}=${embed.special.id
+                        }/size=large/bgcol=181a1b/linkcol=056cc4/tracklist=false/transparent=true/`}
                     seamless
                     loading="lazy"
                     style={{ height }}

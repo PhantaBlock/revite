@@ -9,7 +9,8 @@ import classNames from "classnames";
 import { useTriggerEvents } from "preact-context-menu";
 import { Text } from "preact-i18n";
 
-import { IconButton } from "@revoltchat/ui";
+import { IconButton } from '../../components/revoltchat';
+import { remTorem, pxTorem, numTonum } from '../../lib/calculation';
 
 import { stopPropagation } from "../../lib/stopPropagation";
 import { voiceState } from "../../lib/vortex/VoiceState";
@@ -67,7 +68,7 @@ export const Friend = observer(({ user, onInviteFriend }: Props) => {
                                     }),
                             )
                         }>
-                        <PhoneCall size={20} />
+                        <PhoneCall size={numTonum(20)} />
                     </IconButton>
                     <IconButton
                         shape="circle"
@@ -80,7 +81,7 @@ export const Friend = observer(({ user, onInviteFriend }: Props) => {
                                     .then((channel) => history.push(`/channel/${channel._id}`)),
                             )
                         }>
-                        <Envelope size={20} />
+                        <Envelope size={numTonum(20)} />
                     </IconButton>
                 </>,
             );
@@ -93,7 +94,7 @@ export const Friend = observer(({ user, onInviteFriend }: Props) => {
                 shape="circle"
                 className={styles.button}
                 onClick={(ev) => stopPropagation(ev, user.addFriend())}>
-                <Plus size={24} />
+                <Plus size={numTonum(24)} />
             </IconButton>,
         );
 
@@ -128,7 +129,7 @@ export const Friend = observer(({ user, onInviteFriend }: Props) => {
                             : user.removeFriend(),
                     )
                 }>
-                <X size={24} />
+                <X size={numTonum(24)} />
             </IconButton>,
         );
     }
@@ -139,7 +140,7 @@ export const Friend = observer(({ user, onInviteFriend }: Props) => {
                 shape="circle"
                 className={classNames(styles.button, styles.error)}
                 onClick={(ev) => stopPropagation(ev, user.unblockUser())}>
-                <UserX size={24} />
+                <UserX size={numTonum(24)} />
             </IconButton>,
         );
     }
@@ -166,7 +167,7 @@ export const Friend = observer(({ user, onInviteFriend }: Props) => {
             {...useTriggerEvents("Menu", {
                 user: user._id,
             })}>
-            <UserIcon target={user} size={36} status />
+            <UserIcon target={user} size={numTonum(36)} status />
             <div className={styles.name}>
                 <span>{user.display_name ?? user.username}</span>
                 {subtext && <span className={styles.subtext}>{subtext}</span>}

@@ -7,7 +7,10 @@ import styles from "./Panes.module.scss";
 import { Text } from "preact-i18n";
 import { useEffect, useState } from "preact/hooks";
 
-import { Button, ComboBox, InputBox } from "@revoltchat/ui";
+import {
+    Button, ComboBox, InputBox
+} from '../../../components/revoltchat';
+import { remTorem, pxTorem, numTonum } from '../../../lib/calculation';
 
 import TextAreaAutoSize from "../../../lib/TextAreaAutoSize";
 import { noop } from "../../../lib/js";
@@ -53,14 +56,14 @@ export const Overview = observer(({ server }: Props) => {
         <div className={styles.overview}>
             <div className={styles.row}>
                 <FileUploader
-                    width={80}
-                    height={80}
+                    width={numTonum(80)}
+                    height={numTonum(80)}
                     style="icon"
                     fileType="icons"
                     behaviour="upload"
                     maxFileSize={2_500_000}
                     onUpload={(icon) => server.edit({ icon }).then(noop)}
-                    previewURL={server.generateIconURL({ max_side: 256 }, true)}
+                    previewURL={server.generateIconURL({ max_side: numTonum(256) }, true)}
                     remove={() => server.edit({ remove: ["Icon"] }).then(noop)}
                 />
                 <div className={styles.name}>
@@ -69,7 +72,7 @@ export const Overview = observer(({ server }: Props) => {
                     </h3>
                     <InputBox
                         value={name}
-                        maxLength={32}
+                        maxLength={numTonum(32)}
                         palette="secondary"
                         onChange={(e) => {
                             setName(e.currentTarget.value);
@@ -84,7 +87,7 @@ export const Overview = observer(({ server }: Props) => {
             </h3>
             <TextAreaAutoSize
                 maxRows={10}
-                minHeight={120}
+                minHeight={numTonum(120)}
                 maxLength={1024}
                 value={description}
                 placeholder={"Add a topic..."}
@@ -111,13 +114,13 @@ export const Overview = observer(({ server }: Props) => {
                 <Text id="app.main.servers.custom_banner" />
             </h3>
             <FileUploader
-                height={160}
+                height={numTonum(160)}
                 style="banner"
                 fileType="banners"
                 behaviour="upload"
                 maxFileSize={6_000_000}
                 onUpload={(banner) => server.edit({ banner }).then(noop)}
-                previewURL={server.generateBannerURL({ width: 1000 }, true)}
+                previewURL={server.generateBannerURL({ width: numTonum(1000) }, true)}
                 remove={() => server.edit({ remove: ["Banner"] }).then(noop)}
             />
             <hr />
@@ -135,14 +138,14 @@ export const Overview = observer(({ server }: Props) => {
                     key={key}
                     style={{
                         display: "flex",
-                        gap: "8px",
+                        gap: pxTorem(8),
                         alignItems: "center",
                     }}>
                     <span style={{ flexShrink: 0, flex: `25%` }}>{i18n}</span>
                     <ComboBox
                         value={
                             systemMessages?.[
-                                key as keyof typeof systemMessages
+                            key as keyof typeof systemMessages
                             ] ?? "disabled"
                         }
                         onChange={(e) => {

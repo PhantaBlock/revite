@@ -7,7 +7,8 @@ import styled, { css } from "styled-components";
 import { Text } from "preact-i18n";
 import { useMemo } from "preact/hooks";
 
-import { Checkbox, OverrideSwitch } from "@revoltchat/ui";
+import { Checkbox, OverrideSwitch } from "../../../components/revoltchat";
+import { remTorem, pxTorem, numTonum } from '../../../lib/calculation';
 
 interface PermissionSelectProps {
     id: keyof typeof Permission;
@@ -20,9 +21,9 @@ interface PermissionSelectProps {
 type State = "Allow" | "Neutral" | "Deny";
 
 const PermissionEntry = styled.label<{ disabled?: boolean }>`
-    gap: 8px;
+    gap: ${pxTorem(8)};
     width: 100%;
-    margin: 8px 0;
+    margin: ${pxTorem(8)} 0;
     display: flex;
     align-items: center;
 
@@ -34,7 +35,7 @@ const PermissionEntry = styled.label<{ disabled?: boolean }>`
     }
 
     .lock {
-        margin-inline-start: 4px;
+        margin-inline-start: ${pxTorem(4)};
     }
 
     .description {
@@ -67,13 +68,13 @@ export function PermissionSelect({
             }
 
             return "Neutral";
-        } 
-            if (Long.fromNumber(value).and(permission).eq(permission)) {
-                return "Allow";
-            }
+        }
+        if (Long.fromNumber(value).and(permission).eq(permission)) {
+            return "Allow";
+        }
 
-            return "Neutral";
-        
+        return "Neutral";
+
     }, [value]);
 
     function onSwitch(state: State) {
@@ -119,7 +120,7 @@ export function PermissionSelect({
             <span className="title">
                 <span>
                     <Text id={`permissions.${id}.t`}>{id}</Text>
-                    {disabled && <Lock className="lock" size={14} />}
+                    {disabled && <Lock className="lock" size={numTonum(14)} />}
                 </span>
                 <span className="description">
                     <Text id={`permissions.${id}.d`} />

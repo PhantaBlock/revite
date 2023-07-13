@@ -6,6 +6,9 @@ import { useContext } from "preact/hooks";
 
 import { useClient } from "../../controllers/client/ClientController";
 import { IconBaseProps, ImageIconBase } from "./IconBase";
+import { IconButton } from "../../components/revoltchat";
+import { remTorem, pxTorem, numTonum } from '../../lib/calculation';
+
 
 interface Props extends IconBaseProps<Server> {
     server_name?: string;
@@ -16,7 +19,7 @@ const ServerText = styled.div`
     align-items: center;
     justify-content: center;
     padding: 0.2em;
-    font-size: 0.75rem;
+    font-size: ${remTorem(0.75)};
     font-weight: 600;
     overflow: hidden;
     color: var(--foreground);
@@ -39,7 +42,7 @@ export default observer(
             props;
         const iconURL = client.generateFileURL(
             target?.icon ?? attachment ?? undefined,
-            { max_side: 256 },
+            { max_side: numTonum(256) },
             animate,
         );
 

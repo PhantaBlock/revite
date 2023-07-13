@@ -4,7 +4,7 @@ import { ContextMenuTrigger } from "preact-context-menu";
 import { Text } from "preact-i18n";
 import { useEffect, useState } from "preact/hooks";
 
-import { Preloader, UIProvider } from "@revoltchat/ui";
+import { Preloader, UIProvider } from '../components/revoltchat';
 
 import { state } from "../mobx/State";
 

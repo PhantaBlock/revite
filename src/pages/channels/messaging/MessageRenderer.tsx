@@ -10,7 +10,8 @@ import { decodeTime } from "ulid";
 import { Text } from "preact-i18n";
 import { useEffect, useState } from "preact/hooks";
 
-import { MessageDivider, Preloader } from "@revoltchat/ui";
+import { MessageDivider, Preloader } from '../../../components/revoltchat';
+import { remTorem, pxTorem, numTonum } from '../../../lib/calculation';
 
 import { internalSubscribe, internalEmit } from "../../../lib/eventEmitter";
 import { ChannelRenderer } from "../../../lib/renderer/Singleton";
@@ -32,8 +33,8 @@ interface Props {
 
 const BlockedMessage = styled.div`
     font-size: 0.8em;
-    margin-top: 6px;
-    padding: 4px 64px;
+    margin-top: ${pxTorem(6)};
+    padding:${pxTorem(4)} ${pxTorem(64)};
     color: var(--tertiary-foreground);
 
     &:hover {

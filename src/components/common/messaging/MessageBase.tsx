@@ -12,6 +12,8 @@ import { dayjs } from "../../../context/Locale";
 
 import Tooltip from "../Tooltip";
 
+import { remTorem, pxTorem, numTonum } from '../../../lib/calculation';
+
 export interface BaseMessageProps {
     head?: boolean;
     failed?: boolean;
@@ -31,9 +33,9 @@ const highlight = keyframes`
 export default styled.div<BaseMessageProps>`
     display: flex;
     overflow: none;
-    padding: 0.125rem;
+    padding: ${remTorem(0.125)};
     flex-direction: row;
-    padding-inline-end: 16px;
+    padding-inline-end: ${pxTorem(16)};
 
     ${() =>
         isTouchscreenDevice &&
@@ -44,7 +46,7 @@ export default styled.div<BaseMessageProps>`
     ${(props) =>
         props.contrast &&
         css`
-            padding: 0.3rem;
+            padding:  ${remTorem(0.3)};
             background: var(--hover);
             border-radius: var(--border-radius);
         `}
@@ -52,7 +54,7 @@ export default styled.div<BaseMessageProps>`
     ${(props) =>
         props.head &&
         css`
-            margin-top: 12px;
+            margin-top: ${pxTorem(12)};
         `}
 
     ${(props) =>
@@ -64,7 +66,7 @@ export default styled.div<BaseMessageProps>`
     ${(props) =>
         props.blocked &&
         css`
-            filter: blur(4px);
+            filter: blur(${pxTorem(4)};);
             transition: 0.2s ease filter;
 
             &:hover {
@@ -94,7 +96,7 @@ export default styled.div<BaseMessageProps>`
         `}
 
     .detail {
-        gap: 8px;
+        gap: ${pxTorem(8)};;
         display: flex;
         align-items: center;
         flex-shrink: 0;
@@ -135,10 +137,10 @@ export default styled.div<BaseMessageProps>`
 `;
 
 export const MessageInfo = styled.div<{ click: boolean }>`
-    width: 62px;
+    width: ${pxTorem(62)};;
     display: flex;
     flex-shrink: 0;
-    padding-top: 2px;
+    padding-top: ${pxTorem(2)};;
     flex-direction: row;
     justify-content: center;
 
@@ -166,10 +168,10 @@ export const MessageInfo = styled.div<{ click: boolean }>`
 
     time,
     .edited {
-        margin-top: 1px;
+        margin-top: ${pxTorem(1)};;
         cursor: default;
         display: inline;
-        font-size: 10px;
+        font-size: ${pxTorem(10)};;
         color: var(--tertiary-foreground);
     }
 
@@ -215,8 +217,8 @@ export const MessageContent = styled.div`
 
 export const DetailBase = styled.div`
     flex-shrink: 0;
-    gap: 4px;
-    font-size: 10px;
+    gap: ${pxTorem(4)};
+    font-size: ${pxTorem(10)};
     display: inline-flex;
     color: var(--tertiary-foreground);
 

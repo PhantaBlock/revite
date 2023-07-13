@@ -5,7 +5,8 @@ import styled, { css } from "styled-components/macro";
 
 import { useEffect, useMemo, useRef, useState } from "preact/hooks";
 
-import { Header, Preloader } from "@revoltchat/ui";
+import { Header, Preloader } from '../../components/revoltchat';
+import { remTorem, pxTorem, numTonum } from '../../lib/calculation';
 
 import { isTouchscreenDevice } from "../../lib/isTouchscreenDevice";
 
@@ -29,7 +30,7 @@ const Container = styled.div`
                   height: 100%;
                   position: fixed;
 
-                  padding-bottom: 50px;
+                  padding-bottom: ${pxTorem(50)};
                   background: var(--background);
               `
             : css`
@@ -44,14 +45,14 @@ const Frame = styled.iframe<{ loaded: boolean }>`
         !isTouchscreenDevice &&
         css`
             background: var(--secondary-background);
-            border-start-start-radius: 8px;
-            border-end-start-radius: 8px;
+            border-start-start-radius: ${pxTorem(8)};
+            border-end-start-radius: ${pxTorem(8)};
         `}
 
     ${() =>
         isTouchscreenDevice &&
         css`
-            padding-top: 56px;
+            padding-top: ${pxTorem(56)};
         `}
 
     ${(props) =>
@@ -71,8 +72,8 @@ const Loader = styled.div`
         !isTouchscreenDevice &&
         css`
             background: var(--secondary-background);
-            border-start-start-radius: 8px;
-            border-end-start-radius: 8px;
+            border-start-start-radius: ${pxTorem(8)};
+            border-end-start-radius: ${pxTorem(8)};
         `}
 `;
 
@@ -164,7 +165,7 @@ export default function Discover() {
         <Container>
             {isTouchscreenDevice && (
                 <Header palette="primary" withTransparency>
-                    <Compass size={27} />
+                    <Compass size={numTonum(27)} />
                     Discover
                 </Header>
             )}

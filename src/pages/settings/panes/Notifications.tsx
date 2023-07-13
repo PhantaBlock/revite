@@ -4,7 +4,10 @@ import styles from "./Panes.module.scss";
 import { Text } from "preact-i18n";
 import { useEffect, useState } from "preact/hooks";
 
-import { Checkbox, Column } from "@revoltchat/ui";
+import {
+    Checkbox, Column
+} from '../../../components/revoltchat';
+import { remTorem, pxTorem, numTonum } from '../../../lib/calculation';
 
 import { urlBase64ToUint8Array } from "../../../lib/conversion";
 

@@ -4,7 +4,8 @@ import { useHistory, useParams } from "react-router-dom";
 import { Text } from "preact-i18n";
 import { useEffect } from "preact/hooks";
 
-import { Header } from "@revoltchat/ui";
+import { Header } from '../components/revoltchat';
+import { remTorem, pxTorem, numTonum } from '../lib/calculation';
 
 import { useSession } from "../controllers/client/ClientController";
 import { modalController } from "../controllers/modals/ModalController";

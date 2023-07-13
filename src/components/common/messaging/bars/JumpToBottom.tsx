@@ -8,6 +8,7 @@ import { Text } from "preact-i18n";
 import { internalEmit } from "../../../../lib/eventEmitter";
 import { isTouchscreenDevice } from "../../../../lib/isTouchscreenDevice";
 import { getRenderer } from "../../../../lib/renderer/Singleton";
+import { remTorem, pxTorem, numTonum } from '../../../../lib/calculation';
 
 export const Bar = styled.div<{ position: "top" | "bottom"; accent?: boolean }>`
     z-index: 1;
@@ -15,7 +16,7 @@ export const Bar = styled.div<{ position: "top" | "bottom"; accent?: boolean }>`
 
     @keyframes bottomBounce {
         0% {
-            transform: translateY(33px);
+            transform: translateY(${pxTorem(33)});
         }
         100% {
             transform: translateY(0px);
@@ -24,7 +25,7 @@ export const Bar = styled.div<{ position: "top" | "bottom"; accent?: boolean }>`
 
     @keyframes topBounce {
         0% {
-            transform: translateY(-33px);
+            transform: translateY(${pxTorem(-33)});
         }
         100% {
             transform: translateY(0px);
@@ -42,27 +43,27 @@ export const Bar = styled.div<{ position: "top" | "bottom"; accent?: boolean }>`
     ${(props) =>
         props.position === "bottom" &&
         css`
-            top: -28px;
+            top: ${pxTorem(-28)};
             animation: bottomBounce 340ms cubic-bezier(0.2, 0.9, 0.5, 1.16)
                 forwards;
 
             ${() =>
                 isTouchscreenDevice &&
                 css`
-                    top: -90px;
+                    top: ${pxTorem(-90)};
                 `}
         `}
 
     > div {
-        height: 28px;
+        height: ${pxTorem(28)};
         width: 100%;
         position: absolute;
         display: flex;
         align-items: center;
         cursor: pointer;
-        font-size: 12px;
+        font-size: ${pxTorem(12)};
         font-weight: 600;
-        padding: 0 8px;
+        padding: 0 ${pxTorem(8)};
         user-select: none;
         justify-content: space-between;
         transition: color ease-in-out 0.08s;
@@ -72,46 +73,46 @@ export const Bar = styled.div<{ position: "top" | "bottom"; accent?: boolean }>`
         text-overflow: ellipsis;
 
         ${(props) =>
-            props.accent
-                ? css`
+        props.accent
+            ? css`
                       color: var(--accent-contrast);
                       background-color: rgba(
                           var(--accent-rgb),
                           max(var(--min-opacity), 0.9)
                       );
-                      backdrop-filter: blur(20px);
+                      backdrop-filter: blur(${pxTorem(20)});
                   `
-                : css`
+            : css`
                       color: var(--secondary-foreground);
                       background-color: rgba(
                           var(--secondary-background-rgb),
                           max(var(--min-opacity), 0.9)
                       );
-                      backdrop-filter: blur(20px);
+                      backdrop-filter: blur(${pxTorem(20)});
                   `}
 
         ${(props) =>
-            props.position === "top"
-                ? css`
-                      top: 48px;
+        props.position === "top"
+            ? css`
+                      top: ${pxTorem(48)};
                       border-radius: 0 0 var(--border-radius)
                           var(--border-radius);
                   `
-                : css`
+            : css`
                       border-radius: var(--border-radius) var(--border-radius) 0
                           0;
                   `}
 
                   ${() =>
-            isTouchscreenDevice &&
-            css`
-                top: 56px;
+        isTouchscreenDevice &&
+        css`
+                top: ${pxTorem(56)};
             `}
 
         > div {
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: ${pxTorem(6)};
 
             white-space: nowrap;
             overflow: hidden;
@@ -123,14 +124,14 @@ export const Bar = styled.div<{ position: "top" | "bottom"; accent?: boolean }>`
         }
 
         &:active {
-            transform: translateY(1px);
+            transform: translateY(${pxTorem(1)});
         }
 
         ${() =>
-            isTouchscreenDevice &&
-            css`
-                height: 34px;
-                padding: 0 12px;
+        isTouchscreenDevice &&
+        css`
+                height: ${pxTorem(34)};
+                padding: 0 ${pxTorem(12)};
             `}
     }
 
@@ -159,7 +160,7 @@ export default observer(({ channel }: { channel: Channel }) => {
                     <span>
                         <Text id="app.main.channel.misc.jump_present" />
                     </span>
-                    <DownArrowAlt size={18} />
+                    <DownArrowAlt size={numTonum(18)} />
                 </div>
             </div>
         </Bar>

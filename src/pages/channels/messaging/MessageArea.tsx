@@ -16,7 +16,8 @@ import {
     useState,
 } from "preact/hooks";
 
-import { Preloader } from "@revoltchat/ui";
+import { Preloader } from '../../../components/revoltchat';
+import { remTorem, pxTorem, numTonum } from '../../../lib/calculation';
 
 import { defer } from "../../../lib/defer";
 import { internalEmit, internalSubscribe } from "../../../lib/eventEmitter";
@@ -39,13 +40,13 @@ const Area = styled.div.attrs({ "data-scroll-offset": "with-padding" })`
     overflow-y: scroll;
 
     &::-webkit-scrollbar-thumb {
-        min-height: 150px;
+        min-height: ${pxTorem(150)};
     }
 
     > div {
         display: flex;
         min-height: 100%;
-        padding-bottom: 26px;
+        padding-bottom: ${pxTorem(26)};
         flex-direction: column;
         justify-content: flex-end;
     }
@@ -112,12 +113,12 @@ export const MessageArea = observer(({ last_id, channel }: Props) => {
                 } else if (scrollState.current.type === "OffsetTop") {
                     animateScroll.scrollTo(
                         Math.max(
-                            101,
+                            numTonum(101),
                             ref.current
                                 ? ref.current.scrollTop +
                                 (ref.current.scrollHeight -
                                     scrollState.current.previousHeight)
-                                : 101,
+                                : numTonum(101),
                         ),
                         {
                             container: ref.current,
@@ -256,11 +257,11 @@ export const MessageArea = observer(({ last_id, channel }: Props) => {
         async function onScroll() {
             renderer.scrollPosition = current!.scrollTop;
 
-            if (atTop(100)) {
+            if (atTop(numTonum(100))) {
                 renderer.loadTop(current!);
             }
 
-            if (atBottom(100)) {
+            if (atBottom(numTonum(100))) {
                 renderer.loadBottom(current!);
             }
 

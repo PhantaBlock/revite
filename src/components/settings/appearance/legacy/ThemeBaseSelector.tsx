@@ -4,12 +4,13 @@ import { Text } from "preact-i18n";
 
 import darkSVG from "./assets/dark.svg";
 import lightSVG from "./assets/light.svg";
+import { remTorem, pxTorem, numTonum } from '../../../../lib/calculation';
 
 const List = styled.div`
-    gap: 8px;
+    gap: ${pxTorem(8)};
     width: 100%;
     display: flex;
-    margin-bottom: 15px;
+    margin-bottom: ${pxTorem(15)};
 
     > div {
         min-width: 0;
@@ -21,20 +22,20 @@ const List = styled.div`
         cursor: pointer;
         border-radius: var(--border-radius);
         transition: border 0.3s;
-        border: 3px solid transparent;
+        border: ${pxTorem(3)} solid transparent;
         width: 100%;
 
         &[data-active="true"] {
             cursor: default;
-            border: 3px solid var(--accent);
+            border: ${pxTorem(3)} solid var(--accent);
 
             &:hover {
-                border: 3px solid var(--accent);
+                border: ${pxTorem(3)} solid var(--accent);
             }
         }
 
         &:hover {
-            border: 3px solid var(--tertiary-background);
+            border: ${pxTorem(3)} solid var(--tertiary-background);
         }
     }
 `;

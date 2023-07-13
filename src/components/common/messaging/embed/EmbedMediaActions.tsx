@@ -3,7 +3,8 @@ import { API } from "revolt.js";
 
 import styles from "./Embed.module.scss";
 
-import { IconButton } from "@revoltchat/ui";
+import { IconButton } from "../../../../components/revoltchat";
+import { remTorem, pxTorem, numTonum } from '../../../../lib/calculation';
 
 interface Props {
     embed: API.Image;
@@ -24,7 +25,7 @@ export default function EmbedMediaActions({ embed }: Props) {
                 target="_blank"
                 rel="noreferrer">
                 <IconButton>
-                    <LinkExternal size={24} />
+                    <LinkExternal size={numTonum(24)} />
                 </IconButton>
             </a>
         </div>

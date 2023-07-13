@@ -1,12 +1,12 @@
 import { Text } from "preact-i18n";
 
 import { ModalForm } from '../../../components/revoltchat';
+import { pxTorem, remTorem } from "../../../lib/calculation";
 
 import { noop } from "../../../lib/js";
 
 import { useClient } from "../../client/ClientController";
 import { ModalProps } from "../types";
-import { pxTorem, remTorem } from "../../../lib/calculation";
 import { css } from "styled-components";
 
 /**

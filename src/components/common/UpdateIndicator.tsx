@@ -3,7 +3,9 @@ import { Download, CloudDownload } from "@styled-icons/boxicons-regular";
 
 import { useEffect, useState } from "preact/hooks";
 
-import { IconButton } from "@revoltchat/ui";
+import { IconButton } from "../../components/revoltchat";
+import { remTorem, pxTorem, numTonum } from '../../lib/calculation';
+
 
 import { internalSubscribe } from "../../lib/eventEmitter";
 
@@ -37,7 +39,7 @@ export default function UpdateIndicator({ style }: Props) {
                     placement="bottom">
                     <div onClick={() => updateSW(true)}>
                         <CloudDownload
-                            size={22}
+                            size={numTonum(22)}
                             color={theme.getVariable("success")}
                         />
                     </div>
@@ -50,7 +52,7 @@ export default function UpdateIndicator({ style }: Props) {
 
     return (
         <IconButton onClick={() => updateSW(true)}>
-            <Download size={22} color={theme.getVariable("success")} />
+            <Download size={numTonum(22)} color={theme.getVariable("success")} />
         </IconButton>
     );
 }

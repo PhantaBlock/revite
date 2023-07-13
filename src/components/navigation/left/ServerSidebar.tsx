@@ -5,7 +5,7 @@ import styled, { css } from "styled-components/macro";
 import { useTriggerEvents } from "preact-context-menu";
 import { useEffect } from "preact/hooks";
 
-import { Category } from "@revoltchat/ui";
+import { Category } from "../../../components/revoltchat";
 
 import ConditionalLink from "../../../lib/ConditionalLink";
 import PaintCounter from "../../../lib/PaintCounter";
@@ -19,26 +19,27 @@ import CollapsibleSection from "../../common/CollapsibleSection";
 import ServerHeader from "../../common/ServerHeader";
 import { ChannelButton } from "../items/ButtonItem";
 import ConnectionStatus from "../items/ConnectionStatus";
+import { remTorem, pxTorem, numTonum } from '../../../lib/calculation';
 
 const ServerBase = styled.div`
     height: 100%;
-    width: 232px;
+    width: ${pxTorem(232)};
     display: flex;
     flex-shrink: 0;
     flex-direction: column;
     background: var(--secondary-background);
-    border-start-start-radius: 8px;
-    border-end-start-radius: 8px;
+    border-start-start-radius: ${pxTorem(8)};
+    border-end-start-radius: ${pxTorem(8)};
     overflow: hidden;
 
     ${isTouchscreenDevice &&
     css`
-        padding-bottom: 50px;
+        padding-bottom: ${pxTorem(50)};
     `}
 `;
 
 const ServerList = styled.div`
-    padding: 6px;
+    padding: ${pxTorem(6)};
     flex-grow: 1;
     overflow-y: scroll;
 

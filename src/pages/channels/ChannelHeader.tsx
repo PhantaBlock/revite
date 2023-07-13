@@ -5,6 +5,7 @@ import { Channel, User } from "revolt.js";
 import styled from "styled-components/macro";
 
 import { isTouchscreenDevice } from "../../lib/isTouchscreenDevice";
+import { remTorem, pxTorem, numTonum } from '../../lib/calculation';
 
 import { useStatusColour } from "../../components/common/user/UserIcon";
 import UserStatus from "../../components/common/user/UserStatus";
@@ -27,7 +28,7 @@ const Info = styled.div`
     white-space: nowrap;
 
     display: flex;
-    gap: 8px;
+    gap: ${pxTorem(8)};
     align-items: center;
 
     * {
@@ -35,23 +36,23 @@ const Info = styled.div`
     }
 
     .divider {
-        height: 20px;
-        margin: 0 5px;
-        padding-left: 1px;
+        height: ${pxTorem(20)};
+        margin: 0  ${pxTorem(5)};
+        padding-left: ${pxTorem(1)};
         background-color: var(--tertiary-background);
     }
 
     .status {
-        width: 10px;
-        height: 10px;
+        width:  ${pxTorem(10)};
+        height:  ${pxTorem(10)};
         display: inline-block;
-        margin-inline-end: 6px;
+        margin-inline-end:  ${pxTorem(6)};
         border-radius: var(--border-radius-half);
     }
 
     .desc {
         cursor: pointer;
-        margin-top: 2px;
+        margin-top: ${pxTorem(2)};
         font-size: 0.8em;
         font-weight: 400;
         color: var(--secondary-foreground);
@@ -66,17 +67,17 @@ export default observer(({ channel }: ChannelHeaderProps) => {
     let icon, recipient: User | undefined;
     switch (channel.channel_type) {
         case "SavedMessages":
-            icon = <Notepad size={24} />;
+            icon = <Notepad size={numTonum(24)} />;
             break;
         case "DirectMessage":
-            icon = <At size={24} />;
+            icon = <At size={numTonum(24)} />;
             recipient = channel.recipient;
             break;
         case "Group":
-            icon = <Group size={24} />;
+            icon = <Group size={numTonum(24)} />;
             break;
         case "TextChannel":
-            icon = <Hash size={24} />;
+            icon = <Hash size={numTonum(24)} />;
             break;
     }
 

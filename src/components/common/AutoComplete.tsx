@@ -13,23 +13,24 @@ import Emoji from "./Emoji";
 import ServerIcon from "./ServerIcon";
 import Tooltip from "./Tooltip";
 import UserIcon from "./user/UserIcon";
+import { remTorem, pxTorem, numTonum } from '../../lib/calculation';
 
 export type AutoCompleteState =
     | { type: "none" }
     | ({ selected: number; within: boolean } & (
-          | {
-                type: "emoji";
-                matches: (string | CustomEmoji)[];
-            }
-          | {
-                type: "user";
-                matches: User[];
-            }
-          | {
-                type: "channel";
-                matches: Channel[];
-            }
-      ));
+        | {
+            type: "emoji";
+            matches: (string | CustomEmoji)[];
+        }
+        | {
+            type: "user";
+            matches: User[];
+        }
+        | {
+            type: "channel";
+            matches: Channel[];
+        }
+    ));
 
 export type SearchClues = {
     users?: { type: "channel"; id: string } | { type: "all" };
@@ -89,8 +90,8 @@ export function useAutoComplete(
                         current === "#"
                             ? "channel"
                             : current === ":"
-                            ? "emoji"
-                            : "user",
+                                ? "emoji"
+                                : "user",
                         search.toLowerCase(),
                         current === ":" ? j + 1 : j,
                     ];
@@ -177,8 +178,8 @@ export function useAutoComplete(
                 const matches = (
                     search.length > 0
                         ? users.filter((user) =>
-                              user.username.toLowerCase().match(regex),
-                          )
+                            user.username.toLowerCase().match(regex),
+                        )
                         : users
                 )
                     .splice(0, 5)
@@ -209,8 +210,8 @@ export function useAutoComplete(
                 const matches = (
                     search.length > 0
                         ? channels.filter((channel) =>
-                              channel.name!.toLowerCase().match(regex),
-                          )
+                            channel.name!.toLowerCase().match(regex),
+                        )
                         : channels
                 )
                     .splice(0, 5)
@@ -361,9 +362,9 @@ const Base = styled.div<{ detached?: boolean }>`
     }
 
     button {
-        gap: 8px;
-        margin: 4px;
-        padding: 6px;
+        gap: ${pxTorem(8)};
+        margin: ${pxTorem(4)};
+        padding: ${pxTorem(6)};
         border: none;
         display: flex;
         font-size: 1em;
@@ -373,7 +374,7 @@ const Base = styled.div<{ detached?: boolean }>`
         font-family: inherit;
         background: transparent;
         color: var(--foreground);
-        width: calc(100% - 12px);
+        width: calc(100% - ${pxTorem(12)});
         border-radius: var(--border-radius);
 
         span {
@@ -389,7 +390,7 @@ const Base = styled.div<{ detached?: boolean }>`
     ${(props) =>
         props.detached &&
         css`
-            bottom: 8px;
+            bottom: ${pxTorem(8)};
 
             > div {
                 border-radius: var(--border-radius);
@@ -443,8 +444,8 @@ export default function AutoComplete({
                                         loading="lazy"
                                         src={match.imageURL}
                                         style={{
-                                            width: `20px`,
-                                            height: `20px`,
+                                            width: `${pxTorem(20)}`,
+                                            height: `${pxTorem(20)}`,
                                         }}
                                     />
                                 ) : (
@@ -457,14 +458,13 @@ export default function AutoComplete({
                                                 >
                                             )[match]
                                         }
-                                        size={20}
+                                        size={numTonum(20)}
                                     />
                                 )}
-                                <span style={{ paddingLeft: "4px" }}>{`:${
-                                    match instanceof CustomEmoji
-                                        ? match.name
-                                        : match
-                                }:`}</span>
+                                <span style={{ paddingLeft: `${pxTorem(4)}` }}>{`:${match instanceof CustomEmoji
+                                    ? match.name
+                                    : match
+                                    }:`}</span>
                             </div>
                             {match instanceof CustomEmoji &&
                                 match.parent.type == "Server" && (
@@ -481,7 +481,7 @@ export default function AutoComplete({
                                                     target={client.servers.get(
                                                         match.parent.id,
                                                     )}
-                                                    size={20}
+                                                    size={numTonum(20)}
                                                 />
                                             </Link>
                                         </Tooltip>
@@ -510,7 +510,7 @@ export default function AutoComplete({
                                 })
                             }
                             onClick={onClick}>
-                            <UserIcon size={24} target={match} status={true} />
+                            <UserIcon size={numTonum(24)} target={match} status={true} />
                             {match.username}
                         </button>
                     ))}
@@ -535,7 +535,7 @@ export default function AutoComplete({
                                 })
                             }
                             onClick={onClick}>
-                            <ChannelIcon size={24} target={match} />
+                            <ChannelIcon size={numTonum(24)} target={match} />
                             {match.name}
                         </button>
                     ))}

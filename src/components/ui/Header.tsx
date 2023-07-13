@@ -7,7 +7,8 @@ import { observer } from "mobx-react-lite";
 import { useLocation } from "react-router-dom";
 import styled, { css } from "styled-components/macro";
 
-import { Header } from "@revoltchat/ui";
+import { Header } from "../../components/revoltchat";
+import { remTorem, pxTorem, numTonum } from '../../lib/calculation';
 
 import { isTouchscreenDevice } from "../../lib/isTouchscreenDevice";
 
@@ -28,10 +29,10 @@ const IconContainer = styled.div`
     align-items: center;
     cursor: pointer;
     color: var(--secondary-foreground);
-    margin-right: 5px;
+    margin-right: ${pxTorem(5)};
 
     > svg {
-        margin-right: -5px;
+        margin-right: ${pxTorem(-5)};
     }
 
     ${!isTouchscreenDevice &&
@@ -66,11 +67,11 @@ export const PageHeader = observer(
                         layout.toggleSectionState(SIDEBAR_CHANNELS, true)
                     }>
                     {!isTouchscreenDevice && visible && (
-                        <ChevronLeft size={18} />
+                        <ChevronLeft size={numTonum(18)} />
                     )}
                     {icon}
                     {!isTouchscreenDevice && !visible && (
-                        <ChevronRight size={18} />
+                        <ChevronRight size={numTonum(18)} />
                     )}
                 </IconContainer>
                 {children}
@@ -90,7 +91,7 @@ export function HamburgerAction() {
 
     return (
         <div className="menu" onClick={openSidebar}>
-            <Menu size={27} />
+            <Menu size={numTonum(27)} />
         </div>
     );
 }

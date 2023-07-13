@@ -2,15 +2,15 @@ import styled from "styled-components";
 
 import { useCallback, useRef } from "preact/hooks";
 
-import { Tooltip } from "@revoltchat/ui";
 
 import { modalController } from "../../../controllers/modals/ModalController";
+import { Tooltip } from "../../../components/revoltchat";
+import { remTorem, pxTorem, numTonum } from '../../../lib/calculation';
 
 /**
  * Base codeblock styles
  */
 const Base = styled.pre`
-    padding: 1em;
     overflow-x: scroll;
     background: var(--block);
     border-radius: var(--border-radius);
@@ -22,25 +22,25 @@ const Base = styled.pre`
 const Lang = styled.div`
     font-family: var(--monospace-font);
     width: fit-content;
-    padding-bottom: 8px;
+    padding-bottom: ${pxTorem(8)};
 
     a {
         color: #111;
         cursor: pointer;
-        padding: 2px 6px;
+        padding: ${pxTorem(2)} ${pxTorem(6)};
         font-weight: 600;
         user-select: none;
         display: inline-block;
         background: var(--accent);
 
-        font-size: 10px;
+        font-size: ${pxTorem(10)};
         text-transform: uppercase;
-        box-shadow: 0 2px #787676;
+        box-shadow: 0 ${pxTorem(2)} #787676;
         border-radius: calc(var(--border-radius) / 3);
 
         &:active {
-            transform: translateY(1px);
-            box-shadow: 0 1px #787676;
+            transform: translateY(${pxTorem(1)});
+            box-shadow: 0 ${pxTorem(1)} #787676;
         }
     }
 `;

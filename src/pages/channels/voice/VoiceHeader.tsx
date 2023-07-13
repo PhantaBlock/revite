@@ -12,7 +12,8 @@ import styled from "styled-components/macro";
 import { Text } from "preact-i18n";
 import { useMemo } from "preact/hooks";
 
-import { Button } from "@revoltchat/ui";
+import { Button } from '../../../components/revoltchat';
+import { remTorem, pxTorem, numTonum } from '../../../lib/calculation';
 
 import { voiceState, VoiceStatus } from "../../../lib/vortex/VoiceState";
 
@@ -26,8 +27,8 @@ interface Props {
 }
 
 const VoiceBase = styled.div`
-    margin-top: 48px;
-    padding: 20px;
+    margin-top: ${pxTorem(48)};
+    padding: ${pxTorem(20)};
     background: var(--secondary-background);
     flex-grow: 1;
 
@@ -37,11 +38,11 @@ const VoiceBase = styled.div`
         position: absolute;
         align-items: center;
 
-        padding: 10px;
-        font-size: 13px;
+        padding: ${pxTorem(10)};
+        font-size: ${pxTorem(13)};
         font-weight: 500;
         user-select: none;
-        gap: 6px;
+        gap: ${pxTorem(6)};
 
         color: var(--success);
         border-radius: var(--border-radius);
@@ -56,12 +57,12 @@ const VoiceBase = styled.div`
     flex-direction: column;
 
     .participants {
-        margin: 40px 20px;
+        margin: ${pxTorem(40)} ${pxTorem(20)};
         justify-content: center;
         user-select: none;
         display: flex;
         flex-flow: row wrap;
-        gap: 16px;
+        gap: ${pxTorem(16)};
 
         div:hover img {
             opacity: 0.8;
@@ -75,7 +76,7 @@ const VoiceBase = styled.div`
     .actions {
         display: flex;
         justify-content: center;
-        gap: 10px;
+        gap: ${pxTorem(10)};
     }
 `;
 
@@ -96,45 +97,45 @@ export default observer(({ id }: Props) => {
             <div className="participants">
                 {users && users.length !== 0
                     ? users.map((user, index) => {
-                          const user_id = keys![index];
-                          return (
-                              <div key={user_id}>
-                                  <UserIcon
-                                      size={80}
-                                      target={user}
-                                      status={false}
-                                      voice={
-                                          client.user?._id === user_id &&
-                                          voiceState.isDeaf()
-                                              ? "deaf"
-                                              : voiceState.participants!.get(
-                                                    user_id,
-                                                )?.audio
-                                              ? undefined
-                                              : "muted"
-                                      }
-                                      onClick={() =>
-                                          modalController.push({
-                                              type: "user_profile",
-                                              user_id,
-                                          })
-                                      }
-                                  />
-                              </div>
-                          );
-                      })
+                        const user_id = keys![index];
+                        return (
+                            <div key={user_id}>
+                                <UserIcon
+                                    size={numTonum(80)}
+                                    target={user}
+                                    status={false}
+                                    voice={
+                                        client.user?._id === user_id &&
+                                            voiceState.isDeaf()
+                                            ? "deaf"
+                                            : voiceState.participants!.get(
+                                                user_id,
+                                            )?.audio
+                                                ? undefined
+                                                : "muted"
+                                    }
+                                    onClick={() =>
+                                        modalController.push({
+                                            type: "user_profile",
+                                            user_id,
+                                        })
+                                    }
+                                />
+                            </div>
+                        );
+                    })
                     : self !== undefined && (
-                          <div key={self._id} className="disconnected">
-                              <UserIcon
-                                  size={80}
-                                  target={self}
-                                  status={false}
-                              />
-                          </div>
-                      )}
+                        <div key={self._id} className="disconnected">
+                            <UserIcon
+                                size={numTonum(80)}
+                                target={self}
+                                status={false}
+                            />
+                        </div>
+                    )}
             </div>
             <div className="status">
-                <BarChartAlt2 size={16} />
+                <BarChartAlt2 size={numTonum(16)} />
                 {voiceState.status === VoiceStatus.CONNECTED && (
                     <Text id="app.main.channel.voice.connected" />
                 )}
@@ -142,34 +143,34 @@ export default observer(({ id }: Props) => {
             <div className="actions">
                 <Tooltip content={"Leave call"} placement={"top"}>
                     <Button palette="error" onClick={voiceState.disconnect}>
-                        <PhoneOff width={20} />
+                        <PhoneOff width={numTonum(20)} />
                     </Button>
                 </Tooltip>
                 {voiceState.isProducing("audio") ? (
                     <Tooltip content={"Mute microphone"} placement={"top"}>
                         <Button
                             onClick={() => voiceState.stopProducing("audio")}>
-                            <Microphone width={20} />
+                            <Microphone width={numTonum(20)} />
                         </Button>
                     </Tooltip>
                 ) : (
                     <Tooltip content={"Unmute microphone"} placement={"top"}>
                         <Button
                             onClick={() => voiceState.startProducing("audio")}>
-                            <MicrophoneOff width={20} />
+                            <MicrophoneOff width={numTonum(20)} />
                         </Button>
                     </Tooltip>
                 )}
                 {voiceState.isDeaf() ? (
                     <Tooltip content={"Undeafen"} placement={"top"}>
                         <Button onClick={() => voiceState.stopDeafen()}>
-                            <VolumeMute width={20} />
+                            <VolumeMute width={numTonum(20)} />
                         </Button>
                     </Tooltip>
                 ) : (
                     <Tooltip content={"Deafen"} placement={"top"}>
                         <Button onClick={() => voiceState.startDeafen()}>
-                            <VolumeFull width={20} />
+                            <VolumeFull width={numTonum(20)} />
                         </Button>
                     </Tooltip>
                 )}

@@ -11,7 +11,9 @@ import { observer } from "mobx-react-lite";
 import { useHistory } from "react-router-dom";
 import styled, { css } from "styled-components/macro";
 
-import { IconButton } from "@revoltchat/ui";
+
+import { IconButton } from '../../../components/revoltchat';
+import { remTorem, pxTorem, numTonum } from '../../../lib/calculation';
 
 import { chainedDefer, defer } from "../../../lib/defer";
 import { internalEmit } from "../../../lib/eventEmitter";
@@ -28,27 +30,27 @@ import { isMicroMode } from "../../../lib/global";
 
 const Container = styled.div`
     display: flex;
-    gap: 16px;
+    gap: ${pxTorem(16)};
 `;
 
 const SearchBar = styled.div`
     display: flex;
     align-items: center;
     background: var(--primary-background);
-    border-radius: 4px;
+    border-radius: ${pxTorem(4)};
     position: relative;
-    width: 120px;
+    width: ${pxTorem(120)};
     transition: width .25s ease;
 
     :focus-within {
-        width: 200px;
+        width: ${pxTorem(200)};
         box-shadow: 0 0 0 1pt var(--accent);
     }
 
     input {
         all: unset;
-        font-size: 13px;
-        padding: 0 8px;
+        font-size: ${pxTorem(13)};
+        padding: 0 ${pxTorem(8)};
         font-weight: 400;
         height: 100%;
         width: 100%;
@@ -174,7 +176,7 @@ const VoiceActions = observer(
             if (voiceState.roomId === channel._id) {
                 return (
                     <IconButton onClick={voiceState.disconnect}>
-                        <PhoneOff size={22} />
+                        <PhoneOff size={numTonum(22)} />
                     </IconButton>
                 );
             }
@@ -186,14 +188,14 @@ const VoiceActions = observer(
                         voiceState.disconnect();
                         voiceState.connect(channel);
                     }}>
-                    <PhoneCall size={24} />
+                    <PhoneCall size={numTonum(24)} />
                 </IconButton>
             );
         }
 
         return (
             <IconButton>
-                <PhoneCall size={24} /** ! FIXME: TEMP */ color="red" />
+                <PhoneCall size={numTonum(24)} /** ! FIXME: TEMP */ color="red" />
             </IconButton>
         );
     },

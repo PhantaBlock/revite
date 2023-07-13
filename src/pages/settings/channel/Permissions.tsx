@@ -5,7 +5,8 @@ import { Channel, API, DEFAULT_PERMISSION_DIRECT_MESSAGE } from "revolt.js";
 import { Text } from "preact-i18n";
 import { useState } from "preact/hooks";
 
-import { PermissionsLayout, Button, SpaceBetween, H1 } from "@revoltchat/ui";
+import { PermissionsLayout, Button, SpaceBetween, H1 } from '../../../components/revoltchat';
+import { remTorem, pxTorem, numTonum } from '../../../lib/calculation';
 
 import { TextReact } from "../../../lib/i18n";
 
@@ -22,25 +23,25 @@ export default observer(({ channel }: Props) => {
     const currentRoles =
         channel.channel_type === "Group"
             ? ([
-                  {
-                      id: "default",
-                      name: "Default",
-                      permissions:
-                          channel.permissions ??
-                          DEFAULT_PERMISSION_DIRECT_MESSAGE,
-                  },
-              ] as RoleOrDefault[])
+                {
+                    id: "default",
+                    name: "Default",
+                    permissions:
+                        channel.permissions ??
+                        DEFAULT_PERMISSION_DIRECT_MESSAGE,
+                },
+            ] as RoleOrDefault[])
             : (useRoles(channel.server! as any).map((role) => {
-                  return {
-                      ...role,
-                      permissions: (role.id === "default"
-                          ? channel.default_permissions
-                          : channel.role_permissions?.[role.id]) ?? {
-                          a: 0,
-                          d: 0,
-                      },
-                  };
-              }) as RoleOrDefault[]);
+                return {
+                    ...role,
+                    permissions: (role.id === "default"
+                        ? channel.default_permissions
+                        : channel.role_permissions?.[role.id]) ?? {
+                        a: 0,
+                        d: 0,
+                    },
+                };
+            }) as RoleOrDefault[]);
 
     return (
         <PermissionsLayout
@@ -69,9 +70,9 @@ export default observer(({ channel }: Props) => {
                         typeof currentValue === "number"
                             ? currentValue
                             : ({
-                                  allow: currentValue.a,
-                                  deny: currentValue.d,
-                              } as any),
+                                allow: currentValue.a,
+                                deny: currentValue.d,
+                            } as any),
                     );
                 }
 

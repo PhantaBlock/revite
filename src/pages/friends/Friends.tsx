@@ -7,7 +7,8 @@ import styles from "./Friend.module.scss";
 import classNames from "classnames";
 import { Text } from "preact-i18n";
 
-import { IconButton } from "@revoltchat/ui";
+import { IconButton } from '../../components/revoltchat';
+import { remTorem, pxTorem, numTonum } from '../../lib/calculation';
 
 import { TextReact } from "../../lib/i18n";
 import { isTouchscreenDevice } from "../../lib/isTouchscreenDevice";
@@ -84,7 +85,7 @@ export default observer(({ onInviteFriend }: {
                                 type: "create_group",
                             })
                         }>
-                        <MessageAdd size={24} />
+                        <MessageAdd size={numTonum(24)} />
                     </IconButton>
                 </Tooltip>
                 <Tooltip content={"添加好友"} placement="bottom">
@@ -94,7 +95,7 @@ export default observer(({ onInviteFriend }: {
                                 type: "add_friend",
                             })
                         }>
-                        <UserPlus size={27} />
+                        <UserPlus size={numTonum(27)} />
                     </IconButton>
                 </Tooltip>
                 {/*
@@ -123,7 +124,7 @@ export default observer(({ onInviteFriend }: {
                 </div>
             ) : (
                 <PageHeader
-                    icon={<UserDetail size={24} />}
+                    icon={<UserDetail size={numTonum(24)} />}
                     withTransparency
                     noBurger>
                     <div className={styles.title}>
@@ -162,7 +163,7 @@ export default observer(({ onInviteFriend }: {
                                         i < 3 && (
                                             <UserIcon
                                                 target={x}
-                                                size={32}
+                                                size={numTonum(32)}
                                                 mask={
                                                     i <
                                                         Math.min(
@@ -206,7 +207,7 @@ export default observer(({ onInviteFriend }: {
                                     )}
                                 </span>
                             </div>
-                            <ChevronRight size={28} />
+                            <ChevronRight size={numTonum(28)} />
                         </div>
                     )}
 

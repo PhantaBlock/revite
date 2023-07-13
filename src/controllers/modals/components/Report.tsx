@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { Text } from "preact-i18n";
 
 import { ModalForm, Row } from '../../../components/revoltchat';
+import { pxTorem, numTonum } from "../../../lib/calculation";
 
 import Message from "../../../components/common/messaging/Message";
 import UserShort from "../../../components/common/user/UserShort";
@@ -78,7 +79,7 @@ export default function ReportContent({
                             </MessageContainer>
                         ) : target instanceof User ? (
                             <Row centred>
-                                <UserShort user={target} size={32} />
+                                <UserShort user={target} size={numTonum(32)} />
                             </Row>
                         ) : (
                             <></>

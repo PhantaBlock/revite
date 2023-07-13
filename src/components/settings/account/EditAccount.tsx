@@ -10,7 +10,8 @@ import {
     CategoryButton,
     Column,
     HiddenValue,
-} from "@revoltchat/ui";
+} from "../../../components/revoltchat";
+import { remTorem, pxTorem, numTonum } from '../../../lib/calculation';
 
 import { useSession } from "../../../controllers/client/ClientController";
 import { modalController } from "../../../controllers/modals/ModalController";
@@ -40,8 +41,8 @@ export default observer(() => {
                     [
                         "username",
                         client.user!.username +
-                            "#" +
-                            client.user!.discriminator,
+                        "#" +
+                        client.user!.discriminator,
                         At,
                     ],
                     ["email", email, Envelope],
@@ -50,7 +51,7 @@ export default observer(() => {
             ).map(([field, value, Icon]) => (
                 <CategoryButton
                     key={field}
-                    icon={<Icon size={24} />}
+                    icon={<Icon size={numTonum(24)} />}
                     description={
                         field === "email" ? (
                             <HiddenValue
@@ -62,7 +63,7 @@ export default observer(() => {
                         )
                     }
                     account
-                    action={<Pencil size={20} />}
+                    action={<Pencil size={numTonum(20)} />}
                     onClick={() =>
                         modalController.push({
                             type: "modify_account",

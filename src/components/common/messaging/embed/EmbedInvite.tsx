@@ -6,7 +6,8 @@ import styled, { css } from "styled-components/macro";
 
 import { useContext, useEffect, useState } from "preact/hooks";
 
-import { Button, Category, Preloader } from "@revoltchat/ui";
+import { Button, Category, Preloader } from "../../../../components/revoltchat";
+import { remTorem, pxTorem, numTonum } from '../../../../lib/calculation';
 
 import { isTouchscreenDevice } from "../../../../lib/isTouchscreenDevice";
 
@@ -20,21 +21,21 @@ import {
 import { takeError } from "../../../../controllers/client/jsx/error";
 
 const EmbedInviteBase = styled.div`
-    width: 400px;
-    height: 80px;
+    width: ${pxTorem(400)};
+    height: ${pxTorem(80)};
     background-color: var(--secondary-background);
     border-radius: var(--border-radius);
     display: flex;
     align-items: center;
-    padding: 0 12px;
-    margin-top: 2px;
+    padding: 0 ${pxTorem(12)};
+    margin-top: ${pxTorem(2)};
     ${() =>
         isTouchscreenDevice &&
         css`
             flex-wrap: wrap;
-            height: 130px;
-            padding-top: 8px;
-            padding-bottom: 10px;
+            height: ${pxTorem(130)};
+            padding-top: ${pxTorem(8)};
+            padding-bottom: ${pxTorem(10)};
             width: 100%;
             > button {
                 width: 100%;
@@ -44,25 +45,25 @@ const EmbedInviteBase = styled.div`
 
 const EmbedInviteDetails = styled.div`
     flex-grow: 1;
-    padding-inline-start: 12px;
+    padding-inline-start: ${pxTorem(12)};
     ${() =>
         isTouchscreenDevice &&
         css`
-            width: calc(100% - 55px);
+            width: calc(100% - ${pxTorem(55)});
         `}
 `;
 
 const EmbedInviteName = styled.div`
     font-weight: bold;
-    line-height: 1rem;
-    max-height: 2rem;
+    line-height: ${remTorem(1)};
+    max-height: ${remTorem(2)};
     overflow: hidden;
 `;
 
 const EmbedInviteMemberCount = styled.div`
     display: flex;
     align-items: center;
-    gap: 2px;
+    gap: ${pxTorem(2)};
     font-size: 0.8em;
 
     > svg {
@@ -102,7 +103,7 @@ export function EmbedInvite({ code }: Props) {
     if (typeof invite === "undefined") {
         return error ? (
             <EmbedInviteBase>
-                <ServerIcon size={55} />
+                <ServerIcon size={numTonum(55)} />
                 <EmbedInviteDetails>
                     <EmbedInviteName>Invalid invite!</EmbedInviteName>
                 </EmbedInviteDetails>
@@ -120,12 +121,12 @@ export function EmbedInvite({ code }: Props) {
                 <ServerIcon
                     attachment={invite.server_icon}
                     server_name={invite.server_name}
-                    size={55}
+                    size={numTonum(55)}
                 />
                 <EmbedInviteDetails>
                     <EmbedInviteName>{invite.server_name}</EmbedInviteName>
                     <EmbedInviteMemberCount>
-                        <Group size={12} />
+                        <Group size={numTonum(12)} />
                         {invite.member_count.toLocaleString()}{" "}
                         {invite.member_count === 1 ? "member" : "members"}
                     </EmbedInviteMemberCount>

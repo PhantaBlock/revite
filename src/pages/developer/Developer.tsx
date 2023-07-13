@@ -2,7 +2,8 @@ import { Wrench } from "@styled-icons/boxicons-solid";
 
 import { useEffect, useState } from "preact/hooks";
 
-import { Button } from "@revoltchat/ui";
+import { Button } from '../../components/revoltchat';
+import { remTorem, pxTorem, numTonum } from '../../lib/calculation';
 
 import PaintCounter from "../../lib/PaintCounter";
 import { TextReact } from "../../lib/i18n";
@@ -29,32 +30,32 @@ export default function Developer() {
 
     return (
         <div>
-            <PageHeader icon={<Wrench size="24" />}>Developer Tab</PageHeader>
-            <div style={{ padding: "16px" }}>
+            <PageHeader icon={<Wrench size={numTonum(24)} />}>Developer Tab</PageHeader>
+            <div style={{ padding: pxTorem(16) }}>
                 <PaintCounter always />
             </div>
-            <div style={{ padding: "16px" }}>
+            <div style={{ padding: pxTorem(16) }}>
                 <b>Server Ping:</b> {ping ?? "?"}ms
                 <br />
                 <b>User ID:</b> {client.user!._id} <br />
                 <b>Permission against self:</b> {userPermission} <br />
             </div>
-            <div style={{ padding: "16px" }}>
+            <div style={{ padding: pxTorem(16) }}>
                 <TextReact
                     id="login.open_mail_provider"
                     fields={{ provider: <b>GAMING!</b> }}
                 />
             </div>
 
-            <div style={{ padding: "16px" }}>
+            <div style={{ padding: pxTorem(16) }}>
                 <Button palette="error" onClick={() => setCrash(true)}>
                     Click to crash app
                 </Button>
                 {
                     crash &&
-                        (
-                            window as any
-                        ).sus.sus() /* this runs a function that doesn't exist */
+                    (
+                        window as any
+                    ).sus.sus() /* this runs a function that doesn't exist */
                 }
                 {/*<span>
                     <b>Voice Status:</b> {VoiceStatus[voice.status]}
