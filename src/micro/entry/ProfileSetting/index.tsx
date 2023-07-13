@@ -90,7 +90,7 @@ const ProfileSetting = observer(({ ...props }: ModalProps<"profile_setting">) =>
                     保存
                 </div>
                 <div className={styles.body}>
-                    <div className={styles.column}>
+                    <div className={styles.column} style={{ flex: '0 0' }}>
                         <UserIcon
                             target={client.user!}
                             size={100}
