@@ -12,6 +12,7 @@ export interface Props {
     | "success"
     | "warning"
     | "error";
+    skyTheme?: boolean;
 }
 
 export const Button = styled.button<Props>`
@@ -36,6 +37,40 @@ export const Button = styled.button<Props>`
     }
 
     ${(props) =>
+        props.skyTheme ? css`
+            border-radius: 0 !important;
+            flex-direction: column;
+            background-color: #FED06D;
+            background-image: linear-gradient(0deg, #FED06D, #FED77D);
+            position: relative;
+            color: #1C1616;
+            &::before {
+                content: '';
+                width: 100%;
+                height: 50%;
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                background-image: linear-gradient(180deg, #FFB65A, rgba(239, 176, 97, 0));
+            }
+        
+            &:hover,  &:active {
+                // animation: shodowBreathing 2.5s infinite;
+                will-change: box-shadow;
+                &::after {
+                content: '';
+                width: calc(100% - 16px);
+                height: calc(100% - 16px);
+                background: transparent;
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                }
+            }
+        ` : ''}
+
+    ${(props) =>
         props.compact === "icon"
             ? css`
                   height: ${pxTorem(38)};
@@ -56,6 +91,8 @@ export const Button = styled.button<Props>`
               `}
 
     ${(props) => {
+        if (props.skyTheme)
+            return
         switch (props.palette) {
             case "secondary":
                 return css`

@@ -29,6 +29,8 @@ export interface Props {
     transparent?: boolean;
     nonDismissable?: boolean;
 
+    needPadding?: boolean;
+
     actions?: Action[];
     onClose?: (force: boolean) => void;
 
@@ -87,6 +89,10 @@ const Container = styled.div<
         ${(props) => props.maxHeight ?? `${pxTorem(650)}`}
     );
 
+    border: ${pxTorem(2)} solid;
+    border-image: linear-gradient(180deg, #FFBE5A, rgba(255, 226, 119, 0.3));
+    border-image-slice: 1;
+
     margin: ${pxTorem(20)};
     display: flex;
     flex-direction: column;
@@ -117,12 +123,16 @@ const Title = styled.div`
     gap: ${pxTorem(8)};
     display: flex;
     flex-direction: column;
+
+    border-bottom: ${pxTorem(1)} solid #FEBD5A;
+    color: #FFE1B3;
+    font-family: PingFangHK-Regular;
 `;
 
-const Content = styled.div<Pick<Props, "transparent" | "padding">>`
+const Content = styled.div<Pick<Props, "transparent" | "padding" | "needPadding">>`
     flex-grow: 1;
     padding-top: 0;
-    padding: ${(props) => props.padding ?? `0 ${remTorem(1)} ${remTorem(1)}`};
+    padding: ${(props) => !props.needPadding ? 0 : props.padding ?? `0 ${remTorem(1)} ${remTorem(1)}`};
 
     overflow-y: auto;
     font-size: ${remTorem(0.9375)};
@@ -147,6 +157,8 @@ const Actions = styled.div`
 
     background: var(--secondary-background);
     border-radius: 0 0 var(--border-radius) var(--border-radius);
+
+    border-top: ${pxTorem(1)} solid #FEBD5A;
 `;
 
 export const Modal: (props: Props) => JSX.Element = ({
@@ -198,11 +210,11 @@ export const Modal: (props: Props) => JSX.Element = ({
                 onClick={(e) => e.stopPropagation()}>
                 {(title || description) && (
                     <Title>
-                        {title && <H2>{title}</H2>}
+                        {title && <>{title}</>}
                         {description && <H4>{description}</H4>}
                     </Title>
                 )}
-                <Content {...props}>{children}</Content>
+                <Content {...props} needPadding={title !==undefined || description !==undefined}>{children}</Content>
                 {actions && actions.length > 0 && (
                     <Actions>
                         {actions.map((x, index) => (
@@ -210,6 +222,7 @@ export const Modal: (props: Props) => JSX.Element = ({
                             <Button
                                 disabled={disabled}
                                 key={index}
+                                skyTheme={true}
                                 {...x}
                                 onClick={async () => {
                                     if (await x.onClick()) {
