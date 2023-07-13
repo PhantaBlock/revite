@@ -47,7 +47,7 @@ export default function AddFriend({ ...props }: ModalProps<"add_friend">) {
                 // }
             ]}
             submit={{
-                children: <div style={{ zIndex: 1, width: pxTorem(160)}} > <Text id="app.special.modals.actions.add_now" /></ div>,
+                children: <div style={{ zIndex: 1, width: pxTorem(160)}} > <Text id="app.special.modals.actions.ok" /></ div>,
             }}
         />
     );
