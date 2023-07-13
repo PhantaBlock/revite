@@ -82,11 +82,11 @@ const Base = styled.div<{ closing?: boolean }>`
 const Container = styled.div<
     Pick<Props, "transparent" | "maxWidth" | "maxHeight"> & { actions: boolean }
 >`
-    min-height: ${pxTorem(200)};
-    max-width: min(calc(100vw - ${pxTorem(20)}), ${(props) => props.maxWidth ?? `${pxTorem(450)}`});
+    min-height: ${pxTorem(388)};
+    max-width: min(calc(100vw - ${pxTorem(20)}), ${(props) => props.maxWidth ?? `${pxTorem(649)}`});
     max-height: min(
         calc(100vh -${pxTorem(20)}),
-        ${(props) => props.maxHeight ?? `${pxTorem(650)}`}
+        ${(props) => props.maxHeight ?? `${pxTorem(388)}`}
     );
 
     border: ${pxTorem(2)} solid;
@@ -100,6 +100,8 @@ const Container = styled.div<
     animation-name: ${animationZoomIn};
     animation-duration: 0.25s;
     animation-timing-function: cubic-bezier(0.3, 0.3, 0.18, 1.1);
+    background-image: linear-gradient(180deg, rgba(27, 15, 14, 0.9) 1%, rgba(10, 9, 24, 0.5) 99%);
+    backdrop-filter: blur(0.625rem);
 
     ${(props) =>
         !props.maxWidth &&
@@ -111,8 +113,8 @@ const Container = styled.div<
         !props.transparent &&
         css`
             overflow: hidden;
-            background: var(--secondary-header);
-            border-radius: var(--border-radius);
+            // background: var(--secondary-header);
+            // border-radius: var(--border-radius);
         `}
 `;
 
@@ -143,7 +145,7 @@ const Content = styled.div<Pick<Props, "transparent" | "padding" | "needPadding"
     ${(props) =>
         !props.transparent &&
         css`
-            background: var(--secondary-header);
+            // background: var(--secondary-header);
         `}
 `;
 
@@ -155,7 +157,7 @@ const Actions = styled.div`
     padding: ${remTorem(1)};
     flex-direction: row-reverse;
 
-    background: var(--secondary-background);
+    // background: var(--secondary-background);
     border-radius: 0 0 var(--border-radius) var(--border-radius);
 
     border-top: ${pxTorem(1)} solid #FEBD5A;
@@ -214,7 +216,7 @@ export const Modal: (props: Props) => JSX.Element = ({
                         {description && <H4>{description}</H4>}
                     </Title>
                 )}
-                <Content {...props} needPadding={title !==undefined || description !==undefined}>{children}</Content>
+                <Content {...props} needPadding={title !== undefined || description !== undefined}>{children}</Content>
                 {actions && actions.length > 0 && (
                     <Actions>
                         {actions.map((x, index) => (
