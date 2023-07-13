@@ -62,7 +62,7 @@ const Message = observer(
         const head =
             preferHead || (message.reply_ids && message.reply_ids.length > 0);
 
-        const userContext = attachContext
+        const userContext = (attachContext && !isMicro)
             ? useTriggerEvents("Menu", {
                 user: message.author_id,
                 contextualChannel: message.channel_id,
@@ -129,7 +129,7 @@ const Message = observer(
                             : undefined
                     }
                     failed={typeof queued?.error !== "undefined"}
-                    {...(attachContext
+                    {...((attachContext && !isMicro)
                         ? useTriggerEvents("Menu", {
                             message,
                             contextualChannel: message.channel_id,
