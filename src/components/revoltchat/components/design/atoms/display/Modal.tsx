@@ -82,7 +82,6 @@ const Base = styled.div<{ closing?: boolean }>`
 const Container = styled.div<
     Pick<Props, "transparent" | "maxWidth" | "maxHeight"> & { actions: boolean }
 >`
-    min-height: ${pxTorem(388)};
     max-width: min(calc(100vw - ${pxTorem(20)}), ${(props) => props.maxWidth ?? `${pxTorem(649)}`});
     max-height: min(
         calc(100vh -${pxTorem(20)}),
@@ -120,6 +119,7 @@ const Container = styled.div<
 
 const Title = styled.div`
     padding: ${remTorem(1)};
+    font-size: ${pxTorem(24)};
     flex-shrink: 0;
     word-break: break-word;
     gap: ${pxTorem(8)};
@@ -134,7 +134,7 @@ const Title = styled.div`
 const Content = styled.div<Pick<Props, "transparent" | "padding" | "needPadding">>`
     flex-grow: 1;
     padding-top: 0;
-    padding: ${(props) => !props.needPadding ? 0 : props.padding ?? `0 ${remTorem(1)} ${remTorem(1)}`};
+    padding: ${(props) => !props.needPadding ? 0 : props.padding ?? `${remTorem(1)} ${remTorem(2)} ${remTorem(2)}`};
 
     overflow-y: auto;
     font-size: ${remTorem(0.9375)};
@@ -152,9 +152,9 @@ const Content = styled.div<Pick<Props, "transparent" | "padding" | "needPadding"
 const Actions = styled.div`
     flex-shrink: 0;
 
-    gap: ${pxTorem(8)};
+    // gap: ${pxTorem(8)};
     display: flex;
-    padding: ${remTorem(1)};
+    padding: ${pxTorem(29)};
     flex-direction: row-reverse;
 
     // background: var(--secondary-background);
@@ -231,7 +231,9 @@ export const Modal: (props: Props) => JSX.Element = ({
                                         closeModal();
                                     }
                                 }}
-                            />
+                            >
+                                <div style={{ zIndex: 1, width: pxTorem(160), 'font-size': pxTorem(18.75) }} > {x.children}</div>
+                            </Button>
                         ))}
                     </Actions>
                 )}

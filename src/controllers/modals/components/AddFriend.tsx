@@ -28,7 +28,7 @@ export default function AddFriend({ ...props }: ModalProps<"add_friend">) {
                     placeholder: "输入玩家ID/名称",
 
                     style: {
-                        marginTop: pxTorem(50),
+                        marginTop: pxTorem(60),
                         marginBottom: pxTorem(40),
                         color: '#FFE1B3',
                         border: `${pxTorem(2)} solid`,
@@ -47,7 +47,7 @@ export default function AddFriend({ ...props }: ModalProps<"add_friend">) {
                 // }
             ]}
             submit={{
-                children: <div style={{ zIndex: 1, width: pxTorem(160)}} > <Text id="app.special.modals.actions.ok" /></ div>,
+                children: <Text id="app.special.modals.actions.ok" />
             }}
         />
     );
