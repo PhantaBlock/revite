@@ -9,8 +9,10 @@ import UserStatus from "../../components/common/user/UserStatus";
 import Cls from 'classnames';
 import { modalController } from "../../controllers/modals/ModalController";
 
-export default observer(({ onInviteFriend }: {
+export default observer(({ onInviteFriend, token, onUpdateProfile }: {
     onInviteFriend: (userId: string) => void;
+    onUpdateProfile: () => void;
+    token: string,
 }) => {
     const session = useSession()!;
     const self = session?.client?.user;
@@ -20,6 +22,8 @@ export default observer(({ onInviteFriend }: {
             <div className={styles.userWrap} onClick={() => {
                 modalController.push({
                     type: "profile_setting",
+                    token,
+                    onUpdateProfile,
                 });
             }}>
                 {!!self && (
