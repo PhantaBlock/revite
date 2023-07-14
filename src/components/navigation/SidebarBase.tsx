@@ -23,8 +23,7 @@ export const GenericSidebarBase = styled.div<{
     mobilePadding?: boolean;
 }>`
     height: 100%;
-    width: ${pxTorem(232)};
-    padding-top: ${pxTorem(40)};
+    width: ${pxTorem(322)};
     display: flex;
     flex-shrink: 0;
     flex-direction: column;
@@ -49,7 +48,7 @@ export const GenericSidebarBase = styled.div<{
 `;
 
 export const GenericSidebarList = styled.div`
-    padding: ${pxTorem(6)};
+    // padding: ${pxTorem(6)};
     flex-grow: 1;
     overflow-y: scroll;
 

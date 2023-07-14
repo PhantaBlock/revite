@@ -18,10 +18,10 @@ const HomeContent = styled.div.attrs({
     "data-component": "content",
 })`
     width: 100%;
-    height: 100%;
-    // padding-top: ${pxTorem(40)};
+    height: 100vh;
+    padding-top: ${pxTorem(40)};
     // height: 100vh;
-    // box-sizing: border-box;
+    box-sizing: border-box;
 
     > div {
         width: 100%;
@@ -59,7 +59,6 @@ export default observer(() => {
             <HashRouter>
                 <OverlappingPanels
                     width="100vw"
-                    height={"var(--app-height)"}
                     leftPanel={isOpen ? { width: numTonum(290), component: <HomeSidebar /> } : undefined}
                     docked={isTouchscreenDevice ? Docked.None : Docked.Left}
                 >

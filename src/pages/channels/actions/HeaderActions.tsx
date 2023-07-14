@@ -127,13 +127,13 @@ export default function HeaderActions({ channel }: ChannelHeaderProps) {
                                     },
                                 })
                             }>
-                            <UserPlus size={27} />
+                            <UserPlus size={numTonum(27)} />
                         </IconButton>
                         {!isMicro && <IconButton
                             onClick={() =>
                                 history.push(`/channel/${channel._id}/settings`)
                             }>
-                            <Cog size={24} />
+                            <Cog size={numTonum(24)} />
                         </IconButton>}
                     </>
                 )}
@@ -141,11 +141,11 @@ export default function HeaderActions({ channel }: ChannelHeaderProps) {
                 {(channel.channel_type === "Group" ||
                     channel.channel_type === "TextChannel") && (
                         <IconButton onClick={openMembers}>
-                            <Group size={25} />
+                            <Group size={numTonum(25)} />
                         </IconButton>
                     )}
-                {channel.channel_type !== "VoiceChannel" && (
-                    /*<SearchBar>
+                {/* {channel.channel_type !== "VoiceChannel" && (
+                    <SearchBar>
                         <input
                             type="text"
                             placeholder="Search..."
@@ -154,11 +154,11 @@ export default function HeaderActions({ channel }: ChannelHeaderProps) {
                         <div className="actions">
                             <Search size={18} />
                         </div>
-                    </SearchBar>*/
+                    </SearchBar>
                     <IconButton onClick={openSearch}>
                         <Search size={25} />
                     </IconButton>
-                )}
+                )} */}
             </Container>
         </>
     );

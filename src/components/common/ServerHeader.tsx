@@ -47,10 +47,10 @@ const ServerBanner = styled.div<Omit<Props, "server">>`
 
     .container {
         height: var(--header-height);
+        padding: 0 ${pxTorem(14)};
 
         display: flex;
         align-items: center;
-        padding: 0 ${pxTorem(14)};
         font-weight: 600;
         white-space: nowrap;
         overflow: hidden;

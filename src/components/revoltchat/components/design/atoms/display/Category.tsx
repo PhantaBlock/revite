@@ -6,7 +6,7 @@ export interface Props {
 }
 
 export const Category = styled.div<Props>`
-    font-size: ${remTorem(1)};
+    font-size: ${remTorem(0.8)};
     font-weight: 700;
     color: var(--foreground);
     text-transform: uppercase;

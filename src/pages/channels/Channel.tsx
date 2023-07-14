@@ -79,13 +79,13 @@ const PlaceholderBase = styled.div`
         justify-content: center;
         text-align: center;
         margin: auto;
-        padding: 12px;
+        padding: ${pxTorem(12)};
 
         .primary {
             color: var(--secondary-foreground);
             font-weight: 700;
-            font-size: 22px;
-            margin: 0 0 5px 0;
+            font-size: ${pxTorem(22)};
+            margin: 0 0 ${pxTorem(5)} 0;
         }
 
         .secondary {

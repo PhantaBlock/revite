@@ -71,7 +71,7 @@ export const UserButton = observer((props: UserProps) => {
             <UserIcon
                 className={styles.avatar}
                 target={user}
-                size={numTonum(32)}
+                size={pxTorem(60)}
                 status
                 showServerIdentity
             />
@@ -115,7 +115,7 @@ export const UserButton = observer((props: UserProps) => {
                                 target: channel,
                             })
                         }>
-                        <X size={24} />
+                        <X size={numTonum(24)} />
                     </IconButton>
                 )}
             </div>
@@ -164,7 +164,7 @@ export const ChannelButton = observer((props: ChannelProps) => {
                 unread: !!alert,
             })}>
             <div className={styles.avatar}>
-                <ChannelIcon target={channel} size={compact ? numTonum(24) : numTonum(32)} />
+                <ChannelIcon target={channel} size={compact ? 24 : 60} />
             </div>
             <div className={styles.name}>
                 <div>{channel.name}</div>
@@ -201,7 +201,7 @@ export const ChannelButton = observer((props: ChannelProps) => {
                                 target: channel,
                             })
                         }>
-                        <X size={24} />
+                        <X size={numTonum(24)} />
                     </IconButton>
                 )}
             </div>

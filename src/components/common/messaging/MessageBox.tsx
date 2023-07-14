@@ -115,7 +115,7 @@ const Action = styled.div`
     }
 
     .mobile {
-        width: 62px;
+        width: ${pxTorem(62)};
     }
 
     ${() =>

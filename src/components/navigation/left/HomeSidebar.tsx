@@ -36,7 +36,7 @@ const Navbar = styled.div`
     padding: 0 ${pxTorem(14)};
     font-weight: 600;
     flex-shrink: 0;
-    height: 48px;
+    height: ${pxTorem(48)};
 
     ${() =>
         isTouchscreenDevice &&
@@ -144,7 +144,7 @@ export default observer(() => {
                                 type: "create_group",
                             })
                         }>
-                        <Plus size={numTonum(30)} />
+                        <Plus size={numTonum(26)} />
                     </IconButton>
                 </Category>
                 {channels.length === 0 && (
