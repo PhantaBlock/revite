@@ -11,6 +11,7 @@ import { useStatusColour } from "../../components/common/user/UserIcon";
 import UserStatus from "../../components/common/user/UserStatus";
 import Markdown from "../../components/markdown/Markdown";
 import { PageHeader } from "../../components/ui/Header";
+import ChannelIcon from "../../components/common/ChannelIcon";
 import { ChannelName } from "../../controllers/client/jsx/ChannelName";
 import { modalController } from "../../controllers/modals/ModalController";
 import HeaderActions from "./actions/HeaderActions";
@@ -84,13 +85,21 @@ export default observer(({ channel }: ChannelHeaderProps) => {
     return (
         <PageHeader icon={icon} withTransparency>
             <Info>
+                <div style={{
+                    display: 'flex',
+                    flexShrink: 0,
+                    width: '3rem',
+                    height: '3rem',
+                }}>
+                    <ChannelIcon target={channel} size={true ? 24 : 60} />
+                </div>
                 <span className="name">
                     <ChannelName channel={channel} />
                 </span>
-                {isTouchscreenDevice &&
+                {!isTouchscreenDevice &&
                     channel.channel_type === "DirectMessage" && (
                         <>
-                            <div className="divider" />
+                            {/* <div className="divider" /> */}
                             <span className="desc">
                                 <div
                                     className="status"

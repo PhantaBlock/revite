@@ -34,7 +34,7 @@ export default observer(
             target?.icon ?? attachment ?? undefined,
             { max_side: numTonum(256) },
             animate,
-        );
+        ) || (target?.channel_type === 'DirectMessage' ? target?.recipient?.avatarURL : 'https://skyvs.oss-cn-hangzhou.aliyuncs.com/resources/revite/groupIcon.jpeg');
         const isServerChannel =
             server ||
             (target &&
