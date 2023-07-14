@@ -7,7 +7,8 @@ import styled from "styled-components/macro";
 import { openContextMenu } from "preact-context-menu";
 import { Text, Localizer } from "preact-i18n";
 
-import { Header, IconButton } from "@revoltchat/ui";
+import { Header, IconButton } from "../../../components/revoltchat";
+import { remTorem, pxTorem, numTonum } from '../../../lib/calculation';
 
 import { isTouchscreenDevice } from "../../../lib/isTouchscreenDevice";
 
@@ -30,20 +31,20 @@ const HeaderBase = styled.div`
     }
 
     .new-name {
-        font-size: 16px;
+        font-size: ${pxTorem(16)};
         font-weight: 600;
     }
 
     .username {
         cursor: pointer;
-        font-size: 13px;
+        font-size: ${pxTorem(13)};
         font-weight: 600;
     }
 
     .status {
         cursor: pointer;
-        font-size: 12px;
-        margin-top: -2px;
+        font-size: ${pxTorem(12)};
+        margin-top: ${pxTorem(-2)};
     }
 `;
 
@@ -81,7 +82,7 @@ export default observer(({ user }: Props) => {
                 <div className="actions">
                     <Link to="/settings">
                         <IconButton>
-                            <Cog size={24} />
+                            <Cog size={numTonum(24)} />
                         </IconButton>
                     </Link>
                 </div>

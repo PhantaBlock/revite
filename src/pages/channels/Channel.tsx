@@ -29,6 +29,8 @@ import { MessageArea } from "./messaging/MessageArea";
 import VoiceHeader from "./voice/VoiceHeader";
 import { isMicroMode } from "../../lib/global";
 
+import { remTorem, pxTorem, numTonum } from '../../lib/calculation';
+
 const ChannelMain = styled.div.attrs({ "data-component": "channel" })`
     flex-grow: 1;
     display: flex;
@@ -77,13 +79,13 @@ const PlaceholderBase = styled.div`
         justify-content: center;
         text-align: center;
         margin: auto;
-        padding: 12px;
+        padding: ${pxTorem(12)};
 
         .primary {
             color: var(--secondary-foreground);
             font-weight: 700;
-            font-size: 22px;
-            margin: 0 0 5px 0;
+            font-size: ${pxTorem(22)};
+            margin: 0 0 ${pxTorem(5)} 0;
         }
 
         .secondary {
@@ -230,7 +232,7 @@ function VoiceChannel({ channel }: { channel: ChannelI }) {
 function ChannelPlaceholder() {
     return (
         <PlaceholderBase>
-            <PageHeader icon={<Hash size={24} />}>
+            <PageHeader icon={<Hash size={numTonum(24)} />}>
                 <span className="name">
                     <Text id="app.main.channel.errors.nochannel" />
                 </span>
@@ -238,7 +240,7 @@ function ChannelPlaceholder() {
 
             <div className="placeholder">
                 <div className="floating">
-                    <Ghost width={80} />
+                    <Ghost width={numTonum(80)} />
                 </div>
                 <div className="primary">
                     <Text id="app.main.channel.errors.title" />

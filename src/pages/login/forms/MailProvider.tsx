@@ -1,7 +1,8 @@
 import styles from "../Login.module.scss";
 import { Text } from "preact-i18n";
 
-import { Button, Tip } from "@revoltchat/ui";
+import { Button, Category, Preloader, Tip } from '../../../components/revoltchat';
+import { remTorem, pxTorem, numTonum } from '../../../lib/calculation';
 
 interface Props {
     email?: string;

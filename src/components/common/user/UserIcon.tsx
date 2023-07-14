@@ -11,6 +11,9 @@ import fallback from "../assets/user.png";
 import { useClient } from "../../../controllers/client/ClientController";
 import IconBase, { IconBaseProps } from "../IconBase";
 
+import { Header, IconButton } from "../../../components/revoltchat";
+import { remTorem, pxTorem, numTonum } from '../../../lib/calculation';
+
 type VoiceStatus = "muted" | "deaf";
 interface Props extends IconBaseProps<User> {
     status?: boolean;
@@ -35,8 +38,8 @@ export function useStatusColour(user?: User) {
 }
 
 const VoiceIndicator = styled.div<{ status: VoiceStatus }>`
-    width: 10px;
-    height: 10px;
+    width: ${pxTorem(10)};
+    height: ${pxTorem(10)};
     border-radius: var(--border-radius-half);
 
     display: flex;
@@ -100,7 +103,7 @@ export default observer(
             url = target?.avatar_url || (
                 client.generateFileURL(
                     override ?? target?.avatar ?? attachment ?? undefined,
-                    { max_side: 256 },
+                    { max_side: numTonum(256) },
                     animate,
                 ) ?? (target ? target.defaultAvatarURL : fallback));
         }
@@ -114,32 +117,32 @@ export default observer(
                 hover={hover}
                 borderRadius="--border-radius-user-icon"
                 aria-hidden="true"
-                viewBox="0 0 32 32">
+                viewBox={`0 0 ${numTonum(32)} ${numTonum(32)}`}>
                 <foreignObject
                     x="0"
                     y="0"
-                    width="32"
-                    height="32"
+                    width={numTonum(32)}
+                    height={numTonum(32)}
                     className="icon"
                     mask={mask ?? (status ? "url(#user)" : undefined)}>
                     {<img src={url} draggable={false} loading="lazy" />}
                 </foreignObject>
                 {props.status && (
                     <circle
-                        cx="27"
-                        cy="27"
-                        r="5"
+                        cx={numTonum(27)}
+                        cy={numTonum(27)}
+                        r={numTonum(5)}
                         fill={useStatusColour(target)}
                     />
                 )}
                 {props.voice && (
-                    <foreignObject x="22" y="22" width="10" height="10">
+                    <foreignObject x={numTonum(22)} y={numTonum(22)} width={numTonum(10)} height={numTonum(10)}>
                         <VoiceIndicator status={props.voice}>
                             {(props.voice === "deaf" && (
-                                <VolumeMute size={6} />
+                                <VolumeMute size={numTonum(6)} />
                             )) ||
                                 (props.voice === "muted" && (
-                                    <MicrophoneOff size={6} />
+                                    <MicrophoneOff size={numTonum(6)} />
                                 ))}
                         </VoiceIndicator>
                     </foreignObject>

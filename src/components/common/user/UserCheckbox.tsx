@@ -1,6 +1,7 @@
 import { User } from "revolt.js";
 
-import { Checkbox, Row, Column } from "@revoltchat/ui";
+import { Checkbox, Row, Column } from "../../../components/revoltchat";
+import { remTorem, pxTorem, numTonum } from '../../../lib/calculation';
 
 import UserIcon from "./UserIcon";
 import { Username } from "./UserShort";
@@ -13,7 +14,7 @@ export default function UserCheckbox({ user, ...props }: UserProps) {
             {...props}
             title={
                 <Row centred>
-                    <UserIcon target={user} size={32} />
+                    <UserIcon target={user} size={numTonum(32)} />
                     <Column centred>
                         <Username user={user} />
                     </Column>

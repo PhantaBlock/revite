@@ -8,7 +8,6 @@ import classNames from "classnames";
 import { useTriggerEvents } from "preact-context-menu";
 import { Localizer, Text } from "preact-i18n";
 
-import { IconButton } from "@revoltchat/ui";
 
 import { isTouchscreenDevice } from "../../../lib/isTouchscreenDevice";
 import { stopPropagation } from "../../../lib/stopPropagation";
@@ -19,6 +18,8 @@ import Tooltip from "../../common/Tooltip";
 import UserIcon from "../../common/user/UserIcon";
 import { Username } from "../../common/user/UserShort";
 import UserStatus from "../../common/user/UserStatus";
+import { IconButton } from "../../../components/revoltchat";
+import { remTorem, pxTorem, numTonum } from '../../../lib/calculation';
 
 type CommonProps = Omit<
     JSX.HTMLAttributes<HTMLDivElement>,
@@ -70,7 +71,7 @@ export const UserButton = observer((props: UserProps) => {
             <UserIcon
                 className={styles.avatar}
                 target={user}
-                size={32}
+                size={pxTorem(60)}
                 status
                 showServerIdentity
             />
@@ -95,7 +96,7 @@ export const UserButton = observer((props: UserProps) => {
                         <Localizer>
                             <Tooltip
                                 content={<Text id="app.main.groups.owner" />}>
-                                <Crown size={20} />
+                                <Crown size={numTonum(20)} />
                             </Tooltip>
                         </Localizer>
                     )}
@@ -114,7 +115,7 @@ export const UserButton = observer((props: UserProps) => {
                                 target: channel,
                             })
                         }>
-                        <X size={24} />
+                        <X size={numTonum(24)} />
                     </IconButton>
                 )}
             </div>
@@ -163,7 +164,7 @@ export const ChannelButton = observer((props: ChannelProps) => {
                 unread: !!alert,
             })}>
             <div className={styles.avatar}>
-                <ChannelIcon target={channel} size={compact ? 24 : 32} />
+                <ChannelIcon target={channel} size={compact ? 24 : 60} />
             </div>
             <div className={styles.name}>
                 <div>{channel.name}</div>
@@ -200,7 +201,7 @@ export const ChannelButton = observer((props: ChannelProps) => {
                                 target: channel,
                             })
                         }>
-                        <X size={24} />
+                        <X size={numTonum(24)} />
                     </IconButton>
                 )}
             </div>

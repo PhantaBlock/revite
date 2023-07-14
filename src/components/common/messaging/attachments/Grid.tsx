@@ -1,5 +1,6 @@
 import styled from "styled-components/macro";
-
+import { IconButton } from "../../../../components/revoltchat";
+import { remTorem, pxTorem, numTonum } from '../../../../lib/calculation';
 import { Ref } from "preact";
 
 const Grid = styled.div<{ width: number; height: number }>`
@@ -56,7 +57,7 @@ const Grid = styled.div<{ width: number; height: number }>`
     &.spoiler {
         img,
         video {
-            filter: blur(44px);
+            filter: blur(${pxTorem(44)});
         }
 
         border-radius: var(--border-radius);

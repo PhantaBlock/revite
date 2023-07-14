@@ -7,7 +7,8 @@ import styled, { css } from "styled-components/macro";
 
 import { Text } from "preact-i18n";
 
-import { IconButton } from "@revoltchat/ui";
+import { IconButton } from "../../components/revoltchat";
+import { remTorem, pxTorem, numTonum } from '../../lib/calculation';
 
 import { modalController } from "../../controllers/modals/ModalController";
 import Tooltip from "./Tooltip";
@@ -30,7 +31,7 @@ const ServerBanner = styled.div<Omit<Props, "server">>`
     ${(props) =>
         props.background
             ? css`
-                  height: 120px;
+                  height: ${pxTorem(120)};
 
                   .container {
                       background: linear-gradient(
@@ -46,15 +47,15 @@ const ServerBanner = styled.div<Omit<Props, "server">>`
 
     .container {
         height: var(--header-height);
+        padding: 0 ${pxTorem(14)};
 
         display: flex;
         align-items: center;
-        padding: 0 14px;
         font-weight: 600;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-        gap: 8px;
+        gap: ${pxTorem(8)};
 
         .title {
             white-space: nowrap;
@@ -69,7 +70,7 @@ const ServerBanner = styled.div<Omit<Props, "server">>`
 `;
 
 export default observer(({ server }: Props) => {
-    const bannerURL = server.generateBannerURL({ width: 480 });
+    const bannerURL = server.generateBannerURL({ width: numTonum(480) });
 
     return (
         <ServerBanner
@@ -84,16 +85,16 @@ export default observer(({ server }: Props) => {
                             <Text id="app.special.server-badges.official" />
                         }
                         placement={"bottom-start"}>
-                        <svg width="20" height="20">
+                        <svg width={numTonum(20)} height={numTonum(20)}>
                             <image
                                 xlinkHref="/assets/badges/verified.svg"
-                                height="20"
-                                width="20"
+                                height={numTonum(20)}
+                                width={numTonum(20)}
                             />
                             <image
                                 xlinkHref="/assets/badges/revolt_r.svg"
-                                height="15"
-                                width="15"
+                                height={numTonum(15)}
+                                width={numTonum(15)}
                                 x="2"
                                 y="3"
                                 style={
@@ -109,17 +110,17 @@ export default observer(({ server }: Props) => {
                             <Text id="app.special.server-badges.verified" />
                         }
                         placement={"bottom-start"}>
-                        <svg width="20" height="20">
+                        <svg width={numTonum(20)} height={numTonum(20)}>
                             <image
                                 xlinkHref="/assets/badges/verified.svg"
-                                height="20"
-                                width="20"
+                                height={numTonum(20)}
+                                width={numTonum(20)}
                             />
-                            <foreignObject x="2" y="2" width="15" height="15">
+                            <foreignObject x={numTonum(2)} y={numTonum(2)} width={numTonum(15)} height={numTonum(15)}>
                                 <Check
-                                    size={15}
+                                    size={numTonum(15)}
                                     color="black"
-                                    strokeWidth={8}
+                                    strokeWidth={numTonum(8)}
                                 />
                             </foreignObject>
                         </svg>
@@ -135,7 +136,7 @@ export default observer(({ server }: Props) => {
                 {server.havePermission("ManageServer") && (
                     <Link to={`/server/${server._id}/settings`}>
                         <IconButton>
-                            <Cog size={20} />
+                            <Cog size={numTonum(20)} />
                         </IconButton>
                     </Link>
                 )}

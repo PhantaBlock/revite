@@ -29,8 +29,8 @@ import styles from "./Settings.module.scss";
 import { openContextMenu } from "preact-context-menu";
 import { Text } from "preact-i18n";
 
-import { LineDivider } from "@revoltchat/ui";
-
+import { LineDivider } from '../../components/revoltchat';
+import { remTorem, pxTorem, numTonum } from '../../lib/calculation';
 import { useApplicationState } from "../../mobx/State";
 
 import UserIcon from "../../components/common/user/UserIcon";
@@ -65,11 +65,11 @@ const AccountHeader = styled.div`
     flex-direction: column;
     border-radius: var(--border-radius);
     overflow: hidden;
-    margin-bottom: 10px;
+    margin-bottom: ${pxTorem(10)};
 
     .account {
-        padding: 20px;
-        gap: 10px;
+        padding: ${pxTorem(20)};
+        gap: ${pxTorem(10)};
         align-items: center;
         display: flex;
         background: var(--secondary-background);
@@ -77,16 +77,16 @@ const AccountHeader = styled.div`
         .details {
             display: flex;
             flex-direction: column;
-            font-size: 12px;
-            gap: 2px;
+            font-size: ${pxTorem(12)};
+            gap: ${pxTorem(2)};
 
             .new {
-                font-size: 20px;
+                font-size: ${pxTorem(20)};
                 font-weight: 600;
             }
 
             .full {
-                font-size: 14px;
+                font-size: ${pxTorem(14)};
                 font-weight: 600;
             }
         }
@@ -102,8 +102,8 @@ const AccountHeader = styled.div`
         text-overflow: ellipsis;
 
         .status {
-            padding-inline-start: 12px;
-            height: 48px;
+            padding-inline-start: ${pxTorem(12)};
+            height: ${pxTorem(48)};
             display: flex;
             align-items: center;
             color: var(--secondary-foreground);
@@ -115,7 +115,7 @@ const AccountHeader = styled.div`
         }
 
         svg {
-            width: 48px;
+            width: ${pxTorem(48)};
             flex-shrink: 0;
         }
     }
@@ -142,17 +142,17 @@ export default observer(() => {
                         <Text id="app.settings.categories.user_settings" />
                     ),
                     id: "account",
-                    icon: <User size={20} />,
+                    icon: <User size={numTonum(20)} />,
                     title: <Text id="app.settings.pages.account.title" />,
                 },
                 {
                     id: "profile",
-                    icon: <IdCard size={20} />,
+                    icon: <IdCard size={numTonum(20)} />,
                     title: <Text id="app.settings.pages.profile.title" />,
                 },
                 {
                     id: "sessions",
-                    icon: <CheckShield size={20} />,
+                    icon: <CheckShield size={numTonum(20)} />,
                     title: <Text id="app.settings.pages.sessions.title" />,
                 },
                 {
@@ -160,56 +160,56 @@ export default observer(() => {
                         <Text id="app.settings.categories.client_settings" />
                     ),
                     id: "audio",
-                    icon: <Speaker size={20} />,
+                    icon: <Speaker size={numTonum(20)} />,
                     title: <Text id="app.settings.pages.audio.title" />,
                 },
                 {
                     id: "appearance",
-                    icon: <Palette size={20} />,
+                    icon: <Palette size={numTonum(20)} />,
                     title: <Text id="app.settings.pages.appearance.title" />,
                 },
                 {
                     id: "plugins",
-                    icon: <Plug size={20} />,
+                    icon: <Plug size={numTonum(20)} />,
                     title: <Text id="app.settings.pages.plugins.title" />,
                     hidden: !experiments.isEnabled("plugins"),
                 },
                 {
                     id: "notifications",
-                    icon: <Bell size={20} />,
+                    icon: <Bell size={numTonum(20)} />,
                     title: <Text id="app.settings.pages.notifications.title" />,
                 },
                 {
                     id: "language",
-                    icon: <Globe size={20} />,
+                    icon: <Globe size={numTonum(20)} />,
                     title: <Text id="app.settings.pages.language.title" />,
                 },
                 {
                     id: "sync",
-                    icon: <SyncIcon size={20} />,
+                    icon: <SyncIcon size={numTonum(20)} />,
                     title: <Text id="app.settings.pages.sync.title" />,
                 },
                 {
                     id: "native",
                     hidden: !window.isNative,
-                    icon: <Desktop size={20} />,
+                    icon: <Desktop size={numTonum(20)} />,
                     title: <Text id="app.settings.pages.native.title" />,
                 },
                 {
                     id: "experiments",
-                    icon: <Flask size={20} />,
+                    icon: <Flask size={numTonum(20)} />,
                     title: <Text id="app.settings.pages.experiments.title" />,
                 },
                 {
                     divider: true,
                     category: "revolt",
                     id: "bots",
-                    icon: <Bot size={20} />,
+                    icon: <Bot size={numTonum(20)} />,
                     title: <Text id="app.settings.pages.bots.title" />,
                 },
                 {
                     id: "feedback",
-                    icon: <Megaphone size={20} />,
+                    icon: <Megaphone size={numTonum(20)} />,
                     title: <Text id="app.settings.pages.feedback.title" />,
                 },
             ]}
@@ -268,7 +268,7 @@ export default observer(() => {
                         onClick={() =>
                             modalController.push({ type: "changelog" })
                         }>
-                        <ListUl size={20} />
+                        <ListUl size={numTonum(20)} />
                         <Text id="app.special.modals.changelogs.title" />
                     </ButtonItem>
                     <a
@@ -276,7 +276,7 @@ export default observer(() => {
                         target="_blank"
                         rel="noreferrer">
                         <ButtonItem compact>
-                            <Github size={20} />
+                            <Github size={numTonum(20)} />
                             <Text id="app.settings.pages.source_code" />
                         </ButtonItem>
                     </a>
@@ -285,7 +285,7 @@ export default observer(() => {
                         target="_blank"
                         rel="noreferrer">
                         <ButtonItem className={styles.donate} compact>
-                            <Coffee size={20} />
+                            <Coffee size={numTonum(20)} />
                             <Text id="app.settings.pages.donate.title" />
                         </ButtonItem>
                     </a>
@@ -294,7 +294,7 @@ export default observer(() => {
                         onClick={clientController.logoutCurrent}
                         className={styles.logOut}
                         compact>
-                        <LogOut size={20} />
+                        <LogOut size={numTonum(20)} />
                         <Text id="app.settings.pages.logOut" />
                     </ButtonItem>
                     <div className={styles.version}>
@@ -335,7 +335,7 @@ export default observer(() => {
                 <AccountHeader>
                     <div className="account">
                         <UserIcon
-                            size={64}
+                            size={numTonum(64)}
                             target={client.user!}
                             status
                             onClick={() => openContextMenu("Status")}
@@ -365,7 +365,7 @@ export default observer(() => {
                         </a>
                         {client.user!.status?.text && (
                             <Trash
-                                size={24}
+                                size={numTonum(24)}
                                 onClick={() =>
                                     client.users.edit({
                                         remove: ["StatusText"],

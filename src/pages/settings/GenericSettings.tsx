@@ -7,8 +7,8 @@ import classNames from "classnames";
 import { Text } from "preact-i18n";
 import { useCallback, useEffect, useRef, useState } from "preact/hooks";
 
-import { Category, Header, IconButton, LineDivider } from "@revoltchat/ui";
-
+import { Category, Header, IconButton, LineDivider } from '../../components/revoltchat';
+import { remTorem, pxTorem, numTonum } from '../../lib/calculation';
 import { isTouchscreenDevice } from "../../lib/isTouchscreenDevice";
 
 import { useApplicationState } from "../../mobx/State";
@@ -98,8 +98,8 @@ export function GenericSettings({
                             {showExitButton && (
                                 <IconButton onClick={exitSettings}>
                                     <X
-                                        size={27}
-                                        style={{ marginInlineEnd: "8px" }}
+                                        size={numTonum(27)}
+                                        style={{ marginInlineEnd: pxTorem(8) }}
                                     />
                                 </IconButton>
                             )}
@@ -109,8 +109,8 @@ export function GenericSettings({
                         <>
                             <IconButton onClick={() => switchPage()}>
                                 <ArrowBack
-                                    size={24}
-                                    style={{ marginInlineEnd: "10px" }}
+                                    size={numTonum(24)}
+                                    style={{ marginInlineEnd: pxTorem(10) }}
                                 />
                             </IconButton>
                             <Text
@@ -182,9 +182,8 @@ export function GenericSettings({
                                 ) && (
                                     <h1>
                                         <Text
-                                            id={`app.settings.${category}.${
-                                                page ?? defaultPage
-                                            }.title`}
+                                            id={`app.settings.${category}.${page ?? defaultPage
+                                                }.title`}
                                         />
                                     </h1>
                                 )}
@@ -195,7 +194,7 @@ export function GenericSettings({
                                 <div
                                     onClick={exitSettings}
                                     className={styles.closeButton}>
-                                    <X size={28} />
+                                    <X size={numTonum(28)} />
                                 </div>
                             </div>
                         )}

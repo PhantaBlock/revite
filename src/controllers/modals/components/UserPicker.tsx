@@ -6,12 +6,13 @@ import { useMemo, useState } from "preact/hooks";
 import { Modal } from "../../../components/revoltchat/components/design";
 
 import UserCheckbox from "../../../components/common/user/UserCheckbox";
+import { pxTorem, numTonum } from "../../../lib/calculation";
 import { useClient } from "../../client/ClientController";
 import { ModalProps } from "../types";
 
 const List = styled.div`
     max-width: 100%;
-    max-height: 360px;
+    max-height: ${pxTorem(360)};
     overflow-y: scroll;
 `;
 

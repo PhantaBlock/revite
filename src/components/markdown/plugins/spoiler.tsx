@@ -3,9 +3,10 @@ import styled, { css } from "styled-components";
 import { useState } from "preact/hooks";
 
 import { createComponent, CustomComponentProps } from "./remarkRegexComponent";
+import { remTorem, pxTorem, numTonum } from '../../../lib/calculation';
 
 const Spoiler = styled.span<{ shown: boolean }>`
-    padding: 0 2px;
+    padding: 0 ${pxTorem(2)};
     cursor: pointer;
     user-select: none;
     color: transparent;

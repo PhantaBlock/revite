@@ -12,12 +12,16 @@ import { useApplicationState } from "../../mobx/State";
 import { SIDEBAR_CHANNELS } from "../../mobx/stores/Layout";
 import Open from "../../pages/Open";
 import MenuAdapter from "../menuAdapter";
+import { remTorem, pxTorem, numTonum } from '../../lib/calculation';
 
 const HomeContent = styled.div.attrs({
     "data-component": "content",
 })`
     width: 100%;
-    height: 100%;
+    height: 100vh;
+    padding-top: ${pxTorem(45)};
+    // height: 100vh;
+    box-sizing: border-box;
 
     > div {
         width: 100%;
@@ -51,8 +55,7 @@ export default observer(() => {
             <HashRouter>
                 <OverlappingPanels
                     width="100vw"
-                    height={"var(--app-height)"}
-                    leftPanel={isOpen ? { width: 290, component: <HomeSidebar /> } : undefined}
+                    leftPanel={isOpen ? { width: numTonum(322), component: <HomeSidebar channels /> } : undefined}
                     docked={isTouchscreenDevice ? Docked.None : Docked.Left}
                 >
                     <Routes>

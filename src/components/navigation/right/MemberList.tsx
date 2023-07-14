@@ -12,6 +12,8 @@ import { modalController } from "../../../controllers/modals/ModalController";
 import { UserButton } from "../items/ButtonItem";
 import { isMicroMode } from "../../../lib/global";
 
+import { remTorem, pxTorem, numTonum } from '../../../lib/calculation';
+
 export type MemberListGroup = {
     type: "online" | "offline" | "role" | "no_offline";
     name?: string;
@@ -24,8 +26,8 @@ const ListCategory = styled.div<{ first?: boolean }>`
     font-weight: 600;
     user-select: none;
 
-    padding: 4px 14px;
-    padding-top: 12px;
+    padding: ${pxTorem(4)} ${pxTorem(4)};
+    padding-top: ${pxTorem(12)};
 
     color: var(--secondary-foreground);
     background: var(--secondary-background);
@@ -33,14 +35,14 @@ const ListCategory = styled.div<{ first?: boolean }>`
     ${(props) =>
         !props.first &&
         css`
-            padding-top: 16px;
+            padding-top: ${pxTorem(16)};
         `}
 `;
 
 // ! FIXME: temporary performance fix
 const NoOomfie = styled.div`
-    padding: 4px;
-    padding-bottom: 12px;
+    padding: ${pxTorem(4)};
+    padding-bottom: ${pxTorem(12)};
 
     font-size: 0.8em;
     text-align: center;
@@ -48,7 +50,7 @@ const NoOomfie = styled.div`
 
     flex-direction: column;
     display: flex;
-    gap: 4px;
+    gap: ${pxTorem(4)};
 `;
 
 const ItemContent = memo(

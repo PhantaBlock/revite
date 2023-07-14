@@ -3,7 +3,8 @@ import styled from "styled-components/macro";
 
 import { Text } from "preact-i18n";
 
-import { Button } from "@revoltchat/ui";
+import { Button } from "../../../../components/revoltchat";
+import { remTorem, pxTorem, numTonum } from '../../../../lib/calculation';
 
 import { useApplicationState } from "../../../../mobx/State";
 
@@ -11,18 +12,18 @@ import { modalController } from "../../../../controllers/modals/ModalController"
 import Tooltip from "../../../common/Tooltip";
 
 const Actions = styled.div`
-    gap: 8px;
+    gap: ${pxTorem(8)};
     display: flex;
-    margin: 18px 0 8px 0;
+    margin: ${pxTorem(18)} 0 8px 0;
 
     .code {
         cursor: pointer;
         display: flex;
         align-items: center;
-        font-size: 0.875rem;
+        font-size: ${remTorem(0.875)};
         min-width: 0;
         flex-grow: 1;
-        padding: 8px;
+        padding: ${pxTorem(8)};
         font-family: var(--monospace-font);
         border-radius: var(--border-radius);
         background: var(--secondary-background);
@@ -49,7 +50,7 @@ export default function ThemeTools() {
                     palette="secondary"
                     compact="icon"
                     onClick={theme.reset}>
-                    <Reset size={22} />
+                    <Reset size={numTonum(22)} />
                 </Button>
             </Tooltip>
             <div
@@ -77,7 +78,7 @@ export default function ThemeTools() {
                             });
                         }
                     }}>
-                    <Import size={22} />
+                    <Import size={numTonum(22)} />
                 </Button>
             </Tooltip>
         </Actions>

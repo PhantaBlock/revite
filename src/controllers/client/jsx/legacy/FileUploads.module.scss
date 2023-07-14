@@ -14,7 +14,7 @@
         }
 
         .modify {
-            gap: 4px;
+            gap: 0.33rem;
             flex-direction: row;
         }
     }
@@ -60,8 +60,8 @@
 
     .modify {
         display: flex;
-        margin-top: 5px;
-        font-size: 12px;
+        margin-top: 0.417rem;
+        font-size: 1rem;
         align-items: center;
         flex-direction: column;
         justify-content: center;
@@ -72,13 +72,14 @@
 
         .small {
             display: flex;
-            font-size: 10px;
+            font-size: 0.833rem;
             flex-direction: column;
             color: var(--tertiary-foreground);
         }
     }
 
     &[data-uploading="true"] {
+
         .image,
         .modify:first-child {
             cursor: not-allowed !important;

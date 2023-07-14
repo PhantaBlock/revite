@@ -8,14 +8,15 @@ import openmojiSVG from "./assets/openmoji_emoji.svg";
 import twemojiSVG from "./assets/twemoji_emoji.svg";
 
 import { EmojiPack } from "../../../common/Emoji";
+import { remTorem, pxTorem, numTonum } from '../../../../lib/calculation';
 
 const Container = styled.div`
-    gap: 12px;
+    gap: ${pxTorem(12)};
     display: flex;
     flex-direction: column;
 
     .row {
-        gap: 12px;
+        gap: ${pxTorem(12)};
         display: flex;
 
         > div {
@@ -26,14 +27,14 @@ const Container = styled.div`
     }
 
     .button {
-        padding: 2rem 1.2rem;
+        padding: ${remTorem(2)} ${remTorem(1.2)};
         display: grid;
         place-items: center;
 
         cursor: pointer;
         transition: border 0.3s;
         background: var(--hover);
-        border: 3px solid transparent;
+        border: ${pxTorem(3)} solid transparent;
         border-radius: var(--border-radius);
 
         img {
@@ -43,16 +44,16 @@ const Container = styled.div`
         &[data-active="true"] {
             cursor: default;
             background: var(--secondary-background);
-            border: 3px solid var(--accent);
+            border: ${pxTorem(3)} solid var(--accent);
 
             &:hover {
-                border: 3px solid var(--accent);
+                border: ${pxTorem(3)} solid var(--accent);
             }
         }
 
         &:hover {
             background: var(--secondary-background);
-            border: 3px solid var(--tertiary-background);
+            border: ${pxTorem(3)} solid var(--tertiary-background);
         }
     }
 

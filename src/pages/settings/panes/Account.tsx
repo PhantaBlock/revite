@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import styles from "./Panes.module.scss";
 import { Text } from "preact-i18n";
 
-import { Tip } from "@revoltchat/ui";
+import { Tip } from '../../../components/revoltchat';
+import { remTorem, pxTorem, numTonum } from '../../../lib/calculation';
 
 import AccountManagement from "../../../components/settings/account/AccountManagement";
 import EditAccount from "../../../components/settings/account/EditAccount";

@@ -11,6 +11,7 @@ import FormField from "../../../pages/login/FormField";
 import { useClient } from "../../client/ClientController";
 import { takeError } from "../../client/jsx/error";
 import { ModalProps } from "../types";
+import { pxTorem, numTonum } from "../../../lib/calculation";
 
 interface FormInputs {
     password: string;
@@ -124,7 +125,7 @@ export default function ModifyAccount({
                         style={{
                             display: "flex",
                             alignItems: "end",
-                            gap: "8px",
+                            gap: pxTorem(8),
                         }}>
                         <div style={{ flexGrow: 1 }}>
                             <FormField
@@ -139,7 +140,7 @@ export default function ModifyAccount({
                         <div
                             style={{
                                 flexShrink: 0,
-                                width: "80px",
+                                width: pxTorem(80),
                                 textAlign: "center",
                             }}>
                             <InputBox

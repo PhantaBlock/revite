@@ -2,7 +2,8 @@ import { observer } from "mobx-react-lite";
 
 import { Text } from "preact-i18n";
 
-import { Banner, Button, Column } from "@revoltchat/ui";
+import { Banner, Button, Column } from "../../../components/revoltchat";
+import { remTorem, pxTorem, numTonum } from '../../../lib/calculation';
 
 import { useSession } from "../../../controllers/client/ClientController";
 

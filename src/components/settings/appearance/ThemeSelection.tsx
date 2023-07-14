@@ -6,7 +6,8 @@ import pSBC from "shade-blend-color";
 
 import { Text } from "preact-i18n";
 
-import { CategoryButton, ObservedInputElement } from "@revoltchat/ui";
+import { CategoryButton, ObservedInputElement } from "../../../components/revoltchat";
+import { remTorem, pxTorem, numTonum } from '../../../lib/calculation';
 
 import { useApplicationState } from "../../../mobx/State";
 
@@ -39,7 +40,7 @@ export default function ThemeSelection() {
             {/** Provide a link to the theme shop */}
             <Link to="/discover/themes" replace>
                 <CategoryButton
-                    icon={<Brush size={24} />}
+                    icon={<Brush size={numTonum(24)} />}
                     action="chevron"
                     description={
                         <Text id="app.settings.pages.appearance.discover.description" />

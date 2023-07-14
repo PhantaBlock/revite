@@ -3,7 +3,8 @@ import { observer } from "mobx-react-lite";
 import { useHistory, useLocation } from "react-router";
 import styled, { css } from "styled-components/macro";
 
-import { Centred, IconButton } from "@revoltchat/ui";
+import { Centred, IconButton } from "../../components/revoltchat";
+import { remTorem, pxTorem, numTonum } from '../../lib/calculation';
 
 import ConditionalLink from "../../lib/ConditionalLink";
 
@@ -47,7 +48,7 @@ const Button = styled.a<{ active: boolean }>`
 
     > div,
     > a > div {
-        padding: 0 20px;
+        padding: 0 ${pxTorem(20)};
     }
 
     ${(props) =>
@@ -90,13 +91,13 @@ export default observer(() => {
                                 history.push(path);
                             }
                         }}>
-                        <Message size={24} />
+                        <Message size={numTonum(24)} />
                     </Centred>
                 </Button>
                 <Button active={friendsActive}>
                     <IconButton>
                         <ConditionalLink active={friendsActive} to="/friends">
-                            <Group size={25} />
+                            <Group size={numTonum(25)} />
                         </ConditionalLink>
                     </IconButton>
                 </Button>
@@ -119,14 +120,14 @@ export default observer(() => {
                         <ConditionalLink
                             active={discoverActive}
                             to="/discover/servers">
-                            <Compass size={24} />
+                            <Compass size={numTonum(24)} />
                         </ConditionalLink>
                     </IconButton>
                 </Button>
                 <Button active={settingsActive}>
                     <IconButton>
                         <ConditionalLink active={settingsActive} to="/settings">
-                            <UserIcon target={user} size={26} status={true} />
+                            <UserIcon target={user} size={numTonum(26)} status={true} />
                         </ConditionalLink>
                     </IconButton>
                 </Button>

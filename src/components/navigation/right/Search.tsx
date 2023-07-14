@@ -5,41 +5,41 @@ import styled from "styled-components/macro";
 import { Text } from "preact-i18n";
 import { useEffect, useState } from "preact/hooks";
 
-import { Button, Category, Error, InputBox, Preloader } from "@revoltchat/ui";
-
+import { Button, Category, Error, InputBox, Preloader } from "../../../components/revoltchat";
+import { remTorem, pxTorem, numTonum } from '../../../lib/calculation';
 import { useClient } from "../../../controllers/client/ClientController";
 import Message from "../../common/messaging/Message";
 import { GenericSidebarBase, GenericSidebarList } from "../SidebarBase";
 
 type SearchState =
     | {
-          type: "waiting";
-      }
+        type: "waiting";
+    }
     | {
-          type: "loading";
-      }
+        type: "loading";
+    }
     | {
-          type: "results";
-          results: MessageI[];
-      };
+        type: "results";
+        results: MessageI[];
+    };
 
 const SearchBase = styled.div`
-    padding: 6px;
+    padding: ${pxTorem(6)};
 
     input {
         width: 100%;
     }
 
     .list {
-        gap: 4px;
-        margin: 8px 0;
+        gap: ${pxTorem(4)};
+        margin: ${pxTorem(8)} 0;
         display: flex;
         flex-direction: column;
     }
 
     .message {
-        margin: 2px;
-        padding: 6px;
+        margin: ${pxTorem(2)};
+        padding: ${pxTorem(6)}};
         overflow: hidden;
         border-radius: var(--border-radius);
 
@@ -56,8 +56,8 @@ const SearchBase = styled.div`
     }
 
     .sort {
-        gap: 4px;
-        margin: 6px 0;
+        gap: ${pxTorem(4)};
+        margin:${pxTorem(6)} 0;
         display: flex;
 
         > * {

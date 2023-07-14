@@ -8,7 +8,7 @@ import { observer } from "mobx-react-lite";
 import { IntlProvider, Text } from "preact-i18n";
 import { useCallback, useEffect, useState } from "preact/hooks";
 
-import { Error } from "@revoltchat/ui";
+import { Error } from '../components/revoltchat';
 
 import { useApplicationState } from "../mobx/State";
 
@@ -35,9 +35,9 @@ export interface Dictionary {
         timeFormat?: string;
     };
     [key: string]:
-        | Record<string, Omit<Dictionary, "dayjs">>
-        | string
-        | undefined;
+    | Record<string, Omit<Dictionary, "dayjs">>
+    | string
+    | undefined;
 }
 
 export default observer(({ children }: Props) => {

@@ -4,12 +4,13 @@ import styled from "styled-components";
 import { clientController } from "../../../controllers/client/ClientController";
 import UserShort from "../../common/user/UserShort";
 import { createComponent, CustomComponentProps } from "./remarkRegexComponent";
+import { remTorem, pxTorem, numTonum } from '../../../lib/calculation';
 
 const Mention = styled.a`
-    gap: 4px;
+    gap: ${pxTorem(4)};
     flex-shrink: 0;
-    padding-left: 2px;
-    padding-right: 6px;
+    padding-left: ${pxTorem(2)};
+    padding-right: ${pxTorem(6)};
     align-items: center;
     display: inline-flex;
     vertical-align: middle;

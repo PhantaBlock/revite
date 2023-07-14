@@ -14,6 +14,8 @@ import { dayjs } from "../../../../context/Locale";
 
 import { Bar } from "./JumpToBottom";
 
+import { remTorem, pxTorem, numTonum } from '../../../../lib/calculation';
+
 export default observer(
     ({ channel, last_id }: { channel: Channel; last_id?: string }) => {
         const [hidden, setHidden] = useState(false);
@@ -34,7 +36,7 @@ export default observer(
             if (last_id) {
                 try {
                     setTimeAgo(dayjs(decodeTime(last_id)).fromNow());
-                } catch (err) {}
+                } catch (err) { }
             }
         }, [last_id]);
 
@@ -69,7 +71,7 @@ export default observer(
                         <span>
                             <Text id="app.main.channel.misc.jump_beginning" />
                         </span>
-                        <UpArrowAlt size={20} />
+                        <UpArrowAlt size={numTonum(20)} />
                     </div>
                 </div>
             </Bar>

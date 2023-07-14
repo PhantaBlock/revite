@@ -2,6 +2,7 @@ import Tippy, { TippyProps } from "@tippyjs/react";
 import styled from "styled-components/macro";
 
 import { Text } from "preact-i18n";
+import { remTorem, pxTorem, numTonum } from '../../lib/calculation';
 
 type Props = Omit<TippyProps, "children"> & {
     children: Children;
@@ -26,7 +27,7 @@ const PermissionTooltipBase = styled.div`
     flex-direction: column;
 
     span {
-        font-size: 11px;
+        font-size: ${pxTorem(11)};
         font-weight: 700;
         text-transform: uppercase;
         color: var(--secondary-foreground);

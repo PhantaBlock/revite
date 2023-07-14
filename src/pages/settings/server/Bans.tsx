@@ -8,7 +8,10 @@ import styles from "./Panes.module.scss";
 import { Text } from "preact-i18n";
 import { useEffect, useMemo, useState } from "preact/hooks";
 
-import { IconButton, InputBox, Preloader } from "@revoltchat/ui";
+import {
+    IconButton, InputBox, Preloader
+} from '../../../components/revoltchat';
+import { remTorem, pxTorem, numTonum } from '../../../lib/calculation';
 
 import UserIcon from "../../../components/common/user/UserIcon";
 
@@ -26,7 +29,7 @@ const Inner = observer(({ ban, users, server, removeSelf }: InnerProps) => {
     return (
         <div className={styles.ban} data-deleting={deleting}>
             <span>
-                <UserIcon attachment={user?.avatar ?? undefined} size={24} />{" "}
+                <UserIcon attachment={user?.avatar ?? undefined} size={numTonum(24)} />{" "}
                 {user?.username}
             </span>
             <div className={styles.reason}>
@@ -39,7 +42,7 @@ const Inner = observer(({ ban, users, server, removeSelf }: InnerProps) => {
                     setDelete(true);
                     server.unbanUser(ban._id.user).then(removeSelf);
                 }}>
-                <XCircle size={24} />
+                <XCircle size={numTonum(24)} />
             </IconButton>
         </div>
     );
@@ -53,9 +56,9 @@ export const Bans = observer(({ server }: Props) => {
     const [query, setQuery] = useState("");
     const [result, setData] = useState<
         | {
-              users: Record<string, API.BannedUser>;
-              bans: API.BanListResult["bans"];
-          }
+            users: Record<string, API.BannedUser>;
+            bans: API.BanListResult["bans"];
+        }
         | undefined
     >(undefined);
 

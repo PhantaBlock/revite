@@ -1,6 +1,8 @@
 import styled, { css } from "styled-components/macro";
 
 import { isTouchscreenDevice } from "../../lib/isTouchscreenDevice";
+import { Centred, IconButton } from "../../components/revoltchat";
+import { remTorem, pxTorem, numTonum } from '../../lib/calculation';
 
 export default styled.div`
     height: 100%;
@@ -14,14 +16,14 @@ export default styled.div`
         var(--background-rgb),
         max(var(--min-opacity), 0.75)
     );
-    backdrop-filter: blur(20px);
+    backdrop-filter: blur(${pxTorem(20)});
 `;
 
 export const GenericSidebarBase = styled.div<{
     mobilePadding?: boolean;
 }>`
     height: 100%;
-    width: 232px;
+    width: ${pxTorem(322)};
     display: flex;
     flex-shrink: 0;
     flex-direction: column;
@@ -33,7 +35,7 @@ export const GenericSidebarBase = styled.div<{
     }
 
     > :nth-child(2) {
-        margin-top: 48px;
+        margin-top: ${pxTorem(48)};
         background: red;
     }*/
 
@@ -41,12 +43,12 @@ export const GenericSidebarBase = styled.div<{
         props.mobilePadding &&
         isTouchscreenDevice &&
         css`
-            padding-bottom: 50px;
+            padding-bottom: ${pxTorem(50)};
         `}
 `;
 
 export const GenericSidebarList = styled.div`
-    padding: 6px;
+    // padding: ${pxTorem(6)};
     flex-grow: 1;
     overflow-y: scroll;
 

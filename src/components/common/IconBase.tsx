@@ -9,7 +9,7 @@ export interface IconBaseProps<T> {
     url?: string;
     attachment?: Nullable<API.File>;
 
-    size: number;
+    size: number | string;
     hover?: boolean;
     animate?: boolean;
 
@@ -27,14 +27,20 @@ interface IconModifiers {
 export default styled.svg<IconModifiers>`
     flex-shrink: 0;
     cursor: pointer;
+
+    foreignObject {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
     img {
         width: 100%;
         height: 100%;
         object-fit: cover;
 
         ${(props) =>
-            props.borderRadius &&
-            css`
+        props.borderRadius &&
+        css`
                 border-radius: var(${props.borderRadius});
             `}
     }
@@ -49,6 +55,8 @@ export default styled.svg<IconModifiers>`
 `;
 
 export const ImageIconBase = styled.img<IconModifiers>`
+    width: 100%;
+    height: 100%;
     flex-shrink: 0;
     object-fit: cover;
 

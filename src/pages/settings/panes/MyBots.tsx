@@ -10,13 +10,15 @@ import styles from "./Panes.module.scss";
 import { Text } from "preact-i18n";
 import { useCallback, useEffect, useState } from "preact/hooks";
 
+
 import {
     Button,
     CategoryButton,
     Checkbox,
     InputBox,
     Tip,
-} from "@revoltchat/ui";
+} from '../../../components/revoltchat';
+import { remTorem, pxTorem, numTonum } from '../../../lib/calculation';
 
 import TextAreaAutoSize from "../../../lib/TextAreaAutoSize";
 import { internalEmit } from "../../../lib/eventEmitter";
@@ -51,10 +53,10 @@ const BotBadge = styled.div`
     display: inline-block;
     flex-shrink: 0;
     height: 1.3em;
-    padding: 0px 4px;
+    padding: 0px ${pxTorem(4)};
     font-size: 0.7em;
     user-select: none;
-    margin-inline-start: 2px;
+    margin-inline-start: ${pxTorem(2)};
     text-transform: uppercase;
 
     color: var(--accent-contrast);
@@ -213,7 +215,7 @@ function BotCard({ bot, onDelete, onUpdate }: Props) {
                             <UserIcon
                                 className={styles.avatar}
                                 target={user}
-                                size={42}
+                                size={numTonum(42)}
                                 onClick={() =>
                                     modalController.push({
                                         type: "user_profile",
@@ -223,8 +225,8 @@ function BotCard({ bot, onDelete, onUpdate }: Props) {
                             />
                         ) : (
                             <FileUploader
-                                width={42}
-                                height={42}
+                                width={numTonum(42)}
+                                height={numTonum(42)}
                                 style="icon"
                                 fileType="avatars"
                                 behaviour="upload"
@@ -232,11 +234,11 @@ function BotCard({ bot, onDelete, onUpdate }: Props) {
                                 onUpload={(avatar) => editBotAvatar(avatar)}
                                 remove={() => editBotAvatar()}
                                 defaultPreview={user.generateAvatarURL(
-                                    { max_side: 256 },
+                                    { max_side: numTonum(256) },
                                     true,
                                 )}
                                 previewURL={user.generateAvatarURL(
-                                    { max_side: 256 },
+                                    { max_side: numTonum(256) },
                                     true,
                                 )}
                             />
@@ -256,7 +258,7 @@ function BotCard({ bot, onDelete, onUpdate }: Props) {
                                         content={
                                             <Text id="app.settings.pages.bots.unique_id" />
                                         }>
-                                        <HelpCircle size={16} />
+                                        <HelpCircle size={numTonum(16)} />
                                     </Tooltip>
                                     <Tooltip
                                         content={
@@ -293,15 +295,14 @@ function BotCard({ bot, onDelete, onUpdate }: Props) {
                         <Tooltip
                             content={
                                 <Text
-                                    id={`app.settings.pages.bots.${
-                                        bot.public ? "public" : "private"
-                                    }_bot_tip`}
+                                    id={`app.settings.pages.bots.${bot.public ? "public" : "private"
+                                        }_bot_tip`}
                                 />
                             }>
                             {bot.public ? (
-                                <Globe size={24} />
+                                <Globe size={numTonum(24)} />
                             ) : (
-                                <LockAlt size={24} />
+                                <LockAlt size={numTonum(24)} />
                             )}
                         </Tooltip>
                     )}
@@ -324,16 +325,15 @@ function BotCard({ bot, onDelete, onUpdate }: Props) {
                     }}
                     palette="secondary">
                     <Text
-                        id={`app.special.modals.actions.${
-                            editMode ? "cancel" : "edit"
-                        }`}
+                        id={`app.special.modals.actions.${editMode ? "cancel" : "edit"
+                            }`}
                     />
                 </Button>
             </div>
             {!editMode && (
                 <CategoryButton
                     account
-                    icon={<Key size={24} />}
+                    icon={<Key size={numTonum(24)} />}
                     onClick={() => modalController.writeText(bot.token)}
                     description={
                         <>
@@ -353,7 +353,7 @@ function BotCard({ bot, onDelete, onUpdate }: Props) {
                             </a>
                         </>
                     }
-                    action={<Clipboard size={18} />}>
+                    action={<Clipboard size={numTonum(18)} />}>
                     <Text id="app.settings.pages.bots.token" />
                 </CategoryButton>
             )}
@@ -367,7 +367,7 @@ function BotCard({ bot, onDelete, onUpdate }: Props) {
                             <Text id="app.settings.pages.profile.custom_background" />
                         </h3>
                         <FileUploader
-                            height={92}
+                            height={numTonum(92)}
                             style="banner"
                             behaviour="upload"
                             fileType="backgrounds"
@@ -379,10 +379,10 @@ function BotCard({ bot, onDelete, onUpdate }: Props) {
                             previewURL={
                                 profile?.background
                                     ? client.generateFileURL(
-                                          profile.background,
-                                          { width: 1000 },
-                                          true,
-                                      )
+                                        profile.background,
+                                        { width: numTonum(1000) },
+                                        true,
+                                    )
                                     : undefined
                             }
                         />
@@ -401,10 +401,9 @@ function BotCard({ bot, onDelete, onUpdate }: Props) {
                                 setContent(ev.currentTarget.value);
                             }}
                             placeholder={translate(
-                                `app.settings.pages.profile.${
-                                    typeof profile === "undefined"
-                                        ? "fetching"
-                                        : "placeholder"
+                                `app.settings.pages.profile.${typeof profile === "undefined"
+                                    ? "fetching"
+                                    : "placeholder"
                                 }`,
                             )}
                             onKeyUp={onKeyUp}
@@ -510,7 +509,7 @@ export const MyBots = observer(() => {
         <div className={styles.myBots}>
             <CategoryButton
                 account
-                icon={<Plus size={24} />}
+                icon={<Plus size={numTonum(24)} />}
                 onClick={() =>
                     modalController.push({
                         type: "create_bot",
@@ -550,7 +549,7 @@ export const MyBots = observer(() => {
                                             if (
                                                 "public" in changes &&
                                                 typeof changes.public ===
-                                                    "boolean"
+                                                "boolean"
                                             )
                                                 x.public = changes.public;
                                             if ("interactions_url" in changes)

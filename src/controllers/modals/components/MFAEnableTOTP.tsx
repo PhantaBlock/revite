@@ -5,6 +5,7 @@ import { Text } from "preact-i18n";
 import { useState } from "preact/hooks";
 
 import { Category, Centred, Column, InputBox, Modal } from '../../../components/revoltchat';
+import { pxTorem, numTonum } from "../../../lib/calculation";
 
 import { ModalProps } from "../types";
 
@@ -13,11 +14,11 @@ const Code = styled.code`
 `;
 
 const Qr = styled.div`
-    border-radius: 4px;
+    border-radius: ${pxTorem(4)};
     background: white;
 
-    width: 140px;
-    height: 140px;
+    width: ${pxTorem(140)};
+    height: ${pxTorem(140)};
 
     display: grid;
     place-items: center;

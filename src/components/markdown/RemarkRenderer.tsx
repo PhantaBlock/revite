@@ -26,6 +26,9 @@ import { remarkSpoiler, RenderSpoiler } from "./plugins/spoiler";
 import { remarkTimestamps } from "./plugins/timestamps";
 import "./prism";
 
+import { IconButton } from "../../components/revoltchat";
+import { remTorem, pxTorem, numTonum } from '../../lib/calculation';
+
 /**
  * Null element
  */
@@ -44,7 +47,7 @@ const components = {
         margin: 0;
 
         > code {
-            padding: 1px 4px;
+            padding: ${pxTorem(1)} ${pxTorem(4)};
             flex-shrink: 0;
         }
     `,
@@ -74,7 +77,7 @@ const components = {
         font-size: 90%;
         font-family: var(--monospace-font), monospace;
 
-        border-radius: 3px;
+        border-radius: ${pxTorem(3)};
         box-decoration-break: clone;
     `,
     table: styled.table`
@@ -82,18 +85,18 @@ const components = {
 
         th,
         td {
-            padding: 6px;
-            border: 1px solid var(--tertiary-foreground);
+            padding: ${pxTorem(6)};
+            border: ${pxTorem(1)} solid var(--tertiary-foreground);
         }
     `,
     ul: styled.ul`
         list-style-position: inside;
-        padding-left: 10px;
+        padding-left: ${pxTorem(10)};
         margin: 0.2em 0;
     `,
     ol: styled.ol`
         list-style-position: inside;
-        padding-left: 10px;
+        padding-left: ${pxTorem(10)};
         margin: 0.2em 0;
     `,
     li: styled.li`
@@ -104,14 +107,14 @@ const components = {
             `}
     `,
     blockquote: styled.blockquote`
-        margin: 2px 0;
-        padding: 2px 0;
+        margin: ${pxTorem(2)} 0;
+        padding: ${pxTorem(2)} 0;
         background: var(--hover);
         border-radius: var(--border-radius);
-        border-inline-start: 4px solid var(--tertiary-background);
+        border-inline-start: ${pxTorem(4)} solid var(--tertiary-background);
 
         > * {
-            margin: 0 8px;
+            margin: 0 ${pxTorem(8)};
         }
     `,
     // Block image elements

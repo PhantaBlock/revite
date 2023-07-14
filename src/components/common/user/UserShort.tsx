@@ -17,14 +17,16 @@ import Tooltip from "../Tooltip";
 import UserIcon from "./UserIcon";
 import { inSingleWebView } from '../../../lib/global';
 
+import { remTorem, pxTorem, numTonum } from '../../../lib/calculation';
+
 const BotBadge = styled.div`
     display: inline-block;
     flex-shrink: 0;
     height: 1.4em;
-    padding: 0 4px;
+    padding: 0 ${pxTorem(4)};
     font-size: 0.6em;
     user-select: none;
-    margin-inline-start: 4px;
+    margin-inline-start: ${pxTorem(4)};
     text-transform: uppercase;
     color: var(--accent-contrast);
     background: var(--accent);
@@ -201,7 +203,7 @@ export default function UserShort({
         <>
             <UserIcon
                 target={user}
-                size={size ?? 24}
+                size={size ?? numTonum(24)}
                 masquerade={masquerade}
                 onClick={handleUserClick}
                 showServerIdentity={showServerIdentity}

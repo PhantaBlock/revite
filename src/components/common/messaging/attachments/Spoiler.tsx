@@ -2,6 +2,9 @@ import styled from "styled-components/macro";
 
 import { Text } from "preact-i18n";
 
+import { Button, Preloader } from "../../../../components/revoltchat";
+import { remTorem, pxTorem, numTonum } from '../../../../lib/calculation';
+
 const Base = styled.div`
     display: grid;
     place-items: center;
@@ -14,7 +17,7 @@ const Base = styled.div`
     text-transform: uppercase;
 
     span {
-        padding: 8px;
+        padding: ${pxTorem(8)};
         color: var(--foreground);
         background: var(--primary-background);
         border-radius: calc(var(--border-radius) * 4);

@@ -13,6 +13,8 @@ import { getRenderer } from "../../../../lib/renderer/Singleton";
 import Markdown from "../../../markdown/Markdown";
 import UserShort from "../../user/UserShort";
 import { SystemMessage } from "../SystemMessage";
+import { IconButton } from "../../../../components/revoltchat";
+import { remTorem, pxTorem, numTonum } from '../../../../lib/calculation';
 
 interface Props {
     parent_mentions: string[];
@@ -26,11 +28,11 @@ export const ReplyBase = styled.div<{
     fail?: boolean;
     preview?: boolean;
 }>`
-    gap: 8px;
+    gap: ${pxTorem(8)};
     min-width: 0;
     display: flex;
-    margin-inline-start: 30px;
-    margin-inline-end: 12px;
+    margin-inline-start: ${pxTorem(30)};
+    margin-inline-end: ${pxTorem(12)};
     font-size: 0.8em;
     user-select: none;
     align-items: end;
@@ -39,10 +41,10 @@ export const ReplyBase = styled.div<{
     &::before {
         content: "";
         flex-shrink: 0;
-        width: 22px;
-        height: 10px;
-        border-inline-start: 2px solid var(--message-box);
-        border-top: 2px solid var(--message-box);
+        width: ${pxTorem(22)};
+        height: ${pxTorem(10)};
+        border-inline-start: ${pxTorem(2)} solid var(--message-box);
+        border-top: ${pxTorem(2)} solid var(--message-box);
         align-self: flex-end;
     }
 
@@ -53,14 +55,14 @@ export const ReplyBase = styled.div<{
     }
 
     .user {
-        //margin-inline-start: 12px;
-        gap: 6px;
+        //margin-inline-start: ${pxTorem(12)};
+        gap: ${pxTorem(6)};
         display: flex;
         flex-shrink: 0;
         font-weight: 600;
         overflow: visible;
         align-items: center;
-        padding: 2px 0;
+        padding: ${pxTorem(2)} 0;
 
         span {
             cursor: pointer;
@@ -71,11 +73,11 @@ export const ReplyBase = styled.div<{
     }
 
     .content {
-        max-height: 32px;
+        max-height: ${pxTorem(32)};
 
-        gap: 4px;
+        gap: ${pxTorem(4)};
         display: flex;
-        padding: 2px 0;
+        padding: ${pxTorem(2)} 0;
         cursor: pointer;
         overflow: hidden;
         align-items: center;
@@ -92,7 +94,7 @@ export const ReplyBase = styled.div<{
         > span > p {
             display: flex;
             align-items: center;
-            gap: 4px;
+            gap: ${pxTorem(4)};
         }
 
         &:hover {
@@ -100,7 +102,7 @@ export const ReplyBase = styled.div<{
         }
 
         &:active {
-            transform: translateY(1px);
+            transform: translateY(${pxTorem(1)});
         }
 
         > * {
@@ -123,10 +125,10 @@ export const ReplyBase = styled.div<{
     ${(props) =>
         props.head &&
         css`
-            margin-top: 12px;
+            margin-top: ${pxTorem(12)};
 
             &::before {
-                border-start-start-radius: 4px;
+                border-start-start-radius: ${pxTorem(4)};
             }
         `}
 
@@ -158,7 +160,7 @@ export const MessageReply = observer(
         if (!message) {
             return (
                 <ReplyBase head={index === 0} fail>
-                    <Reply size={16} />
+                    <Reply size={numTonum(16)} />
                     <span>
                         <Text id="app.main.channel.misc.failed_load" />
                     </span>
@@ -182,7 +184,7 @@ export const MessageReply = observer(
                             <>
                                 <div className="user">
                                     <UserShort
-                                        size={14}
+                                        size={numTonum(14)}
                                         showServerIdentity
                                         user={message.author}
                                         masquerade={message.masquerade!}
@@ -210,10 +212,10 @@ export const MessageReply = observer(
                                     }}>
                                     {message.attachments && (
                                         <>
-                                            <File size={16} />
+                                            <File size={numTonum(16)} />
                                             <em>
                                                 {message.attachments.length >
-                                                1 ? (
+                                                    1 ? (
                                                     <Text id="app.main.channel.misc.sent_multiple_files" />
                                                 ) : (
                                                     <Text id="app.main.channel.misc.sent_file" />

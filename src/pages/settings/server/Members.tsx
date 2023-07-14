@@ -15,8 +15,9 @@ import {
     Checkbox,
     IconButton,
     InputBox,
-    Preloader,
-} from "@revoltchat/ui";
+    Preloader
+} from '../../../components/revoltchat';
+import { remTorem, pxTorem, numTonum } from '../../../lib/calculation';
 
 import UserIcon from "../../../components/common/user/UserIcon";
 import { Username } from "../../../components/common/user/UserShort";
@@ -42,11 +43,11 @@ const Inner = observer(({ member }: InnerProps) => {
                 data-open={open}
                 onClick={() => setOpen(!open)}>
                 <span>
-                    <UserIcon target={user} size={24} />{" "}
+                    <UserIcon target={user} size={numTonum(24)} />{" "}
                     <Username user={member.user} showServerIdentity="both" />
                 </span>
                 <IconButton className={styles.chevron}>
-                    <ChevronDown size={24} />
+                    <ChevronDown size={numTonum(24)} />
                 </IconButton>
             </div>
             {open && (
@@ -113,10 +114,10 @@ export const Members = ({ server }: Props) => {
         () =>
             query
                 ? data?.filter((x) =>
-                      x.user?.username
-                          .toLowerCase()
-                          .includes(query.toLowerCase()),
-                  )
+                    x.user?.username
+                        .toLowerCase()
+                        .includes(query.toLowerCase()),
+                )
                 : data,
         [data, query],
     );

@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 import { Modal } from '../../../components/revoltchat';
+import { pxTorem, numTonum } from "../../../lib/calculation";
 
 import AttachmentActions from "../../../components/common/messaging/attachments/AttachmentActions";
 import EmbedMediaActions from "../../../components/common/messaging/embed/EmbedMediaActions";
@@ -11,8 +12,8 @@ const Viewer = styled.div`
     display: flex;
     overflow: hidden;
     flex-direction: column;
-    border-end-end-radius: 4px;
-    border-end-start-radius: 4px;
+    border-end-end-radius: ${pxTorem(4)};
+    border-end-start-radius: ${pxTorem(4)};
 
     max-width: 100vw;
 

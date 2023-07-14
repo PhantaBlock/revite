@@ -5,7 +5,7 @@ import styles from "../Login.module.scss";
 import { Text } from "preact-i18n";
 import { useEffect } from "preact/hooks";
 
-import { Preloader } from "@revoltchat/ui";
+import { Preloader } from '../../../components/revoltchat';
 
 import { clientController } from "../../../controllers/client/ClientController";
 

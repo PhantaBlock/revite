@@ -8,11 +8,13 @@ import {
     animationZoomIn,
     animationZoomOut,
 } from "../../../common/animations";
+import { IconButton } from '../inputs/IconButton';
+import { X } from "@styled-icons/boxicons-regular";
 
 import { H2 } from "../heading/H2";
 import { H4 } from "../heading/H4";
 import { Button, Props as ButtonProps } from "../inputs/Button";
-import { pxTorem, remTorem } from '../../../../lib/calculation';
+import { pxTorem, remTorem, numTonum } from '../../../../lib/calculation';
 
 export type Action = Omit<React.HTMLAttributes<HTMLButtonElement>, "as"> &
     Omit<ButtonProps, "onClick"> & {
@@ -42,6 +44,15 @@ export interface Props {
     description?: React.ReactNode;
     children?: React.ReactNode;
 }
+
+const IconButtonWrap = styled.div`
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    svg {
+        color: #FFBE5A;
+    }
+`
 
 const Base = styled.div<{ closing?: boolean }>`
     top: 0;
@@ -82,10 +93,10 @@ const Base = styled.div<{ closing?: boolean }>`
 const Container = styled.div<
     Pick<Props, "transparent" | "maxWidth" | "maxHeight"> & { actions: boolean }
 >`
-    max-width: min(calc(100vw - ${pxTorem(20)}), ${(props) => props.maxWidth ?? `${pxTorem(649)}`});
+    max-width: min(calc(100vw - ${pxTorem(50)}), ${(props) => props.maxWidth ?? '54rem'});
     max-height: min(
         calc(100vh -${pxTorem(20)}),
-        ${(props) => props.maxHeight ?? `${pxTorem(388)}`}
+        ${(props) => props.maxHeight ?? '33rem'}
     );
 
     border: ${pxTorem(2)} solid;
@@ -119,7 +130,7 @@ const Container = styled.div<
 
 const Title = styled.div`
     padding: ${remTorem(1)};
-    font-size: ${pxTorem(24)};
+    font-size: 2.17rem;
     flex-shrink: 0;
     word-break: break-word;
     gap: ${pxTorem(8)};
@@ -216,6 +227,14 @@ export const Modal: (props: Props) => JSX.Element = ({
                         {description && <H4>{description}</H4>}
                     </Title>
                 )}
+                <IconButtonWrap>
+                    <IconButton
+                        onClick={(e) =>
+                            closeModal()
+                        }>
+                        <X size={numTonum(36)} />
+                    </IconButton>
+                </IconButtonWrap>
                 <Content {...props} needPadding={title !== undefined || description !== undefined}>{children}</Content>
                 {actions && actions.length > 0 && (
                     <Actions>
@@ -232,7 +251,7 @@ export const Modal: (props: Props) => JSX.Element = ({
                                     }
                                 }}
                             >
-                                <div style={{ zIndex: 1, width: pxTorem(160), 'font-size': pxTorem(18.75) }} > {x.children}</div>
+                                <div style={{ zIndex: 1, width: '21.68rem', 'font-size': '1.56rem' }} > {x.children}</div>
                             </Button>
                         ))}
                     </Actions>

@@ -9,7 +9,8 @@ import classNames from "classnames";
 import { useTriggerEvents } from "preact-context-menu";
 import { Text } from "preact-i18n";
 
-import { IconButton } from "@revoltchat/ui";
+import { IconButton } from '../../components/revoltchat';
+import { remTorem, pxTorem, numTonum } from '../../lib/calculation';
 
 import { stopPropagation } from "../../lib/stopPropagation";
 import { voiceState } from "../../lib/vortex/VoiceState";
@@ -23,9 +24,10 @@ import { isMicroMode, openMicroChannelPage } from "../../lib/global";
 interface Props {
     user: User;
     onInviteFriend?: () => void;
+    pendingMode?: boolean;
 }
 
-export const Friend = observer(({ user, onInviteFriend }: Props) => {
+export const Friend = observer(({ user, onInviteFriend, pendingMode }: Props) => {
     const isMicro = isMicroMode();
     const history = useHistory();
 
@@ -67,7 +69,7 @@ export const Friend = observer(({ user, onInviteFriend }: Props) => {
                                     }),
                             )
                         }>
-                        <PhoneCall size={20} />
+                        <PhoneCall size={numTonum(20)} />
                     </IconButton>
                     <IconButton
                         shape="circle"
@@ -80,7 +82,7 @@ export const Friend = observer(({ user, onInviteFriend }: Props) => {
                                     .then((channel) => history.push(`/channel/${channel._id}`)),
                             )
                         }>
-                        <Envelope size={20} />
+                        <Envelope size={numTonum(20)} />
                     </IconButton>
                 </>,
             );
@@ -88,14 +90,26 @@ export const Friend = observer(({ user, onInviteFriend }: Props) => {
     }
 
     if (user.relationship === "Incoming") {
-        actions.push(
-            <IconButton
-                shape="circle"
-                className={styles.button}
-                onClick={(ev) => stopPropagation(ev, user.addFriend())}>
-                <Plus size={24} />
-            </IconButton>,
-        );
+        if (isMicro) {
+            actions.push(
+                <div
+                    key="pass"
+                    className={styles.passBtn}
+                    onClick={(ev) => stopPropagation(ev, user.addFriend())}
+                >
+                    <span>通过</span>
+                </div>
+            );
+        } else {
+            actions.push(
+                <IconButton
+                    shape="circle"
+                    className={styles.button}
+                    onClick={(ev) => stopPropagation(ev, user.addFriend())}>
+                    <Plus size={numTonum(24)} />
+                </IconButton>,
+            );
+        }
 
         subtext = <Text id="app.special.friends.incoming" />;
     }
@@ -128,8 +142,30 @@ export const Friend = observer(({ user, onInviteFriend }: Props) => {
                             : user.removeFriend(),
                     )
                 }>
-                <X size={24} />
+                <X size={numTonum(24)} />
             </IconButton>,
+        );
+    }
+
+    if (isMicro && user.relationship === "Incoming") {
+        actions.push(
+            <div
+                key="reject"
+                className={classNames(styles.rejectBtn, "cusLineation")}
+                onClick={(ev) =>
+                    stopPropagation(
+                        ev,
+                        user.relationship === "Friend"
+                            ? modalController.push({
+                                type: "unfriend_user",
+                                target: user,
+                            })
+                            : user.removeFriend(),
+                    )
+                }
+            >
+                拒绝
+            </div>
         );
     }
 
@@ -139,15 +175,21 @@ export const Friend = observer(({ user, onInviteFriend }: Props) => {
                 shape="circle"
                 className={classNames(styles.button, styles.error)}
                 onClick={(ev) => stopPropagation(ev, user.unblockUser())}>
-                <UserX size={24} />
+                <UserX size={numTonum(24)} />
             </IconButton>,
         );
     }
+
+    const menu = pendingMode ? {} : useTriggerEvents("Menu", {
+        user: user._id,
+    });
 
     return (
         <div
             className={classNames(styles.friend, {
                 [styles.isMicro]: isMicro,
+                [styles.noHover]: isMicro && user.relationship === 'Incoming',
+                [styles.pendingMode]: pendingMode,
             })}
             onClick={() => {
                 if (isMicro) {
@@ -163,10 +205,8 @@ export const Friend = observer(({ user, onInviteFriend }: Props) => {
                     })
                 }
             }}
-            {...useTriggerEvents("Menu", {
-                user: user._id,
-            })}>
-            <UserIcon target={user} size={36} status />
+            {...menu}>
+            <UserIcon target={user} size={numTonum(36)} status />
             <div className={styles.name}>
                 <span>{user.display_name ?? user.username}</span>
                 {subtext && <span className={styles.subtext}>{subtext}</span>}

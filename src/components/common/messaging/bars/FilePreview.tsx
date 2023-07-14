@@ -8,6 +8,7 @@ import { useEffect, useState } from "preact/hooks";
 import { determineFileSize } from "../../../../lib/fileSize";
 
 import { CAN_UPLOAD_AT_ONCE, UploadState } from "../MessageBox";
+import { remTorem, pxTorem, numTonum } from '../../../../lib/calculation';
 
 interface Props {
     state: UploadState;
@@ -16,8 +17,8 @@ interface Props {
 }
 
 const Container = styled.div`
-    gap: 4px;
-    padding: 8px;
+    gap: ${pxTorem(4)};
+    padding: ${pxTorem(8)};
     display: flex;
     user-select: none;
     flex-direction: column;
@@ -25,7 +26,7 @@ const Container = styled.div`
 `;
 
 const Carousel = styled.div`
-    gap: 8px;
+    gap: ${pxTorem(8)};
     display: flex;
     overflow-x: scroll;
     flex-direction: row;
@@ -43,7 +44,7 @@ const Entry = styled.div`
         margin: auto;
         font-size: 0.8em;
         overflow: hidden;
-        max-width: 180px;
+        max-width: ${pxTorem(180)};
         text-align: center;
         white-space: nowrap;
         text-overflow: ellipsis;
@@ -58,7 +59,7 @@ const Entry = styled.div`
 `;
 
 const Description = styled.div`
-    gap: 4px;
+    gap: ${pxTorem(4)};
     display: flex;
     font-size: 0.9em;
     align-items: center;
@@ -66,16 +67,16 @@ const Description = styled.div`
 `;
 
 const Divider = styled.div`
-    width: 4px;
-    height: 130px;
+    width: ${pxTorem(4)};
+    height: ${pxTorem(130)};
     flex-shrink: 0;
     border-radius: var(--border-radius);
     background: var(--tertiary-background);
 `;
 
 const EmptyEntry = styled.div`
-    width: 100px;
-    height: 100px;
+    width: ${pxTorem(100)};
+    height: ${pxTorem(100)};
     display: grid;
     flex-shrink: 0;
     cursor: pointer;
@@ -91,7 +92,7 @@ const EmptyEntry = styled.div`
 
 const PreviewBox = styled.div`
     display: grid;
-    grid-template: "main" 100px / minmax(100px, 1fr);
+    grid-template: "main" ${pxTorem(100)} / minmax(${pxTorem(100)}, 1fr);
     justify-items: center;
 
     cursor: pointer;
@@ -105,8 +106,8 @@ const PreviewBox = styled.div`
     }
 
     .icon {
-        height: 100px;
-        margin-bottom: 4px;
+        height: ${pxTorem(100)};
+        margin-bottom: ${pxTorem(4)};
         object-fit: contain;
     }
 
@@ -147,10 +148,10 @@ function FileEntry({
             <Entry className={index >= CAN_UPLOAD_AT_ONCE ? "fade" : ""}>
                 <PreviewBox onClick={remove}>
                     <EmptyEntry className="icon">
-                        <File size={36} />
+                        <File size={numTonum(36)} />
                     </EmptyEntry>
                     <div className="overlay">
-                        <XCircle size={36} />
+                        <XCircle size={numTonum(36)} />
                     </div>
                 </PreviewBox>
                 <span className="fn">{file.name}</span>
@@ -176,7 +177,7 @@ function FileEntry({
                     loading="eager"
                 />
                 <div className="overlay">
-                    <XCircle size={36} />
+                    <XCircle size={numTonum(36)} />
                 </div>
             </PreviewBox>
             <span className="fn">{file.name}</span>
@@ -210,26 +211,26 @@ export default function FilePreview({ state, addFile, removeFile }: Props) {
                 ))}
                 {state.type === "attached" && (
                     <EmptyEntry onClick={addFile}>
-                        <Plus size={48} />
+                        <Plus size={numTonum(48)} />
                     </EmptyEntry>
                 )}
             </Carousel>
             {state.type === "uploading" && (
                 <Description>
-                    <Share size={24} />
+                    <Share size={numTonum(24)} />
                     <Text id="app.main.channel.uploading_file" /> (
                     {state.percent}%)
                 </Description>
             )}
             {state.type === "sending" && (
                 <Description>
-                    <Share size={24} />
+                    <Share size={numTonum(24)} />
                     Sending...
                 </Description>
             )}
             {state.type === "failed" && (
                 <Description>
-                    <X size={24} />
+                    <X size={numTonum(24)} />
                     <Text id={`error.${state.error}`} />
                 </Description>
             )}

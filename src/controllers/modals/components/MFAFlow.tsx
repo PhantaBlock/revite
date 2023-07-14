@@ -17,6 +17,7 @@ import {
     Modal,
     Preloader,
 } from '../../../components/revoltchat';
+import { pxTorem, numTonum } from "../../../lib/calculation";
 
 import { ModalProps } from "../types";
 
@@ -153,8 +154,8 @@ export default function MFAFlow({
                             children: (
                                 <Text
                                     id={`app.special.modals.actions.${methods!.length === 1
-                                            ? "cancel"
-                                            : "back"
+                                        ? "cancel"
+                                        : "back"
                                         }`}
                                 />
                             ),
@@ -208,7 +209,7 @@ export default function MFAFlow({
                             <CategoryButton
                                 key={method}
                                 action="chevron"
-                                icon={<Icon size={24} />}
+                                icon={<Icon size={numTonum(24)} />}
                                 onClick={() => setSelected(method)}>
                                 <Text id={`login.${method.toLowerCase()}`} />
                             </CategoryButton>

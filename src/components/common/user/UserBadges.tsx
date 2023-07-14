@@ -4,6 +4,7 @@ import styled from "styled-components/macro";
 import { Localizer, Text } from "preact-i18n";
 
 import Tooltip from "../Tooltip";
+import { remTorem, pxTorem, numTonum } from '../../../lib/calculation';
 
 enum Badges {
     Developer = 1,
@@ -20,13 +21,13 @@ enum Badges {
 }
 
 const BadgesBase = styled.div`
-    gap: 8px;
+    gap: ${pxTorem(8)};
     display: flex;
     flex-direction: row;
 
     img {
-        width: 24px;
-        height: 24px;
+        width: ${pxTorem(24)};
+        height: ${pxTorem(24)};
     }
 `;
 

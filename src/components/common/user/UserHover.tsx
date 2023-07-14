@@ -4,6 +4,8 @@ import styled from "styled-components/macro";
 import Tooltip from "../Tooltip";
 import { Username } from "./UserShort";
 import UserStatus from "./UserStatus";
+import { Header, IconButton } from "../../../components/revoltchat";
+import { remTorem, pxTorem, numTonum } from '../../../lib/calculation';
 
 interface Props {
     user?: User;
@@ -15,12 +17,12 @@ const Base = styled.div`
     flex-direction: column;
 
     .username {
-        font-size: 13px;
+        font-size: ${pxTorem(13)};
         font-weight: 600;
     }
 
     .status {
-        font-size: 11px;
+        font-size: ${pxTorem(11)};
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
@@ -29,8 +31,8 @@ const Base = styled.div`
     .tip {
         display: flex;
         align-items: center;
-        gap: 4px;
-        margin-top: 2px;
+        gap: ${pxTorem(4)};
+        margin-top: ${pxTorem(2)};
         color: var(--secondary-foreground);
     }
 `;

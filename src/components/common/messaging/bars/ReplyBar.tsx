@@ -7,7 +7,8 @@ import styled from "styled-components/macro";
 import { Text } from "preact-i18n";
 import { StateUpdater, useEffect } from "preact/hooks";
 
-import { IconButton } from "@revoltchat/ui";
+import { IconButton } from "../../../../components/revoltchat";
+import { remTorem, pxTorem, numTonum } from '../../../../lib/calculation';
 
 import { internalSubscribe } from "../../../../lib/eventEmitter";
 
@@ -38,8 +39,8 @@ const Base = styled.div`
     }
 
     display: flex;
-    height: 30px;
-    padding: 0 20px;
+    height: ${pxTorem(30)};
+    padding: 0 ${pxTorem(20)};
     user-select: none;
     align-items: center;
     background: var(--secondary-background);
@@ -55,9 +56,9 @@ const Base = styled.div`
     }
 
     .toggle {
-        gap: 2px;
+        gap: ${pxTorem(2)};
         display: flex;
-        font-size: 12px;
+        font-size: ${pxTorem(12)};
         align-items: center;
         font-weight: 800;
         text-transform: uppercase;
@@ -77,26 +78,26 @@ const Base = styled.div`
         .username {
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: ${pxTorem(6)};
             font-weight: 600;
             flex-shrink: 0;
         }
 
         .message {
             display: flex;
-            max-height: 26px;
-            gap: 4px;
+            max-height: ${pxTorem(26)};
+            gap: ${pxTorem(4)};
         }
     }
 
     .actions {
-        gap: 12px;
+        gap: ${pxTorem(12)};
         display: flex;
     }
 
     /*@media (pointer: coarse) { //FIXME: Make action buttons bigger on pointer coarse
         .actions > svg {
-            height: 25px;
+            height: ${pxTorem(25)};
         }
     }*/
 `;
@@ -158,7 +159,7 @@ export default observer(({ channel, replies, setReplies }: Props) => {
                             <div className="content">
                                 <div className="username">
                                     <UserShort
-                                        size={16}
+                                        size={numTonum(16)}
                                         showServerIdentity
                                         user={message.author}
                                         masquerade={message.masquerade!}
@@ -167,10 +168,10 @@ export default observer(({ channel, replies, setReplies }: Props) => {
                                 <div className="message">
                                     {message.attachments && (
                                         <>
-                                            <File size={16} />
+                                            <File size={numTonum(16)} />
                                             <em>
                                                 {message.attachments.length >
-                                                1 ? (
+                                                    1 ? (
                                                     <Text id="app.main.channel.misc.sent_multiple_files" />
                                                 ) : (
                                                     <Text id="app.main.channel.misc.sent_file" />
@@ -179,7 +180,7 @@ export default observer(({ channel, replies, setReplies }: Props) => {
                                         </>
                                     )}
                                     {message.author_id ===
-                                    "00000000000000000000000000" ? (
+                                        "00000000000000000000000000" ? (
                                         <SystemMessage
                                             message={message}
                                             hideInfo
@@ -228,7 +229,7 @@ export default observer(({ channel, replies, setReplies }: Props) => {
                                             <Text id="app.main.channel.reply.toggle" />
                                         }>
                                         <span className="toggle">
-                                            <At size={15} />
+                                            <At size={numTonum(15)} />
                                             <Text
                                                 id={
                                                     reply.mention
@@ -246,7 +247,7 @@ export default observer(({ channel, replies, setReplies }: Props) => {
                                         replies.filter((_, i) => i !== index),
                                     )
                                 }>
-                                <XCircle size={16} />
+                                <XCircle size={numTonum(16)} />
                             </IconButton>
                         </span>
                     </Base>

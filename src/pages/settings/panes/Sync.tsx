@@ -3,7 +3,10 @@ import { observer } from "mobx-react-lite";
 import styles from "./Panes.module.scss";
 import { Text } from "preact-i18n";
 
-import { Checkbox, Column } from "@revoltchat/ui";
+import {
+    Checkbox, Column
+} from '../../../components/revoltchat';
+import { remTorem, pxTorem, numTonum } from '../../../lib/calculation';
 
 import { useApplicationState } from "../../../mobx/State";
 import { SyncKeys } from "../../../mobx/stores/Sync";

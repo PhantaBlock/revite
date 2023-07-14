@@ -1,8 +1,9 @@
 import { ChevronDown } from "@styled-icons/boxicons-regular";
 
-import { Details } from "@revoltchat/ui";
+import { Details } from "../../components/revoltchat";
 
 import { useApplicationState } from "../../mobx/State";
+import { remTorem, pxTorem, numTonum } from '../../lib/calculation';
 
 interface Props {
     id: string;
@@ -33,7 +34,7 @@ export default function CollapsibleSection({
             {...detailsProps}>
             <summary>
                 <div className="padding">
-                    <ChevronDown size={20} />
+                    <ChevronDown size={numTonum(20)} />
                     {summary}
                 </div>
             </summary>

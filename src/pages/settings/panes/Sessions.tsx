@@ -20,13 +20,15 @@ import styles from "./Panes.module.scss";
 import { Text } from "preact-i18n";
 import { useEffect, useState } from "preact/hooks";
 
+
 import {
     Button,
     CategoryButton,
     LineDivider,
     Preloader,
     Tip,
-} from "@revoltchat/ui";
+} from '../../../components/revoltchat';
+import { remTorem, pxTorem, numTonum } from '../../../lib/calculation';
 
 import { dayjs } from "../../../context/Locale";
 
@@ -74,21 +76,21 @@ export function Sessions() {
         const name = session.name;
         switch (true) {
             case /firefox/i.test(name):
-                return <Firefoxbrowser size={32} />;
+                return <Firefoxbrowser size={numTonum(32)} />;
             case /chrome/i.test(name):
-                return <Chrome size={32} />;
+                return <Chrome size={numTonum(32)} />;
             case /safari/i.test(name):
-                return <Safari size={32} />;
+                return <Safari size={numTonum(32)} />;
             case /edge/i.test(name):
-                return <Microsoftedge size={32} />;
+                return <Microsoftedge size={numTonum(32)} />;
             case /opera/i.test(name):
-                return <Opera size={32} />;
+                return <Opera size={numTonum(32)} />;
             case /samsung/i.test(name):
-                return <Samsung size={32} />;
+                return <Samsung size={numTonum(32)} />;
             case /desktop/i.test(name):
-                return <Desktop size={32} />;
+                return <Desktop size={numTonum(32)} />;
             default:
-                return <HelpCircle size={32} />;
+                return <HelpCircle size={numTonum(32)} />;
         }
     }
 
@@ -96,17 +98,17 @@ export function Sessions() {
         const name = session.name;
         switch (true) {
             case /linux/i.test(name):
-                return <Linux size={14} />;
+                return <Linux size={numTonum(14)} />;
             case /android/i.test(name):
-                return <Android size={14} />;
+                return <Android size={numTonum(14)} />;
             case /mac.*os/i.test(name):
-                return <Macos size={14} />;
+                return <Macos size={numTonum(14)} />;
             case /i(Pad)?os/i.test(name):
-                return <Ios size={14} />;
+                return <Ios size={numTonum(14)} />;
             case /windows 7/i.test(name):
-                return <Windowsxp size={14} />;
+                return <Windowsxp size={numTonum(14)} />;
             case /windows/i.test(name):
-                return <Windows size={14} />;
+                return <Windows size={numTonum(14)} />;
             default:
                 return null;
         }
@@ -150,12 +152,12 @@ export function Sessions() {
                         )}
                         <div className={styles.session}>
                             <div className={styles.detail}>
-                                <svg width={42} height={42} viewBox="0 0 32 32">
+                                <svg width={numTonum(42)} height={numTonum(42)} viewBox={`0 0 ${numTonum(32)} ${numTonum(32)}`}>
                                     <foreignObject
                                         x="0"
                                         y="0"
-                                        width="32"
-                                        height="32"
+                                        width={numTonum(32)}
+                                        height={numTonum(32)}
                                         mask={
                                             systemIcon
                                                 ? "url(#session)"
@@ -164,10 +166,10 @@ export function Sessions() {
                                         {getIcon(session)}
                                     </foreignObject>
                                     <foreignObject
-                                        x="18"
-                                        y="18"
-                                        width="14"
-                                        height="14">
+                                        x={numTonum(18)}
+                                        y={numTonum(18)}
+                                        width={numTonum(14)}
+                                        height={numTonum(14)}>
                                         {systemIcon}
                                     </foreignObject>
                                 </svg>
@@ -199,8 +201,7 @@ export function Sessions() {
                                             session._id,
                                         ]);
                                         await client.api.delete(
-                                            `/auth/session/${
-                                                session._id as ""
+                                            `/auth/session/${session._id as ""
                                             }`,
                                         );
                                         setSessions(
