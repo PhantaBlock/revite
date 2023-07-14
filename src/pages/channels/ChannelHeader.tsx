@@ -89,7 +89,7 @@ export default observer(({ channel }: ChannelHeaderProps) => {
     }
 
     return (
-        <PageHeader height={pxTorem(87.5)} icon={icon} withTransparency>
+        <PageHeader icon={icon} withTransparency>
             <Info>
                 <div style={{
                     display: 'flex',

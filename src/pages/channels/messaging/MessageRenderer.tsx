@@ -29,6 +29,7 @@ interface Props {
     last_id?: string;
     highlight?: string;
     renderer: ChannelRenderer;
+    tempMode: boolean;
 }
 
 const BlockedMessage = styled.div`
@@ -42,7 +43,7 @@ const BlockedMessage = styled.div`
     }
 `;
 
-export default observer(({ last_id, renderer, highlight }: Props) => {
+export default observer(({ last_id, renderer, highlight, tempMode }: Props) => {
     const client = useClient();
     const userId = client.user!._id;
     const queue = useApplicationState().queue;
@@ -171,6 +172,7 @@ export default observer(({ last_id, renderer, highlight }: Props) => {
                     message={message}
                     attachContext
                     highlight={highlight === message._id}
+                    tempMode={tempMode}
                 />,
             );
         } else if (message.author?.relationship === "Blocked") {
@@ -183,6 +185,7 @@ export default observer(({ last_id, renderer, highlight }: Props) => {
                     message={message}
                     key={message._id}
                     head={head}
+                    tempMode={tempMode}
                     content={
                         editing === message._id ? (
                             <MessageEditor
@@ -225,6 +228,7 @@ export default observer(({ last_id, renderer, highlight }: Props) => {
 
             render.push(
                 <Message
+                    tempMode={tempMode}
                     message={
                         new MessageI(client, {
                             ...msg.data,
