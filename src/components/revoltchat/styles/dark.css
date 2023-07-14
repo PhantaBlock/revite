@@ -109,5 +109,6 @@ html.dark {
     --effective-bottom-offset-rgb: undefined, undefined, undefined;
 }
 :root {
-    --header-height: 7.29rem!important
+    --header-height: 7.29rem!important;
+    --avatar-username-gap: 1.875rem;
 }

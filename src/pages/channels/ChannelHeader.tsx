@@ -29,7 +29,7 @@ const Info = styled.div`
     white-space: nowrap;
 
     display: flex;
-    gap: ${pxTorem(22.5)};
+    gap: var(--avatar-username-gap);
     align-items: center;
 
     * {

@@ -36,7 +36,7 @@ export default styled.div<BaseMessageProps>`
     padding: ${remTorem(0.125)};
     flex-direction: row;
     padding-inline-end: ${pxTorem(16)};
-
+    gap: var(--avatar-username-gap);
     ${() =>
         isTouchscreenDevice &&
         css`
@@ -137,7 +137,7 @@ export default styled.div<BaseMessageProps>`
 `;
 
 export const MessageInfo = styled.div<{ click: boolean }>`
-    width: ${pxTorem(62)};;
+    width: ${pxTorem(62)};
     display: flex;
     flex-shrink: 0;
     padding-top: ${pxTorem(2)};;
