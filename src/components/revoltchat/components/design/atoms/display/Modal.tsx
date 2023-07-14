@@ -93,10 +93,10 @@ const Base = styled.div<{ closing?: boolean }>`
 const Container = styled.div<
     Pick<Props, "transparent" | "maxWidth" | "maxHeight"> & { actions: boolean }
 >`
-    max-width: min(calc(100vw - ${pxTorem(50)}), ${(props) => props.maxWidth ?? `${pxTorem(649)}`});
+    max-width: min(calc(100vw - ${pxTorem(50)}), ${(props) => props.maxWidth ?? '54rem'});
     max-height: min(
         calc(100vh -${pxTorem(20)}),
-        ${(props) => props.maxHeight ?? `${pxTorem(388)}`}
+        ${(props) => props.maxHeight ?? '33rem'}
     );
 
     border: ${pxTorem(2)} solid;
@@ -130,7 +130,7 @@ const Container = styled.div<
 
 const Title = styled.div`
     padding: ${remTorem(1)};
-    font-size: ${pxTorem(24)};
+    font-size: 2.17rem;
     flex-shrink: 0;
     word-break: break-word;
     gap: ${pxTorem(8)};
@@ -251,7 +251,7 @@ export const Modal: (props: Props) => JSX.Element = ({
                                     }
                                 }}
                             >
-                                <div style={{ zIndex: 1, width: pxTorem(160), 'font-size': pxTorem(18.75) }} > {x.children}</div>
+                                <div style={{ zIndex: 1, width: '21.68rem', 'font-size': '1.56rem' }} > {x.children}</div>
                             </Button>
                         ))}
                     </Actions>
