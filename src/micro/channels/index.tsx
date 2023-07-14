@@ -19,7 +19,7 @@ const HomeContent = styled.div.attrs({
 })`
     width: 100%;
     height: 100vh;
-    padding-top: ${pxTorem(40)};
+    padding-top: ${pxTorem(45)};
     // height: 100vh;
     box-sizing: border-box;
 
@@ -50,16 +50,12 @@ export default observer(() => {
     const layout = useApplicationState().layout;
     const isOpen = layout.getSectionState(SIDEBAR_CHANNELS, true);
 
-    useEffect(() => {
-        document.documentElement.style.fontSize = '12px';
-    }, [])
-
     return (
         <HomeContent>
             <HashRouter>
                 <OverlappingPanels
                     width="100vw"
-                    leftPanel={isOpen ? { width: numTonum(290), component: <HomeSidebar /> } : undefined}
+                    leftPanel={isOpen ? { width: numTonum(322), component: <HomeSidebar channels /> } : undefined}
                     docked={isTouchscreenDevice ? Docked.None : Docked.Left}
                 >
                     <Routes>
