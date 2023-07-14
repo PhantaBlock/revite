@@ -21,6 +21,7 @@ export default styled.div`
 
 export const GenericSidebarBase = styled.div<{
     mobilePadding?: boolean;
+    paddingTop?: string;
 }>`
     height: 100%;
     width: ${pxTorem(322)};
@@ -39,6 +40,13 @@ export const GenericSidebarBase = styled.div<{
         margin-top: ${pxTorem(48)};
         background: red;
     }*/
+
+    ${(props) =>
+        props.paddingTop &&
+        css`
+            padding-top: ${props.paddingTop};
+        `
+    }
 
     ${(props) =>
         props.mobilePadding &&
