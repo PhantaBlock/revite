@@ -137,7 +137,7 @@ export default styled.div<BaseMessageProps>`
 `;
 
 export const MessageInfo = styled.div<{ click: boolean }>`
-    width: ${pxTorem(62)};;
+    width: ${pxTorem(62)};
     display: flex;
     flex-shrink: 0;
     padding-top: ${pxTorem(2)};;

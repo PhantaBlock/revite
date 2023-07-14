@@ -47,7 +47,8 @@ export default function AddFriend({ ...props }: ModalProps<"add_friend">) {
                 // }
             ]}
             submit={{
-                children: <Text id="app.special.modals.actions.ok" />
+                children: <Text id="app.special.modals.actions.ok" />,
+                skyTheme: true,
             }}
         />
     );

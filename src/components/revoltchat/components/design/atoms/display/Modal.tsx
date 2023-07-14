@@ -14,7 +14,7 @@ import { X } from "@styled-icons/boxicons-regular";
 import { H2 } from "../heading/H2";
 import { H4 } from "../heading/H4";
 import { Button, Props as ButtonProps } from "../inputs/Button";
-import { pxTorem, remTorem, numTonum } from '../../../../lib/calculation';
+import { pxTorem, remTorem, numTonum, px2orem, num2 } from '../../../../lib/calculation';
 
 export type Action = Omit<React.HTMLAttributes<HTMLButtonElement>, "as"> &
     Omit<ButtonProps, "onClick"> & {
@@ -98,6 +98,8 @@ const Container = styled.div<
         calc(100vh -${pxTorem(20)}),
         ${(props) => props.maxHeight ?? '33rem'}
     );
+    width: ${(props) => props.width ?? `${px2orem(1766)}`};
+    height: ${(props) => props.height ?? `${px2orem(1058)}`};
 
     border: ${pxTorem(2)} solid;
     border-image: linear-gradient(180deg, #FFBE5A, rgba(255, 226, 119, 0.3));
@@ -129,11 +131,12 @@ const Container = styled.div<
 `;
 
 const Title = styled.div`
-    padding: ${remTorem(1)};
-    font-size: 2.17rem;
+    padding: 0 ${remTorem(1)};
+    height: ${px2orem(182)};
+    line-height: ${px2orem(182)};
+    font-size: ${px2orem(70)};
     flex-shrink: 0;
     word-break: break-word;
-    gap: ${pxTorem(8)};
     display: flex;
     flex-direction: column;
 
@@ -162,10 +165,8 @@ const Content = styled.div<Pick<Props, "transparent" | "padding" | "needPadding"
 
 const Actions = styled.div`
     flex-shrink: 0;
-
-    // gap: ${pxTorem(8)};
     display: flex;
-    padding: ${pxTorem(29)};
+    padding: ${px2orem(65)} ${px2orem(78)};
     flex-direction: row-reverse;
 
     // background: var(--secondary-background);
@@ -243,7 +244,8 @@ export const Modal: (props: Props) => JSX.Element = ({
                             <Button
                                 disabled={disabled}
                                 key={index}
-                                skyTheme={true}
+                                skyTheme={x.skyTheme}
+                                confirmation={x.confirmation}
                                 {...x}
                                 onClick={async () => {
                                     if (await x.onClick()) {
@@ -251,13 +253,22 @@ export const Modal: (props: Props) => JSX.Element = ({
                                     }
                                 }}
                             >
-                                <div style={{ zIndex: 1, width: '21.68rem', 'font-size': '1.56rem' }} > {x.children}</div>
+                                <div
+                                    style={{
+                                        zIndex: 1,
+                                        width: `${px2orem(692)}`,
+                                        height: `${px2orem(138)}`,
+                                        'font-size': `${px2orem(50)}`,
+                                        display: 'flex',
+                                        'align-items': 'center',
+                                        'justify-content': 'center'
+                                    }} > {x.children}</div>
                             </Button>
                         ))}
                     </Actions>
                 )}
             </Container>
-        </Base>,
+        </Base >,
         document.body,
     );
 };
