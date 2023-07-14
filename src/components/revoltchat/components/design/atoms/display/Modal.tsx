@@ -49,6 +49,7 @@ const IconButtonWrap = styled.div`
     position: absolute;
     top: 1.5rem;
     right: 1.5rem;
+    z-index: 1;
     svg {
         color: #FFBE5A;
     }
@@ -98,8 +99,8 @@ const Container = styled.div<
         calc(100vh -${pxTorem(20)}),
         ${(props) => props.maxHeight ?? '33rem'}
     );
-    width: ${(props) => props.width ?? `${px2orem(1766)}`};
-    height: ${(props) => props.height ?? `${px2orem(1058)}`};
+    width: ${(props) => props.width};
+    height: ${(props) => props.height};
 
     border: ${pxTorem(2)} solid;
     border-image: linear-gradient(180deg, #FFBE5A, rgba(255, 226, 119, 0.3));
@@ -246,6 +247,7 @@ export const Modal: (props: Props) => JSX.Element = ({
                                 key={index}
                                 skyTheme={x.skyTheme}
                                 confirmation={x.confirmation}
+                                style={x.style}
                                 {...x}
                                 onClick={async () => {
                                     if (await x.onClick()) {
