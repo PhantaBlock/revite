@@ -178,7 +178,7 @@ export default observer(({ onInviteFriend }: {
                                 )}
                             </div>
                             <div className={styles.details}>
-                                <div>
+                                <div className={classNames({ [styles.paddingDetails]: isMicro })}>
                                     <Text id="app.special.friends.pending" />{" "}
                                     <span>{incoming.length}</span>
                                 </div>

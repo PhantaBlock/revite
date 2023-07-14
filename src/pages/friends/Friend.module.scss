@@ -243,6 +243,17 @@
     summary {
         display: none;
     }
+
+    .pending {
+        svg {
+            width: 36px !important;
+            height: 36px !important;
+        }
+    }
+}
+
+.friend.pendingMode {
+    width: 450px;
 }
 
 .friend.isMicro {
@@ -261,4 +272,61 @@
             font-size: 12px;
         }
     }
+}
+
+.friend.noHover:hover {
+    background: none;
+}
+
+.paddingDetails {
+    span {
+        margin-left: 4px;
+    }
+}
+
+.passBtn {
+    width: 80px;
+    height: 40px;
+    background: linear-gradient(180deg, #FED77D 0%, #FED06D 100%);
+    box-shadow: inset 0px 0px 3.75px 0px rgba(147, 7, 7, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18.75px;
+    font-weight: normal;
+    line-height: 24px;
+    color: #15171D;
+    position: relative;
+
+    &::before {
+        content: '';
+        border-radius: 3.75px;
+        background: linear-gradient(180deg, #FFB65A 0%, rgba(239, 176, 97, 0.00) 56%);
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 50%;
+        bottom: 0;
+    }
+
+    span {
+        position: relative;
+    }
+}
+
+.rejectBtn {
+    width: 80px;
+    height: 40px;
+    background: linear-gradient(180deg, rgba(32, 22, 8, 0.53) 0%, rgba(51, 49, 60, 0.01) 100%);
+    box-sizing: border-box;
+    border-width: 1.5px;
+    backdrop-filter: blur(0px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18.75px;
+    font-weight: normal;
+    line-height: 24px;
+    color: #FBD279;
+    margin-left: 14px;
 }

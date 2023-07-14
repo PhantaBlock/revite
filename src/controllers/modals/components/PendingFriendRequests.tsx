@@ -17,7 +17,7 @@ export default function PendingFriendRequests({
             title={<Text id="app.special.friends.pending" />}>
             <Column>
                 {users.map((x) => (
-                    <Friend user={x!} key={x!._id} />
+                    <Friend user={x!} key={x!._id} pendingMode />
                 ))}
             </Column>
         </Modal>
