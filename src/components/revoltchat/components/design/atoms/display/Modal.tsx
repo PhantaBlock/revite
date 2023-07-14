@@ -143,8 +143,9 @@ const Container = styled.div<
 
 const Title = styled.div`
     padding: 0 ${remTorem(1)};
-    height: ${px2orem(182)};
-    line-height: ${px2orem(182)};
+    min-height: ${px2orem(182)};
+    display: flex;
+    justify-content: center;
     font-size: ${px2orem(70)};
     flex-shrink: 0;
     word-break: break-word;
