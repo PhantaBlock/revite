@@ -1,4 +1,4 @@
-import { useEffect, useState } from "preact/compat";
+import { useEffect, useRef, useState } from "preact/compat";
 import { observer } from "mobx-react-lite";
 import { useClient, useSession } from "../../controllers/client/ClientController";
 import Friends from "../../pages/friends/Friends";
@@ -17,6 +17,22 @@ export default observer(({ onInviteFriend, token, onUpdateProfile }: {
 }) => {
     const session = useSession()!;
     const self = session?.client?.user;
+    const triedSetAvatar = useRef(false);
+
+    useEffect(() => {
+        if (self?.avatar_url === null && !triedSetAvatar.current) {
+            triedSetAvatar.current = true;
+
+            // 静默直塞一个默认头像，数据更新依赖webSocket,这里粗暴的加个延时先用下
+            setTimeout(() => {
+                session?.client?.users.edit({
+                    avatar_url: "https://skyvs.oss-cn-hangzhou.aliyuncs.com/avatars/default/002.png",
+                    profile: {},
+                    token: token,
+                });
+            }, 1000);
+        }
+    }, [self?.avatar_url])
 
     return (
         <div className={styles.Entry}>
