@@ -137,14 +137,14 @@ export default observer(() => {
                     </>
                 )}
                 <Category>
-                    <Text id="app.main.categories.conversations" />
+                    {!isMicro && (<Text id="app.main.categories.conversations" />)}
                     <IconButton
                         onClick={() =>
                             modalController.push({
                                 type: "create_group",
                             })
                         }>
-                        <Plus size={numTonum(26)} />
+                        <Plus size={26} />
                     </IconButton>
                 </Category>
                 {channels.length === 0 && (

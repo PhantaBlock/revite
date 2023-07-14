@@ -1,7 +1,7 @@
 import { Text } from "preact-i18n";
 
 import { ModalForm } from '../../../components/revoltchat';
-import { pxTorem, remTorem } from "../../../lib/calculation";
+import { pxTorem, remTorem, px2orem } from "../../../lib/calculation";
 
 import { noop } from "../../../lib/js";
 
@@ -28,8 +28,8 @@ export default function AddFriend({ ...props }: ModalProps<"add_friend">) {
                     placeholder: "输入玩家ID/名称",
 
                     style: {
-                        marginTop: pxTorem(60),
-                        marginBottom: pxTorem(40),
+                        marginTop: px2orem(160),
+                        marginBottom: px2orem(48),
                         color: '#FFE1B3',
                         border: `${pxTorem(2)} solid`,
                         borderImage: `linear-gradient(180deg, #FFBE5A, rgba(255, 226, 119, 0.3)) 1 / 1 / 0 stretch`,
@@ -47,7 +47,12 @@ export default function AddFriend({ ...props }: ModalProps<"add_friend">) {
                 // }
             ]}
             submit={{
-                children: <Text id="app.special.modals.actions.ok" />
+                children: <Text id="app.special.modals.actions.ok" />,
+                skyTheme: true,
+                style: {
+                    width: px2orem(692),
+                    height: px2orem(138)
+                }
             }}
         />
     );

@@ -1,12 +1,9 @@
-const base = 16 / 12;
-export const pxTorem = (num: number) => {
-    return `${num / 12}rem`;
-};
+import {
+    remTorem,
+    pxTorem,
+    numTonum,
+    px2orem,
+    num2,
+} from "../../../lib/calculation";
 
-export const remTorem = (num: number) => {
-    return `${num * base}rem`;
-};
-
-export const numTonum = (num: number) => {
-    return (num / 16) * 12;
-};
+export { remTorem, pxTorem, numTonum, px2orem, num2 };

@@ -1,3 +1,4 @@
+import localforage from "localforage";
 import { qiankunWindow } from "vite-plugin-qiankun/dist/helper";
 
 export function isMicroMode() {
@@ -12,8 +13,16 @@ export function getSKY() {
     return qiankunWindow.__SKY__;
 }
 
-export function openMicroChannelPage(path?: string) {
-    const url = `${location.origin}/microChannel.html${location.search}#${path}`;
+export async function openMicroChannelPage(path?: string) {
+    const { origin, search } = window.location;
+    const searchBase = search ? `${search}&` : '?';
+
+    const auth = await localforage.getItem('auth');
+
+    const _auth = auth ? JSON.stringify(auth) : '';
+    const _search = `${searchBase}auth=${_auth}`;
+
+    const url = `${origin}/microChannel.html${_search}#${path}`;
     console.log('##openMicroChannelPage:', url);
     microOpenUrl(url);
 }
@@ -23,7 +32,10 @@ export function microOpenUrl(url: string) {
 
     if (!SKY) return;
 
-    SKY.openUrl({ url });
+    SKY.openUrl({
+        url,
+        path: 'microChannel.html',
+    });
 }
 
 export function delayTime(time = 0) {
