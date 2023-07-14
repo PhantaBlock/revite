@@ -49,7 +49,7 @@ export function MessageDivider({ unread, date }: Props) {
     return (
         <Base unread={unread}>
             {unread && <Unread>NEW</Unread>}
-            {date && <time>{date}</time>}
+            {date && <time>历史会话</time>}
         </Base>
     );
 }

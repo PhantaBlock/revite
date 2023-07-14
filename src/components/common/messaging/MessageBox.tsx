@@ -725,17 +725,18 @@ export default observer(({ channel }: Props) => {
                         debouncedStopTyping(true);
                     }}
                     placeholder={
-                        channel.name?.startsWith('#TEAMUP_ROOM_CHANNEL') ? '发送至房间' : (
-                            channel.channel_type === "DirectMessage"
-                                ? translate("app.main.channel.message_who", {
-                                    person: channel.recipient?.username,
-                                })
-                                : channel.channel_type === "SavedMessages"
-                                    ? translate("app.main.channel.message_saved")
-                                    : translate("app.main.channel.message_where", {
-                                        channel_name: channel.name ?? undefined,
-                                    })
-                        )
+                        '善语结善缘，恶语伤人心···'
+                        // channel.name?.startsWith('#TEAMUP_ROOM_CHANNEL') ? '发送至房间' : (
+                        //     channel.channel_type === "DirectMessage"
+                        //         ? translate("app.main.channel.message_who", {
+                        //             person: channel.recipient?.username,
+                        //         })
+                        //         : channel.channel_type === "SavedMessages"
+                        //             ? translate("app.main.channel.message_saved")
+                        //             : translate("app.main.channel.message_where", {
+                        //                 channel_name: channel.name ?? undefined,
+                        //             })
+                        // )
                     }
                     disabled={
                         uploadState.type === "uploading" ||

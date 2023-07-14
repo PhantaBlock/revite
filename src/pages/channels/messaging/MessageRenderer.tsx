@@ -81,7 +81,7 @@ export default observer(({ last_id, renderer, highlight }: Props) => {
     let previous: MessageI | undefined;
 
     if (renderer.atTop) {
-        render.push(<ConversationStart channel={renderer.channel} />);
+        // render.push(<ConversationStart channel={renderer.channel} />);
     } else {
         render.push(
             <RequiresOnline>

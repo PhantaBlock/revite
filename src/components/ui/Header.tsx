@@ -47,6 +47,7 @@ type PageHeaderProps = Omit<Props, "placement" | "borders"> & {
     noBurger?: boolean;
     children: Children;
     icon: Children;
+    height?: string;
 };
 
 export const PageHeader = observer(
@@ -62,18 +63,6 @@ export const PageHeader = observer(
                 topBorder={!visible}
                 bottomBorder={!pathname.includes("/server")}>
                 {!noBurger && <HamburgerAction />}
-                <IconContainer
-                    onClick={() =>
-                        layout.toggleSectionState(SIDEBAR_CHANNELS, true)
-                    }>
-                    {!isTouchscreenDevice && visible && (
-                        <ChevronLeft size={numTonum(18)} />
-                    )}
-                    {icon}
-                    {!isTouchscreenDevice && !visible && (
-                        <ChevronRight size={numTonum(18)} />
-                    )}
-                </IconContainer>
                 {children}
             </Header>
         );
