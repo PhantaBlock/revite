@@ -1,7 +1,7 @@
 import { lazy, Suspense, useEffect, useState } from "preact/compat";
 import { Masks, Preloader } from '../components/revoltchat';
 import { remTorem, pxTorem, numTonum } from '../lib/calculation';
-
+import "../components/revoltchat/styles/dark.css";
 import Context from "../context";
 import { useApi } from "../controllers/client/ClientController";
 

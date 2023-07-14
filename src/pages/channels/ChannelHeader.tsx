@@ -29,7 +29,7 @@ const Info = styled.div`
     white-space: nowrap;
 
     display: flex;
-    gap: ${pxTorem(22.5)};
+    gap: var(--avatar-username-gap);
     align-items: center;
 
     * {
@@ -89,7 +89,7 @@ export default observer(({ channel }: ChannelHeaderProps) => {
     }
 
     return (
-        <PageHeader height={pxTorem(132.5)} icon={icon} withTransparency>
+        <PageHeader icon={icon} withTransparency>
             <Info>
                 <div style={{
                     display: 'flex',

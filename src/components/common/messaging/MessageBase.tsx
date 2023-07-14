@@ -36,7 +36,7 @@ export default styled.div<BaseMessageProps>`
     padding: ${remTorem(0.125)};
     flex-direction: row;
     padding-inline-end: ${pxTorem(16)};
-
+    gap: var(--avatar-username-gap);
     ${() =>
         isTouchscreenDevice &&
         css`

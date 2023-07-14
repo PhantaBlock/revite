@@ -187,7 +187,6 @@ export const TextChannel = observer(({ channel, tempMode }: { channel: ChannelI,
             () => checkUnread(),
         );
     }, [channel]);
-
     return (
         <AgeGate
             type="channel"
@@ -205,7 +204,7 @@ export const TextChannel = observer(({ channel, tempMode }: { channel: ChannelI,
                     <ChannelContent>
                         <VoiceHeader id={channel._id} />
                         <NewMessages channel={channel} last_id={lastId} />
-                        <MessageArea channel={channel} last_id={lastId} />
+                        <MessageArea channel={channel} last_id={lastId} tempMode={tempMode!} />
                         <TypingIndicator channel={channel} />
                         <JumpToBottom channel={channel} />
                         <MessageBox channel={channel} />
