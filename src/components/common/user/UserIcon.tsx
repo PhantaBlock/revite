@@ -12,7 +12,7 @@ import { useClient } from "../../../controllers/client/ClientController";
 import IconBase, { IconBaseProps } from "../IconBase";
 
 import { Header, IconButton } from "../../../components/revoltchat";
-import { remTorem, pxTorem, numTonum } from '../../../lib/calculation';
+import { px2orem, pxTorem, num2 } from '../../../lib/calculation';
 
 type VoiceStatus = "muted" | "deaf";
 interface Props extends IconBaseProps<User> {
@@ -103,7 +103,7 @@ export default observer(
             url = target?.avatar_url || (
                 client.generateFileURL(
                     override ?? target?.avatar ?? attachment ?? undefined,
-                    { max_side: numTonum(256) },
+                    { max_side: num2(256) },
                     animate,
                 ) ?? (target ? target.defaultAvatarURL : fallback));
         }
@@ -117,32 +117,32 @@ export default observer(
                 hover={hover}
                 borderRadius="--border-radius-user-icon"
                 aria-hidden="true"
-                viewBox={`0 0 ${numTonum(32)} ${numTonum(32)}`}>
+                viewBox={`0 0 ${num2(32)} ${num2(32)}`}>
                 <foreignObject
                     x="0"
                     y="0"
-                    width={numTonum(32)}
-                    height={numTonum(32)}
+                    width={num2(32)}
+                    height={num2(32)}
                     className="icon"
                     mask={mask ?? (status ? "url(#user)" : undefined)}>
                     {<img src={url} draggable={false} loading="lazy" />}
                 </foreignObject>
                 {props.status && (
                     <circle
-                        cx={numTonum(27)}
-                        cy={numTonum(27)}
-                        r={numTonum(5)}
+                        cx={num2(26)}
+                        cy={num2(26)}
+                        r={num2(5)}
                         fill={useStatusColour(target)}
                     />
                 )}
                 {props.voice && (
-                    <foreignObject x={numTonum(22)} y={numTonum(22)} width={numTonum(10)} height={numTonum(10)}>
+                    <foreignObject x={num2(22)} y={num2(22)} width={num2(10)} height={num2(10)}>
                         <VoiceIndicator status={props.voice}>
                             {(props.voice === "deaf" && (
-                                <VolumeMute size={numTonum(6)} />
+                                <VolumeMute size={num2(6)} />
                             )) ||
                                 (props.voice === "muted" && (
-                                    <MicrophoneOff size={numTonum(6)} />
+                                    <MicrophoneOff size={num2(6)} />
                                 ))}
                         </VoiceIndicator>
                     </foreignObject>
