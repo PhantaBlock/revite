@@ -41,7 +41,6 @@ export const Friend = observer(({ user, onInviteFriend, pendingMode }: Props) =>
             if (user.online) {
                 actions.push(
                     <IconButton
-                        shape="circle"
                         className={classNames(styles.button, styles.inviteButton)}
                         onClick={(ev) => {
                             stopPropagation(ev);
@@ -206,7 +205,7 @@ export const Friend = observer(({ user, onInviteFriend, pendingMode }: Props) =>
                 }
             }}
             {...menu}>
-            <UserIcon target={user} size={numTonum(36)} status />
+            <UserIcon target={user} size={numTonum(36)} />
             <div className={styles.name}>
                 <span>{user.display_name ?? user.username}</span>
                 {subtext && <span className={styles.subtext}>{subtext}</span>}

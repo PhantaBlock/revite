@@ -12,7 +12,7 @@ import { useClient } from "../../../controllers/client/ClientController";
 import IconBase, { IconBaseProps } from "../IconBase";
 
 import { Header, IconButton } from "../../../components/revoltchat";
-import { px2orem, pxTorem, num2 } from '../../../lib/calculation';
+import { remTorem, pxTorem, num2 } from '../../../lib/calculation';
 
 type VoiceStatus = "muted" | "deaf";
 interface Props extends IconBaseProps<User> {
@@ -117,32 +117,32 @@ export default observer(
                 hover={hover}
                 borderRadius="--border-radius-user-icon"
                 aria-hidden="true"
-                viewBox={`0 0 ${num2(32)} ${num2(32)}`}>
+                viewBox="0 0 32 32">
                 <foreignObject
                     x="0"
                     y="0"
-                    width={num2(32)}
-                    height={num2(32)}
+                    width="32"
+                    height="32"
                     className="icon"
                     mask={mask ?? (status ? "url(#user)" : undefined)}>
                     {<img src={url} draggable={false} loading="lazy" />}
                 </foreignObject>
                 {props.status && (
                     <circle
-                        cx={num2(26)}
-                        cy={num2(26)}
-                        r={num2(5)}
+                        cx="27"
+                        cy="27"
+                        r="5"
                         fill={useStatusColour(target)}
                     />
                 )}
                 {props.voice && (
-                    <foreignObject x={num2(22)} y={num2(22)} width={num2(10)} height={num2(10)}>
+                    <foreignObject x="22" y="22" width="10" height="10">
                         <VoiceIndicator status={props.voice}>
                             {(props.voice === "deaf" && (
-                                <VolumeMute size={num2(6)} />
+                                <VolumeMute size={6} />
                             )) ||
                                 (props.voice === "muted" && (
-                                    <MicrophoneOff size={num2(6)} />
+                                    <MicrophoneOff size={6} />
                                 ))}
                         </VoiceIndicator>
                     </foreignObject>

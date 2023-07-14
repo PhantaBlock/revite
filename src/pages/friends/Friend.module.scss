@@ -109,8 +109,13 @@
         }
 
         .inviteButton {
-            font-size: 12px;
-            line-height: 18px;
+            font-size: 1.25rem;
+            line-height: 1.5rem;
+            width: 4.59375rem;
+            height: 2rem;
+            border-radius: 0.3125rem;
+            box-sizing: border-box;
+            border: 1px solid #d8d8d8;
             white-space: nowrap;
         }
     }
@@ -260,16 +265,18 @@
     padding: 0 6px;
 
     svg {
-        width: 36px !important;
-        height: 36px !important;
+        width: 3.75rem !important;
+        height: 3.75rem !important;
+        border: 1px solid #979797;
+        border-radius: 50%;
     }
 
     .name {
         font-size: 16px;
-        margin: 18px;
+        margin: 0.97rem 1rem 0.97rem 1.34rem;
 
         .subtext {
-            font-size: 12px;
+            font-size: 1.0625rem;
         }
     }
 }
