@@ -32,6 +32,7 @@ export interface Props {
     nonDismissable?: boolean;
 
     needPadding?: boolean;
+    noMaxSize?: boolean;
 
     actions?: Action[];
     onClose?: (force: boolean) => void;
@@ -43,6 +44,7 @@ export interface Props {
     title?: React.ReactNode;
     description?: React.ReactNode;
     children?: React.ReactNode;
+
 }
 
 const IconButtonWrap = styled.div`
@@ -92,9 +94,10 @@ const Base = styled.div<{ closing?: boolean }>`
 `;
 
 const Container = styled.div<
-    Pick<Props, "transparent" | "maxWidth" | "maxHeight"> & { actions: boolean }
+    Pick<Props, "transparent" | "maxWidth" | "maxHeight" | "noMaxSize"> & { actions: boolean }
 >`
     max-width: min(calc(100vw - ${pxTorem(50)}), ${(props) => props.maxWidth ?? '54rem'});
+
     max-height: min(
         calc(100vh -${pxTorem(20)}),
         ${(props) => props.maxHeight ?? '33rem'}
@@ -115,6 +118,13 @@ const Container = styled.div<
     animation-timing-function: cubic-bezier(0.3, 0.3, 0.18, 1.1);
     background-image: linear-gradient(180deg, rgba(27, 15, 14, 0.9) 1%, rgba(10, 9, 24, 0.5) 99%);
     backdrop-filter: blur(0.625rem);
+
+    ${(props) =>
+        props.noMaxSize &&
+        css`
+            max-height: none !important;
+            max-width: none !important;
+        `}
 
     ${(props) =>
         !props.maxWidth &&

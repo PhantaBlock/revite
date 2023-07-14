@@ -250,9 +250,23 @@
     }
 
     .pending {
+        padding: 9px 15px;
+        margin-bottom: 15px;
+
+        .avatars {
+            margin-right: 10.5px;
+        }
+
         svg {
-            width: 36px !important;
-            height: 36px !important;
+            width: 33.75px !important;
+            height: 33.75px !important;
+        }
+
+        .subTitle {
+            font-size: 13.5px;
+            line-height: 17.5px;
+            // font-weight: normal;
+            color: #B9B8B8;
         }
     }
 }
@@ -286,6 +300,10 @@
 }
 
 .paddingDetails {
+    font-size: 15px;
+    line-height: 21px;
+    color: #B9B8B8;
+
     span {
         margin-left: 4px;
     }
@@ -336,4 +354,18 @@
     line-height: 24px;
     color: #FBD279;
     margin-left: 14px;
+}
+
+.incomingNum {
+    width: 21px;
+    height: 21px;
+    background: #FF4714;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    line-height: 19px;
+
+    color: #FFFFFF;
 }
