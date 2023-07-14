@@ -117,6 +117,13 @@
             box-sizing: border-box;
             border: 1px solid #d8d8d8;
             white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+
+            &.show {
+                opacity: 1;
+                pointer-events: all;
+            }
         }
     }
 }
@@ -281,8 +288,8 @@
     svg {
         width: 3.75rem !important;
         height: 3.75rem !important;
-        border: 1px solid #979797;
-        border-radius: 50%;
+        // border: 1px solid #979797;
+        // border-radius: 50%;
     }
 
     .name {
@@ -368,4 +375,25 @@
     line-height: 19px;
 
     color: #FFFFFF;
+}
+
+.message {
+    width: 1.5rem;
+    height: 1.3125rem;
+    margin-right: 1rem;
+    transition: 0.2s all;
+
+    &:hover {
+        filter: invert(100%);
+        cursor: pointer;
+    }
+}
+
+.placeholder {
+    width: 14rem;
+    margin: 3.5rem auto;
+
+    img {
+        width: 100%;
+    }
 }

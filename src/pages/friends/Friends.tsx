@@ -115,7 +115,8 @@ export default observer(({ onInviteFriend }: {
             {isMicro ? (
                 <div>
                     <div
-                        className={styles.add_firend}
+                        className={classNames(styles.add_firend, {
+                        })}
                         onClick={() =>
                             modalController.push({
                                 type: "add_friend",
@@ -237,6 +238,13 @@ export default observer(({ onInviteFriend }: {
                             </CollapsibleSection>
                         );
                     })}
+
+                    {
+                        lists?.length <= 0 &&
+                        <div className={styles.placeholder}>
+                            <img src="https://skyvs.oss-cn-hangzhou.aliyuncs.com/resources/images/zhanwei.png" alt="" />
+                        </div>
+                    }
                 </div>
             </div>
 
