@@ -57,7 +57,7 @@ export const Button = styled.button<Props>`
             font-size: ${remTorem(0.8125)};
     `}
     ${(props) =>
-        props.skyTheme && props.confirmation && css`
+        props.confirmation && css`
         font-weight: 700;
         border-radius: 0 !important;
         flex-direction: column;
@@ -65,6 +65,8 @@ export const Button = styled.button<Props>`
         background-image: linear-gradient(0deg, #FED06D, #FED77D) !important;
         position: relative;
         color: #1C1616 !important;
+        width: ${px2orem(692)};
+        height: ${px2orem(138)};
         padding: 0;
         &::before {
             content: '';
@@ -79,7 +81,7 @@ export const Button = styled.button<Props>`
     }
 
     ${(props) => {
-        if (props.skyTheme && props.confirmation)
+        if (props.confirmation)
             return
         switch (props.palette) {
             case "secondary":
