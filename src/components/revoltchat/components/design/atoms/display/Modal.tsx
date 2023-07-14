@@ -32,6 +32,7 @@ export interface Props {
     nonDismissable?: boolean;
 
     needPadding?: boolean;
+    noMaxSize?: boolean;
 
     actions?: Action[];
     onClose?: (force: boolean) => void;
@@ -43,12 +44,14 @@ export interface Props {
     title?: React.ReactNode;
     description?: React.ReactNode;
     children?: React.ReactNode;
+
 }
 
 const IconButtonWrap = styled.div`
     position: absolute;
     top: 1.5rem;
     right: 1.5rem;
+    z-index: 1;
     svg {
         color: #FFBE5A;
     }
@@ -91,15 +94,16 @@ const Base = styled.div<{ closing?: boolean }>`
 `;
 
 const Container = styled.div<
-    Pick<Props, "transparent" | "maxWidth" | "maxHeight"> & { actions: boolean }
+    Pick<Props, "transparent" | "maxWidth" | "maxHeight" | "noMaxSize"> & { actions: boolean }
 >`
     max-width: min(calc(100vw - ${pxTorem(50)}), ${(props) => props.maxWidth ?? '54rem'});
+
     max-height: min(
         calc(100vh -${pxTorem(20)}),
         ${(props) => props.maxHeight ?? '33rem'}
     );
-    width: ${(props) => props.width ?? `${px2orem(1766)}`};
-    height: ${(props) => props.height ?? `${px2orem(1058)}`};
+    width: ${(props) => props.width};
+    height: ${(props) => props.height};
 
     border: ${pxTorem(2)} solid;
     border-image: linear-gradient(180deg, #FFBE5A, rgba(255, 226, 119, 0.3));
@@ -114,6 +118,13 @@ const Container = styled.div<
     animation-timing-function: cubic-bezier(0.3, 0.3, 0.18, 1.1);
     background-image: linear-gradient(180deg, rgba(27, 15, 14, 0.9) 1%, rgba(10, 9, 24, 0.5) 99%);
     backdrop-filter: blur(0.625rem);
+
+    ${(props) =>
+        props.noMaxSize &&
+        css`
+            max-height: none !important;
+            max-width: none !important;
+        `}
 
     ${(props) =>
         !props.maxWidth &&
@@ -246,6 +257,7 @@ export const Modal: (props: Props) => JSX.Element = ({
                                 key={index}
                                 skyTheme={x.skyTheme}
                                 confirmation={x.confirmation}
+                                style={x.style}
                                 {...x}
                                 onClick={async () => {
                                     if (await x.onClick()) {

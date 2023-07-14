@@ -66,8 +66,6 @@ export const Button = styled.button<Props>`
         position: relative;
         color: #1C1616 !important;
         padding: 0;
-        width: ${px2orem(692)};
-        width: ${px2orem(138)};
         &::before {
             content: '';
             width: 100%;

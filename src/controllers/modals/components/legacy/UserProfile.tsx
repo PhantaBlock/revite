@@ -25,7 +25,7 @@ import {
 } from '../../../../components/revoltchat';
 
 import { noop } from "../../../../lib/js";
-import { remTorem, numTonum, pxTorem } from '../../../../components/revoltchat/lib/calculation';
+import { remTorem, numTonum, pxTorem, px2orem } from '../../../../components/revoltchat/lib/calculation';
 
 import ChannelIcon from "../../../../components/common/ChannelIcon";
 import ServerIcon from "../../../../components/common/ServerIcon";
@@ -47,6 +47,10 @@ export const UserProfile = observer(
         placeholderProfile,
         ...props
     }: ModalProps<"user_profile">) => {
+
+
+        console.log('999', props)
+
         const isMicro = isMicroMode();
         const isSingle = inSingleWebView();
 
@@ -136,14 +140,18 @@ export const UserProfile = observer(
                 profile.background as any,
                 { width: numTonum(1000) },
                 true,
-            );
+            ) || 'https://skyvs.oss-cn-hangzhou.aliyuncs.com/resources/images/IM-Bg.jpeg';
 
         const badges = user.badges ?? 0;
         const flags = user.flags ?? 0;
 
         const children = (
             <div style={{
-                display: 'block'
+                display: 'flex',
+                flexDirection: 'column',
+                width: pxTorem(950),
+                height: pxTorem(700),
+
             }}>
                 <div
                     className={styles.header}
@@ -151,15 +159,24 @@ export const UserProfile = observer(
                     style={{
                         backgroundImage:
                             backgroundURL &&
-                            `linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7) ), url('${backgroundURL}')`,
+                            `linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ), url('${backgroundURL}')`,
                         paddingBottom: pxTorem(1),
-                        display: 'block'
+                        display: 'block',
+                        paddingTop: pxTorem(64),
+                        paddingLeft: pxTorem(57)
                     }}>
-                    <div className={styles.profile}>
+                    <div className={styles.profile} style={{
+                        marginBottom: pxTorem(20)
+                    }}>
                         <UserIcon
                             size={numTonum(80)}
+                            style={{
+                                width: pxTorem(135),
+                                height: pxTorem(135),
+                                // marginTop: pxTorem(64),
+                                // marginLeft: pxTorem(57)
+                            }}
                             target={user}
-                            status
                             animate
                             hover={typeof user.avatar !== "undefined"}
                             onClick={() =>
@@ -170,17 +187,32 @@ export const UserProfile = observer(
                                 })
                             }
                         />
-                        <div className={styles.details}>
+                        <div className={styles.details} style={{
+                            marginLeft: pxTorem(35),
+                            height: pxTorem(135)
+                        }}>
                             <div className={styles.usernameDetail}>
                                 <span
                                     className={styles.displayname}
+                                    style={{
+                                        fontSize: pxTorem(30)
+                                    }}
                                     onClick={() =>
                                         modalController.writeText(user.username)
                                     }>
                                     {user.display_name ?? user.username}
                                 </span>
+                                <span style={{
+                                    color: '#DCDCDB',
+                                    opacity: '.4',
+                                    fontSize: pxTorem(20),
+                                    margin: `${pxTorem(10)} 0`
+                                }}>
+                                    ID ****
+                                </span>
                                 <span
                                     className={styles.username}
+                                    style={{ fontSize: pxTorem(24), opacity: '.7' }}
                                     onClick={() =>
                                         modalController.writeText(
                                             user.username +
@@ -193,7 +225,8 @@ export const UserProfile = observer(
                                             content={
                                                 <Text id="app.special.copy_username" />
                                             }>
-                                            {user.username}#{user.discriminator}
+                                            {/* {user.username}#{user.discriminator} */}
+                                            “暂无简介”
                                         </Tooltip>
                                     </Localizer>
                                 </span>
@@ -214,7 +247,7 @@ export const UserProfile = observer(
                                 </Button>
                             </Link>
                         )}
-                        {(user.relationship === "Friend" || user.bot) && (
+                        {/* {(user.relationship === "Friend" || user.bot) && (
                             <Localizer>
                                 <Tooltip
                                     content={
@@ -238,7 +271,7 @@ export const UserProfile = observer(
                                     </IconButton>
                                 </Tooltip>
                             </Localizer>
-                        )}
+                        )} */}
                         {user.relationship === "User" && !isPlaceholder && !isMicro && (
                             <IconButton
                                 onClick={() => {
@@ -280,7 +313,7 @@ export const UserProfile = observer(
                         </div>
                     )}
                     <div className={styles.tabs}>
-                        <div
+                        <div style={{ fontSize: pxTorem(22) }}
                             data-active={tab === "profile"}
                             onClick={() => setTab("profile")}>
                             <Text id="app.special.popovers.user_profile.profile" />
@@ -288,13 +321,13 @@ export const UserProfile = observer(
                         {user.relationship !== "User" && (
                             <>
                                 {!user.bot && (
-                                    <div
+                                    <div style={{ fontSize: pxTorem(22) }}
                                         data-active={tab === "friends"}
                                         onClick={() => setTab("friends")}>
                                         <Text id="app.special.popovers.user_profile.mutual_friends" />
                                     </div>
                                 )}
-                                <div
+                                <div style={{ fontSize: pxTorem(22) }}
                                     data-active={tab === "groups"}
                                     onClick={() => setTab("groups")}>
                                     <Text id="app.special.popovers.user_profile.mutual_groups" />
@@ -484,7 +517,7 @@ export const UserProfile = observer(
                             </div>
                         ))}
                 </div>
-            </div>
+            </div >
         );
 
         if (isPlaceholder) return <div>{children}</div>;
@@ -494,7 +527,8 @@ export const UserProfile = observer(
                 {...props}
                 nonDismissable={isPlaceholder}
                 transparent
-                maxWidth={pxTorem(560)}>
+                noMaxSize={true}
+                maxWidth={pxTorem(950)}>
                 {children}
             </Modal>
         );
