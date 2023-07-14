@@ -69,4 +69,10 @@ export const Header = styled.div<Props>`
         css`
             border-end-start-radius: ${pxTorem(8)};
         `}
+
+    ${(props) =>
+        props.height &&
+        css`
+            height: ${props.height};
+        `}
 `;

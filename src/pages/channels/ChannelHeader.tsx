@@ -29,7 +29,7 @@ const Info = styled.div`
     white-space: nowrap;
 
     display: flex;
-    gap: ${pxTorem(8)};
+    gap: ${pxTorem(22.5)};
     align-items: center;
 
     * {
@@ -42,10 +42,16 @@ const Info = styled.div`
         padding-left: ${pxTorem(1)};
         background-color: var(--tertiary-background);
     }
-
-    .status {
-        width:  ${pxTorem(10)};
-        height:  ${pxTorem(10)};
+    .name {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-size: ${pxTorem(22)};
+    }
+    .header_status {
+        margin-left: ${pxTorem(6)};
+        width:  ${pxTorem(8.5)};
+        height:  ${pxTorem(8.5)};
         display: inline-block;
         margin-inline-end:  ${pxTorem(6)};
         border-radius: var(--border-radius-half);
@@ -54,7 +60,7 @@ const Info = styled.div`
     .desc {
         cursor: pointer;
         margin-top: ${pxTorem(2)};
-        font-size: 0.8em;
+        font-size: ${pxTorem(17)};
         font-weight: 400;
         color: var(--secondary-foreground);
 
@@ -83,35 +89,35 @@ export default observer(({ channel }: ChannelHeaderProps) => {
     }
 
     return (
-        <PageHeader icon={icon} withTransparency>
+        <PageHeader height={pxTorem(87.5)} icon={icon} withTransparency>
             <Info>
                 <div style={{
                     display: 'flex',
                     flexShrink: 0,
-                    width: '3rem',
-                    height: '3rem',
+                    width: '5rem',
+                    height: '5rem',
                 }}>
                     <ChannelIcon target={channel} size={true ? 24 : 60} />
                 </div>
-                <span className="name">
+                <div className="name">
                     <ChannelName channel={channel} />
-                </span>
-                {!isTouchscreenDevice &&
-                    channel.channel_type === "DirectMessage" && (
-                        <>
-                            {/* <div className="divider" /> */}
-                            <span className="desc">
-                                <div
-                                    className="status"
-                                    style={{
-                                        backgroundColor:
-                                            useStatusColour(recipient),
-                                    }}
-                                />
-                                <UserStatus user={recipient} />
-                            </span>
-                        </>
-                    )}
+                    {!isTouchscreenDevice &&
+                        channel.channel_type === "DirectMessage" && (
+                            <>
+                                {/* <div className="divider" /> */}
+                                <span className="desc">
+                                    <UserStatus user={recipient} />
+                                    <div
+                                        className="header_status"
+                                        style={{
+                                            backgroundColor:
+                                                useStatusColour(recipient),
+                                        }}
+                                    />
+                                </span>
+                            </>
+                        )}
+                </div>
                 {!isTouchscreenDevice &&
                     (channel.channel_type === "Group" ||
                         channel.channel_type === "TextChannel") &&

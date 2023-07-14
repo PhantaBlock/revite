@@ -47,6 +47,7 @@ type PageHeaderProps = Omit<Props, "placement" | "borders"> & {
     noBurger?: boolean;
     children: Children;
     icon: Children;
+    height?: string;
 };
 
 export const PageHeader = observer(
