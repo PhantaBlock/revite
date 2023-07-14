@@ -38,20 +38,19 @@ export const Friend = observer(({ user, onInviteFriend, pendingMode }: Props) =>
         subtext = <UserStatus user={user} />;
 
         if (isMicro) {
-            if (user.online) {
-                actions.push(
-                    <IconButton
-                        shape="circle"
-                        className={classNames(styles.button, styles.inviteButton)}
-                        onClick={(ev) => {
-                            stopPropagation(ev);
-                            onInviteFriend && onInviteFriend();
-                        }}
-                    >
-                        邀请
-                    </IconButton>
-                );
-            }
+            actions.push(
+                <IconButton
+                    className={classNames(styles.button, styles.inviteButton, {
+                        [styles.show]: user.online
+                    })}
+                    onClick={(ev) => {
+                        stopPropagation(ev);
+                        onInviteFriend && onInviteFriend();
+                    }}
+                >
+                    邀请
+                </IconButton>
+            );
         } else {
             actions.push(
                 <>
@@ -206,11 +205,12 @@ export const Friend = observer(({ user, onInviteFriend, pendingMode }: Props) =>
                 }
             }}
             {...menu}>
-            <UserIcon target={user} size={numTonum(36)} status />
+            <UserIcon target={user} size={numTonum(36)} />
             <div className={styles.name}>
                 <span>{user.display_name ?? user.username}</span>
                 {subtext && <span className={styles.subtext}>{subtext}</span>}
             </div>
+            {isMicro && <img src="https://skyvs.oss-cn-hangzhou.aliyuncs.com/resources/images/message.png" alt="" className={styles.message} />}
             <div className={styles.actions}>{actions}</div>
         </div>
     );

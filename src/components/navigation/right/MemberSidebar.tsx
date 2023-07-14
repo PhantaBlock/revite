@@ -12,6 +12,7 @@ import {
 } from "../../../controllers/client/ClientController";
 import { GenericSidebarBase } from "../SidebarBase";
 import MemberList, { MemberListGroup } from "./MemberList";
+import { pxTorem } from "../../../lib/calculation";
 
 export default function MemberSidebar() {
     const channel = useClient().channels.get(
@@ -168,7 +169,7 @@ export const GroupMemberSidebar = observer(
         const entries = useEntries(channel, () => channel.recipient_ids!);
 
         return (
-            <GenericSidebarBase data-scroll-offset="with-padding">
+            <GenericSidebarBase data-scroll-offset="with-padding" paddingTop={pxTorem(132.5)}>
                 {/*<Container>
                     {isTouchscreenDevice && <div>Group settings go here</div>}
                 </Container>*/}

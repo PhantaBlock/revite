@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { numTonum, pxTorem, remTorem } from '../../../../lib/calculation';
+import { numTonum, pxTorem, remTorem, px2orem } from '../../../../lib/calculation';
 
 export interface Props {
     readonly compact?: boolean | "icon";
@@ -13,6 +13,7 @@ export interface Props {
     | "warning"
     | "error";
     skyTheme?: boolean;
+    confirmation?: boolean;
 }
 
 export const Button = styled.button<Props>`
@@ -39,26 +40,49 @@ export const Button = styled.button<Props>`
     ${(props) =>
         props.compact === "icon"
             ? css`
-                  height: ${pxTorem(38)};
-                  width: ${pxTorem(38)};
-              `
+                height: ${pxTorem(38)};
+                width: ${pxTorem(38)};
+            `
             : props.compact
                 ? css`
-                  min-width: ${pxTorem(96)};
-                  font-size: ${remTorem(0.8125)};
-                  height: ${pxTorem(32)} !important;
-                  padding:  ${pxTorem(2)} ${pxTorem(12)} !important;
-              `
+            min-width: ${pxTorem(96)};
+            font-size: ${remTorem(0.8125)};
+            height: ${pxTorem(32)} !important;
+            padding:  ${pxTorem(2)} ${pxTorem(12)} !important;
+            `
                 : css`
-                  height: ${pxTorem(38)};
-                  min-width: ${pxTorem(96)};
-                  padding: ${pxTorem(2)} ${pxTorem(16)};
-                  font-size: ${remTorem(0.8125)};
-              `}
+            height: ${pxTorem(38)};
+            min-width: ${pxTorem(96)};
+            padding: ${pxTorem(2)} ${pxTorem(16)};
+            font-size: ${remTorem(0.8125)};
+    `}
+    ${(props) =>
+        props.confirmation && css`
+        font-weight: 700;
+        border-radius: 0 !important;
+        flex-direction: column;
+        background: #FED06D !important;
+        background-image: linear-gradient(0deg, #FED06D, #FED77D) !important;
+        position: relative;
+        color: #1C1616 !important;
+        width: ${px2orem(692)};
+        height: ${px2orem(138)};
+        padding: 0;
+        &::before {
+            content: '';
+            width: 100%;
+            height: 50%;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            background-image: linear-gradient(180deg, #FFB65A, rgba(239, 176, 97, 0));
+        }
+        `
+    }
 
     ${(props) => {
-        // if (props.skyTheme)
-        //     return
+        if (props.confirmation)
+            return
         switch (props.palette) {
             case "secondary":
                 return css`
@@ -123,22 +147,7 @@ export const Button = styled.button<Props>`
             default:
             case "primary":
                 return css`
-                    font-weight: 700;
-                    border-radius: 0 !important;
-                    flex-direction: column;
-                    background: #FED06D !important;
-                    background-image: linear-gradient(0deg, #FED06D, #FED77D) !important;
-                    position: relative;
-                    color: #1C1616 !important;
-                    &::before {
-                        content: '';
-                        width: 100%;
-                        height: 50%;
-                        position: absolute;
-                        left: 0;
-                        bottom: 0;
-                        background-image: linear-gradient(180deg, #FFB65A, rgba(239, 176, 97, 0));
-                    }
+                    
                     // color: var(--foreground);
                     // background: var(--primary-background);
 

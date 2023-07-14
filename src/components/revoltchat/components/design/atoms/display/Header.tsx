@@ -16,7 +16,7 @@ export const Header = styled.div<Props>`
     flex: 0 auto;
     display: flex;
     flex-shrink: 0;
-    padding: 0 ${pxTorem(16)};
+    padding: ${pxTorem(45)} ${pxTorem(16)} 0;
     align-items: center;
 
     font-weight: 600;

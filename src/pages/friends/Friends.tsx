@@ -115,7 +115,8 @@ export default observer(({ onInviteFriend }: {
             {isMicro ? (
                 <div>
                     <div
-                        className={styles.add_firend}
+                        className={classNames(styles.add_firend, {
+                        })}
                         onClick={() =>
                             modalController.push({
                                 type: "add_friend",
@@ -179,10 +180,10 @@ export default observer(({ onInviteFriend }: {
                             </div>
                             <div className={styles.details}>
                                 <div className={classNames({ [styles.paddingDetails]: isMicro })}>
-                                    <Text id="app.special.friends.pending" />{" "}
-                                    <span>{incoming.length}</span>
+                                    <Text id="app.special.friends.pending" />
+                                    {!isMicro && <span>{incoming.length}</span>}
                                 </div>
-                                <span>
+                                <span className={styles.subTitle}>
                                     {incoming.length > 3 ? (
                                         <TextReact
                                             id="app.special.friends.from.several"
@@ -207,7 +208,11 @@ export default observer(({ onInviteFriend }: {
                                     )}
                                 </span>
                             </div>
-                            <ChevronRight size={numTonum(28)} />
+                            {isMicro ? (
+                                <div className={styles.incomingNum}>{incoming.length}</div>
+                            ) : (
+                                <ChevronRight size={numTonum(28)} />
+                            )}
                         </div>
                     )}
 
@@ -233,6 +238,13 @@ export default observer(({ onInviteFriend }: {
                             </CollapsibleSection>
                         );
                     })}
+
+                    {
+                        lists?.length <= 0 &&
+                        <div className={styles.placeholder}>
+                            <img src="https://skyvs.oss-cn-hangzhou.aliyuncs.com/resources/images/zhanwei.png" alt="" />
+                        </div>
+                    }
                 </div>
             </div>
 
