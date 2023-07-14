@@ -29,6 +29,7 @@ export const GenericSidebarBase = styled.div<{
     flex-direction: column;
     /*border-end-start-radius: 8px;*/
     background: var(--secondary-background);
+    padding-top: ${pxTorem(45)};
 
     /*> :nth-child(1) {
         //border-end-start-radius: 8px;
