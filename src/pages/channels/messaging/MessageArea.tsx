@@ -55,12 +55,13 @@ const Area = styled.div.attrs({ "data-scroll-offset": "with-padding" })`
 interface Props {
     last_id?: string;
     channel: Channel;
+    tempMode: boolean;
 }
 
 export const MessageAreaWidthContext = createContext(0);
 export const MESSAGE_AREA_PADDING = 82;
 
-export const MessageArea = observer(({ last_id, channel }: Props) => {
+export const MessageArea = observer(({ last_id, channel, tempMode }: Props) => {
     const history = useHistory();
     const session = useSession()!;
 
@@ -328,6 +329,7 @@ export const MessageArea = observer(({ last_id, channel }: Props) => {
                             last_id={last_id}
                             renderer={renderer}
                             highlight={highlight}
+                            tempMode={tempMode}
                         />
                     )}
                     {renderer.state === "EMPTY" && (
