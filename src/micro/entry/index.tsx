@@ -8,6 +8,7 @@ import UserIcon from "../../components/common/user/UserIcon";
 import UserStatus from "../../components/common/user/UserStatus";
 import Cls from 'classnames';
 import { modalController } from "../../controllers/modals/ModalController";
+import { remTorem, pxTorem, numTonum, px2orem } from '../../lib/calculation';
 
 export default observer(({ onInviteFriend, token, onUpdateProfile }: {
     onInviteFriend: (userId: string) => void;
@@ -28,7 +29,7 @@ export default observer(({ onInviteFriend, token, onUpdateProfile }: {
             }}>
                 {!!self && (
                     <>
-                        <UserIcon target={self} size={40} status />
+                        <UserIcon target={self} size={px2orem(140)} status />
                         <div className={styles.name}>
                             <span>{self.username}</span>
                             <span className={styles.subtext}>
