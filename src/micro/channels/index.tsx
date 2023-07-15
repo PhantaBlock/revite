@@ -83,7 +83,7 @@ export default observer(() => {
                     </Routes>
                 </OverlappingPanels>
             </HashRouter>
-            <MenuAdapter channels />
+            <MenuAdapter />
         </HomeContent>
     );
 });
