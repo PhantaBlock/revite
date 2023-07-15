@@ -4,7 +4,7 @@ import { Column, Modal } from '../../../components/revoltchat';
 
 import { Friend } from "../../../pages/friends/Friend";
 import { ModalProps } from "../types";
-import { pxTorem, remTorem, numTonum } from '../../../lib/calculation';
+import { px2orem, remTorem, numTonum } from '../../../lib/calculation';
 
 export default function PendingFriendRequests({
     users,
@@ -12,14 +12,13 @@ export default function PendingFriendRequests({
 }: ModalProps<"pending_friend_requests">) {
     return (
         <Modal {...props}
-            maxWidth={pxTorem(977)}
-            maxHeight={pxTorem(878)}
+            maxHeight={px2orem(878)}
             title={<Text id="app.special.friends.pending" />}>
             <Column>
                 {users.map((x) => (
                     <Friend user={x!} key={x!._id} pendingMode />
                 ))}
             </Column>
-        </Modal>
+        </Modal >
     );
 }

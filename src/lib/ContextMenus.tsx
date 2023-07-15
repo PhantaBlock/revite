@@ -119,7 +119,8 @@ type Action =
 
 // ! FIXME: I dare someone to re-write this
 // Tip: This should just be split into separate context menus per logical area.
-export default function ContextMenus() {
+export default function ContextMenus(props: any) {
+    const { channels } = props;
     const isMicro = isMicroMode();
     const session = useSession()!;
     const client = session.client!;
@@ -589,7 +590,7 @@ export default function ContextMenus() {
                         }
                     }
 
-                    if (contextualChannel) {
+                    if (contextualChannel && !isMicro) {
                         if (user && user._id !== userId) {
                             generateAction({
                                 action: "mention",
@@ -643,7 +644,7 @@ export default function ContextMenus() {
                                 }
                         }
 
-                        if (userPermissions & UserPermission.ViewProfile) {
+                        if (userPermissions & UserPermission.ViewProfile && !channels) {
                             generateAction({
                                 action: "view_profile",
                                 user,

@@ -21,7 +21,7 @@ import { useClient } from "../../controllers/client/ClientController";
 import { modalController } from "../../controllers/modals/ModalController";
 import { Friend } from "./Friend";
 
-import { isMicroMode } from "../../lib/global";
+import { isMicroMode, openMicroChannelPage } from "../../lib/global";
 
 export default observer(({ onInviteFriend }: {
     onInviteFriend: (userId: string) => void;
@@ -113,7 +113,12 @@ export default observer(({ onInviteFriend }: {
     return (
         <>
             {isMicro ? (
-                <div>
+                <div className={styles.add_firendWrap}>
+                    <div onClick={() => {
+                        openMicroChannelPage();
+                    }}>
+                        <img src="https://skyvs.oss-cn-hangzhou.aliyuncs.com/resources/images/channel.png" alt="" className={styles.goGroup} />
+                    </div>
                     <div
                         className={classNames(styles.add_firend, {
                         })}
