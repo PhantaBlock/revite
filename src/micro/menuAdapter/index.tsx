@@ -2,11 +2,12 @@ import { observer } from "mobx-react-lite";
 import { useSession } from "../../controllers/client/ClientController";
 import ContextMenus from "../../lib/ContextMenus";
 
-export default observer(() => {
+export default observer((props: any) => {
     const session = useSession();
+    const { channels } = props;
     const user = session?.client?.user;
 
     if (!user) return null;
 
-    return <ContextMenus />;
+    return <ContextMenus channels />;
 });

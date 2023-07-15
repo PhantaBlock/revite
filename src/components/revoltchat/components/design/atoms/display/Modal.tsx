@@ -102,7 +102,7 @@ const Container = styled.div<
         calc(100vh -${pxTorem(20)}),
         ${(props) => props.maxHeight ?? '33rem'}
     );
-    width: ${(props) => props.width};
+    width: ${(props) => props.width} !important;
     height: ${(props) => props.height};
 
     border: ${pxTorem(2)} solid;
@@ -175,7 +175,7 @@ const Content = styled.div<Pick<Props, "transparent" | "padding" | "needPadding"
         `}
 `;
 
-const Actions = styled.div`
+const Actions = styled.div<{ noBorder?: boolean }>`
     flex-shrink: 0;
     display: flex;
     padding: ${px2orem(65)} ${px2orem(78)};
@@ -185,6 +185,12 @@ const Actions = styled.div`
     border-radius: 0 0 var(--border-radius) var(--border-radius);
 
     border-top: ${pxTorem(1)} solid #FEBD5A;
+
+    ${(props) =>
+        props.noBorder &&
+        css`
+            border-top: none;
+        `}
 `;
 
 export const Modal: (props: Props) => JSX.Element = ({
@@ -250,7 +256,7 @@ export const Modal: (props: Props) => JSX.Element = ({
                 </IconButtonWrap>
                 <Content {...props} needPadding={title !== undefined || description !== undefined}>{children}</Content>
                 {actions && actions.length > 0 && (
-                    <Actions>
+                    <Actions noBorder={props.noBorder}>
                         {actions.map((x, index) => (
                             // @ts-expect-error cope
                             <Button
