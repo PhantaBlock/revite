@@ -20,6 +20,7 @@ import { Username } from "../../common/user/UserShort";
 import UserStatus from "../../common/user/UserStatus";
 import { IconButton } from "../../../components/revoltchat";
 import { remTorem, pxTorem, numTonum } from '../../../lib/calculation';
+import { isMicroMode } from "../../../lib/global";
 
 type CommonProps = Omit<
     JSX.HTMLAttributes<HTMLDivElement>,
@@ -50,6 +51,16 @@ export const UserButton = observer((props: UserProps) => {
         channel,
         ...divProps
     } = props;
+    const isMicro = isMicroMode();
+
+    const menu = isMicro ? {} : {
+        ...useTriggerEvents("Menu", {
+            user: user._id,
+            channel: channel?._id,
+            unread: alert,
+            contextualChannel: context?._id,
+        })
+    }
 
     return (
         <div
@@ -62,12 +73,8 @@ export const UserButton = observer((props: UserProps) => {
                 typeof channel !== "undefined" ||
                 (user.online && user.status?.presence !== "Invisible")
             }
-            {...useTriggerEvents("Menu", {
-                user: user._id,
-                channel: channel?._id,
-                unread: alert,
-                contextualChannel: context?._id,
-            })}>
+            {...menu}
+        >
             <UserIcon
                 className={styles.avatar}
                 target={user}
