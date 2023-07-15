@@ -4,10 +4,9 @@ import ContextMenus from "../../lib/ContextMenus";
 
 export default observer((props: any) => {
     const session = useSession();
-    const { channels } = props;
     const user = session?.client?.user;
 
     if (!user) return null;
 
-    return <ContextMenus channels />;
+    return <ContextMenus />;
 });
