@@ -8,10 +8,7 @@ import styles from "./Panes.module.scss";
 import { Text } from "preact-i18n";
 import { useCallback, useContext, useEffect, useState } from "preact/hooks";
 
-import {
-    Button, LineDivider, Tip, CategoryButton
-} from '../../../components/revoltchat';
-import { remTorem, pxTorem, numTonum } from '../../../lib/calculation';
+import { Button, LineDivider, Tip, CategoryButton } from "../../../components/revoltchat";
 
 import TextAreaAutoSize from "../../../lib/TextAreaAutoSize";
 import { useTranslation } from "../../../lib/i18n";
@@ -90,7 +87,7 @@ export const Profile = observer(() => {
                 onClick={() =>
                     modalController.push({ type: "modify_displayname" })
                 }
-                icon={<UserCircle size={numTonum(24)} />}
+                icon={<UserCircle size={24} />}
                 action="chevron"
                 description={"Change your display name to whatever you like"}>
                 Display Name
@@ -112,8 +109,8 @@ export const Profile = observer(() => {
                         <Text id="app.settings.pages.profile.profile_picture" />
                     </h3>
                     <FileUploader
-                        width={numTonum(92)}
-                        height={numTonum(92)}
+                        width={92}
+                        height={92}
                         style="icon"
                         fileType="avatars"
                         behaviour="upload"
@@ -121,11 +118,11 @@ export const Profile = observer(() => {
                         onUpload={(avatar) => client.users.edit({ avatar })}
                         remove={() => client.users.edit({ remove: ["Avatar"] })}
                         defaultPreview={client.user!.generateAvatarURL(
-                            { max_side: numTonum(256) },
+                            { max_side: 256 },
                             true,
                         )}
                         previewURL={client.user!.generateAvatarURL(
-                            { max_side: numTonum(256) },
+                            { max_side: 256 },
                             true,
                         )}
                     />
@@ -135,7 +132,7 @@ export const Profile = observer(() => {
                         <Text id="app.settings.pages.profile.custom_background" />
                     </h3>
                     <FileUploader
-                        height={numTonum(92)}
+                        height={92}
                         style="banner"
                         behaviour="upload"
                         fileType="backgrounds"
@@ -156,7 +153,7 @@ export const Profile = observer(() => {
                             profile?.background
                                 ? client.generateFileURL(
                                     profile.background,
-                                    { width: numTonum(1000) },
+                                    { width: 1000 },
                                     true,
                                 )
                                 : undefined
@@ -170,7 +167,7 @@ export const Profile = observer(() => {
             <AutoComplete detached {...autoCompleteProps} />
             <TextAreaAutoSize
                 maxRows={10}
-                minHeight={numTonum(200)}
+                minHeight={200}
                 maxLength={2000}
                 value={profile?.content ?? ""}
                 disabled={typeof profile === "undefined"}
@@ -190,7 +187,7 @@ export const Profile = observer(() => {
                 onBlur={onBlur}
             />
             <div className={styles.markdown}>
-                <Markdown size={numTonum(24)} />
+                <Markdown size="24" />
                 <h5>
                     Descriptions support Markdown formatting,{" "}
                     <a

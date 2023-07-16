@@ -9,8 +9,7 @@ import classNames from "classnames";
 import { useTriggerEvents } from "preact-context-menu";
 import { Text } from "preact-i18n";
 
-import { IconButton } from '../../components/revoltchat';
-import { remTorem, pxTorem, numTonum } from '../../lib/calculation';
+import { IconButton } from "../../components/revoltchat";
 
 import { stopPropagation } from "../../lib/stopPropagation";
 import { voiceState } from "../../lib/vortex/VoiceState";
@@ -41,7 +40,6 @@ export const Friend = observer(({ user, onInviteFriend, pendingMode }: Props) =>
             actions.push(
                 <img src="https://skyvs.oss-cn-hangzhou.aliyuncs.com/resources/images/message.png" alt="" className={styles.message} />
             )
-
             if (user.online) {
                 actions.push(
                     <IconButton
@@ -72,7 +70,7 @@ export const Friend = observer(({ user, onInviteFriend, pendingMode }: Props) =>
                                     }),
                             )
                         }>
-                        <PhoneCall size={numTonum(20)} />
+                        <PhoneCall size={20} />
                     </IconButton>
                     <IconButton
                         shape="circle"
@@ -85,7 +83,7 @@ export const Friend = observer(({ user, onInviteFriend, pendingMode }: Props) =>
                                     .then((channel) => history.push(`/channel/${channel._id}`)),
                             )
                         }>
-                        <Envelope size={numTonum(20)} />
+                        <Envelope size={20} />
                     </IconButton>
                 </>,
             );
@@ -109,7 +107,7 @@ export const Friend = observer(({ user, onInviteFriend, pendingMode }: Props) =>
                     shape="circle"
                     className={styles.button}
                     onClick={(ev) => stopPropagation(ev, user.addFriend())}>
-                    <Plus size={numTonum(24)} />
+                    <Plus size={24} />
                 </IconButton>,
             );
         }
@@ -145,7 +143,7 @@ export const Friend = observer(({ user, onInviteFriend, pendingMode }: Props) =>
                             : user.removeFriend(),
                     )
                 }>
-                <X size={numTonum(24)} />
+                <X size={24} />
             </IconButton>,
         );
     }
@@ -178,7 +176,7 @@ export const Friend = observer(({ user, onInviteFriend, pendingMode }: Props) =>
                 shape="circle"
                 className={classNames(styles.button, styles.error)}
                 onClick={(ev) => stopPropagation(ev, user.unblockUser())}>
-                <UserX size={numTonum(24)} />
+                <UserX size={24} />
             </IconButton>,
         );
     }
@@ -209,7 +207,7 @@ export const Friend = observer(({ user, onInviteFriend, pendingMode }: Props) =>
                 }
             }}
             {...menu}>
-            <UserIcon target={user} size={numTonum(36)} />
+            <UserIcon target={user} size={36} status />
             <div className={styles.name}>
                 <span>{user.display_name ?? user.username}</span>
                 {subtext && <span className={styles.subtext}>{subtext}</span>}

@@ -1,7 +1,6 @@
 import React from "react";
 import styled, { css } from "styled-components";
 import { InfoCircle } from "@styled-icons/boxicons-solid";
-import { remTorem, pxTorem, numTonum } from '../../../../lib/calculation';
 
 interface Props {
     readonly palette?: "primary" | "success" | "warning" | "error";
@@ -10,9 +9,9 @@ interface Props {
 
 export const TipBase = styled.div<Omit<Props, "children">>`
     display: flex;
-    gap: ${pxTorem(10)};
-    padding: ${pxTorem(12)};
-    font-size: ${remTorem(0.875)};
+    gap: 10px;
+    padding: 12px;
+    font-size: 0.875rem;
     font-weight: 500;
     overflow: hidden;
     background: var(--primary-header);
@@ -35,11 +34,11 @@ export const TipBase = styled.div<Omit<Props, "children">>`
             ? css`
                   background: var(--${props.palette});
                   color: var(--${props.palette}-contrast);
-                  border: ${pxTorem(2)} solid rgba(var(--${props.palette}-rgb), 0.8);
+                  border: 2px solid rgba(var(--${props.palette}-rgb), 0.8);
               `
             : css`
                   color: var(--foreground);
-                  border: ${pxTorem(2)} solid var(--secondary-header);
+                  border: 2px solid var(--secondary-header);
               `}
 `;
 
@@ -47,7 +46,7 @@ export function Tip(props: Props) {
     const { children, ...innerProps } = props;
     return (
         <TipBase {...innerProps}>
-            <InfoCircle size={numTonum(20)} />
+            <InfoCircle size={20} />
             {children}
         </TipBase>
     );

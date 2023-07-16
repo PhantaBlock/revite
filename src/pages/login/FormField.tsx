@@ -2,8 +2,7 @@ import { UseFormMethods } from "react-hook-form";
 
 import { Text, Localizer } from "preact-i18n";
 
-import { Category, InputBox } from '../../components/revoltchat';
-import { remTorem, pxTorem, numTonum } from '../../lib/calculation';
+import { Category, InputBox } from "../../components/revoltchat";
 
 import { I18nError } from "../../context/Locale";
 

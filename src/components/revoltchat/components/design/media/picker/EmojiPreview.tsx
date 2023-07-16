@@ -2,7 +2,6 @@ import { observer } from "mobx-react-lite";
 import React from "react";
 import styled from "styled-components";
 import { EmojiInfo } from "./Picker";
-import { numTonum, pxTorem, remTorem } from '../../../../lib/calculation';
 
 interface Props {
     /**
@@ -19,8 +18,8 @@ interface Props {
 }
 
 const Base = styled.div`
-    gap: ${pxTorem(8)};
-    padding: ${pxTorem(8)};
+    gap: 8px;
+    padding: 8px;
     display: flex;
     align-items: center;
     flex-direction: row;
@@ -29,8 +28,8 @@ const Base = styled.div`
     border-top: 3px solid var(--secondary-background);
 
     img {
-        width: ${pxTorem(48)};
-        height: ${pxTorem(48)};
+        width: 48px;
+        height: 48px;
         object-fit: contain;
     }
 `;

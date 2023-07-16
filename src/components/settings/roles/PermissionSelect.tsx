@@ -8,7 +8,6 @@ import { Text } from "preact-i18n";
 import { useMemo } from "preact/hooks";
 
 import { Checkbox, OverrideSwitch } from "../../../components/revoltchat";
-import { remTorem, pxTorem, numTonum } from '../../../lib/calculation';
 
 interface PermissionSelectProps {
     id: keyof typeof Permission;
@@ -21,9 +20,9 @@ interface PermissionSelectProps {
 type State = "Allow" | "Neutral" | "Deny";
 
 const PermissionEntry = styled.label<{ disabled?: boolean }>`
-    gap: ${pxTorem(8)};
+    gap: 8px;
     width: 100%;
-    margin: ${pxTorem(8)} 0;
+    margin: 8px 0;
     display: flex;
     align-items: center;
 
@@ -35,7 +34,7 @@ const PermissionEntry = styled.label<{ disabled?: boolean }>`
     }
 
     .lock {
-        margin-inline-start: ${pxTorem(4)};
+        margin-inline-start: 4px;
     }
 
     .description {
@@ -120,7 +119,7 @@ export function PermissionSelect({
             <span className="title">
                 <span>
                     <Text id={`permissions.${id}.t`}>{id}</Text>
-                    {disabled && <Lock className="lock" size={numTonum(14)} />}
+                    {disabled && <Lock className="lock" size={14} />}
                 </span>
                 <span className="description">
                     <Text id={`permissions.${id}.d`} />

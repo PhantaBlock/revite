@@ -6,7 +6,6 @@ import { Text } from "preact-i18n";
 import { useCallback, useEffect, useState } from "preact/hooks";
 
 import { Category, CategoryButton, Error, Tip } from "../../../components/revoltchat";
-import { remTorem, pxTorem, numTonum } from '../../../lib/calculation';
 
 import { useSession } from "../../../controllers/client/ClientController";
 import { takeError } from "../../../controllers/client/jsx/error";
@@ -176,8 +175,8 @@ export default function MultiFactorAuthentication() {
                 description={
                     <Text
                         id={`app.settings.pages.account.2fa.${mfa?.recovery_active
-                                ? "view_recovery"
-                                : "generate_recovery"
+                            ? "view_recovery"
+                            : "generate_recovery"
                             }_long`}
                     />
                 }
@@ -185,8 +184,8 @@ export default function MultiFactorAuthentication() {
                 onClick={recoveryAction}>
                 <Text
                     id={`app.settings.pages.account.2fa.${mfa?.recovery_active
-                            ? "view_recovery"
-                            : "generate_recovery"
+                        ? "view_recovery"
+                        : "generate_recovery"
                         }`}
                 />
             </CategoryButton>

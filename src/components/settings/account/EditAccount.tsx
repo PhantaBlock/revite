@@ -11,7 +11,6 @@ import {
     Column,
     HiddenValue,
 } from "../../../components/revoltchat";
-import { remTorem, pxTorem, numTonum } from '../../../lib/calculation';
 
 import { useSession } from "../../../controllers/client/ClientController";
 import { modalController } from "../../../controllers/modals/ModalController";
@@ -51,7 +50,7 @@ export default observer(() => {
             ).map(([field, value, Icon]) => (
                 <CategoryButton
                     key={field}
-                    icon={<Icon size={numTonum(24)} />}
+                    icon={<Icon size={24} />}
                     description={
                         field === "email" ? (
                             <HiddenValue
@@ -63,7 +62,7 @@ export default observer(() => {
                         )
                     }
                     account
-                    action={<Pencil size={numTonum(20)} />}
+                    action={<Pencil size={20} />}
                     onClick={() =>
                         modalController.push({
                             type: "modify_account",

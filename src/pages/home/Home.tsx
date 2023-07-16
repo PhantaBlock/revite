@@ -17,8 +17,7 @@ import "./snow.scss";
 import { Text } from "preact-i18n";
 import { useMemo } from "preact/hooks";
 
-import { CategoryButton } from '../../components/revoltchat';
-import { remTorem, pxTorem, numTonum } from '../../lib/calculation';
+import { CategoryButton } from "../../components/revoltchat";
 
 import { isTouchscreenDevice } from "../../lib/isTouchscreenDevice";
 
@@ -101,7 +100,7 @@ export default observer(() => {
                     </div>
                 )}
                 <div className="content">
-                    <PageHeader icon={<HomeIcon size={numTonum(24)} />} withTransparency>
+                    <PageHeader icon={<HomeIcon size={24} />} withTransparency>
                         <Text id="app.navigation.tabs.home" />
                     </PageHeader>
                     <div className={styles.homeScreen}>
@@ -119,7 +118,7 @@ export default observer(() => {
                                 }>
                                 <CategoryButton
                                     action="chevron"
-                                    icon={<PlusCircle size={numTonum(32)} />}
+                                    icon={<PlusCircle size={32} />}
                                     description={
                                         <Text id="app.home.group_desc" />
                                     }>
@@ -130,7 +129,7 @@ export default observer(() => {
                                 <a>
                                     <CategoryButton
                                         action="chevron"
-                                        icon={<Compass size={numTonum(32)} />}
+                                        icon={<Compass size={32} />}
                                         description={
                                             <Text id="app.home.discover_desc" />
                                         }>
@@ -145,7 +144,7 @@ export default observer(() => {
                                 <Link to="/server/01F7ZSBSFHQ8TA81725KQCSDDP">
                                     <CategoryButton
                                         action="chevron"
-                                        icon={<RightArrowCircle size={numTonum(32)} />}
+                                        icon={<RightArrowCircle size={32} />}
                                         description={
                                             <Text id="app.home.goto-testers_desc" />
                                         }>
@@ -156,7 +155,7 @@ export default observer(() => {
                                 <Link to="/invite/Testers">
                                     <CategoryButton
                                         action="chevron"
-                                        icon={<Group size={numTonum(32)} />}
+                                        icon={<Group size={32} />}
                                         description={
                                             <Text id="app.home.join-testers_desc" />
                                         }>
@@ -168,7 +167,7 @@ export default observer(() => {
                             <Link to="/settings/feedback">
                                 <CategoryButton
                                     action="chevron"
-                                    icon={<Megaphone size={numTonum(32)} />}
+                                    icon={<Megaphone size={32} />}
                                     description={
                                         <Text id="app.home.feedback_desc" />
                                     }>
@@ -184,7 +183,7 @@ export default observer(() => {
                                     description={
                                         <Text id="app.home.donate_desc" />
                                     }
-                                    icon={<Money size={numTonum(32)} />}>
+                                    icon={<Money size={32} />}>
                                     <Text id="app.home.donate" />
                                 </CategoryButton>
                             </a>
@@ -194,7 +193,7 @@ export default observer(() => {
                                     description={
                                         <Text id="app.home.settings-tooltip" />
                                     }
-                                    icon={<Cog size={numTonum(32)} />}>
+                                    icon={<Cog size={32} />}>
                                     <Text id="app.home.settings" />
                                 </CategoryButton>
                             </Link>

@@ -37,7 +37,7 @@ const Routes = styled.div.attrs({ "data-component": "routes" }) <{
     position: relative;
     flex-direction: column;
 
-    background: var(--primary-background);
+    background: transparent !important;
 
     ${() =>
         isTouchscreenDevice &&
@@ -55,7 +55,8 @@ export default observer(() => {
             <HashRouter>
                 <OverlappingPanels
                     width="100vw"
-                    leftPanel={isOpen ? { width: numTonum(322), component: <HomeSidebar channels /> } : undefined}
+                    height={"var(--app-height)"}
+                    leftPanel={isOpen ? { width: 322, component: <HomeSidebar /> } : undefined}
                     docked={isTouchscreenDevice ? Docked.None : Docked.Left}
                 >
                     <Routes>

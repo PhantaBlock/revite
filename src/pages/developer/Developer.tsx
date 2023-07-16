@@ -2,8 +2,7 @@ import { Wrench } from "@styled-icons/boxicons-solid";
 
 import { useEffect, useState } from "preact/hooks";
 
-import { Button } from '../../components/revoltchat';
-import { remTorem, pxTorem, numTonum } from '../../lib/calculation';
+import { Button } from "../../components/revoltchat";
 
 import PaintCounter from "../../lib/PaintCounter";
 import { TextReact } from "../../lib/i18n";
@@ -30,24 +29,24 @@ export default function Developer() {
 
     return (
         <div>
-            <PageHeader icon={<Wrench size={numTonum(24)} />}>Developer Tab</PageHeader>
-            <div style={{ padding: pxTorem(16) }}>
+            <PageHeader icon={<Wrench size="24" />}>Developer Tab</PageHeader>
+            <div style={{ padding: "16px" }}>
                 <PaintCounter always />
             </div>
-            <div style={{ padding: pxTorem(16) }}>
+            <div style={{ padding: "16px" }}>
                 <b>Server Ping:</b> {ping ?? "?"}ms
                 <br />
                 <b>User ID:</b> {client.user!._id} <br />
                 <b>Permission against self:</b> {userPermission} <br />
             </div>
-            <div style={{ padding: pxTorem(16) }}>
+            <div style={{ padding: "16px" }}>
                 <TextReact
                     id="login.open_mail_provider"
                     fields={{ provider: <b>GAMING!</b> }}
                 />
             </div>
 
-            <div style={{ padding: pxTorem(16) }}>
+            <div style={{ padding: "16px" }}>
                 <Button palette="error" onClick={() => setCrash(true)}>
                     Click to crash app
                 </Button>

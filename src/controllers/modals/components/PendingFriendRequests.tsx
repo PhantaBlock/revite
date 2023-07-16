@@ -11,8 +11,9 @@ export default function PendingFriendRequests({
     ...props
 }: ModalProps<"pending_friend_requests">) {
     return (
-        <Modal {...props}
-            maxHeight={px2orem(878)}
+        <Modal
+            width="40.625rem"
+            {...props}
             title={<Text id="app.special.friends.pending" />}>
             <Column>
                 {users.map((x) => (

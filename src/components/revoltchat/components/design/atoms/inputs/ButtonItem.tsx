@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { numTonum, pxTorem, remTorem } from '../../../../lib/calculation';
 
 export interface Props {
     selected?: boolean;
@@ -7,10 +6,10 @@ export interface Props {
 }
 
 export const ButtonItem = styled.button<Props>`
-    padding: 0 ${pxTorem(8)};
+    padding: 0 8px;
     cursor: pointer;
     user-select: none;
-    height: ${(props) => (props.height === "compact" ? `${pxTorem(32)}` : `${pxTorem(42)}`)};
+    height: ${(props) => (props.height === "compact" ? "32px" : "42px")};
 
     border: 0;
     border-radius: var(--border-radius);

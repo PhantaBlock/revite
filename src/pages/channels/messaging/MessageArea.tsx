@@ -3,8 +3,9 @@ import { observer } from "mobx-react-lite";
 import { useHistory, useParams } from "react-router-dom";
 import { animateScroll } from "react-scroll";
 import { Channel } from "revolt.js";
-import styled from "styled-components/macro";
+import styled, { css } from "styled-components/macro";
 import useResizeObserver from "use-resize-observer";
+import styles from './index.module.scss';
 
 import { createContext } from "preact";
 import {
@@ -16,8 +17,7 @@ import {
     useState,
 } from "preact/hooks";
 
-import { Preloader } from '../../../components/revoltchat';
-import { remTorem, pxTorem, numTonum } from '../../../lib/calculation';
+import { Preloader } from "../../../components/revoltchat";
 
 import { defer } from "../../../lib/defer";
 import { internalEmit, internalSubscribe } from "../../../lib/eventEmitter";
@@ -40,13 +40,13 @@ const Area = styled.div.attrs({ "data-scroll-offset": "with-padding" })`
     overflow-y: scroll;
 
     &::-webkit-scrollbar-thumb {
-        min-height: ${pxTorem(150)};
+        min-height: 150px;
     }
 
     > div {
         display: flex;
         min-height: 100%;
-        padding-bottom: ${pxTorem(26)};
+        padding-bottom: 26px;
         flex-direction: column;
         justify-content: flex-end;
     }
@@ -114,12 +114,12 @@ export const MessageArea = observer(({ last_id, channel, tempMode }: Props) => {
                 } else if (scrollState.current.type === "OffsetTop") {
                     animateScroll.scrollTo(
                         Math.max(
-                            numTonum(101),
+                            101,
                             ref.current
                                 ? ref.current.scrollTop +
                                 (ref.current.scrollHeight -
                                     scrollState.current.previousHeight)
-                                : numTonum(101),
+                                : 101,
                         ),
                         {
                             container: ref.current,
@@ -258,11 +258,11 @@ export const MessageArea = observer(({ last_id, channel, tempMode }: Props) => {
         async function onScroll() {
             renderer.scrollPosition = current!.scrollTop;
 
-            if (atTop(numTonum(100))) {
+            if (atTop(100)) {
                 renderer.loadTop(current!);
             }
 
-            if (atBottom(numTonum(100))) {
+            if (atBottom(100)) {
                 renderer.loadBottom(current!);
             }
 
@@ -316,8 +316,8 @@ export const MessageArea = observer(({ last_id, channel, tempMode }: Props) => {
     return (
         <MessageAreaWidthContext.Provider
             value={(width ?? 0) - MESSAGE_AREA_PADDING}>
-            <Area ref={ref}>
-                <div>
+            <Area ref={ref} tempMode>
+                <div className={tempMode && styles.areaInner}>
                     {renderer.state === "LOADING" && <Preloader type="ring" />}
                     {renderer.state === "WAITING_FOR_NETWORK" && (
                         <RequiresOnline>

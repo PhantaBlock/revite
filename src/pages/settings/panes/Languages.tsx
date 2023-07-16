@@ -4,8 +4,8 @@ import { observer } from "mobx-react-lite";
 import styles from "./Panes.module.scss";
 import { Text } from "preact-i18n";
 import { useMemo } from "preact/hooks";
-import { Checkbox, LineDivider, Tip } from '../../../components/revoltchat';
-import { remTorem, pxTorem, numTonum } from '../../../lib/calculation';
+
+import { Checkbox, LineDivider, Tip } from "../../../components/revoltchat";
 
 import { useApplicationState } from "../../../mobx/State";
 
@@ -49,71 +49,71 @@ function Entry({ entry: [x, lang], selected, onSelect }: Props) {
                         {lang.i18n === "vec" ? (
                             <img
                                 src={venetoFlagSVG}
-                                width={numTonum(42)}
+                                width={42}
                                 loading="lazy"
                                 style={{
                                     objectFit: "cover",
-                                    borderRadius: pxTorem(6),
+                                    borderRadius: "6px",
                                 }}
                             />
                         ) : lang.i18n === "br" ? (
                             <img
                                 src={britannyFlagSVG}
-                                width={numTonum(42)}
+                                width={42}
                                 loading="lazy"
                                 style={{
                                     objectFit: "cover",
-                                    borderRadius: pxTorem(6),
+                                    borderRadius: "6px",
                                 }}
                             />
                         ) : lang.i18n === "ckb" ? (
                             <img
                                 src={kurdistanFlagSVG}
-                                width={numTonum(42)}
+                                width={42}
                                 loading="lazy"
                                 style={{
                                     objectFit: "cover",
-                                    borderRadius: pxTorem(6),
+                                    borderRadius: "6px",
                                 }}
                             />
                         ) : lang.i18n === "eo" ? (
                             <img
                                 src={esperantoFlagSVG}
-                                width={numTonum(42)}
+                                width={42}
                                 loading="lazy"
                                 style={{
                                     objectFit: "cover",
-                                    borderRadius: pxTorem(6),
+                                    borderRadius: "6px",
                                 }}
                             />
                         ) : lang.i18n === "ta" ? (
                             <img
                                 src={tamilFlagPNG}
-                                width={numTonum(42)}
+                                width={42}
                                 loading="lazy"
                                 style={{ objectFit: "cover" }}
                             />
                         ) : lang.emoji === "🙂" ? (
                             <img
                                 src={tokiponaSVG}
-                                width={numTonum(42)}
+                                width={42}
                                 loading="lazy"
-                                style={{ borderRadius: pxTorem(6) }}
+                                style={{ borderRadius: "6px" }}
                             />
                         ) : lang.emoji === "🪄" ? (
                             <img
                                 src={enchantingTableWEBP}
-                                width={numTonum(42)}
+                                width={42}
                                 loading="lazy"
                                 style={{ objectFit: "contain" }}
                             />
                         ) : (
-                            <Emoji size={numTonum(42)} emoji={lang.emoji} />
+                            <Emoji size={42} emoji={lang.emoji} />
                         )}
                     </div>
                     <span className={styles.description}>
-                        {lang.display} {lang.verified && <Check size={numTonum(16)} />}{" "}
-                        {lang.incomplete && <Error size={numTonum(16)} />}
+                        {lang.display} {lang.verified && <Check size={16} />}{" "}
+                        {lang.incomplete && <Error size={16} />}
                     </span>
                 </>
             }

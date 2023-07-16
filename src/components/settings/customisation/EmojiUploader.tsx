@@ -35,8 +35,8 @@ export function EmojiUploader({ server }: Props) {
                         element: (
                             <FileUploader
                                 style="icon"
-                                width={numTonum(100)}
-                                height={numTonum(100)}
+                                width={100}
+                                height={100}
                                 fileType="emojis"
                                 behaviour="upload"
                                 previewAfterUpload

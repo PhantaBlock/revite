@@ -7,8 +7,7 @@ import styles from "./Friend.module.scss";
 import classNames from "classnames";
 import { Text } from "preact-i18n";
 
-import { IconButton } from '../../components/revoltchat';
-import { remTorem, pxTorem, numTonum } from '../../lib/calculation';
+import { IconButton } from "../../components/revoltchat";
 
 import { TextReact } from "../../lib/i18n";
 import { isTouchscreenDevice } from "../../lib/isTouchscreenDevice";
@@ -216,7 +215,7 @@ export default observer(({ onInviteFriend }: {
                             {isMicro ? (
                                 <div className={styles.incomingNum}>{incoming.length}</div>
                             ) : (
-                                <ChevronRight size={numTonum(28)} />
+                                <ChevronRight size={28} />
                             )}
                         </div>
                     )}
@@ -243,7 +242,6 @@ export default observer(({ onInviteFriend }: {
                             </CollapsibleSection>
                         );
                     })}
-
                     {
                         lists?.length <= 0 &&
                         <div className={styles.placeholder}>

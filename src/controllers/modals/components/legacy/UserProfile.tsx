@@ -313,7 +313,7 @@ export const UserProfile = observer(
                         </div>
                     )}
                     <div className={styles.tabs}>
-                        <div style={{ fontSize: pxTorem(22) }}
+                        <div style={{ fontSize: pxTorem(20) }}
                             data-active={tab === "profile"}
                             onClick={() => setTab("profile")}>
                             <Text id="app.special.popovers.user_profile.profile" />
@@ -321,13 +321,13 @@ export const UserProfile = observer(
                         {user.relationship !== "User" && (
                             <>
                                 {!user.bot && (
-                                    <div style={{ fontSize: pxTorem(22) }}
+                                    <div style={{ fontSize: pxTorem(20) }}
                                         data-active={tab === "friends"}
                                         onClick={() => setTab("friends")}>
                                         <Text id="app.special.popovers.user_profile.mutual_friends" />
                                     </div>
                                 )}
-                                <div style={{ fontSize: pxTorem(22) }}
+                                <div style={{ fontSize: pxTorem(20) }}
                                     data-active={tab === "groups"}
                                     onClick={() => setTab("groups")}>
                                     <Text id="app.special.popovers.user_profile.mutual_groups" />

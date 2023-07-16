@@ -7,10 +7,12 @@ import { internalSubscribe } from "../../lib/eventEmitter";
 import SidebarBase from "./SidebarBase";
 import MemberSidebar from "./right/MemberSidebar";
 import { SearchSidebar } from "./right/Search";
-
+import { remTorem, pxTorem, numTonum } from '../../lib/calculation';
+import { isMicroMode } from "../../lib/global";
 export default function RightSidebar() {
     const [sidebar, setSidebar] = useState<"search" | undefined>();
     const close = () => setSidebar(undefined);
+    const isMicro = isMicroMode();
 
     useEffect(
         () =>
@@ -30,7 +32,7 @@ export default function RightSidebar() {
         );
 
     return (
-        <SidebarBase>
+        <SidebarBase borderLeft={isMicro ? '1px solid #766A58' : ''}>
             <Switch>
                 <Route path="/server/:server/channel/:channel">{content}</Route>
                 <Route path="/channel/:channel">{content}</Route>

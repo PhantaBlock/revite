@@ -1,8 +1,6 @@
-const base = 16 / 12;
-
-// 仅适用于组件库默认样式转换
+const base = 16 / 16;
 export const pxTorem = (num: number) => {
-    return `${num / 12}rem`;
+    return `${num / 16}rem`;
 };
 
 export const remTorem = (num: number) => {
@@ -10,7 +8,7 @@ export const remTorem = (num: number) => {
 };
 
 export const numTonum = (num: number) => {
-    return (num / 16) * 12;
+    return (num / 16) * 16;
 };
 
 // 新版视觉稿要用这个方法转px

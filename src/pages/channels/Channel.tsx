@@ -4,7 +4,7 @@ import { reaction } from "mobx";
 import { observer } from "mobx-react-lite";
 import { Redirect, useParams } from "react-router-dom";
 import { Channel as ChannelI } from "revolt.js";
-import styled from "styled-components/macro";
+import styled, { css } from "styled-components/macro";
 
 import { Text } from "preact-i18n";
 import { useEffect, useState } from "preact/hooks";
@@ -29,7 +29,6 @@ import { MessageArea } from "./messaging/MessageArea";
 import VoiceHeader from "./voice/VoiceHeader";
 import { isMicroMode } from "../../lib/global";
 
-import { remTorem, pxTorem, numTonum } from '../../lib/calculation';
 
 const ChannelMain = styled.div.attrs({ "data-component": "channel" })`
     flex-grow: 1;
@@ -43,11 +42,19 @@ const ChannelMain = styled.div.attrs({ "data-component": "channel" })`
 
 const ChannelContent = styled.div.attrs({
     "data-component": "content",
-})`
+}) <{ isMicro?: boolean }>`
     flex-grow: 1;
     display: flex;
     overflow: hidden;
     flex-direction: column;
+
+    ${(props) =>
+        props.isMicro &&
+        css`
+            background: transparent !important;
+        `
+    }
+
 `;
 
 const PlaceholderBase = styled.div`
@@ -79,13 +86,13 @@ const PlaceholderBase = styled.div`
         justify-content: center;
         text-align: center;
         margin: auto;
-        padding: ${pxTorem(12)};
+        padding: 12px;
 
         .primary {
             color: var(--secondary-foreground);
             font-weight: 700;
-            font-size: ${pxTorem(22)};
-            margin: 0 0 ${pxTorem(5)} 0;
+            font-size: 22px;
+            margin: 0 0 5px 0;
         }
 
         .secondary {
@@ -201,13 +208,13 @@ export const TextChannel = observer(({ channel, tempMode }: { channel: ChannelI,
             {!tempMode && <ChannelHeader channel={channel} />}
             <ChannelMain>
                 <ErrorBoundary section="renderer">
-                    <ChannelContent>
+                    <ChannelContent isMicro={isMicro}>
                         <VoiceHeader id={channel._id} />
                         <NewMessages channel={channel} last_id={lastId} />
                         <MessageArea channel={channel} last_id={lastId} tempMode={tempMode!} />
                         <TypingIndicator channel={channel} />
                         <JumpToBottom channel={channel} />
-                        <MessageBox channel={channel} />
+                        <MessageBox channel={channel} tempMode={tempMode!} />
                     </ChannelContent>
                 </ErrorBoundary>
                 {!isTouchscreenDevice && !tempMode &&
@@ -231,7 +238,7 @@ function VoiceChannel({ channel }: { channel: ChannelI }) {
 function ChannelPlaceholder() {
     return (
         <PlaceholderBase>
-            <PageHeader icon={<Hash size={numTonum(24)} />}>
+            <PageHeader icon={<Hash size={24} isMicro={isMicroMode()} />}>
                 <span className="name">
                     <Text id="app.main.channel.errors.nochannel" />
                 </span>
@@ -239,7 +246,7 @@ function ChannelPlaceholder() {
 
             <div className="placeholder">
                 <div className="floating">
-                    <Ghost width={numTonum(80)} />
+                    <Ghost width={80} />
                 </div>
                 <div className="primary">
                     <Text id="app.main.channel.errors.title" />

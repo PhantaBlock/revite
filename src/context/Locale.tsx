@@ -8,7 +8,7 @@ import { observer } from "mobx-react-lite";
 import { IntlProvider, Text } from "preact-i18n";
 import { useCallback, useEffect, useState } from "preact/hooks";
 
-import { Error } from '../components/revoltchat';
+import { Error } from "../components/revoltchat";
 
 import { useApplicationState } from "../mobx/State";
 

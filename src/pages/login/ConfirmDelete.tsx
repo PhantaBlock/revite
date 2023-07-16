@@ -4,8 +4,7 @@ import styled from "styled-components";
 
 import { useEffect, useState } from "preact/hooks";
 
-import { Modal, Preloader } from '../../components/revoltchat';
-import { remTorem, pxTorem, numTonum } from '../../lib/calculation';
+import { Modal, Preloader } from "../../components/revoltchat";
 
 import { useApi } from "../../controllers/client/ClientController";
 
@@ -44,7 +43,7 @@ export default function ConfirmDelete() {
             nonDismissable>
             {deleted ? (
                 <Centre>
-                    <Check size={numTonum(48)} />
+                    <Check size={48} />
                 </Centre>
             ) : (
                 <Preloader type="ring" />

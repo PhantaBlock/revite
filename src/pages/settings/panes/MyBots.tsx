@@ -10,15 +10,13 @@ import styles from "./Panes.module.scss";
 import { Text } from "preact-i18n";
 import { useCallback, useEffect, useState } from "preact/hooks";
 
-
 import {
     Button,
     CategoryButton,
     Checkbox,
     InputBox,
     Tip,
-} from '../../../components/revoltchat';
-import { remTorem, pxTorem, numTonum } from '../../../lib/calculation';
+} from "../../../components/revoltchat";
 
 import TextAreaAutoSize from "../../../lib/TextAreaAutoSize";
 import { internalEmit } from "../../../lib/eventEmitter";
@@ -53,10 +51,10 @@ const BotBadge = styled.div`
     display: inline-block;
     flex-shrink: 0;
     height: 1.3em;
-    padding: 0px ${pxTorem(4)};
+    padding: 0px 4px;
     font-size: 0.7em;
     user-select: none;
-    margin-inline-start: ${pxTorem(2)};
+    margin-inline-start: 2px;
     text-transform: uppercase;
 
     color: var(--accent-contrast);
@@ -215,7 +213,7 @@ function BotCard({ bot, onDelete, onUpdate }: Props) {
                             <UserIcon
                                 className={styles.avatar}
                                 target={user}
-                                size={numTonum(42)}
+                                size={42}
                                 onClick={() =>
                                     modalController.push({
                                         type: "user_profile",
@@ -225,8 +223,8 @@ function BotCard({ bot, onDelete, onUpdate }: Props) {
                             />
                         ) : (
                             <FileUploader
-                                width={numTonum(42)}
-                                height={numTonum(42)}
+                                width={42}
+                                height={42}
                                 style="icon"
                                 fileType="avatars"
                                 behaviour="upload"
@@ -234,11 +232,11 @@ function BotCard({ bot, onDelete, onUpdate }: Props) {
                                 onUpload={(avatar) => editBotAvatar(avatar)}
                                 remove={() => editBotAvatar()}
                                 defaultPreview={user.generateAvatarURL(
-                                    { max_side: numTonum(256) },
+                                    { max_side: 256 },
                                     true,
                                 )}
                                 previewURL={user.generateAvatarURL(
-                                    { max_side: numTonum(256) },
+                                    { max_side: 256 },
                                     true,
                                 )}
                             />
@@ -258,7 +256,7 @@ function BotCard({ bot, onDelete, onUpdate }: Props) {
                                         content={
                                             <Text id="app.settings.pages.bots.unique_id" />
                                         }>
-                                        <HelpCircle size={numTonum(16)} />
+                                        <HelpCircle size={16} />
                                     </Tooltip>
                                     <Tooltip
                                         content={
@@ -300,9 +298,9 @@ function BotCard({ bot, onDelete, onUpdate }: Props) {
                                 />
                             }>
                             {bot.public ? (
-                                <Globe size={numTonum(24)} />
+                                <Globe size={24} />
                             ) : (
-                                <LockAlt size={numTonum(24)} />
+                                <LockAlt size={24} />
                             )}
                         </Tooltip>
                     )}
@@ -333,7 +331,7 @@ function BotCard({ bot, onDelete, onUpdate }: Props) {
             {!editMode && (
                 <CategoryButton
                     account
-                    icon={<Key size={numTonum(24)} />}
+                    icon={<Key size={24} />}
                     onClick={() => modalController.writeText(bot.token)}
                     description={
                         <>
@@ -353,7 +351,7 @@ function BotCard({ bot, onDelete, onUpdate }: Props) {
                             </a>
                         </>
                     }
-                    action={<Clipboard size={numTonum(18)} />}>
+                    action={<Clipboard size={18} />}>
                     <Text id="app.settings.pages.bots.token" />
                 </CategoryButton>
             )}
@@ -367,7 +365,7 @@ function BotCard({ bot, onDelete, onUpdate }: Props) {
                             <Text id="app.settings.pages.profile.custom_background" />
                         </h3>
                         <FileUploader
-                            height={numTonum(92)}
+                            height={92}
                             style="banner"
                             behaviour="upload"
                             fileType="backgrounds"
@@ -380,7 +378,7 @@ function BotCard({ bot, onDelete, onUpdate }: Props) {
                                 profile?.background
                                     ? client.generateFileURL(
                                         profile.background,
-                                        { width: numTonum(1000) },
+                                        { width: 1000 },
                                         true,
                                     )
                                     : undefined
@@ -509,7 +507,7 @@ export const MyBots = observer(() => {
         <div className={styles.myBots}>
             <CategoryButton
                 account
-                icon={<Plus size={numTonum(24)} />}
+                icon={<Plus size={24} />}
                 onClick={() =>
                     modalController.push({
                         type: "create_bot",

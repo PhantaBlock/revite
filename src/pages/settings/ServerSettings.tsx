@@ -14,8 +14,7 @@ import { Route, Switch, useHistory, useParams } from "react-router-dom";
 import styles from "./Settings.module.scss";
 import { Text } from "preact-i18n";
 
-import { LineDivider } from '../../components/revoltchat';
-import { remTorem, pxTorem, numTonum } from '../../lib/calculation';
+import { LineDivider } from "../../components/revoltchat";
 
 import { state } from "../../mobx/State";
 
@@ -54,14 +53,14 @@ export default observer(() => {
                 {
                     category: <div>{server.name}</div>,
                     id: "overview",
-                    icon: <InfoCircle size={numTonum(20)} />,
+                    icon: <InfoCircle size={20} />,
                     title: (
                         <Text id="app.settings.server_pages.overview.title" />
                     ),
                 },
                 {
                     id: "categories",
-                    icon: <ListUl size={numTonum(20)} />,
+                    icon: <ListUl size={20} />,
                     title: (
                         <Text id="app.settings.server_pages.categories.title" />
                     ),
@@ -69,7 +68,7 @@ export default observer(() => {
                 },
                 {
                     id: "roles",
-                    icon: <FlagAlt size={numTonum(20)} />,
+                    icon: <FlagAlt size={20} />,
                     title: <Text id="app.settings.server_pages.roles.title" />,
                     hideTitle: true,
                 },
@@ -78,7 +77,7 @@ export default observer(() => {
                         <Text id="app.settings.server_pages.customisation.title" />
                     ),
                     id: "emojis",
-                    icon: <HappyBeaming size={numTonum(20)} />,
+                    icon: <HappyBeaming size={20} />,
                     title: <Text id="app.settings.server_pages.emojis.title" />,
                 },
                 {
@@ -86,21 +85,21 @@ export default observer(() => {
                         <Text id="app.settings.server_pages.management.title" />
                     ),
                     id: "members",
-                    icon: <Group size={numTonum(20)} />,
+                    icon: <Group size={20} />,
                     title: (
                         <Text id="app.settings.server_pages.members.title" />
                     ),
                 },
                 {
                     id: "invites",
-                    icon: <Envelope size={numTonum(20)} />,
+                    icon: <Envelope size={20} />,
                     title: (
                         <Text id="app.settings.server_pages.invites.title" />
                     ),
                 },
                 {
                     id: "bans",
-                    icon: <UserX size={numTonum(20)} />,
+                    icon: <UserX size={20} />,
                     title: <Text id="app.settings.server_pages.bans.title" />,
                 },
             ]}
@@ -155,7 +154,7 @@ export default observer(() => {
                             }
                             className={styles.deleteServer}
                             compact>
-                            <Trash size={numTonum(20)} />
+                            <Trash size={20} />
                             <Text id="app.context_menu.delete_server" />
                         </ButtonItem>
                     </>

@@ -59,6 +59,8 @@ export const ImageIconBase = styled.img<IconModifiers>`
     height: 100%;
     flex-shrink: 0;
     object-fit: cover;
+    max-width: 100%;
+    max-height: 100%;
 
     ${(props) =>
         props.borderRadius &&

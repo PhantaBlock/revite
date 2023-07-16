@@ -28,10 +28,10 @@ export default function AddFriend({ ...props }: ModalProps<"add_friend">) {
                     placeholder: "输入玩家ID/名称",
 
                     style: {
-                        marginTop: px2orem(160),
-                        marginBottom: px2orem(48),
+                        marginTop: "6.6875rem",
+                        marginBottom: "1.5rem",
                         color: '#FFE1B3',
-                        border: `${pxTorem(2)} solid`,
+                        border: `2px solid`,
                         borderImage: `linear-gradient(180deg, #FFBE5A, rgba(255, 226, 119, 0.3)) 1 / 1 / 0 stretch`,
                     }
                 },
@@ -48,11 +48,7 @@ export default function AddFriend({ ...props }: ModalProps<"add_friend">) {
             ]}
             submit={{
                 children: <Text id="app.special.modals.actions.ok" />,
-                skyTheme: true,
-                style: {
-                    width: px2orem(692),
-                    height: px2orem(138)
-                }
+                confirmation: true
             }}
         />
     );

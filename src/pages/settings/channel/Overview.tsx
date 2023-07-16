@@ -5,8 +5,7 @@ import styled from "styled-components/macro";
 import { Text } from "preact-i18n";
 import { useEffect, useState } from "preact/hooks";
 
-import { Button, Checkbox, InputBox } from '../../../components/revoltchat';
-import { remTorem, pxTorem, numTonum } from '../../../lib/calculation';
+import { Button, Checkbox, InputBox } from "../../../components/revoltchat";
 
 import TextAreaAutoSize from "../../../lib/TextAreaAutoSize";
 
@@ -17,7 +16,7 @@ interface Props {
 }
 
 const Row = styled.div`
-    gap: ${pxTorem(20)};
+    gap: 20px;
     display: flex;
 
     .name {
@@ -57,15 +56,15 @@ export default observer(({ channel }: Props) => {
         <div className="overview">
             <Row>
                 <FileUploader
-                    width={numTonum(80)}
-                    height={numTonum(80)}
+                    width={80}
+                    height={80}
                     style="icon"
                     fileType="icons"
                     behaviour="upload"
                     maxFileSize={2_500_000}
                     onUpload={(icon) => channel.edit({ icon })}
                     previewURL={channel.generateIconURL(
-                        { max_side: numTonum(256) },
+                        { max_side: 256 },
                         true,
                     )}
                     remove={() => channel.edit({ remove: ["Icon"] })}
@@ -104,7 +103,7 @@ export default observer(({ channel }: Props) => {
             </h3>
             <TextAreaAutoSize
                 maxRows={10}
-                minHeight={numTonum(60)}
+                minHeight={60}
                 maxLength={1024}
                 value={description}
                 placeholder={"Add a description..."}

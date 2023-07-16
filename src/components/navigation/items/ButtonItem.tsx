@@ -65,7 +65,9 @@ export const UserButton = observer((props: UserProps) => {
     return (
         <div
             {...divProps}
-            className={classNames(styles.item, styles.user)}
+            className={classNames(styles.item, styles.user, {
+                [styles.isMicro]: isMicro
+            })}
             data-active={active}
             data-margin={margin}
             data-alert={typeof alert === "string"}
@@ -73,12 +75,11 @@ export const UserButton = observer((props: UserProps) => {
                 typeof channel !== "undefined" ||
                 (user.online && user.status?.presence !== "Invisible")
             }
-            {...menu}
-        >
+            {...menu}>
             <UserIcon
                 className={styles.avatar}
                 target={user}
-                size={pxTorem(60)}
+                size={isMicro ? '3.75rem' : 32}
                 status
                 showServerIdentity
             />
@@ -156,6 +157,7 @@ export const ChannelButton = observer((props: ChannelProps) => {
 
     const alerting = alert && !muted && !active;
 
+
     return (
         <div
             {...divProps}
@@ -165,6 +167,7 @@ export const ChannelButton = observer((props: ChannelProps) => {
             aria-label={channel.name}
             className={classNames(styles.item, {
                 [styles.compact]: compact,
+                [styles.isMicro]: isMicroMode(),
             })}
             {...useTriggerEvents("Menu", {
                 channel: channel._id,
@@ -240,7 +243,7 @@ export default function ButtonItem(props: ButtonProps) {
             {...divProps}
             className={classNames(
                 styles.item,
-                { [styles.compact]: compact, [styles.normal]: !compact },
+                { [styles.compact]: compact, [styles.normal]: !compact, [styles.isMicro]: isMicroMode(), },
                 className,
             )}
             onClick={onClick}

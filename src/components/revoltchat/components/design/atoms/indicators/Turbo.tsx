@@ -1,19 +1,18 @@
 import React from "react";
 import styled from "styled-components";
 import { Bolt } from "@styled-icons/boxicons-solid";
-import { numTonum, pxTorem, remTorem } from '../../../../lib/calculation';
 
 const Base = styled.div`
     display: flex;
     position: relative;
-    padding: ${pxTorem(1)} ${pxTorem(5)};
+    padding: 1px 5px;
     gap: 2px;
     user-select: none;
 
     align-items: center;
     font-weight: 800;
     font-style: italic;
-    font-size: ${remTorem(0.812)};
+    font-size: 0.8125rem;
     text-transform: uppercase;
 
     background: var(--accent);
@@ -27,23 +26,23 @@ const Base = styled.div`
         position: absolute;
 
         top: 0;
-        right: ${pxTorem(-4)};
-        left: ${pxTorem(-4)};
-        width: ${pxTorem(2)};
-        height: ${pxTorem(4)};
+        right: -4px;
+        left: -4px;
+        width: 2px;
+        height: 4px;
         display: flex;
 
-        border: ${pxTorem(8)} solid var(--accent);
-        border-right: ${pxTorem(5)} solid transparent;
-        border-left: ${pxTorem(5)} solid transparent;
-        border-bottom: ${pxTorem(5)} solid transparent;
+        border: 8px solid var(--accent);
+        border-right: 5px solid transparent;
+        border-left: 5px solid transparent;
+        border-bottom: 5px solid transparent;
     }
 `;
 
 export function Turbo() {
     return (
         <Base>
-            <Bolt size={numTonum(13)} /> Turbo
+            <Bolt size={13} /> Turbo
         </Base>
     );
 }

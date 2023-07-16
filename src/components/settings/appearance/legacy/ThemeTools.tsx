@@ -4,7 +4,6 @@ import styled from "styled-components/macro";
 import { Text } from "preact-i18n";
 
 import { Button } from "../../../../components/revoltchat";
-import { remTorem, pxTorem, numTonum } from '../../../../lib/calculation';
 
 import { useApplicationState } from "../../../../mobx/State";
 
@@ -12,18 +11,18 @@ import { modalController } from "../../../../controllers/modals/ModalController"
 import Tooltip from "../../../common/Tooltip";
 
 const Actions = styled.div`
-    gap: ${pxTorem(8)};
+    gap: 8px;
     display: flex;
-    margin: ${pxTorem(18)} 0 8px 0;
+    margin: 18px 0 8px 0;
 
     .code {
         cursor: pointer;
         display: flex;
         align-items: center;
-        font-size: ${remTorem(0.875)};
+        font-size: 0.875rem;
         min-width: 0;
         flex-grow: 1;
-        padding: ${pxTorem(8)};
+        padding: 8px;
         font-family: var(--monospace-font);
         border-radius: var(--border-radius);
         background: var(--secondary-background);
@@ -50,7 +49,7 @@ export default function ThemeTools() {
                     palette="secondary"
                     compact="icon"
                     onClick={theme.reset}>
-                    <Reset size={numTonum(22)} />
+                    <Reset size={22} />
                 </Button>
             </Tooltip>
             <div
@@ -78,7 +77,7 @@ export default function ThemeTools() {
                             });
                         }
                     }}>
-                    <Import size={numTonum(22)} />
+                    <Import size={22} />
                 </Button>
             </Tooltip>
         </Actions>

@@ -1,16 +1,15 @@
 import styled, { css } from "styled-components";
-import { pxTorem, remTorem } from '../../../../lib/calculation';
 
 export interface Props {
     readonly palette?: "primary" | "secondary";
 }
 
 export const InputBox = styled.input<Props>`
-    //min-height: ${pxTorem(42)};
+    //min-height: 42px;
     width: 100%;
-    padding: ${pxTorem(11)} ${pxTorem(16)};
+    padding: 11px 16px;
 
-    font-size: ${remTorem(0.9375)};
+    font-size: 0.9375rem;
     font-family: inherit;
     font-weight: 500;
 

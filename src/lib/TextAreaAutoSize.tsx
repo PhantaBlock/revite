@@ -3,8 +3,7 @@ import styled from "styled-components/macro";
 import { RefObject } from "preact";
 import { useEffect, useLayoutEffect, useRef } from "preact/hooks";
 
-import { TextArea } from '../components/revoltchat';
-import { pxTorem, remTorem, numTonum } from "./calculation"
+import { TextArea } from "../components/revoltchat";
 import type { TextAreaProps } from "../components/revoltchat/components/design/atoms/inputs/TextArea";
 
 import { internalSubscribe } from "./eventEmitter";
@@ -22,6 +21,7 @@ type TextAreaAutoSizeProps = Omit<
         value: string;
 
         id?: string;
+        tempMode?: boolean;
 
         onChange?: (ev: JSX.TargetedEvent<HTMLTextAreaElement, Event>) => void;
     };
@@ -66,6 +66,7 @@ export default function TextAreaAutoSize(props: TextAreaAutoSizeProps) {
         hideBorder,
         forceFocus,
         onChange,
+        tempMode,
         ...textAreaProps
     } = props;
 
@@ -74,7 +75,7 @@ export default function TextAreaAutoSize(props: TextAreaAutoSizeProps) {
 
     useLayoutEffect(() => {
         if (ref.current && ghost.current) {
-            ref.current.style.height = '4rem';
+            ref.current.style.height = tempMode ? '3.5rem' : `${ghost.current.clientHeight}px`;
         }
     }, [ghost, props.value]);
 

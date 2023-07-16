@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import { Channel, Server, User, API } from "revolt.js";
 
 import { useEffect, useLayoutEffect, useState } from "preact/hooks";
+import { pxTorem } from "../../../lib/calculation";
 
 import {
     useSession,
@@ -12,7 +13,6 @@ import {
 } from "../../../controllers/client/ClientController";
 import { GenericSidebarBase } from "../SidebarBase";
 import MemberList, { MemberListGroup } from "./MemberList";
-import { pxTorem } from "../../../lib/calculation";
 
 export default function MemberSidebar() {
     const channel = useClient().channels.get(

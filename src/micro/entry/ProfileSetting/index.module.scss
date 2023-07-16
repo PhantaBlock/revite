@@ -3,7 +3,7 @@
         display: flex;
         flex-direction: column;
         align-items: stretch;
-        width: 712.5px;
+        width: 950px;
         margin: 0;
         padding: 0;
         max-width: none;
@@ -27,7 +27,7 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 206.25px;
+            height: 275px;
             background: url('https://skyvs.oss-cn-hangzhou.aliyuncs.com/resources/images/IM-Bg.jpeg') no-repeat center center / cover;
         }
 
@@ -41,9 +41,9 @@
         flex-direction: row;
         justify-content: space-between;
 
-        font-size: 16.5px;
+        font-size: 22px;
         font-weight: normal;
-        line-height: 16.5px;
+        line-height: 22px;
         letter-spacing: 0px;
 
         color: #DCDCDB;
@@ -60,14 +60,15 @@
         align-items: center;
         flex-direction: column;
 
+
         svg {
-            width: 10rem !important;
-            height: 10rem !important;
+            width: 175px !important;
+            height: 175px !important;
         }
 
         .textArea {
-            width: 211.5px;
-            height: 130.5px !important;
+            width: 282px;
+            height: 174px !important;
             font-size: 0.9375rem;
             line-height: 1.8rem;
         }
@@ -89,15 +90,15 @@
 
     .saveButton {
         align-self: flex-end;
-        font-size: 18.75px;
+        font-size: 25px;
         font-weight: normal;
         line-height: 27px;
         display: flex;
         align-items: center;
         justify-content: center;
         color: #FBD279;
-        width: 122.25px;
-        height: 52.5px;
+        width: 163px;
+        height: 70px;
         margin-top: 30px;
         margin-bottom: 5.25px;
     }
@@ -107,18 +108,18 @@
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
-        height: 240px;
+        height: 350px;
         overflow-y: scroll;
     }
 
     .avatarItem {
-        width: 73.5px;
-        height: 73.5px;
+        width: 98px;
+        height: 98px;
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-right: 18.75px;
-        margin-bottom: 15px;
+        margin: 0 17px;
+        margin-bottom: 30px;
         cursor: pointer;
         border-radius: 100%;
 
@@ -127,8 +128,8 @@
         }
 
         img {
-            width: 67.5px;
-            height: 67.5px;
+            width: 90px;
+            height: 90px;
             border-radius: 100%;
         }
     }
@@ -137,16 +138,16 @@
         display: flex;
         flex-direction: row;
         align-self: flex-start;
-        padding-top: 33px;
+        padding-top: 71.5px;
         padding-left: 15px;
         margin-bottom: 30px;
 
         .tabItem {
-            font-size: 16.5px;
+            font-size: 22px;
             font-weight: normal;
             line-height: 34.5px;
             letter-spacing: 0px;
-            padding-bottom: 3px;
+            padding-bottom: 4px;
             position: relative;
 
             color: #FEBD5A;
@@ -158,7 +159,7 @@
                 left: 0;
                 right: 0;
                 bottom: 0;
-                height: 3px;
+                height: 4px;
                 background: #FEBD5A;
             }
         }

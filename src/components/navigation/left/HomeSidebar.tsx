@@ -74,7 +74,7 @@ export default observer(() => {
     );
 
     return (
-        <GenericSidebarBase mobilePadding>
+        <GenericSidebarBase mobilePadding paddingTop={isMicro ? "2.8125rem" : ''} isMicro={isMicro}>
             {!isMicro && (
                 <>
                     <Navbar>

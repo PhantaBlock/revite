@@ -20,8 +20,7 @@ import {
 } from "preact-context-menu";
 import { Text } from "preact-i18n";
 
-import { Column, IconButton, LineDivider } from '../components/revoltchat';
-import { pxTorem, remTorem, numTonum } from "./calculation"
+import { Column, IconButton, LineDivider } from "../components/revoltchat";
 
 import { useApplicationState } from "../mobx/State";
 import { QueuedMessage } from "../mobx/stores/MessageQueue";

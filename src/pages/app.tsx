@@ -2,8 +2,7 @@ import { Route, Switch } from "react-router-dom";
 
 import { lazy, Suspense } from "preact/compat";
 
-import { Masks, Preloader } from '../components/revoltchat';
-import { remTorem, pxTorem, numTonum } from '../lib/calculation';
+import { Masks, Preloader } from "../components/revoltchat";
 
 import ErrorBoundary from "../lib/ErrorBoundary";
 

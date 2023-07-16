@@ -7,14 +7,14 @@ import classNames from "classnames";
 import { Text } from "preact-i18n";
 import { useEffect, useState } from "preact/hooks";
 
-import { IconButton, Preloader } from '../../../../components/revoltchat';
-import { pxTorem, remTorem, numTonum } from "../../../../lib/calculation";
+import { IconButton, Preloader } from "../../../../components/revoltchat";
 
 import { determineFileSize } from "../../../../lib/fileSize";
 
 import { modalController } from "../../../modals/ModalController";
 import { useClient } from "../../ClientController";
 import { takeError } from "../error";
+
 
 type BehaviourType =
     | { behaviour: "ask"; onChange: (file: File) => void }
@@ -310,7 +310,7 @@ export function FileUploader(props: Props) {
                         </div>
                     ) : (
                         <div className={styles.edit}>
-                            <Pencil size={numTonum(30)} />
+                            <Pencil size={30} />
                         </div>
                     )}
                 </div>

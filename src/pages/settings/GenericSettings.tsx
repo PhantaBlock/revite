@@ -7,8 +7,8 @@ import classNames from "classnames";
 import { Text } from "preact-i18n";
 import { useCallback, useEffect, useRef, useState } from "preact/hooks";
 
-import { Category, Header, IconButton, LineDivider } from '../../components/revoltchat';
-import { remTorem, pxTorem, numTonum } from '../../lib/calculation';
+import { Category, Header, IconButton, LineDivider } from "../../components/revoltchat";
+
 import { isTouchscreenDevice } from "../../lib/isTouchscreenDevice";
 
 import { useApplicationState } from "../../mobx/State";
@@ -98,8 +98,8 @@ export function GenericSettings({
                             {showExitButton && (
                                 <IconButton onClick={exitSettings}>
                                     <X
-                                        size={numTonum(27)}
-                                        style={{ marginInlineEnd: pxTorem(8) }}
+                                        size={27}
+                                        style={{ marginInlineEnd: "8px" }}
                                     />
                                 </IconButton>
                             )}
@@ -109,8 +109,8 @@ export function GenericSettings({
                         <>
                             <IconButton onClick={() => switchPage()}>
                                 <ArrowBack
-                                    size={numTonum(24)}
-                                    style={{ marginInlineEnd: pxTorem(10) }}
+                                    size={24}
+                                    style={{ marginInlineEnd: "10px" }}
                                 />
                             </IconButton>
                             <Text
@@ -194,7 +194,7 @@ export function GenericSettings({
                                 <div
                                     onClick={exitSettings}
                                     className={styles.closeButton}>
-                                    <X size={numTonum(28)} />
+                                    <X size={28} />
                                 </div>
                             </div>
                         )}

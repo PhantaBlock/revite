@@ -7,13 +7,12 @@ import styled from "styled-components";
 import { useUI } from "../../../../lib";
 
 import { Button, Avatar, Column, H1, Row, Tooltip } from "../../../design";
-import { numTonum, pxTorem, remTorem } from '../../../../lib/calculation';
 
 const UserId = styled.div`
-    gap: ${pxTorem(4)};
+    gap: 4px;
     display: flex;
     align-items: center;
-    font-size: ${pxTorem(12)};
+    font-size: 12px;
     font-weight: 600;
     color: var(--tertiary-foreground);
 
@@ -36,13 +35,13 @@ export const AccountDetail = observer(({ user }: Props) => {
     const { Link, Text, emitAction } = useUI();
 
     return (
-        <Row gap={`${pxTorem(16)}`} centred>
+        <Row gap="16px" centred>
             <Link to="/settings/profile" replace>
                 <Avatar
                     src={user.generateAvatarURL({
-                        max_side: numTonum(256),
+                        max_side: 256,
                     })}
-                    size={numTonum(72)}
+                    size={72}
                     interactive
                 />
             </Link>
@@ -61,7 +60,7 @@ export const AccountDetail = observer(({ user }: Props) => {
                             content={
                                 <Text id="app.settings.pages.account.unique_id" />
                             }>
-                            <HelpCircle size={numTonum(16)} />
+                            <HelpCircle size={16} />
                         </Tooltip>
                         <Tooltip content={<Text id="app.special.copy" />}>
                             <a

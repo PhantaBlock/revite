@@ -1,7 +1,6 @@
 import { Text } from "preact-i18n";
 
 import { Column, ObservedInputElement } from "../../../components/revoltchat";
-import { remTorem, pxTorem, numTonum } from '../../../lib/calculation';
 
 import { useApplicationState } from "../../../mobx/State";
 

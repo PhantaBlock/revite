@@ -2,10 +2,7 @@ import { Refresh } from "@styled-icons/boxicons-regular";
 
 import { useEffect, useState } from "preact/hooks";
 
-import {
-    Button, CategoryButton, Checkbox, Tip
-} from '../../../components/revoltchat';
-import { remTorem, pxTorem, numTonum } from '../../../lib/calculation';
+import { Button, CategoryButton, Checkbox, Tip } from "../../../components/revoltchat";
 
 import RLogo from "../assets/revolt_r.svg";
 
@@ -26,7 +23,7 @@ export function Native() {
     }, []);
 
     return (
-        <div style={{ marginTop: pxTorem(10) }}>
+        <div style={{ marginTop: "10px" }}>
             <Tip>Some options might require a restart.</Tip>
             <h3>App Behavior</h3>
             <Checkbox
@@ -130,7 +127,7 @@ export function Native() {
                 description="Uses your GPU to render the app, disable if you run into visual issues."
             />
 
-            <p style={{ display: "flex", gap: pxTorem(8) }}>
+            <p style={{ display: "flex", gap: "8px" }}>
                 <Button
                     palette="secondary"
                     compact
@@ -205,7 +202,7 @@ export function Native() {
             <CategoryButton
                 icon={<img src={RLogo} draggable={false} />}
                 description={<span>version {window.nativeVersion}</span>}
-                action={<Refresh size={numTonum(24)} />}>
+                action={<Refresh size={24} />}>
                 Revolt for Desktop
             </CategoryButton>
         </div>

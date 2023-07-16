@@ -1,5 +1,4 @@
 import styled, { css } from "styled-components";
-import { numTonum, pxTorem, remTorem } from '../../../../lib/calculation';
 
 interface Props {
     /**
@@ -29,12 +28,12 @@ interface Props {
 export const Column = styled.div<Props>`
     display: flex;
     flex-direction: column;
-    gap: ${(props) => props.gap ?? `${pxTorem(8)}`};
+    gap: ${(props) => props.gap ?? "8px"};
 
     ${(props) =>
         props.group &&
         css`
-            margin: ${typeof props.group === "string" ? props.group : `${pxTorem(16)}`} 0;
+            margin: ${typeof props.group === "string" ? props.group : "16px"} 0;
         `}
 
     ${(props) =>

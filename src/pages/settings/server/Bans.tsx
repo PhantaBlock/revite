@@ -7,11 +7,7 @@ import { Server } from "revolt.js";
 import styles from "./Panes.module.scss";
 import { Text } from "preact-i18n";
 import { useEffect, useMemo, useState } from "preact/hooks";
-
-import {
-    IconButton, InputBox, Preloader
-} from '../../../components/revoltchat';
-import { remTorem, pxTorem, numTonum } from '../../../lib/calculation';
+import { IconButton, InputBox, Preloader } from "../../../components/revoltchat";
 
 import UserIcon from "../../../components/common/user/UserIcon";
 
@@ -29,7 +25,7 @@ const Inner = observer(({ ban, users, server, removeSelf }: InnerProps) => {
     return (
         <div className={styles.ban} data-deleting={deleting}>
             <span>
-                <UserIcon attachment={user?.avatar ?? undefined} size={numTonum(24)} />{" "}
+                <UserIcon attachment={user?.avatar ?? undefined} size={24} />{" "}
                 {user?.username}
             </span>
             <div className={styles.reason}>
@@ -42,7 +38,7 @@ const Inner = observer(({ ban, users, server, removeSelf }: InnerProps) => {
                     setDelete(true);
                     server.unbanUser(ban._id.user).then(removeSelf);
                 }}>
-                <XCircle size={numTonum(24)} />
+                <XCircle size={24} />
             </IconButton>
         </div>
     );

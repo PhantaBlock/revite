@@ -2,6 +2,8 @@ import { useEffect, useState } from "preact/compat";
 import { observer } from "mobx-react-lite";
 import { TextChannel } from "../../pages/channels/Channel";
 import { useApi, useClient } from "../../controllers/client/ClientController";
+import styles from './index.module.scss';
+
 
 export default observer(({ channelId, userId }: {
     channelId: string;

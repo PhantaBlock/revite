@@ -5,8 +5,7 @@ import styled from "styled-components/macro";
 
 import { useEffect, useErrorBoundary, useState } from "preact/hooks";
 
-import { Button } from '../components/revoltchat';
-import { pxTorem, remTorem, numTonum } from "./calculation"
+import { Button } from "../components/revoltchat";
 
 import { GIT_REVISION } from "../revision";
 
@@ -16,14 +15,14 @@ const CrashContainer = styled.div`
     --primary-background: #2d2d2d;
 
     height: 100%;
-    padding: ${remTorem(12)};
+    padding: 12px;
 
     background: #191919;
     color: white;
 
     h3 {
         margin: 0;
-        margin-bottom: ${remTorem(12)};
+        margin-bottom: 12px;
     }
 
     code {
@@ -31,7 +30,7 @@ const CrashContainer = styled.div`
     }
 
     .buttonDivider {
-        margin: ${remTorem(8)};
+        margin: 8px;
     }
 `;
 
