@@ -19,6 +19,7 @@ import Tooltip from "../../common/Tooltip";
 import UserIcon from "../../common/user/UserIcon";
 import { Username } from "../../common/user/UserShort";
 import UserStatus from "../../common/user/UserStatus";
+import { isMicroMode } from "../../../lib/global";
 
 type CommonProps = Omit<
     JSX.HTMLAttributes<HTMLDivElement>,
@@ -50,10 +51,23 @@ export const UserButton = observer((props: UserProps) => {
         ...divProps
     } = props;
 
+    const isMicro = isMicroMode();
+
+    const menu = isMicro ? {} : {
+        ...useTriggerEvents("Menu", {
+            user: user._id,
+            channel: channel?._id,
+            unread: alert,
+            contextualChannel: context?._id,
+        })
+    }
+
     return (
         <div
             {...divProps}
-            className={classNames(styles.item, styles.user)}
+            className={classNames(styles.item, styles.user, {
+                [styles.isMicro]: isMicro
+            })}
             data-active={active}
             data-margin={margin}
             data-alert={typeof alert === "string"}
@@ -61,16 +75,11 @@ export const UserButton = observer((props: UserProps) => {
                 typeof channel !== "undefined" ||
                 (user.online && user.status?.presence !== "Invisible")
             }
-            {...useTriggerEvents("Menu", {
-                user: user._id,
-                channel: channel?._id,
-                unread: alert,
-                contextualChannel: context?._id,
-            })}>
+            {...menu}>
             <UserIcon
                 className={styles.avatar}
                 target={user}
-                size={32}
+                size={isMicro ? '3.75rem' : 32}
                 status
                 showServerIdentity
             />
@@ -147,6 +156,9 @@ export const ChannelButton = observer((props: ChannelProps) => {
     }
 
     const alerting = alert && !muted && !active;
+    const isMicro = isMicroMode();
+
+    console.warn(isMicro, '=======');
 
     return (
         <div
@@ -157,6 +169,7 @@ export const ChannelButton = observer((props: ChannelProps) => {
             aria-label={channel.name}
             className={classNames(styles.item, {
                 [styles.compact]: compact,
+                [styles.isMicro]: isMicro,
             })}
             {...useTriggerEvents("Menu", {
                 channel: channel._id,
@@ -226,13 +239,14 @@ export default function ButtonItem(props: ButtonProps) {
         compact,
         ...divProps
     } = props;
+    const isMicro = isMicroMode();
 
     return (
         <div
             {...divProps}
             className={classNames(
                 styles.item,
-                { [styles.compact]: compact, [styles.normal]: !compact },
+                { [styles.compact]: compact, [styles.normal]: !compact, [styles.isMicro]: isMicro, },
                 className,
             )}
             onClick={onClick}

@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import { remTorem, pxTorem } from '../../../../lib/calculation';
 
 export interface Props {
     readonly palette: "primary" | "secondary";
@@ -8,6 +9,7 @@ export interface Props {
 
     readonly withBackground?: boolean;
     readonly withTransparency?: boolean;
+    isMicro?: boolean;
 }
 
 export const Header = styled.div<Props>`
@@ -62,10 +64,25 @@ export const Header = styled.div<Props>`
         css`
             border-start-start-radius: 8px;
         `}
+        
+    ${(props) =>
+        props.isMicro &&
+        css`
+            background-color: transparent;
+            border-bottom: 1px solid #766A58;
+        `}
 
     ${(props) =>
         props.bottomBorder &&
         css`
             border-end-start-radius: 8px;
         `}
+
+        ${(props) =>
+        props.height &&
+        css`
+                height: ${props.height};
+                gap: ${pxTorem(10)};
+                padding: ${pxTorem(45)} ${pxTorem(16)} 0;
+            `}
 `;

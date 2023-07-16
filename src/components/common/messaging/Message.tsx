@@ -40,6 +40,7 @@ interface Props {
     content?: Children;
     head?: boolean;
     hideReply?: boolean;
+    tempMode?: boolean;
 }
 
 const Message = observer(
@@ -52,6 +53,7 @@ const Message = observer(
         head: preferHead,
         queued,
         hideReply,
+        tempMode
     }: Props) => {
         const isMicro = isMicroMode();
         const isSingle = inSingleWebView();
@@ -138,7 +140,7 @@ const Message = observer(
                         : undefined)}
                     onMouseEnter={() => setAnimate(true)}
                     onMouseLeave={() => setAnimate(false)}>
-                    <MessageInfo click={typeof head !== "undefined"}>
+                    {!tempMode && <MessageInfo click={typeof head !== "undefined"}>
                         {head ? (
                             <UserIcon
                                 className="avatar"
@@ -158,27 +160,48 @@ const Message = observer(
                         ) : (
                             <MessageDetail message={message} position="left" />
                         )}
-                    </MessageInfo>
+                    </MessageInfo>}
                     <MessageContent>
-                        {head && (
-                            <span className="detail">
-                                <Username
-                                    user={user}
-                                    className="author"
-                                    showServerIdentity
-                                    onClick={handleUserClick}
-                                    masquerade={message.masquerade!}
-                                    override={message.webhook?.name}
-                                    {...userContext}
-                                />
-                                <MessageDetail
-                                    message={message}
-                                    position="top"
-                                />
-                            </span>
+                        {
+                            tempMode ? (
+                                <div className="detail">
+                                    <Username
+                                        user={user}
+                                        className="author"
+                                        showServerIdentity
+                                        onClick={handleUserClick}
+                                        masquerade={message.masquerade!}
+                                        override={message.webhook?.name}
+                                        {...userContext}
+                                    />:
+                                    {replacement ??
+                                        (content && <Markdown content={content} />)}
+                                </div>
+                            ) :
+                                (
+                                    head && (
+                                        <span className="detail">
+                                            <Username
+                                                user={user}
+                                                className="author"
+                                                showServerIdentity
+                                                onClick={handleUserClick}
+                                                masquerade={message.masquerade!}
+                                                override={message.webhook?.name}
+                                                {...userContext}
+                                            />
+                                            <MessageDetail
+                                                message={message}
+                                                position="top"
+                                            />
+                                        </span>
+                                    )
+                                )
+                        }
+                        {!tempMode && (
+                            replacement ??
+                            (content && <Markdown content={content} />)
                         )}
-                        {replacement ??
-                            (content && <Markdown content={content} />)}
                         {!queued && <InviteList message={message} />}
                         {queued?.error && (
                             <Category>

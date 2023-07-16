@@ -104,6 +104,7 @@ html.dark {
     --min-opacity: 0;
     --min-opacity-rgb: 0, 0, 0;
     --header-height: 48px;
+    --avatar-username-gap: 1.875rem;
     --header-height-rgb: undefined, undefined, undefined;
     --effective-bottom-offset: 0px;
     --effective-bottom-offset-rgb: undefined, undefined, undefined;

@@ -21,6 +21,7 @@ type TextAreaAutoSizeProps = Omit<
         value: string;
 
         id?: string;
+        tempMode?: boolean;
 
         onChange?: (ev: JSX.TargetedEvent<HTMLTextAreaElement, Event>) => void;
     };
@@ -65,6 +66,7 @@ export default function TextAreaAutoSize(props: TextAreaAutoSizeProps) {
         hideBorder,
         forceFocus,
         onChange,
+        tempMode,
         ...textAreaProps
     } = props;
 
@@ -73,7 +75,7 @@ export default function TextAreaAutoSize(props: TextAreaAutoSizeProps) {
 
     useLayoutEffect(() => {
         if (ref.current && ghost.current) {
-            ref.current.style.height = `${ghost.current.clientHeight}px`;
+            ref.current.style.height = tempMode ? '3.5rem' : `${ghost.current.clientHeight}px`;
         }
     }, [ghost, props.value]);
 

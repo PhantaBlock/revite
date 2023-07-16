@@ -25,6 +25,7 @@ import {
 } from '../../../../components/revoltchat';
 
 import { noop } from "../../../../lib/js";
+import { remTorem, numTonum, pxTorem } from '../../../../components/revoltchat/lib/calculation';
 
 import ChannelIcon from "../../../../components/common/ChannelIcon";
 import ServerIcon from "../../../../components/common/ServerIcon";
@@ -46,6 +47,10 @@ export const UserProfile = observer(
         placeholderProfile,
         ...props
     }: ModalProps<"user_profile">) => {
+
+
+        console.log('999', props)
+
         const isMicro = isMicroMode();
         const isSingle = inSingleWebView();
 
@@ -133,16 +138,20 @@ export const UserProfile = observer(
             profile &&
             client.generateFileURL(
                 profile.background as any,
-                { width: 1000 },
+                { width: numTonum(1000) },
                 true,
-            );
+            ) || 'https://skyvs.oss-cn-hangzhou.aliyuncs.com/resources/images/IM-Bg.jpeg';
 
         const badges = user.badges ?? 0;
         const flags = user.flags ?? 0;
 
         const children = (
             <div style={{
-                display: 'block'
+                display: 'flex',
+                flexDirection: 'column',
+                width: pxTorem(950),
+                height: pxTorem(700),
+
             }}>
                 <div
                     className={styles.header}
@@ -150,15 +159,24 @@ export const UserProfile = observer(
                     style={{
                         backgroundImage:
                             backgroundURL &&
-                            `linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7) ), url('${backgroundURL}')`,
-                        paddingBottom: 1,
-                        display: 'block'
+                            `linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ), url('${backgroundURL}')`,
+                        paddingBottom: pxTorem(1),
+                        display: 'block',
+                        paddingTop: pxTorem(64),
+                        paddingLeft: pxTorem(57)
                     }}>
-                    <div className={styles.profile}>
+                    <div className={styles.profile} style={{
+                        marginBottom: pxTorem(20)
+                    }}>
                         <UserIcon
-                            size={80}
+                            size={numTonum(80)}
+                            style={{
+                                width: pxTorem(135),
+                                height: pxTorem(135),
+                                // marginTop: pxTorem(64),
+                                // marginLeft: pxTorem(57)
+                            }}
                             target={user}
-                            status
                             animate
                             hover={typeof user.avatar !== "undefined"}
                             onClick={() =>
@@ -169,17 +187,32 @@ export const UserProfile = observer(
                                 })
                             }
                         />
-                        <div className={styles.details}>
+                        <div className={styles.details} style={{
+                            marginLeft: pxTorem(35),
+                            height: pxTorem(135)
+                        }}>
                             <div className={styles.usernameDetail}>
                                 <span
                                     className={styles.displayname}
+                                    style={{
+                                        fontSize: pxTorem(30)
+                                    }}
                                     onClick={() =>
                                         modalController.writeText(user.username)
                                     }>
                                     {user.display_name ?? user.username}
                                 </span>
+                                <span style={{
+                                    color: '#DCDCDB',
+                                    opacity: '.4',
+                                    fontSize: pxTorem(20),
+                                    margin: `${pxTorem(10)} 0`
+                                }}>
+                                    ID ****
+                                </span>
                                 <span
                                     className={styles.username}
+                                    style={{ fontSize: pxTorem(24), opacity: '.7' }}
                                     onClick={() =>
                                         modalController.writeText(
                                             user.username +
@@ -192,7 +225,8 @@ export const UserProfile = observer(
                                             content={
                                                 <Text id="app.special.copy_username" />
                                             }>
-                                            {user.username}#{user.discriminator}
+                                            {/* {user.username}#{user.discriminator} */}
+                                            “暂无简介”
                                         </Tooltip>
                                     </Localizer>
                                 </span>
@@ -213,7 +247,7 @@ export const UserProfile = observer(
                                 </Button>
                             </Link>
                         )}
-                        {(user.relationship === "Friend" || user.bot) && (
+                        {/* {(user.relationship === "Friend" || user.bot) && (
                             <Localizer>
                                 <Tooltip
                                     content={
@@ -233,11 +267,11 @@ export const UserProfile = observer(
                                                 history.push(`/open/${user_id}`);
                                             }
                                         }}>
-                                        <Envelope size={30} />
+                                        <Envelope size={numTonum(30)} />
                                     </IconButton>
                                 </Tooltip>
                             </Localizer>
-                        )}
+                        )} */}
                         {user.relationship === "User" && !isPlaceholder && !isMicro && (
                             <IconButton
                                 onClick={() => {
@@ -254,31 +288,32 @@ export const UserProfile = observer(
                                 user.relationship === "None" ||
                                 user.relationship === null) && (
                                 <IconButton onClick={() => user.addFriend()}>
-                                    <UserPlus size={28} />
+                                    <UserPlus size={numTonum(28)} />
                                 </IconButton>
                             )}
                         {user.relationship === "Outgoing" && (
                             <IconButton onClick={() => user.removeFriend()}>
-                                <UserX size={28} />
+                                <UserX size={numTonum(28)} />
                             </IconButton>
                         )}
                     </div>
                     {badges > 0 && (
                         <div
                             style={{
+                                marginInline: "1em",
                                 padding: "0.5em",
                                 background: "var(--primary-background)",
-                                borderRadius: '8px',
+                                borderRadius: pxTorem(8),
                                 width: "fit-content",
                                 backgroundColor:
                                     "rgba(var(--primary-header-rgb), max(var(--min-opacity), 0.65))",
-                                backdropFilter: `blur(20px)`,
+                                backdropFilter: `blur(${pxTorem(20)})`,
                             }}>
                             <UserBadges badges={badges} uid={user._id} />
                         </div>
                     )}
                     <div className={styles.tabs}>
-                        <div
+                        <div style={{ fontSize: pxTorem(20) }}
                             data-active={tab === "profile"}
                             onClick={() => setTab("profile")}>
                             <Text id="app.special.popovers.user_profile.profile" />
@@ -286,13 +321,13 @@ export const UserProfile = observer(
                         {user.relationship !== "User" && (
                             <>
                                 {!user.bot && (
-                                    <div
+                                    <div style={{ fontSize: pxTorem(20) }}
                                         data-active={tab === "friends"}
                                         onClick={() => setTab("friends")}>
                                         <Text id="app.special.popovers.user_profile.mutual_friends" />
                                     </div>
                                 )}
-                                <div
+                                <div style={{ fontSize: pxTorem(20) }}
                                     data-active={tab === "groups"}
                                     onClick={() => setTab("groups")}>
                                     <Text id="app.special.popovers.user_profile.mutual_groups" />
@@ -374,7 +409,7 @@ export const UserProfile = observer(
                             </div>
                         ) : (
                             <div className={styles.empty}>
-                                <InfoCircle size={72} />
+                                <InfoCircle size={numTonum(72)} />
                                 <Text id="app.special.popovers.user_profile.empty" />
                             </div>
                         ))}
@@ -382,7 +417,7 @@ export const UserProfile = observer(
                         (users ? (
                             users.length === 0 ? (
                                 <div className={styles.empty}>
-                                    <UserPlus size={72} />
+                                    <UserPlus size={numTonum(72)} />
                                     <Text id="app.special.popovers.user_profile.no_users" />
                                 </div>
                             ) : (
@@ -400,7 +435,7 @@ export const UserProfile = observer(
                                                     className={styles.entry}
                                                     key={x._id}>
                                                     <UserIcon
-                                                        size={32}
+                                                        size={numTonum(32)}
                                                         target={x}
                                                         status
                                                     />
@@ -416,7 +451,7 @@ export const UserProfile = observer(
                     {tab === "groups" &&
                         (mutualGroups.length === 0 ? (
                             <div className={styles.empty}>
-                                <Group size={72} />
+                                <Group size={numTonum(72)} />
                                 <Text id="app.special.popovers.user_profile.no_groups" />
                             </div>
                         ) : (
@@ -430,7 +465,7 @@ export const UserProfile = observer(
                                                     key={x._id}>
                                                     <ChannelIcon
                                                         target={x}
-                                                        size={32}
+                                                        size={numTonum(32)}
                                                     />
                                                     <span>{x.name}</span>
                                                 </div>
@@ -447,7 +482,7 @@ export const UserProfile = observer(
                                             >
                                                 <ChannelIcon
                                                     target={x}
-                                                    size={32}
+                                                    size={numTonum(32)}
                                                 />
                                                 <span>{x.name}</span>
                                             </div>
@@ -458,7 +493,7 @@ export const UserProfile = observer(
                     {tab === "servers" &&
                         (!mutualServers || mutualServers.length === 0 ? (
                             <div className={styles.empty}>
-                                <ListUl size={72} />
+                                <ListUl size={numTonum(72)} />
                                 <Text id="app.special.popovers.user_profile.no_servers" />
                             </div>
                         ) : (
@@ -472,7 +507,7 @@ export const UserProfile = observer(
                                                     key={x._id}>
                                                     <ServerIcon
                                                         target={x}
-                                                        size={32}
+                                                        size={numTonum(32)}
                                                     />
                                                     <span>{x.name}</span>
                                                 </div>
@@ -482,7 +517,7 @@ export const UserProfile = observer(
                             </div>
                         ))}
                 </div>
-            </div>
+            </div >
         );
 
         if (isPlaceholder) return <div>{children}</div>;
@@ -492,7 +527,8 @@ export const UserProfile = observer(
                 {...props}
                 nonDismissable={isPlaceholder}
                 transparent
-                maxWidth={560}>
+                noMaxSize={true}
+                maxWidth={pxTorem(950)}>
                 {children}
             </Modal>
         );

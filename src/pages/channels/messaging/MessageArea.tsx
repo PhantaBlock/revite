@@ -3,8 +3,9 @@ import { observer } from "mobx-react-lite";
 import { useHistory, useParams } from "react-router-dom";
 import { animateScroll } from "react-scroll";
 import { Channel } from "revolt.js";
-import styled from "styled-components/macro";
+import styled, { css } from "styled-components/macro";
 import useResizeObserver from "use-resize-observer";
+import styles from './index.module.scss';
 
 import { createContext } from "preact";
 import {
@@ -54,12 +55,13 @@ const Area = styled.div.attrs({ "data-scroll-offset": "with-padding" })`
 interface Props {
     last_id?: string;
     channel: Channel;
+    tempMode: boolean;
 }
 
 export const MessageAreaWidthContext = createContext(0);
 export const MESSAGE_AREA_PADDING = 82;
 
-export const MessageArea = observer(({ last_id, channel }: Props) => {
+export const MessageArea = observer(({ last_id, channel, tempMode }: Props) => {
     const history = useHistory();
     const session = useSession()!;
 
@@ -314,8 +316,8 @@ export const MessageArea = observer(({ last_id, channel }: Props) => {
     return (
         <MessageAreaWidthContext.Provider
             value={(width ?? 0) - MESSAGE_AREA_PADDING}>
-            <Area ref={ref}>
-                <div>
+            <Area ref={ref} tempMode>
+                <div className={tempMode && styles.areaInner}>
                     {renderer.state === "LOADING" && <Preloader type="ring" />}
                     {renderer.state === "WAITING_FOR_NETWORK" && (
                         <RequiresOnline>
@@ -327,6 +329,7 @@ export const MessageArea = observer(({ last_id, channel }: Props) => {
                             last_id={last_id}
                             renderer={renderer}
                             highlight={highlight}
+                            tempMode={tempMode}
                         />
                     )}
                     {renderer.state === "EMPTY" && (

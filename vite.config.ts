@@ -45,10 +45,12 @@ function getVersion() {
 }
 
 function getBase(mode) {
-    return {
-        test: "https://sky-revite-test.war6sky.com/",
-        online: "https://sky-revite.war6sky.com/",
-    }[mode] || 'https://sky-revite.war6sky.com/';
+    return (
+        {
+            test: "https://sky-revite-test.war6sky.com/",
+            online: "https://sky-revite.war6sky.com/",
+        }[mode] || "https://sky-revite.war6sky.com/"
+    );
 }
 
 export default defineConfig(({ mode }) => {
@@ -134,7 +136,7 @@ export default defineConfig(({ mode }) => {
                 plugins: [
                     postCssPxToRem({
                         // 自适应，px>rem转换
-                        rootValue: 12, // 1rem的大小
+                        rootValue: 16, // 1rem的大小
                         propList: ["*"], // 需要转换的属性，这里选择全部都进行转换
                     }),
                 ],
@@ -155,5 +157,5 @@ export default defineConfig(({ mode }) => {
         resolve: {
             preserveSymlinks: true,
         },
-    }
+    };
 });

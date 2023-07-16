@@ -142,8 +142,8 @@ export default function HeaderActions({ channel }: ChannelHeaderProps) {
                             <Group size={25} />
                         </IconButton>
                     )}
-                {channel.channel_type !== "VoiceChannel" && (
-                    /*<SearchBar>
+                {!isMicro && channel.channel_type !== "VoiceChannel" && (
+                    <SearchBar>
                         <input
                             type="text"
                             placeholder="Search..."
@@ -152,10 +152,7 @@ export default function HeaderActions({ channel }: ChannelHeaderProps) {
                         <div className="actions">
                             <Search size={18} />
                         </div>
-                    </SearchBar>*/
-                    <IconButton onClick={openSearch}>
-                        <Search size={25} />
-                    </IconButton>
+                    </SearchBar>
                 )}
             </Container>
         </>

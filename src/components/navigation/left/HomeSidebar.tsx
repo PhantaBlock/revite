@@ -28,19 +28,20 @@ import { GenericSidebarBase, GenericSidebarList } from "../SidebarBase";
 import ButtonItem, { ChannelButton } from "../items/ButtonItem";
 import ConnectionStatus from "../items/ConnectionStatus";
 import { isMicroMode } from "../../../lib/global";
+import { remTorem, pxTorem, numTonum } from '../../../lib/calculation';
 
 const Navbar = styled.div`
     display: flex;
     align-items: center;
-    padding: 0 14px;
+    padding: 0 ${pxTorem(14)};
     font-weight: 600;
     flex-shrink: 0;
-    height: 48px;
+    height: ${pxTorem(48)};
 
     ${() =>
         isTouchscreenDevice &&
         css`
-            height: 56px;
+            height: ${pxTorem(56)};
         `}
 `;
 
@@ -73,7 +74,7 @@ export default observer(() => {
     );
 
     return (
-        <GenericSidebarBase mobilePadding>
+        <GenericSidebarBase mobilePadding paddingTop={isMicro ? "2.8125rem" : ''} isMicro={isMicro}>
             {!isMicro && (
                 <>
                     <Navbar>
@@ -87,7 +88,7 @@ export default observer(() => {
                     <>
                         <ConditionalLink active={pathname === "/"} to="/">
                             <ButtonItem active={pathname === "/"}>
-                                <Home size={20} />
+                                <Home size={numTonum(20)} />
                                 <span>
                                     <Text id="app.navigation.tabs.home" />
                                 </span>
@@ -104,7 +105,7 @@ export default observer(() => {
                                             incoming.length > 0 ? "mention" : undefined
                                         }
                                         alertCount={incoming.length}>
-                                        <UserDetail size={20} />
+                                        <UserDetail size={numTonum(20)} />
                                         <span>
                                             <Text id="app.navigation.tabs.friends" />
                                         </span>
@@ -117,7 +118,7 @@ export default observer(() => {
                             to="/open/saved">
                             <ButtonItem
                                 active={channel?.channel_type === "SavedMessages"}>
-                                <Notepad size={20} />
+                                <Notepad size={numTonum(20)} />
                                 <span>
                                     <Text id="app.navigation.tabs.saved" />
                                 </span>
@@ -126,7 +127,7 @@ export default observer(() => {
                         {import.meta.env.DEV && (
                             <Link to="/dev">
                                 <ButtonItem active={pathname === "/dev"}>
-                                    <Wrench size={20} />
+                                    <Wrench size={numTonum(20)} />
                                     <span>
                                         <Text id="app.navigation.tabs.dev" />
                                     </span>
@@ -136,14 +137,14 @@ export default observer(() => {
                     </>
                 )}
                 <Category>
-                    <Text id="app.main.categories.conversations" />
+                    {!isMicro && (<Text id="app.main.categories.conversations" />)}
                     <IconButton
                         onClick={() =>
                             modalController.push({
                                 type: "create_group",
                             })
                         }>
-                        <Plus size={16} />
+                        <Plus size={26} />
                     </IconButton>
                 </Category>
                 {channels.length === 0 && (

@@ -2,7 +2,7 @@ import { At, Hash } from "@styled-icons/boxicons-regular";
 import { Notepad, Group } from "@styled-icons/boxicons-solid";
 import { observer } from "mobx-react-lite";
 import { Channel, User } from "revolt.js";
-import styled from "styled-components/macro";
+import styled, { css } from "styled-components/macro";
 
 import { isTouchscreenDevice } from "../../lib/isTouchscreenDevice";
 
@@ -13,21 +13,23 @@ import { PageHeader } from "../../components/ui/Header";
 import { ChannelName } from "../../controllers/client/jsx/ChannelName";
 import { modalController } from "../../controllers/modals/ModalController";
 import HeaderActions from "./actions/HeaderActions";
-
+import { pxTorem } from '../../lib/calculation';
+import { isMicroMode, openMicroChannelPage } from "../../lib/global";
+import ChannelIcon from "../../components/common/ChannelIcon";
 export interface ChannelHeaderProps {
     channel: Channel;
     toggleSidebar?: () => void;
     toggleChannelSidebar?: () => void;
 }
 
-const Info = styled.div`
+const Info = styled.div<{ isMicro?: boolean }>`
     flex-grow: 1;
     min-width: 0;
     overflow: hidden;
     white-space: nowrap;
 
     display: flex;
-    gap: 8px;
+    gap: var(--avatar-username-gap);
     align-items: center;
 
     * {
@@ -62,8 +64,66 @@ const Info = styled.div`
     }
 `;
 
+const Info1 = styled.div`
+    flex-grow: 1;
+    min-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+
+    display: flex;
+    gap: var(--avatar-username-gap);
+    align-items: center;
+
+    * {
+        display: inline-block;
+    }
+
+    .divider {
+        height: ${pxTorem(20)};
+        margin: 0  ${pxTorem(5)};
+        padding-left: ${pxTorem(1)};
+        background-color: var(--tertiary-background);
+    }
+    .name {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        font-size: ${pxTorem(22)};
+    }
+    .header_status {
+        margin-left: ${pxTorem(6)};
+        width:  ${pxTorem(8.5)};
+        height:  ${pxTorem(8.5)};
+        display: inline-block;
+        margin-inline-end:  ${pxTorem(6)};
+        border-radius: var(--border-radius-half);
+    }
+
+    .desc {
+        cursor: pointer;
+        margin-top: ${pxTorem(2)};
+        font-size: ${pxTorem(17)};
+        font-weight: 400;
+        color: var(--secondary-foreground);
+
+        > * {
+            pointer-events: none;
+        }
+    }
+`;
+
+const ImageWrap = styled.div`
+    display: flex;
+    flexShrink: 0;
+    width: 3.75rem;
+    height: 3.75rem;
+    margin-left: ${pxTorem(20)};
+    margin-right: ${pxTorem(20)};
+`
+
 export default observer(({ channel }: ChannelHeaderProps) => {
     let icon, recipient: User | undefined;
+    const isMicro = isMicroMode();
     switch (channel.channel_type) {
         case "SavedMessages":
             icon = <Notepad size={24} />;
@@ -81,8 +141,8 @@ export default observer(({ channel }: ChannelHeaderProps) => {
     }
 
     return (
-        <PageHeader icon={icon} withTransparency>
-            <Info>
+        <PageHeader icon={icon} withTransparency height={isMicro ? pxTorem(132.5) : ''} isMicro={isMicro}>
+            {!isMicro ? <Info >
                 <span className="name">
                     <ChannelName channel={channel} />
                 </span>
@@ -125,8 +185,54 @@ export default observer(({ channel }: ChannelHeaderProps) => {
                             </span>
                         </>
                     )}
-            </Info>
+            </Info> : <Info1 >
+                <ImageWrap >
+                    <ChannelIcon target={channel} size={60} />
+                </ImageWrap>
+                <div className="name">
+                    <ChannelName channel={channel} />
+                    {!isTouchscreenDevice &&
+                        channel.channel_type === "DirectMessage" && (
+                            <>
+                                {/* <div className="divider" /> */}
+                                <span className="desc">
+                                    <UserStatus user={recipient} />
+                                    <div
+                                        className="header_status"
+                                        style={{
+                                            backgroundColor:
+                                                useStatusColour(recipient),
+                                        }}
+                                    />
+                                </span>
+                            </>
+                        )}
+                </div>
+                {!isTouchscreenDevice &&
+                    (channel.channel_type === "Group" ||
+                        channel.channel_type === "TextChannel") &&
+                    channel.description && (
+                        <>
+                            <div className="divider" />
+                            <span
+                                className="desc"
+                                onClick={() =>
+                                    modalController.push({
+                                        type: "channel_info",
+                                        channel,
+                                    })
+                                }>
+                                <Markdown
+                                    content={
+                                        channel.description.split("\n")[0] ?? ""
+                                    }
+                                    disallowBigEmoji
+                                />
+                            </span>
+                        </>
+                    )}
+            </Info1>}
             <HeaderActions channel={channel} />
-        </PageHeader>
+        </PageHeader >
     );
 });

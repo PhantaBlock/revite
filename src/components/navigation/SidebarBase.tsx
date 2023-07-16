@@ -1,8 +1,15 @@
 import styled, { css } from "styled-components/macro";
 
 import { isTouchscreenDevice } from "../../lib/isTouchscreenDevice";
+import { remTorem, pxTorem, numTonum } from '../../lib/calculation';
 
-export default styled.div`
+
+export default styled.div<{
+    mobilePadding?: boolean;
+    paddingTop?: string;
+    isMicro?: boolean;
+    borderLeft?: any;
+}>`
     height: 100%;
     display: flex;
     user-select: none;
@@ -15,13 +22,38 @@ export default styled.div`
         max(var(--min-opacity), 0.75)
     );
     backdrop-filter: blur(20px);
+    ${(props) =>
+        props.paddingTop &&
+        css`
+            padding-top: ${props.paddingTop};
+        `
+    }
+
+    ${(props) =>
+        props.isMicro &&
+        css`
+            background: transparent !important;
+            border-right: 1px solid #766A58  !important;
+        `
+    }
+
+    ${(props) =>
+        props.borderLeft &&
+        css`
+            border-left: ${props.borderLeft};
+            background: transparent !important;
+        `
+    }
 `;
 
 export const GenericSidebarBase = styled.div<{
     mobilePadding?: boolean;
+    paddingTop?: string;
+    isMicro?: boolean;
+    borderLeft?: string;
 }>`
     height: 100%;
-    width: 232px;
+    width: ${pxTorem(322)};
     display: flex;
     flex-shrink: 0;
     flex-direction: column;
@@ -36,6 +68,30 @@ export const GenericSidebarBase = styled.div<{
         margin-top: 48px;
         background: red;
     }*/
+
+    ${(props) =>
+        props.isMicro &&
+        css`
+            background: transparent !important;
+            border-right: 1px solid #766A58  !important;
+        `
+    }
+
+    ${(props) =>
+        props.borderLeft &&
+        css`
+            border-left: ${props.borderLeft};
+            background: transparent !important;
+        `
+    }
+
+    ${(props) =>
+        props.paddingTop &&
+        css`
+            padding-top: ${props.paddingTop};
+        `
+    }
+
 
     ${(props) =>
         props.mobilePadding &&

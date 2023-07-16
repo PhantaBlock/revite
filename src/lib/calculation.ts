@@ -1,6 +1,6 @@
-const base = 16 / 12;
+const base = 16 / 16;
 export const pxTorem = (num: number) => {
-    return `${num / 12}rem`;
+    return `${num / 16}rem`;
 };
 
 export const remTorem = (num: number) => {
@@ -8,5 +8,5 @@ export const remTorem = (num: number) => {
 };
 
 export const numTonum = (num: number) => {
-    return (num / 16) * 12;
+    return (num / 16) * 16;
 };

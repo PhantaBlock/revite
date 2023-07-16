@@ -20,7 +20,7 @@ import { useClient } from "../../controllers/client/ClientController";
 import { modalController } from "../../controllers/modals/ModalController";
 import { Friend } from "./Friend";
 
-import { isMicroMode } from "../../lib/global";
+import { isMicroMode, openMicroChannelPage } from "../../lib/global";
 
 export default observer(({ onInviteFriend }: {
     onInviteFriend: (userId: string) => void;
@@ -112,7 +112,12 @@ export default observer(({ onInviteFriend }: {
     return (
         <>
             {isMicro ? (
-                <div>
+                <div className={styles.add_firendWrap}>
+                    <div onClick={() => {
+                        openMicroChannelPage();
+                    }}>
+                        <img src="https://skyvs.oss-cn-hangzhou.aliyuncs.com/resources/images/channel.png" alt="" className={styles.goGroup} />
+                    </div>
                     <div
                         className={styles.add_firend}
                         onClick={() =>
@@ -177,11 +182,11 @@ export default observer(({ onInviteFriend }: {
                                 )}
                             </div>
                             <div className={styles.details}>
-                                <div>
-                                    <Text id="app.special.friends.pending" />{" "}
-                                    <span>{incoming.length}</span>
+                                <div className={classNames({ [styles.paddingDetails]: isMicro })}>
+                                    <Text id="app.special.friends.pending" />
+                                    {!isMicro && <span>{incoming.length}</span>}
                                 </div>
-                                <span>
+                                <span className={styles.subTitle}>
                                     {incoming.length > 3 ? (
                                         <TextReact
                                             id="app.special.friends.from.several"
@@ -206,7 +211,11 @@ export default observer(({ onInviteFriend }: {
                                     )}
                                 </span>
                             </div>
-                            <ChevronRight size={28} />
+                            {isMicro ? (
+                                <div className={styles.incomingNum}>{incoming.length}</div>
+                            ) : (
+                                <ChevronRight size={28} />
+                            )}
                         </div>
                     )}
 
@@ -232,6 +241,12 @@ export default observer(({ onInviteFriend }: {
                             </CollapsibleSection>
                         );
                     })}
+                    {
+                        lists?.length <= 0 &&
+                        <div className={styles.placeholder}>
+                            <img src="https://skyvs.oss-cn-hangzhou.aliyuncs.com/resources/images/zhanwei.png" alt="" />
+                        </div>
+                    }
                 </div>
             </div>
 

@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import { Channel, Server, User, API } from "revolt.js";
 
 import { useEffect, useLayoutEffect, useState } from "preact/hooks";
+import { pxTorem } from "../../../lib/calculation";
 
 import {
     useSession,

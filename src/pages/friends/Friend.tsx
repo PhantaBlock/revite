@@ -23,9 +23,10 @@ import { isMicroMode, openMicroChannelPage } from "../../lib/global";
 interface Props {
     user: User;
     onInviteFriend?: () => void;
+    pendingMode?: boolean;
 }
 
-export const Friend = observer(({ user, onInviteFriend }: Props) => {
+export const Friend = observer(({ user, onInviteFriend, pendingMode }: Props) => {
     const isMicro = isMicroMode();
     const history = useHistory();
 
@@ -36,6 +37,9 @@ export const Friend = observer(({ user, onInviteFriend }: Props) => {
         subtext = <UserStatus user={user} />;
 
         if (isMicro) {
+            actions.push(
+                <img src="https://skyvs.oss-cn-hangzhou.aliyuncs.com/resources/images/message.png" alt="" className={styles.message} />
+            )
             if (user.online) {
                 actions.push(
                     <IconButton
@@ -88,14 +92,26 @@ export const Friend = observer(({ user, onInviteFriend }: Props) => {
     }
 
     if (user.relationship === "Incoming") {
-        actions.push(
-            <IconButton
-                shape="circle"
-                className={styles.button}
-                onClick={(ev) => stopPropagation(ev, user.addFriend())}>
-                <Plus size={24} />
-            </IconButton>,
-        );
+        if (isMicro) {
+            actions.push(
+                <div
+                    key="pass"
+                    className={styles.passBtn}
+                    onClick={(ev) => stopPropagation(ev, user.addFriend())}
+                >
+                    <span>通过</span>
+                </div>
+            );
+        } else {
+            actions.push(
+                <IconButton
+                    shape="circle"
+                    className={styles.button}
+                    onClick={(ev) => stopPropagation(ev, user.addFriend())}>
+                    <Plus size={24} />
+                </IconButton>,
+            );
+        }
 
         subtext = <Text id="app.special.friends.incoming" />;
     }
@@ -133,6 +149,28 @@ export const Friend = observer(({ user, onInviteFriend }: Props) => {
         );
     }
 
+    if (isMicro && user.relationship === "Incoming") {
+        actions.push(
+            <div
+                key="reject"
+                className={classNames(styles.rejectBtn, "cusLineation")}
+                onClick={(ev) =>
+                    stopPropagation(
+                        ev,
+                        user.relationship === "Friend"
+                            ? modalController.push({
+                                type: "unfriend_user",
+                                target: user,
+                            })
+                            : user.removeFriend(),
+                    )
+                }
+            >
+                拒绝
+            </div>
+        );
+    }
+
     if (user.relationship === "Blocked") {
         actions.push(
             <IconButton
@@ -143,6 +181,10 @@ export const Friend = observer(({ user, onInviteFriend }: Props) => {
             </IconButton>,
         );
     }
+
+    const menu = pendingMode ? {} : useTriggerEvents("Menu", {
+        user: user._id,
+    });
 
     return (
         <div
@@ -163,9 +205,7 @@ export const Friend = observer(({ user, onInviteFriend }: Props) => {
                     })
                 }
             }}
-            {...useTriggerEvents("Menu", {
-                user: user._id,
-            })}>
+            {...menu}>
             <UserIcon target={user} size={36} status />
             <div className={styles.name}>
                 <span>{user.display_name ?? user.username}</span>

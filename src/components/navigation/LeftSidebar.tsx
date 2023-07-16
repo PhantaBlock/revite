@@ -11,9 +11,12 @@ import SidebarBase from "./SidebarBase";
 import HomeSidebar from "./left/HomeSidebar";
 import ServerListSidebar from "./left/ServerListSidebar";
 import ServerSidebar from "./left/ServerSidebar";
+import { remTorem, pxTorem, numTonum } from '../../lib/calculation';
+import { isMicroMode } from "../../lib/global";
 
 export default observer(() => {
     const layout = useApplicationState().layout;
+    const isMicro = isMicroMode();
     const { pathname } = useLocation();
     const isOpen =
         !pathname.startsWith("/discover") &&

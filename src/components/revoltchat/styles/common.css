@@ -7,10 +7,10 @@
 }
 
 .tippy-content {
-    padding: 0.5rem 0.83rem;
-    font-size: 1.08rem;
+    padding: 6px 10px;
+    font-size: 13px;
     font-weight: 600;
-    max-width: 16.667rem;
+    max-width: 200px;
 }
 
 .tippy-arrow {
@@ -21,30 +21,30 @@
 
 :root {
     --ligatures: none;
-    --text-size: 1.667rem;
+    --text-size: 14px;
     --font: "Open Sans";
     --sidebar-active: var(--secondary-background);
-    --titlebar-height: 2.416rem;
-    --titlebar-action-padding: 0.667rem;
+    --titlebar-height: 29px;
+    --titlebar-action-padding: 8px;
     --titlebar-logo-color: var(--secondary-foreground);
     --app-height: 100vh;
-    --scrollbar-thickness: 0.83rem;
+    --scrollbar-thickness: 10px;
     --scrollbar-thickness-ff: thin;
     --scrollbar-radius: var(--border-radius-half);
-    --border-radius: 0.5rem;
+    --border-radius: 6px;
     --border-radius-half: 50%;
     --border-radius-user-icon: var(--border-radius-half);
     --border-radius-channel-icon: var(--border-radius-half);
     --border-radius-server-icon: var(--border-radius-half);
-    --input-border-width: 0.167rem;
-    --textarea-padding: 0.83rem;
-    --textarea-line-height: 1.67rem;
-    --message-box-padding: 1.67rem;
-    --attachment-max-width: 40rem;
-    --attachment-max-height: 53.33rem;
-    --attachment-default-width: 33.33rem;
-    --attachment-max-text-width: 66.67rem;
-    --bottom-navigation-height: 4.167rem;
+    --input-border-width: 2px;
+    --textarea-padding: 10px;
+    --textarea-line-height: 20px;
+    --message-box-padding: 14px;
+    --attachment-max-width: 480px;
+    --attachment-max-height: 640px;
+    --attachment-default-width: 400px;
+    --attachment-max-text-width: 800px;
+    --bottom-navigation-height: 50px;
 }
 
 html {
@@ -69,10 +69,10 @@ html {
 }
 
 ::-webkit-scrollbar-thumb {
-    min-height: 3.33rem;
-    border-radius: 5rem;
+    min-height: 40px;
+    border-radius: 60px;
     background: var(--scrollbar-thumb);
-    border: 0.25rem solid transparent;
+    border: 3px solid transparent;
     background-clip: content-box;
 }
 

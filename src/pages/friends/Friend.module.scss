@@ -109,9 +109,24 @@
         }
 
         .inviteButton {
-            font-size: 12px;
-            line-height: 18px;
+            font-size: 20px;
+            line-height: 24px;
+            width: 73.5px;
+            height: 32px;
+            border-radius: 5px;
+            box-sizing: border-box;
+            border: 1px solid #d8d8d8;
             white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            margin-left: 16px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            // &.show {
+            opacity: 1;
+            pointer-events: all;
         }
     }
 }
@@ -134,6 +149,7 @@
     flex-direction: row;
     border-radius: var(--border-radius);
     background: var(--secondary-background);
+    margin-bottom: 4px;
 
     svg {
         flex-shrink: 0;
@@ -143,6 +159,8 @@
         display: flex;
         flex-shrink: 0;
         margin-inline-end: 15px;
+        width: 45px;
+        height: 45px;
 
         svg:not(:first-child) {
             position: relative;
@@ -161,7 +179,7 @@
         white-space: nowrap;
 
         >div {
-            font-size: 16px;
+            font-size: 20px;
             font-weight: 800;
             display: flex;
             // gap: 6px;
@@ -179,7 +197,7 @@
                 height: 1.5em;
                 color: white;
                 flex-shrink: 0;
-                font-size: 12px;
+                font-size: 20px;
                 align-items: center;
                 display: inline-flex;
                 justify-content: center;
@@ -196,7 +214,7 @@
 
         >span {
             font-weight: 400;
-            font-size: 12px;
+            font-size: 18px;
             color: var(--tertiary-foreground);
 
             text-overflow: ellipsis;
@@ -206,25 +224,47 @@
     }
 }
 
-.add_firend {
-    background-color: #2A2424;
-    width: 80%;
-    font-size: 16px;
-    padding: 10px 0;
-    border-radius: 4px;
+.add_firendWrap {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: row;
+    width: 80%;
     position: absolute;
     bottom: 30px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 12;
+    height: 3.75rem;
+    cursor: pointer;
+
+    img {
+        width: 4.5rem;
+        height: 3.75rem;
+        margin-right: 1.375rem;
+        display: block;
+
+        &:hover {
+            opacity: 0.5;
+        }
+    }
+}
+
+.add_firend {
+    width: 14.71875rem;
+    height: 3.75rem;
+    background-color: #2A2424;
+    font-size: 1.25rem;
+    padding: 10px 0;
+    border-radius: 0.3125rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
     cursor: pointer;
 
     &:hover {
-        opacity: 0.8;
+        opacity: 0.5;
     }
 }
 
@@ -243,22 +283,144 @@
     summary {
         display: none;
     }
+
+
+    .pending {
+        padding: 14px 20px;
+        margin-bottom: 18px;
+
+        .avatars {
+            margin-right: 14px;
+        }
+
+        svg {
+            width: 45px !important;
+            height: 45px !important;
+        }
+
+        .subTitle {
+            font-size: 18px;
+            line-height: 19px;
+            // font-weight: normal;
+            color: #B9B8B8;
+        }
+    }
 }
 
 .friend.isMicro {
     padding: 0 6px;
+    height: auto;
 
     svg {
-        width: 36px !important;
-        height: 36px !important;
+        width: 60px !important;
+        height: 60px !important;
     }
 
     .name {
-        font-size: 16px;
-        margin: 18px;
+        font-size: 22px;
+        line-height: 26px;
+        margin: 15px 15px 15px 22px;
+        height: 60px;
 
         .subtext {
-            font-size: 12px;
+            font-size: 17px;
+            line-height: 20px;
         }
+    }
+}
+
+.friend.noHover:hover {
+    background: none;
+}
+
+.paddingDetails {
+    font-size: 20px;
+    line-height: 29px;
+    color: #B9B8B8;
+
+    span {
+        margin-left: 4px;
+        font-size: 18px
+    }
+}
+
+.passBtn {
+    width: 105px;
+    height: 54px;
+    background: linear-gradient(180deg, #FED77D 0%, #FED06D 100%);
+    box-shadow: inset 0px 0px 3.75px 0px rgba(147, 7, 7, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+    font-weight: normal;
+    line-height: 30px;
+    color: #15171D;
+    position: relative;
+
+    &::before {
+        content: '';
+        border-radius: 3.75px;
+        background: linear-gradient(180deg, #FFB65A 0%, rgba(239, 176, 97, 0.00) 56%);
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 50%;
+        bottom: 0;
+    }
+
+    span {
+        position: relative;
+    }
+}
+
+.rejectBtn {
+    width: 105px;
+    height: 54px;
+    background: linear-gradient(180deg, rgba(32, 22, 8, 0.53) 0%, rgba(51, 49, 60, 0.01) 100%);
+    box-sizing: border-box;
+    border-width: 1.5px;
+    backdrop-filter: blur(0px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+    font-weight: normal;
+    line-height: 30px;
+    color: #FBD279;
+    margin-left: 17px;
+}
+
+.incomingNum {
+    width: 28px;
+    height: 28px;
+    background: #FF4714;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    line-height: 28px;
+
+    color: #FFFFFF;
+}
+
+.message {
+    width: 1.5rem;
+    height: 1.3125rem;
+    transition: 0.2s all;
+
+    &:hover {
+        filter: invert(100%);
+        cursor: pointer;
+    }
+}
+
+.placeholder {
+    width: 224px;
+    margin: 42px auto;
+
+    img {
+        width: 100%;
     }
 }

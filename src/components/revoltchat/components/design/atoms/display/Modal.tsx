@@ -8,6 +8,8 @@ import {
     animationZoomIn,
     animationZoomOut,
 } from "../../../common/animations";
+import { IconButton } from '../inputs/IconButton';
+import { X } from "@styled-icons/boxicons-regular";
 
 import { H2 } from "../heading/H2";
 import { H4 } from "../heading/H4";
@@ -16,6 +18,7 @@ import { Button, Props as ButtonProps } from "../inputs/Button";
 export type Action = Omit<React.HTMLAttributes<HTMLButtonElement>, "as"> &
     Omit<ButtonProps, "onClick"> & {
         confirmation?: boolean;
+        noBorder?: boolean;
         onClick: () => void | boolean | Promise<boolean>;
     };
 
@@ -28,6 +31,9 @@ export interface Props {
     transparent?: boolean;
     nonDismissable?: boolean;
 
+    needPadding?: boolean;
+    noMaxSize?: boolean;
+
     actions?: Action[];
     onClose?: (force: boolean) => void;
 
@@ -38,7 +44,18 @@ export interface Props {
     title?: React.ReactNode;
     description?: React.ReactNode;
     children?: React.ReactNode;
+
 }
+
+const IconButtonWrap = styled.div`
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    z-index: 1;
+    svg {
+        color: #FFBE5A;
+    }
+`
 
 const Base = styled.div<{ closing?: boolean }>`
     top: 0;
@@ -77,22 +94,37 @@ const Base = styled.div<{ closing?: boolean }>`
 `;
 
 const Container = styled.div<
-    Pick<Props, "transparent" | "maxWidth" | "maxHeight"> & { actions: boolean }
+    Pick<Props, "transparent" | "maxWidth" | "maxHeight" | "noMaxSize"> & { actions: boolean }
 >`
-    min-height: 200px;
-    max-width: min(calc(100vw - 20px), ${(props) => props.maxWidth ?? "450px"});
-    max-height: min(
-        calc(100vh - 20px),
-        ${(props) => props.maxHeight ?? "650px"}
-    );
+    max-width: min(calc(100vw - 3.125rem), ${(props) => props.maxWidth ?? '54rem'});
 
-    margin: 20px;
+    max-height: min(
+        calc(100vh - 1.67rem),
+        ${(props) => props.maxHeight ?? '33rem'}
+    );
+    width: ${(props) => props.width} !important;
+    height: ${(props) => props.height};
+
+    border: 2px solid;
+    border-image: linear-gradient(180deg, #FFBE5A, rgba(255, 226, 119, 0.3));
+    border-image-slice: 1;
+
+    margin: 1.666666667rem;
     display: flex;
     flex-direction: column;
 
     animation-name: ${animationZoomIn};
     animation-duration: 0.25s;
     animation-timing-function: cubic-bezier(0.3, 0.3, 0.18, 1.1);
+    background-image: linear-gradient(180deg, rgba(27, 15, 14, 0.9) 1%, rgba(10, 9, 24, 0.5) 99%);
+    backdrop-filter: blur(0.625rem);
+
+    ${(props) =>
+        props.noMaxSize &&
+        css`
+            max-height: none !important;
+            max-width: none !important;
+        `}
 
     ${(props) =>
         !props.maxWidth &&
@@ -104,24 +136,31 @@ const Container = styled.div<
         !props.transparent &&
         css`
             overflow: hidden;
-            background: var(--secondary-header);
-            border-radius: var(--border-radius);
+            // background: var(--secondary-header);
+            // border-radius: var(--border-radius);
         `}
 `;
 
 const Title = styled.div`
-    padding: 1rem;
+    padding: 0 2.656rem;
+    min-height: 5.6875rem;
+    display: flex;
+    justify-content: center;
+    font-size: 2.1875rem;
     flex-shrink: 0;
     word-break: break-word;
-    gap: 8px;
     display: flex;
     flex-direction: column;
+
+    border-bottom: 0.0625rem solid #FEBD5A;
+    color: #FFE1B3;
+    font-family: PingFangHK-Regular;
 `;
 
-const Content = styled.div<Pick<Props, "transparent" | "padding">>`
+const Content = styled.div<Pick<Props, "transparent" | "padding" | "needPadding">>`
     flex-grow: 1;
     padding-top: 0;
-    padding: ${(props) => props.padding ?? "0 1rem 1rem"};
+    padding: ${(props) => !props.needPadding ? 0 : props.padding ?? `1rem 2rem 2rem`};
 
     overflow-y: auto;
     font-size: 0.9375rem;
@@ -132,20 +171,26 @@ const Content = styled.div<Pick<Props, "transparent" | "padding">>`
     ${(props) =>
         !props.transparent &&
         css`
-            background: var(--secondary-header);
+            // background: var(--secondary-header);
         `}
 `;
 
-const Actions = styled.div`
+const Actions = styled.div<{ noBorder?: boolean }>`
     flex-shrink: 0;
-
-    gap: 8px;
     display: flex;
-    padding: 1rem;
+    padding: 2.437rem 2.15625rem;
     flex-direction: row-reverse;
 
-    background: var(--secondary-background);
+    // background: var(--secondary-background);
     border-radius: 0 0 var(--border-radius) var(--border-radius);
+
+    border-top: 0.0625rem solid #FEBD5A;
+
+    ${(props) =>
+        props.noBorder &&
+        css`
+            border-top: none;
+        `}
 `;
 
 export const Modal: (props: Props) => JSX.Element = ({
@@ -197,30 +242,52 @@ export const Modal: (props: Props) => JSX.Element = ({
                 onClick={(e) => e.stopPropagation()}>
                 {(title || description) && (
                     <Title>
-                        {title && <H2>{title}</H2>}
+                        {title && <>{title}</>}
                         {description && <H4>{description}</H4>}
                     </Title>
                 )}
-                <Content {...props}>{children}</Content>
+                <IconButtonWrap>
+                    <IconButton
+                        onClick={(e) =>
+                            closeModal()
+                        }>
+                        <X size={36} />
+                    </IconButton>
+                </IconButtonWrap>
+                <Content {...props} needPadding={title !== undefined || description !== undefined}>{children}</Content>
                 {actions && actions.length > 0 && (
-                    <Actions>
+                    <Actions noBorder={props.noBorder}>
                         {actions.map((x, index) => (
                             // @ts-expect-error cope
                             <Button
                                 disabled={disabled}
                                 key={index}
+                                skyTheme={x.skyTheme}
+                                confirmation={x.confirmation}
+                                style={x.style}
                                 {...x}
                                 onClick={async () => {
                                     if (await x.onClick()) {
                                         closeModal();
                                     }
                                 }}
-                            />
+                            >
+                                <div
+                                    style={{
+                                        width: '21.625rem',
+                                        height: '4.3125rem',
+                                        "font-size": '1.56rem',
+                                        zIndex: 1,
+                                        display: 'flex',
+                                        'align-items': 'center',
+                                        'justify-content': 'center'
+                                    }} > {x.children}</div>
+                            </Button>
                         ))}
                     </Actions>
                 )}
             </Container>
-        </Base>,
+        </Base >,
         document.body,
     );
 };

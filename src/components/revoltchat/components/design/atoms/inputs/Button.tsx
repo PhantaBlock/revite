@@ -3,14 +3,16 @@ import styled, { css } from "styled-components";
 export interface Props {
     readonly compact?: boolean | "icon";
     readonly palette?:
-        | "primary"
-        | "secondary"
-        | "plain"
-        | "plain-secondary"
-        | "accent"
-        | "success"
-        | "warning"
-        | "error";
+    | "primary"
+    | "secondary"
+    | "plain"
+    | "plain-secondary"
+    | "accent"
+    | "success"
+    | "warning"
+    | "error";
+    skyTheme?: boolean;
+    confirmation?: boolean;
 }
 
 export const Button = styled.button<Props>`
@@ -41,20 +43,47 @@ export const Button = styled.button<Props>`
                   width: 38px;
               `
             : props.compact
-            ? css`
+                ? css`
                   min-width: 96px;
                   font-size: 0.8125rem;
                   height: 32px !important;
                   padding: 2px 12px !important;
               `
-            : css`
+                : css`
                   height: 38px;
                   min-width: 96px;
                   padding: 2px 16px;
                   font-size: 0.8125rem;
               `}
+            ${(props) =>
+        props.confirmation && css`
+            font-weight: 700;
+            border-radius: 0 !important;
+            flex-direction: column;
+            background: #FED06D !important;
+            background-image: linear-gradient(0deg, #FED06D, #FED77D) !important;
+            position: relative;
+            color: #1C1616 !important;
+            width: 21.625rem;
+            height: 4.3125rem;
+            font-size: 1.56rem;
+            padding: 0;
+            &::before {
+                content: '';
+                width: 100%;
+                height: 50%;
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                background-image: linear-gradient(180deg, #FFB65A, rgba(239, 176, 97, 0));
+            }
+            `
+    }
+        
 
     ${(props) => {
+        if (props.confirmation)
+            return
         switch (props.palette) {
             case "secondary":
                 return css`

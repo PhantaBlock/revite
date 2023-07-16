@@ -49,6 +49,7 @@ import { isMicroMode } from "../../../lib/global";
 
 type Props = {
     channel: Channel;
+    tempMode?: boolean;
 };
 
 export type UploadState =
@@ -214,7 +215,7 @@ export const HackAlertThisFileWillBeReplaced = observer(
 // ! FIXME: add to app config and load from app config
 export const CAN_UPLOAD_AT_ONCE = 5;
 
-export default observer(({ channel }: Props) => {
+export default observer(({ channel, tempMode }: Props) => {
     const isMicro = isMicroMode();
     const state = useApplicationState();
 
@@ -672,7 +673,9 @@ export default observer(({ channel }: Props) => {
                     hideBorder
                     maxRows={20}
                     id="message"
+                    tempMode={tempMode}
                     maxLength={2000}
+                    tempMode={tempMode}
                     onKeyUp={onKeyUp}
                     value={state.draft.get(channel._id)?.content ?? ""}
                     padding="var(--message-box-padding)"
@@ -724,7 +727,7 @@ export default observer(({ channel }: Props) => {
                         debouncedStopTyping(true);
                     }}
                     placeholder={
-                        channel.name?.startsWith('#TEAMUP_ROOM_CHANNEL') ? '发送至房间' : (
+                        !isMicro ? (channel.name?.startsWith('#TEAMUP_ROOM_CHANNEL') ? '发送至房间' : (
                             channel.channel_type === "DirectMessage"
                                 ? translate("app.main.channel.message_who", {
                                     person: channel.recipient?.username,
@@ -734,8 +737,9 @@ export default observer(({ channel }: Props) => {
                                     : translate("app.main.channel.message_where", {
                                         channel_name: channel.name ?? undefined,
                                     })
-                        )
+                        )) : "善语结善缘，恶语伤人心···"
                     }
+
                     disabled={
                         uploadState.type === "uploading" ||
                         uploadState.type === "sending"

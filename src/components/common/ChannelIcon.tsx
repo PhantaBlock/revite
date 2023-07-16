@@ -6,6 +6,7 @@ import { Channel } from "revolt.js";
 
 import { useClient } from "../../controllers/client/ClientController";
 import { ImageIconBase, IconBaseProps } from "./IconBase";
+import { remTorem, pxTorem, numTonum } from '../../lib/calculation';
 
 interface Props extends IconBaseProps<Channel> {
     isServerChannel?: boolean;
@@ -31,9 +32,9 @@ export default observer(
         } = props;
         const iconURL = client.generateFileURL(
             target?.icon ?? attachment ?? undefined,
-            { max_side: 256 },
+            { max_side: numTonum(256) },
             animate,
-        );
+        ) || (target?.channel_type === 'DirectMessage' ? target?.recipient?.avatarURL : 'https://skyvs.oss-cn-hangzhou.aliyuncs.com/resources/revite/groupIcon.jpeg');
         const isServerChannel =
             server ||
             (target &&

@@ -36,6 +36,7 @@ export default function UserPicker({
                 {
                     children: <Text id="app.special.modals.actions.ok" />,
                     onClick: () => callback(selected).then(() => true),
+                    confirmation: true
                 },
             ]}>
             <List>

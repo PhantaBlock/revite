@@ -53,6 +53,7 @@ export default function Confirmation(
     return (
         <ModalForm
             {...props}
+            noBorder
             title={
                 <Text
                     id={`app.special.modals.prompt.${event[0]}`}
