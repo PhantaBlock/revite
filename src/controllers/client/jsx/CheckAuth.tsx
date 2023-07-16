@@ -1,7 +1,7 @@
 import { observer } from "mobx-react-lite";
 import { Redirect } from "react-router-dom";
 
-import { Preloader } from "@revoltchat/ui";
+import { Preloader } from "../../../components/revoltchat";
 
 import { clientController } from "../ClientController";
 

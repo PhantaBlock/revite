@@ -3,7 +3,7 @@ import { observer } from "mobx-react-lite";
 import { useHistory, useLocation } from "react-router";
 import styled, { css } from "styled-components/macro";
 
-import { Centred, IconButton } from "@revoltchat/ui";
+import { Centred, IconButton } from "../../components/revoltchat";
 
 import ConditionalLink from "../../lib/ConditionalLink";
 

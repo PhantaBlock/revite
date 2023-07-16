@@ -4,7 +4,6 @@ import type { Message as MessageType } from "revolt.js";
 import styled, { css } from "styled-components";
 import { Avatar } from "../atoms";
 import { Info } from "./Info";
-import { numTonum, pxTorem, remTorem } from '../../../lib/calculation';
 
 export interface Props {
     /**
@@ -25,29 +24,29 @@ const Wrapper = styled.div<Pick<Props, "head">>`
     ${(props) =>
         props.head &&
         css`
-            padding-top: ${pxTorem(14)};
+            padding-top: 14px;
         `}
 `;
 
 const MessageEl = styled.div`
     display: flex;
-    line-height: ${pxTorem(18)};
+    line-height: 18px;
 
     // Make time sent and edited components uniform
     time {
-        font-size: ${pxTorem(10)};
+        font-size: 10px;
         color: var(--tertiary-foreground);
     }
 `;
 
 const Tail = styled.div`
-    width: ${pxTorem(62)};
+    width: 62px;
     display: flex;
     justify-content: center;
 `;
 
 const Content = styled.div`
-    font-size: ${pxTorem(14)};
+    font-size: 14px;
     color: var(--foreground);
 
     display: flex;
@@ -55,7 +54,7 @@ const Content = styled.div`
 `;
 
 const Head = styled.div`
-    gap: ${pxTorem(6)};
+    gap: 6px;
     display: flex;
 
     // Username
@@ -71,9 +70,9 @@ export const Message = observer(({ message, head }: Props) => {
                 <Tail>
                     {head ? (
                         <Avatar
-                            size={numTonum(36)}
+                            size={36}
                             src={message.author?.generateAvatarURL({
-                                max_side: numTonum(256),
+                                max_side: 256,
                             })}
                             interactive
                         />

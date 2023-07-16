@@ -2,7 +2,7 @@ import { Refresh } from "@styled-icons/boxicons-regular";
 
 import { useEffect, useState } from "preact/hooks";
 
-import { Button, CategoryButton, Checkbox, Tip } from "@revoltchat/ui";
+import { Button, CategoryButton, Checkbox, Tip } from "../../../components/revoltchat";
 
 import RLogo from "../assets/revolt_r.svg";
 

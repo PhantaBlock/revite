@@ -9,7 +9,7 @@ import { Text } from "preact-i18n";
 import { memo } from "preact/compat";
 import { useCallback, useEffect, useMemo, useState } from "preact/hooks";
 
-import { IconButton, Picker } from "@revoltchat/ui";
+import { IconButton, Picker } from "../../../components/revoltchat";
 
 import TextAreaAutoSize from "../../../lib/TextAreaAutoSize";
 import { debounce } from "../../../lib/debounce";

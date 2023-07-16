@@ -5,7 +5,7 @@ import { API } from "revolt.js";
 import { Text } from "preact-i18n";
 import { useCallback, useEffect, useState } from "preact/hooks";
 
-import { Category, CategoryButton, Error, Tip } from "@revoltchat/ui";
+import { Category, CategoryButton, Error, Tip } from "../../../components/revoltchat";
 
 import { useSession } from "../../../controllers/client/ClientController";
 import { takeError } from "../../../controllers/client/jsx/error";
@@ -148,7 +148,7 @@ export default function MultiFactorAuthentication() {
                     } else {
                         break;
                     }
-                } catch (err) {}
+                } catch (err) { }
             }
         }
     }, [mfa]);
@@ -174,21 +174,19 @@ export default function MultiFactorAuthentication() {
                 icon={<ListOl size={24} />}
                 description={
                     <Text
-                        id={`app.settings.pages.account.2fa.${
-                            mfa?.recovery_active
-                                ? "view_recovery"
-                                : "generate_recovery"
-                        }_long`}
+                        id={`app.settings.pages.account.2fa.${mfa?.recovery_active
+                            ? "view_recovery"
+                            : "generate_recovery"
+                            }_long`}
                     />
                 }
                 disabled={!mfa}
                 onClick={recoveryAction}>
                 <Text
-                    id={`app.settings.pages.account.2fa.${
-                        mfa?.recovery_active
-                            ? "view_recovery"
-                            : "generate_recovery"
-                    }`}
+                    id={`app.settings.pages.account.2fa.${mfa?.recovery_active
+                        ? "view_recovery"
+                        : "generate_recovery"
+                        }`}
                 />
             </CategoryButton>
             <CategoryButton
@@ -202,18 +200,16 @@ export default function MultiFactorAuthentication() {
                 disabled={!mfa || (!mfa.recovery_active && !mfa.totp_mfa)}
                 onClick={totpAction}>
                 <Text
-                    id={`app.settings.pages.account.2fa.${
-                        mfa?.totp_mfa ? "remove" : "add"
-                    }_auth`}
+                    id={`app.settings.pages.account.2fa.${mfa?.totp_mfa ? "remove" : "add"
+                        }_auth`}
                 />
             </CategoryButton>
 
             {mfa && (
                 <Tip palette={mfaActive ? "primary" : "error"}>
                     <Text
-                        id={`app.settings.pages.account.2fa.two_factor_${
-                            mfaActive ? "on" : "off"
-                        }`}
+                        id={`app.settings.pages.account.2fa.two_factor_${mfaActive ? "on" : "off"
+                            }`}
                     />
                 </Tip>
             )}

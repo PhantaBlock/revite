@@ -1,5 +1,5 @@
 import { lazy, Suspense, useEffect, useState } from "preact/compat";
-import { Masks, Preloader } from "@revoltchat/ui";
+import { Masks, Preloader } from "../components/revoltchat";
 
 import Context from "../context";
 import { useApi } from "../controllers/client/ClientController";

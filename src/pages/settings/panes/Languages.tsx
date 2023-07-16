@@ -5,7 +5,7 @@ import styles from "./Panes.module.scss";
 import { Text } from "preact-i18n";
 import { useMemo } from "preact/hooks";
 
-import { Checkbox, LineDivider, Tip } from "@revoltchat/ui";
+import { Checkbox, LineDivider, Tip } from "../../../components/revoltchat";
 
 import { useApplicationState } from "../../../mobx/State";
 

@@ -10,7 +10,7 @@ import {
     CategoryButton,
     Column,
     HiddenValue,
-} from "@revoltchat/ui";
+} from "../../../components/revoltchat";
 
 import { useSession } from "../../../controllers/client/ClientController";
 import { modalController } from "../../../controllers/modals/ModalController";
@@ -40,8 +40,8 @@ export default observer(() => {
                     [
                         "username",
                         client.user!.username +
-                            "#" +
-                            client.user!.discriminator,
+                        "#" +
+                        client.user!.discriminator,
                         At,
                     ],
                     ["email", email, Envelope],

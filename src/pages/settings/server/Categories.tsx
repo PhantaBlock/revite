@@ -8,7 +8,7 @@ import { ulid } from "ulid";
 import { Text } from "preact-i18n";
 import { useCallback, useEffect, useMemo, useState } from "preact/hooks";
 
-import { SaveStatus } from "@revoltchat/ui";
+import { SaveStatus } from "../../../components/revoltchat";
 
 import { useAutosave } from "../../../lib/debounce";
 import { Draggable, Droppable } from "../../../lib/dnd";
@@ -257,9 +257,9 @@ export const Categories = observer(({ server }: Props) => {
                                                     categories.map((x) =>
                                                         x.id === category.id
                                                             ? {
-                                                                  ...x,
-                                                                  title,
-                                                              }
+                                                                ...x,
+                                                                title,
+                                                            }
                                                             : x,
                                                     ),
                                                 );
@@ -278,12 +278,12 @@ export const Categories = observer(({ server }: Props) => {
                                                     categories.map((x) =>
                                                         x.id === category.id
                                                             ? {
-                                                                  ...x,
-                                                                  channels: [
-                                                                      ...x.channels,
-                                                                      channel._id,
-                                                                  ],
-                                                              }
+                                                                ...x,
+                                                                channels: [
+                                                                    ...x.channels,
+                                                                    channel._id,
+                                                                ],
+                                                            }
                                                             : x,
                                                     ),
                                                 );

@@ -2,7 +2,7 @@ import { Wrench } from "@styled-icons/boxicons-solid";
 
 import { useEffect, useState } from "preact/hooks";
 
-import { Button } from "@revoltchat/ui";
+import { Button } from "../../components/revoltchat";
 
 import PaintCounter from "../../lib/PaintCounter";
 import { TextReact } from "../../lib/i18n";
@@ -52,9 +52,9 @@ export default function Developer() {
                 </Button>
                 {
                     crash &&
-                        (
-                            window as any
-                        ).sus.sus() /* this runs a function that doesn't exist */
+                    (
+                        window as any
+                    ).sus.sus() /* this runs a function that doesn't exist */
                 }
                 {/*<span>
                     <b>Voice Status:</b> {VoiceStatus[voice.status]}

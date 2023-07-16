@@ -5,7 +5,7 @@ import styled from "styled-components/macro";
 
 import { useEffect, useErrorBoundary, useState } from "preact/hooks";
 
-import { Button } from "@revoltchat/ui";
+import { Button } from "../components/revoltchat";
 
 import { GIT_REVISION } from "../revision";
 

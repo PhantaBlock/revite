@@ -26,7 +26,7 @@ import {
     LineDivider,
     Preloader,
     Tip,
-} from "@revoltchat/ui";
+} from "../../../components/revoltchat";
 
 import { dayjs } from "../../../context/Locale";
 
@@ -199,8 +199,7 @@ export function Sessions() {
                                             session._id,
                                         ]);
                                         await client.api.delete(
-                                            `/auth/session/${
-                                                session._id as ""
+                                            `/auth/session/${session._id as ""
                                             }`,
                                         );
                                         setSessions(

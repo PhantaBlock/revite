@@ -2,7 +2,7 @@ import { UseFormMethods } from "react-hook-form";
 
 import { Text, Localizer } from "preact-i18n";
 
-import { Category, InputBox } from "@revoltchat/ui";
+import { Category, InputBox } from "../../components/revoltchat";
 
 import { I18nError } from "../../context/Locale";
 
@@ -52,43 +52,43 @@ export default function FormField({
                         type === "invite" || type === "username"
                             ? "text"
                             : type === "current_password"
-                            ? "password"
-                            : type
+                                ? "password"
+                                : type
                     }
                     // See https://github.com/mozilla/contain-facebook/issues/783
                     className="fbc-has-badge"
                     ref={register(
                         type === "password" || type === "current_password"
                             ? {
-                                  validate: (value: string) =>
-                                      value.length === 0
-                                          ? "RequiredField"
-                                          : value.length < 8
-                                          ? "TooShort"
-                                          : value.length > 1024
-                                          ? "TooLong"
-                                          : undefined,
-                              }
+                                validate: (value: string) =>
+                                    value.length === 0
+                                        ? "RequiredField"
+                                        : value.length < 8
+                                            ? "TooShort"
+                                            : value.length > 1024
+                                                ? "TooLong"
+                                                : undefined,
+                            }
                             : type === "email"
-                            ? {
-                                  required: "RequiredField",
-                                  pattern: {
-                                      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                                      message: "InvalidEmail",
-                                  },
-                              }
-                            : type === "username"
-                            ? {
-                                  validate: (value: string) =>
-                                      value.length === 0
-                                          ? "RequiredField"
-                                          : value.length < 2
-                                          ? "TooShort"
-                                          : value.length > 32
-                                          ? "TooLong"
-                                          : undefined,
-                              }
-                            : { required: "RequiredField" },
+                                ? {
+                                    required: "RequiredField",
+                                    pattern: {
+                                        value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                                        message: "InvalidEmail",
+                                    },
+                                }
+                                : type === "username"
+                                    ? {
+                                        validate: (value: string) =>
+                                            value.length === 0
+                                                ? "RequiredField"
+                                                : value.length < 2
+                                                    ? "TooShort"
+                                                    : value.length > 32
+                                                        ? "TooLong"
+                                                        : undefined,
+                                    }
+                                    : { required: "RequiredField" },
                     )}
                     {...props}
                 />

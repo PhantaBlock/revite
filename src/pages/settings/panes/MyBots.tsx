@@ -16,7 +16,7 @@ import {
     Checkbox,
     InputBox,
     Tip,
-} from "@revoltchat/ui";
+} from "../../../components/revoltchat";
 
 import TextAreaAutoSize from "../../../lib/TextAreaAutoSize";
 import { internalEmit } from "../../../lib/eventEmitter";
@@ -293,9 +293,8 @@ function BotCard({ bot, onDelete, onUpdate }: Props) {
                         <Tooltip
                             content={
                                 <Text
-                                    id={`app.settings.pages.bots.${
-                                        bot.public ? "public" : "private"
-                                    }_bot_tip`}
+                                    id={`app.settings.pages.bots.${bot.public ? "public" : "private"
+                                        }_bot_tip`}
                                 />
                             }>
                             {bot.public ? (
@@ -324,9 +323,8 @@ function BotCard({ bot, onDelete, onUpdate }: Props) {
                     }}
                     palette="secondary">
                     <Text
-                        id={`app.special.modals.actions.${
-                            editMode ? "cancel" : "edit"
-                        }`}
+                        id={`app.special.modals.actions.${editMode ? "cancel" : "edit"
+                            }`}
                     />
                 </Button>
             </div>
@@ -379,10 +377,10 @@ function BotCard({ bot, onDelete, onUpdate }: Props) {
                             previewURL={
                                 profile?.background
                                     ? client.generateFileURL(
-                                          profile.background,
-                                          { width: 1000 },
-                                          true,
-                                      )
+                                        profile.background,
+                                        { width: 1000 },
+                                        true,
+                                    )
                                     : undefined
                             }
                         />
@@ -401,10 +399,9 @@ function BotCard({ bot, onDelete, onUpdate }: Props) {
                                 setContent(ev.currentTarget.value);
                             }}
                             placeholder={translate(
-                                `app.settings.pages.profile.${
-                                    typeof profile === "undefined"
-                                        ? "fetching"
-                                        : "placeholder"
+                                `app.settings.pages.profile.${typeof profile === "undefined"
+                                    ? "fetching"
+                                    : "placeholder"
                                 }`,
                             )}
                             onKeyUp={onKeyUp}
@@ -550,7 +547,7 @@ export const MyBots = observer(() => {
                                             if (
                                                 "public" in changes &&
                                                 typeof changes.public ===
-                                                    "boolean"
+                                                "boolean"
                                             )
                                                 x.public = changes.public;
                                             if ("interactions_url" in changes)

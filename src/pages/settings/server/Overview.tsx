@@ -7,7 +7,7 @@ import styles from "./Panes.module.scss";
 import { Text } from "preact-i18n";
 import { useEffect, useState } from "preact/hooks";
 
-import { Button, ComboBox, InputBox } from "@revoltchat/ui";
+import { Button, ComboBox, InputBox } from "../../../components/revoltchat";
 
 import TextAreaAutoSize from "../../../lib/TextAreaAutoSize";
 import { noop } from "../../../lib/js";
@@ -142,7 +142,7 @@ export const Overview = observer(({ server }: Props) => {
                     <ComboBox
                         value={
                             systemMessages?.[
-                                key as keyof typeof systemMessages
+                            key as keyof typeof systemMessages
                             ] ?? "disabled"
                         }
                         onChange={(e) => {

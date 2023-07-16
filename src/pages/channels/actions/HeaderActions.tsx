@@ -11,7 +11,7 @@ import { observer } from "mobx-react-lite";
 import { useHistory } from "react-router-dom";
 import styled, { css } from "styled-components/macro";
 
-import { IconButton } from "@revoltchat/ui";
+import { IconButton } from "../../../components/revoltchat";
 
 import { chainedDefer, defer } from "../../../lib/defer";
 import { internalEmit } from "../../../lib/eventEmitter";

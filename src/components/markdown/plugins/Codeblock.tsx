@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 import { useCallback, useRef } from "preact/hooks";
 
-import { Tooltip } from "@revoltchat/ui";
+import { Tooltip } from "../../../components/revoltchat";
 
 import { modalController } from "../../../controllers/modals/ModalController";
 

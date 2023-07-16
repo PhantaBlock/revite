@@ -7,7 +7,7 @@ import styled, { css } from "styled-components";
 import { Text } from "preact-i18n";
 import { useMemo } from "preact/hooks";
 
-import { Checkbox, OverrideSwitch } from "@revoltchat/ui";
+import { Checkbox, OverrideSwitch } from "../../../components/revoltchat";
 
 interface PermissionSelectProps {
     id: keyof typeof Permission;
@@ -67,13 +67,13 @@ export function PermissionSelect({
             }
 
             return "Neutral";
-        } 
-            if (Long.fromNumber(value).and(permission).eq(permission)) {
-                return "Allow";
-            }
+        }
+        if (Long.fromNumber(value).and(permission).eq(permission)) {
+            return "Allow";
+        }
 
-            return "Neutral";
-        
+        return "Neutral";
+
     }, [value]);
 
     function onSwitch(state: State) {

@@ -15,7 +15,7 @@ import { Server } from "revolt.js";
 import { ContextMenuWithData, MenuItem } from "preact-context-menu";
 import { Text } from "preact-i18n";
 
-import { LineDivider } from "@revoltchat/ui";
+import { LineDivider } from "../../components/revoltchat";
 
 import { useApplicationState } from "../../mobx/State";
 import { NotificationState } from "../../mobx/stores/NotificationOptions";
@@ -53,24 +53,24 @@ export default observer(() => {
                 // If we're editing channel, show a default option too.
                 const elements: Children[] = channel
                     ? [
-                          <MenuItem
-                              key="notif"
-                              data={{
-                                  key: channel._id,
-                                  type: "channel",
-                              }}>
-                              <Text
-                                  id={`app.main.channel.notifications.default`}
-                              />
-                              <div className="tip">
-                                  {state !== undefined && <Square size={20} />}
-                                  {state === undefined && (
-                                      <CheckSquare size={20} />
-                                  )}
-                              </div>
-                          </MenuItem>,
-                          <LineDivider />,
-                      ]
+                        <MenuItem
+                            key="notif"
+                            data={{
+                                key: channel._id,
+                                type: "channel",
+                            }}>
+                            <Text
+                                id={`app.main.channel.notifications.default`}
+                            />
+                            <div className="tip">
+                                {state !== undefined && <Square size={20} />}
+                                {state === undefined && (
+                                    <CheckSquare size={20} />
+                                )}
+                            </div>
+                        </MenuItem>,
+                        <LineDivider />,
+                    ]
                     : [];
 
                 /**

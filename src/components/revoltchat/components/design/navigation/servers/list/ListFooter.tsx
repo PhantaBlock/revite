@@ -7,7 +7,6 @@ import { useLink } from "../../../../../lib";
 import { Avatar } from "../../../atoms";
 import { Tooltip } from "../../../atoms/indicators/Tooltip";
 import { ItemContainer } from "./Item";
-import { numTonum, pxTorem, remTorem } from '../../../../../lib/calculation';
 
 export interface FooterProps {
     createServer: () => void;
@@ -26,8 +25,8 @@ export function ListFooter({ createServer, showDiscover }: FooterProps) {
                 <ItemContainer>
                     <Tooltip content="Add a server" div right>
                         <Avatar
-                            size={numTonum(42)}
-                            fallback={<Plus color="var(--accent)" size={numTonum(24)} />}
+                            size={42}
+                            fallback={<Plus color="var(--accent)" size={24} />}
                             interactive
                         />
                     </Tooltip>
@@ -38,9 +37,9 @@ export function ListFooter({ createServer, showDiscover }: FooterProps) {
                     <ItemContainer>
                         <Tooltip content="Discover Revolt" div right>
                             <Avatar
-                                size={numTonum(42)}
+                                size={42}
                                 fallback={
-                                    <Compass color="var(--accent)" size={numTonum(24)} />
+                                    <Compass color="var(--accent)" size={24} />
                                 }
                                 interactive
                             />

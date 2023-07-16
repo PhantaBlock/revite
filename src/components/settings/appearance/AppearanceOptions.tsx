@@ -1,6 +1,6 @@
 import { Text } from "preact-i18n";
 
-import { Column, ObservedInputElement } from "@revoltchat/ui";
+import { Column, ObservedInputElement } from "../../../components/revoltchat";
 
 import { useApplicationState } from "../../../mobx/State";
 

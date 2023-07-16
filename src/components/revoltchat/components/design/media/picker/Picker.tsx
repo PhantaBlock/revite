@@ -7,7 +7,6 @@ import useCloseHook from "../../../../lib/closeHook";
 
 import { Avatar, Column, InputBox } from "../../atoms";
 import { EmojiPreview } from "./EmojiPreview";
-import { numTonum, pxTorem, remTorem } from '../../../../lib/calculation';
 
 /**
  * Category of emoji
@@ -58,7 +57,7 @@ interface Props {
  * Hard-coded row size
  * ! FIXME: this will be calculated automatically later I guess
  */
-const ROW_SIZE = numTonum(8);
+const ROW_SIZE = 8;
 
 /**
  * Base layout of the picker
@@ -68,14 +67,14 @@ const Base = styled(Column)`
     user-select: none;
     position: absolute;
 
-    right: ${pxTorem(10)};
-    bottom: ${pxTorem(10)};
+    right: 10px;
+    bottom: 10px;
 
     // row width + scrollbar + group selector
-    width: calc(${ROW_SIZE} * ${pxTorem(40)} + ${pxTorem(10)} + ${pxTorem(40)});
-    height:  ${pxTorem(420)};
+    width: calc(${ROW_SIZE} * 40px + 10px + 40px);
+    height: 420px;
 
-    max-width: calc(100vw - ${pxTorem(20)});
+    max-width: calc(100vw - 20px);
     max-height: calc(75vh);
 
     background: var(--background);
@@ -86,7 +85,7 @@ const Base = styled(Column)`
  * Top search controls parent component
  */
 const Controls = styled(Column)`
-    padding: ${remTorem(0.5)};
+    padding: 0.5em;
 `;
 
 /**
@@ -104,7 +103,7 @@ const Parent = styled.div`
  * Group selector
  */
 const Groups = styled.div`
-    width: ${pxTorem(40)};
+    width: 40px;
 
     overflow-y: scroll;
     scrollbar-width: none;
@@ -124,8 +123,8 @@ const EmojiContainer = styled.a`
     display: grid;
     place-items: center;
 
-    width: ${pxTorem(40)};
-    height: ${pxTorem(40)};
+    width: 40px;
+    height: 40px;
 
     cursor: pointer;
     transition: 0.1s ease all;
@@ -140,8 +139,8 @@ const EmojiContainer = styled.a`
     }
 
     img {
-        width: ${pxTorem(28)};
-        height: ${pxTorem(28)};
+        width: 28px;
+        height: 28px;
         object-fit: contain;
     }
 `;
@@ -170,12 +169,12 @@ const CategoryIcon = styled.div`
     display: grid;
     place-items: center;
 
-    width: ${pxTorem(40)};
-    height: ${pxTorem(40)};
+    width: 40px;
+    height: 40px;
 
     user-select: none;
     pointer-events: none;
-    filter: brightness(${numTonum(0.75)});
+    filter: brightness(0.75);
 `;
 
 /**
@@ -186,7 +185,7 @@ const CategoryName = styled.span`
     padding: 0 0.2em;
     text-align: left;
     color: var(--foreground);
-    filter: brightness(${numTonum(0.75)});
+    filter: brightness(0.75);
 `;
 
 /**
@@ -352,7 +351,7 @@ export function Picker({
                     ref={ref}
                     style={{
                         flexGrow: 1,
-                        padding: `0 ${pxTorem(2)}`,
+                        padding: "0 2px",
                         overflowX: "hidden",
                     }}
                     components={{

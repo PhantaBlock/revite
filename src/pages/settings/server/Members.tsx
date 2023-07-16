@@ -16,7 +16,7 @@ import {
     IconButton,
     InputBox,
     Preloader,
-} from "@revoltchat/ui";
+} from "../../../components/revoltchat";
 
 import UserIcon from "../../../components/common/user/UserIcon";
 import { Username } from "../../../components/common/user/UserShort";
@@ -113,10 +113,10 @@ export const Members = ({ server }: Props) => {
         () =>
             query
                 ? data?.filter((x) =>
-                      x.user?.username
-                          .toLowerCase()
-                          .includes(query.toLowerCase()),
-                  )
+                    x.user?.username
+                        .toLowerCase()
+                        .includes(query.toLowerCase()),
+                )
                 : data,
         [data, query],
     );

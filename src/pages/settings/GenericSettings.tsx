@@ -7,7 +7,7 @@ import classNames from "classnames";
 import { Text } from "preact-i18n";
 import { useCallback, useEffect, useRef, useState } from "preact/hooks";
 
-import { Category, Header, IconButton, LineDivider } from "@revoltchat/ui";
+import { Category, Header, IconButton, LineDivider } from "../../components/revoltchat";
 
 import { isTouchscreenDevice } from "../../lib/isTouchscreenDevice";
 
@@ -182,9 +182,8 @@ export function GenericSettings({
                                 ) && (
                                     <h1>
                                         <Text
-                                            id={`app.settings.${category}.${
-                                                page ?? defaultPage
-                                            }.title`}
+                                            id={`app.settings.${category}.${page ?? defaultPage
+                                                }.title`}
                                         />
                                     </h1>
                                 )}

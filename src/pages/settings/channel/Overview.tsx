@@ -5,7 +5,7 @@ import styled from "styled-components/macro";
 import { Text } from "preact-i18n";
 import { useEffect, useState } from "preact/hooks";
 
-import { Button, Checkbox, InputBox } from "@revoltchat/ui";
+import { Button, Checkbox, InputBox } from "../../../components/revoltchat";
 
 import TextAreaAutoSize from "../../../lib/TextAreaAutoSize";
 

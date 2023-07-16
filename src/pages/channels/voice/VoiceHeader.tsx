@@ -12,7 +12,7 @@ import styled from "styled-components/macro";
 import { Text } from "preact-i18n";
 import { useMemo } from "preact/hooks";
 
-import { Button } from "@revoltchat/ui";
+import { Button } from "../../../components/revoltchat";
 
 import { voiceState, VoiceStatus } from "../../../lib/vortex/VoiceState";
 
@@ -96,42 +96,42 @@ export default observer(({ id }: Props) => {
             <div className="participants">
                 {users && users.length !== 0
                     ? users.map((user, index) => {
-                          const user_id = keys![index];
-                          return (
-                              <div key={user_id}>
-                                  <UserIcon
-                                      size={80}
-                                      target={user}
-                                      status={false}
-                                      voice={
-                                          client.user?._id === user_id &&
-                                          voiceState.isDeaf()
-                                              ? "deaf"
-                                              : voiceState.participants!.get(
-                                                    user_id,
-                                                )?.audio
-                                              ? undefined
-                                              : "muted"
-                                      }
-                                      onClick={() =>
-                                          modalController.push({
-                                              type: "user_profile",
-                                              user_id,
-                                          })
-                                      }
-                                  />
-                              </div>
-                          );
-                      })
+                        const user_id = keys![index];
+                        return (
+                            <div key={user_id}>
+                                <UserIcon
+                                    size={80}
+                                    target={user}
+                                    status={false}
+                                    voice={
+                                        client.user?._id === user_id &&
+                                            voiceState.isDeaf()
+                                            ? "deaf"
+                                            : voiceState.participants!.get(
+                                                user_id,
+                                            )?.audio
+                                                ? undefined
+                                                : "muted"
+                                    }
+                                    onClick={() =>
+                                        modalController.push({
+                                            type: "user_profile",
+                                            user_id,
+                                        })
+                                    }
+                                />
+                            </div>
+                        );
+                    })
                     : self !== undefined && (
-                          <div key={self._id} className="disconnected">
-                              <UserIcon
-                                  size={80}
-                                  target={self}
-                                  status={false}
-                              />
-                          </div>
-                      )}
+                        <div key={self._id} className="disconnected">
+                            <UserIcon
+                                size={80}
+                                target={self}
+                                status={false}
+                            />
+                        </div>
+                    )}
             </div>
             <div className="status">
                 <BarChartAlt2 size={16} />

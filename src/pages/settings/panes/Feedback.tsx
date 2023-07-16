@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import styles from "./Panes.module.scss";
 import { Text } from "preact-i18n";
 
-import { CategoryButton, Column, Tip } from "@revoltchat/ui";
+import { CategoryButton, Column, Tip } from "../../../components/revoltchat";
 
 export function Feedback() {
     return (

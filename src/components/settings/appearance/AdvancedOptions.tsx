@@ -2,7 +2,7 @@ import { observer } from "mobx-react-lite";
 
 import { Text } from "preact-i18n";
 
-import { ObservedInputElement } from "@revoltchat/ui";
+import { ObservedInputElement } from "../../../components/revoltchat";
 
 import TextAreaAutoSize from "../../../lib/TextAreaAutoSize";
 

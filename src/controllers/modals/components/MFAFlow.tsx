@@ -153,8 +153,8 @@ export default function MFAFlow({
                             children: (
                                 <Text
                                     id={`app.special.modals.actions.${methods!.length === 1
-                                            ? "cancel"
-                                            : "back"
+                                        ? "cancel"
+                                        : "back"
                                         }`}
                                 />
                             ),

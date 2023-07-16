@@ -9,7 +9,7 @@ import classNames from "classnames";
 import { useTriggerEvents } from "preact-context-menu";
 import { Text } from "preact-i18n";
 
-import { IconButton } from "@revoltchat/ui";
+import { IconButton } from "../../components/revoltchat";
 
 import { stopPropagation } from "../../lib/stopPropagation";
 import { voiceState } from "../../lib/vortex/VoiceState";

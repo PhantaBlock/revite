@@ -6,7 +6,7 @@ import pSBC from "shade-blend-color";
 
 import { Text } from "preact-i18n";
 
-import { CategoryButton, ObservedInputElement } from "@revoltchat/ui";
+import { CategoryButton, ObservedInputElement } from "../../../components/revoltchat";
 
 import { useApplicationState } from "../../../mobx/State";
 

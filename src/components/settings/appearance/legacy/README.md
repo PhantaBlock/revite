@@ -1,1 +1,1 @@
-These components need to be ported to @revoltchat/ui.
+These components need to be ported to "./../../components/revoltchat".

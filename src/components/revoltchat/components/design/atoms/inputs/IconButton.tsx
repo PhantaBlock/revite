@@ -1,5 +1,4 @@
 import styled, { css } from "styled-components";
-import { numTonum, pxTorem, remTorem } from '../../../../lib/calculation';
 
 export interface Props {
     rotate?: string;
@@ -43,7 +42,7 @@ export const IconButton = styled.a<Props>`
     ${(props) =>
         props.shape === "circle" &&
         css`
-            padding: ${pxTorem(4)};
+            padding: 4px;
             border-radius: var(--border-radius-half);
             background-color: var(--secondary-header);
 

@@ -1,4 +1,4 @@
-// ! This should be moved into @revoltchat/ui
+// ! This should be moved into "./../../components/revoltchat"
 import { Channel } from "revolt.js";
 
 import { Text } from "preact-i18n";

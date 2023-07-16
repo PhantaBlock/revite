@@ -12,7 +12,7 @@ import styled, { css } from "styled-components";
 import { createPortal } from "preact/compat";
 import { useCallback, useRef, useState } from "preact/hooks";
 
-import { IconButton } from "@revoltchat/ui";
+import { IconButton } from "../../../../components/revoltchat";
 
 import { emojiDictionary } from "../../../../assets/emojis";
 import { useClient } from "../../../../controllers/client/ClientController";
@@ -223,7 +223,7 @@ export const ReactionWrapper: React.FC<{
                                 onSelect={(emoji) =>
                                     message.react(
                                         emojiDictionary[
-                                            emoji as keyof typeof emojiDictionary
+                                        emoji as keyof typeof emojiDictionary
                                         ] ?? emoji,
                                     )
                                 }

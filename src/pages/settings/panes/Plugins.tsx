@@ -3,7 +3,7 @@ import { observer } from "mobx-react-lite";
 import styles from "./Panes.module.scss";
 import { Text } from "preact-i18n";
 
-import { Button, Checkbox, Tip } from "@revoltchat/ui";
+import { Button, Checkbox, Tip } from "../../../components/revoltchat";
 
 import { useApplicationState } from "../../../mobx/State";
 
@@ -42,9 +42,9 @@ function PluginCard({ plugin }: CardProps) {
                                 !plugin.enabled
                                     ? plugins.load(plugin.namespace, plugin.id)
                                     : plugins.unload(
-                                          plugin.namespace,
-                                          plugin.id,
-                                      );
+                                        plugin.namespace,
+                                        plugin.id,
+                                    );
                             }}
                         />
                     </div>

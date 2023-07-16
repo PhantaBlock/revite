@@ -19,7 +19,7 @@ import { decodeTime } from "ulid";
 import { useTriggerEvents } from "preact-context-menu";
 import { Text } from "preact-i18n";
 
-import { Row } from "@revoltchat/ui";
+import { Row } from "../../../components/revoltchat";
 
 import { TextReact } from "../../../lib/i18n";
 

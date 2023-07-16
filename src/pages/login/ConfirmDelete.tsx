@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 import { useEffect, useState } from "preact/hooks";
 
-import { Modal, Preloader } from "@revoltchat/ui";
+import { Modal, Preloader } from "../../components/revoltchat";
 
 import { useApi } from "../../controllers/client/ClientController";
 

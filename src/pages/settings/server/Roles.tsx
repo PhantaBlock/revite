@@ -16,7 +16,7 @@ import {
     ColourSwatches,
     InputBox,
     Category,
-} from "@revoltchat/ui";
+} from "../../../components/revoltchat";
 
 import Tooltip from "../../../components/common/Tooltip";
 import { PermissionList } from "../../../components/settings/roles/PermissionList";
@@ -113,9 +113,9 @@ export const Roles = observer(({ server }: Props) => {
                             typeof permsValue === "number"
                                 ? permsValue
                                 : {
-                                      allow: permsValue.a,
-                                      deny: permsValue.d,
-                                  },
+                                    allow: permsValue.a,
+                                    deny: permsValue.d,
+                                },
                         );
                     }
 

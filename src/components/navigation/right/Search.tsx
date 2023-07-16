@@ -5,7 +5,7 @@ import styled from "styled-components/macro";
 import { Text } from "preact-i18n";
 import { useEffect, useState } from "preact/hooks";
 
-import { Button, Category, Error, InputBox, Preloader } from "@revoltchat/ui";
+import { Button, Category, Error, InputBox, Preloader } from "../../../components/revoltchat";
 
 import { useClient } from "../../../controllers/client/ClientController";
 import Message from "../../common/messaging/Message";
@@ -13,15 +13,15 @@ import { GenericSidebarBase, GenericSidebarList } from "../SidebarBase";
 
 type SearchState =
     | {
-          type: "waiting";
-      }
+        type: "waiting";
+    }
     | {
-          type: "loading";
-      }
+        type: "loading";
+    }
     | {
-          type: "results";
-          results: MessageI[];
-      };
+        type: "results";
+        results: MessageI[];
+    };
 
 const SearchBase = styled.div`
     padding: 6px;

@@ -1,6 +1,5 @@
 import React, { useCallback, useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { numTonum, pxTorem, remTorem } from '../../../../../lib/calculation';
 
 import { ServerList } from "./ServerList";
 import {
@@ -67,7 +66,7 @@ const Template: ComponentStory<typeof ServerList> = (args) => (
                 <div
                     style={{
                         // height: "240px",
-                        height: pxTorem(560),
+                        height: "560px",
                         display: "flex",
                         flexDirection: "row",
                     }}>

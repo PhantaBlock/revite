@@ -14,7 +14,7 @@ import { Route, Switch, useHistory, useParams } from "react-router-dom";
 import styles from "./Settings.module.scss";
 import { Text } from "preact-i18n";
 
-import { LineDivider } from "@revoltchat/ui";
+import { LineDivider } from "../../components/revoltchat";
 
 import { state } from "../../mobx/State";
 

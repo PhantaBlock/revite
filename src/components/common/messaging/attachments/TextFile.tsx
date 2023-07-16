@@ -5,7 +5,7 @@ import styles from "./Attachment.module.scss";
 import { Text } from "preact-i18n";
 import { useEffect, useState } from "preact/hooks";
 
-import { Button, Preloader } from "@revoltchat/ui";
+import { Button, Preloader } from "../../../../components/revoltchat";
 
 import { useClient } from "../../../../controllers/client/ClientController";
 import RequiresOnline from "../../../../controllers/client/jsx/RequiresOnline";

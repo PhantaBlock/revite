@@ -2,7 +2,7 @@ import { Pencil } from "@styled-icons/boxicons-regular";
 import { observer } from "mobx-react-lite";
 import styled from "styled-components/macro";
 
-import { InputBox } from "@revoltchat/ui";
+import { InputBox } from "../../../../components/revoltchat";
 
 import { useDebounceCallback } from "../../../../lib/debounce";
 

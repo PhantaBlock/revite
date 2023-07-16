@@ -7,7 +7,7 @@ import classNames from "classnames";
 import { Text } from "preact-i18n";
 import { useEffect, useState } from "preact/hooks";
 
-import { IconButton, Preloader } from "@revoltchat/ui";
+import { IconButton, Preloader } from "../../../../components/revoltchat";
 
 import { determineFileSize } from "../../../../lib/fileSize";
 

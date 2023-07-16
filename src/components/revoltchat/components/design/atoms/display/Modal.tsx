@@ -12,7 +12,6 @@ import {
 import { H2 } from "../heading/H2";
 import { H4 } from "../heading/H4";
 import { Button, Props as ButtonProps } from "../inputs/Button";
-import { pxTorem, remTorem } from '../../../../lib/calculation';
 
 export type Action = Omit<React.HTMLAttributes<HTMLButtonElement>, "as"> &
     Omit<ButtonProps, "onClick"> & {
@@ -28,8 +27,6 @@ export interface Props {
     disabled?: boolean;
     transparent?: boolean;
     nonDismissable?: boolean;
-
-    needPadding?: boolean;
 
     actions?: Action[];
     onClose?: (force: boolean) => void;
@@ -82,25 +79,20 @@ const Base = styled.div<{ closing?: boolean }>`
 const Container = styled.div<
     Pick<Props, "transparent" | "maxWidth" | "maxHeight"> & { actions: boolean }
 >`
-    max-width: min(calc(100vw - ${pxTorem(20)}), ${(props) => props.maxWidth ?? `${pxTorem(649)}`});
+    min-height: 200px;
+    max-width: min(calc(100vw - 20px), ${(props) => props.maxWidth ?? "450px"});
     max-height: min(
-        calc(100vh -${pxTorem(20)}),
-        ${(props) => props.maxHeight ?? `${pxTorem(388)}`}
+        calc(100vh - 20px),
+        ${(props) => props.maxHeight ?? "650px"}
     );
 
-    border: ${pxTorem(2)} solid;
-    border-image: linear-gradient(180deg, #FFBE5A, rgba(255, 226, 119, 0.3));
-    border-image-slice: 1;
-
-    margin: ${pxTorem(20)};
+    margin: 20px;
     display: flex;
     flex-direction: column;
 
     animation-name: ${animationZoomIn};
     animation-duration: 0.25s;
     animation-timing-function: cubic-bezier(0.3, 0.3, 0.18, 1.1);
-    background-image: linear-gradient(180deg, rgba(27, 15, 14, 0.9) 1%, rgba(10, 9, 24, 0.5) 99%);
-    backdrop-filter: blur(0.625rem);
 
     ${(props) =>
         !props.maxWidth &&
@@ -112,32 +104,27 @@ const Container = styled.div<
         !props.transparent &&
         css`
             overflow: hidden;
-            // background: var(--secondary-header);
-            // border-radius: var(--border-radius);
+            background: var(--secondary-header);
+            border-radius: var(--border-radius);
         `}
 `;
 
 const Title = styled.div`
-    padding: ${remTorem(1)};
-    font-size: ${pxTorem(24)};
+    padding: 1rem;
     flex-shrink: 0;
     word-break: break-word;
-    gap: ${pxTorem(8)};
+    gap: 8px;
     display: flex;
     flex-direction: column;
-
-    border-bottom: ${pxTorem(1)} solid #FEBD5A;
-    color: #FFE1B3;
-    font-family: PingFangHK-Regular;
 `;
 
-const Content = styled.div<Pick<Props, "transparent" | "padding" | "needPadding">>`
+const Content = styled.div<Pick<Props, "transparent" | "padding">>`
     flex-grow: 1;
     padding-top: 0;
-    padding: ${(props) => !props.needPadding ? 0 : props.padding ?? `${remTorem(1)} ${remTorem(2)} ${remTorem(2)}`};
+    padding: ${(props) => props.padding ?? "0 1rem 1rem"};
 
     overflow-y: auto;
-    font-size: ${remTorem(0.9375)};
+    font-size: 0.9375rem;
 
     display: flex;
     flex-direction: column;
@@ -145,22 +132,20 @@ const Content = styled.div<Pick<Props, "transparent" | "padding" | "needPadding"
     ${(props) =>
         !props.transparent &&
         css`
-            // background: var(--secondary-header);
+            background: var(--secondary-header);
         `}
 `;
 
 const Actions = styled.div`
     flex-shrink: 0;
 
-    // gap: ${pxTorem(8)};
+    gap: 8px;
     display: flex;
-    padding: ${pxTorem(29)};
+    padding: 1rem;
     flex-direction: row-reverse;
 
-    // background: var(--secondary-background);
+    background: var(--secondary-background);
     border-radius: 0 0 var(--border-radius) var(--border-radius);
-
-    border-top: ${pxTorem(1)} solid #FEBD5A;
 `;
 
 export const Modal: (props: Props) => JSX.Element = ({
@@ -212,11 +197,11 @@ export const Modal: (props: Props) => JSX.Element = ({
                 onClick={(e) => e.stopPropagation()}>
                 {(title || description) && (
                     <Title>
-                        {title && <>{title}</>}
+                        {title && <H2>{title}</H2>}
                         {description && <H4>{description}</H4>}
                     </Title>
                 )}
-                <Content {...props} needPadding={title !== undefined || description !== undefined}>{children}</Content>
+                <Content {...props}>{children}</Content>
                 {actions && actions.length > 0 && (
                     <Actions>
                         {actions.map((x, index) => (
@@ -224,16 +209,13 @@ export const Modal: (props: Props) => JSX.Element = ({
                             <Button
                                 disabled={disabled}
                                 key={index}
-                                skyTheme={true}
                                 {...x}
                                 onClick={async () => {
                                     if (await x.onClick()) {
                                         closeModal();
                                     }
                                 }}
-                            >
-                                <div style={{ zIndex: 1, width: pxTorem(160), 'font-size': pxTorem(18.75) }} > {x.children}</div>
-                            </Button>
+                            />
                         ))}
                     </Actions>
                 )}

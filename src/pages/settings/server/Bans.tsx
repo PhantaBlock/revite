@@ -8,7 +8,7 @@ import styles from "./Panes.module.scss";
 import { Text } from "preact-i18n";
 import { useEffect, useMemo, useState } from "preact/hooks";
 
-import { IconButton, InputBox, Preloader } from "@revoltchat/ui";
+import { IconButton, InputBox, Preloader } from "../../../components/revoltchat";
 
 import UserIcon from "../../../components/common/user/UserIcon";
 
@@ -53,9 +53,9 @@ export const Bans = observer(({ server }: Props) => {
     const [query, setQuery] = useState("");
     const [result, setData] = useState<
         | {
-              users: Record<string, API.BannedUser>;
-              bans: API.BanListResult["bans"];
-          }
+            users: Record<string, API.BannedUser>;
+            bans: API.BanListResult["bans"];
+        }
         | undefined
     >(undefined);
 

@@ -12,7 +12,7 @@ import styled, { css } from "styled-components/macro";
 import { Text } from "preact-i18n";
 import { useContext, useEffect } from "preact/hooks";
 
-import { Category, IconButton } from "@revoltchat/ui";
+import { Category, IconButton } from "../../../components/revoltchat";
 
 import ConditionalLink from "../../../lib/ConditionalLink";
 import PaintCounter from "../../../lib/PaintCounter";

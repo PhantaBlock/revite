@@ -16,7 +16,7 @@ import {
     useState,
 } from "preact/hooks";
 
-import { Preloader } from "@revoltchat/ui";
+import { Preloader } from "../../../components/revoltchat";
 
 import { defer } from "../../../lib/defer";
 import { internalEmit, internalSubscribe } from "../../../lib/eventEmitter";

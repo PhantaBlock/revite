@@ -10,7 +10,7 @@ import { decodeTime } from "ulid";
 import { Text } from "preact-i18n";
 import { useEffect, useState } from "preact/hooks";
 
-import { MessageDivider, Preloader } from "@revoltchat/ui";
+import { MessageDivider, Preloader } from "../../../components/revoltchat";
 
 import { internalSubscribe, internalEmit } from "../../../lib/eventEmitter";
 import { ChannelRenderer } from "../../../lib/renderer/Singleton";

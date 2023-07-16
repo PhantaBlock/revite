@@ -1,5 +1,4 @@
 import styled, { css } from "styled-components";
-import { remTorem, pxTorem } from '../../../../lib/calculation';
 
 export interface Props {
     readonly palette?: "primary" | "accent";
@@ -8,12 +7,12 @@ export interface Props {
 
 export const LineDivider = styled.div<Props>`
     display: flex;
-    margin: ${(props) => (props.compact ? `${pxTorem(6)}` : `${pxTorem(18)}`)} auto;
+    margin: ${(props) => (props.compact ? "6px" : "18px")} auto;
     user-select: none;
     align-items: center;
 
-    height: ${pxTorem(1)};
-    width: calc(100% - ${pxTorem(10)});
+    height: 1px;
+    width: calc(100% - 10px);
 
     ${(props) =>
         props.palette === "accent"

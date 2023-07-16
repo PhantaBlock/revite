@@ -7,7 +7,7 @@ import styled from "styled-components/macro";
 import { openContextMenu } from "preact-context-menu";
 import { Text, Localizer } from "preact-i18n";
 
-import { Header, IconButton } from "@revoltchat/ui";
+import { Header, IconButton } from "../../../components/revoltchat";
 
 import { isTouchscreenDevice } from "../../../lib/isTouchscreenDevice";
 

@@ -7,7 +7,7 @@ import styled from "styled-components/macro";
 import { Text } from "preact-i18n";
 import { StateUpdater, useEffect } from "preact/hooks";
 
-import { IconButton } from "@revoltchat/ui";
+import { IconButton } from "../../../../components/revoltchat";
 
 import { internalSubscribe } from "../../../../lib/eventEmitter";
 
@@ -170,7 +170,7 @@ export default observer(({ channel, replies, setReplies }: Props) => {
                                             <File size={16} />
                                             <em>
                                                 {message.attachments.length >
-                                                1 ? (
+                                                    1 ? (
                                                     <Text id="app.main.channel.misc.sent_multiple_files" />
                                                 ) : (
                                                     <Text id="app.main.channel.misc.sent_file" />
@@ -179,7 +179,7 @@ export default observer(({ channel, replies, setReplies }: Props) => {
                                         </>
                                     )}
                                     {message.author_id ===
-                                    "00000000000000000000000000" ? (
+                                        "00000000000000000000000000" ? (
                                         <SystemMessage
                                             message={message}
                                             hideInfo
