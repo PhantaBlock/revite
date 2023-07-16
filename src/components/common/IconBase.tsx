@@ -55,8 +55,6 @@ export default styled.svg<IconModifiers>`
 `;
 
 export const ImageIconBase = styled.img<IconModifiers>`
-    width: 100%;
-    height: 100%;
     flex-shrink: 0;
     object-fit: cover;
     max-width: 100%;

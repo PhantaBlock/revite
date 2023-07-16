@@ -171,7 +171,7 @@ export default function MultiFactorAuthentication() {
             )}
 
             <CategoryButton
-                icon={<ListOl size={numTonum(24)} />}
+                icon={<ListOl size={24} />}
                 description={
                     <Text
                         id={`app.settings.pages.account.2fa.${mfa?.recovery_active
@@ -192,7 +192,7 @@ export default function MultiFactorAuthentication() {
             <CategoryButton
                 icon={
                     <Lock
-                        size={numTonum(24)}
+                        size={24}
                         color={!mfa?.totp_mfa ? "var(--error)" : undefined}
                     />
                 }

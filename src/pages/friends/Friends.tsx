@@ -84,7 +84,7 @@ export default observer(({ onInviteFriend }: {
                                 type: "create_group",
                             })
                         }>
-                        <MessageAdd size={numTonum(24)} />
+                        <MessageAdd size={24} />
                     </IconButton>
                 </Tooltip>
                 <Tooltip content={"添加好友"} placement="bottom">
@@ -94,7 +94,7 @@ export default observer(({ onInviteFriend }: {
                                 type: "add_friend",
                             })
                         }>
-                        <UserPlus size={numTonum(27)} />
+                        <UserPlus size={27} />
                     </IconButton>
                 </Tooltip>
                 {/*
@@ -129,7 +129,7 @@ export default observer(({ onInviteFriend }: {
                 </div>
             ) : (
                 <PageHeader
-                    icon={<UserDetail size={numTonum(24)} />}
+                    icon={<UserDetail size={24} />}
                     withTransparency
                     noBurger>
                     <div className={styles.title}>
@@ -168,7 +168,7 @@ export default observer(({ onInviteFriend }: {
                                         i < 3 && (
                                             <UserIcon
                                                 target={x}
-                                                size={numTonum(32)}
+                                                size={32}
                                                 mask={
                                                     i <
                                                         Math.min(

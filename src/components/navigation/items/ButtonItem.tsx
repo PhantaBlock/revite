@@ -243,7 +243,7 @@ export default function ButtonItem(props: ButtonProps) {
             {...divProps}
             className={classNames(
                 styles.item,
-                { [styles.compact]: compact, [styles.normal]: !compact, [styles.isMicro]: isMicroMode(), },
+                { [styles.compact]: compact, [styles.normal]: !compact, [styles.isMicro]: isMicroMode() },
                 className,
             )}
             onClick={onClick}
