@@ -8,7 +8,6 @@ import { useLocation } from "react-router-dom";
 import styled, { css } from "styled-components/macro";
 
 import { Header } from "../../components/revoltchat";
-import { remTorem, pxTorem, numTonum } from '../../lib/calculation';
 
 import { isTouchscreenDevice } from "../../lib/isTouchscreenDevice";
 
@@ -29,10 +28,10 @@ const IconContainer = styled.div`
     align-items: center;
     cursor: pointer;
     color: var(--secondary-foreground);
-    margin-right: ${pxTorem(5)};
+    margin-right: 5px;
 
     > svg {
-        margin-right: ${pxTorem(-5)};
+        margin-right: -5px;
     }
 
     ${!isTouchscreenDevice &&
@@ -48,6 +47,7 @@ type PageHeaderProps = Omit<Props, "placement" | "borders"> & {
     children: Children;
     icon: Children;
     height?: string;
+    isMicro?: boolean;
 };
 
 export const PageHeader = observer(
@@ -63,6 +63,18 @@ export const PageHeader = observer(
                 topBorder={!visible}
                 bottomBorder={!pathname.includes("/server")}>
                 {!noBurger && <HamburgerAction />}
+                {!props.height && <IconContainer
+                    onClick={() =>
+                        layout.toggleSectionState(SIDEBAR_CHANNELS, true)
+                    }>
+                    {!isTouchscreenDevice && visible && (
+                        <ChevronLeft size={18} />
+                    )}
+                    {icon}
+                    {!isTouchscreenDevice && !visible && (
+                        <ChevronRight size={18} />
+                    )}
+                </IconContainer>}
                 {children}
             </Header>
         );

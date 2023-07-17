@@ -4,17 +4,16 @@ import styled from "styled-components/macro";
 
 import { useEffect, useState } from "preact/hooks";
 
-import { Button, Category, ComboBox, Preloader, Tip } from '../../components/revoltchat';
-import { remTorem, pxTorem, numTonum } from '../../lib/calculation';
+import { Button, Category, ComboBox, Preloader, Tip } from  "../../components/revoltchat";
 
 import UserIcon from "../../components/common/user/UserIcon";
 import Markdown from "../../components/markdown/Markdown";
 import { useClient } from "../../controllers/client/ClientController";
 
 const BotInfo = styled.div`
-    gap: ${pxTorem(12)};
+    gap: 12px;
     display: flex;
-    padding: ${pxTorem(12)};
+    padding: 12px;
 
     h1,
     p {
@@ -23,10 +22,10 @@ const BotInfo = styled.div`
 `;
 
 const Option = styled.div`
-    gap: ${pxTorem(8)};
+    gap: 8px;
     display: flex;
-    margin-top: ${pxTorem(4)};
-    margin-bottom: ${pxTorem(12)};
+    margin-top: 4px;
+    margin-bottom: 12px;
 `;
 
 export default function InviteBot() {

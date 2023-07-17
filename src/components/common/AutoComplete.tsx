@@ -13,7 +13,6 @@ import Emoji from "./Emoji";
 import ServerIcon from "./ServerIcon";
 import Tooltip from "./Tooltip";
 import UserIcon from "./user/UserIcon";
-import { remTorem, pxTorem, numTonum } from '../../lib/calculation';
 
 export type AutoCompleteState =
     | { type: "none" }
@@ -362,9 +361,9 @@ const Base = styled.div<{ detached?: boolean }>`
     }
 
     button {
-        gap: ${pxTorem(8)};
-        margin: ${pxTorem(4)};
-        padding: ${pxTorem(6)};
+        gap: 8px;
+        margin: 4px;
+        padding: 6px;
         border: none;
         display: flex;
         font-size: 1em;
@@ -374,7 +373,7 @@ const Base = styled.div<{ detached?: boolean }>`
         font-family: inherit;
         background: transparent;
         color: var(--foreground);
-        width: calc(100% - ${pxTorem(12)});
+        width: calc(100% - 12px);
         border-radius: var(--border-radius);
 
         span {
@@ -390,7 +389,7 @@ const Base = styled.div<{ detached?: boolean }>`
     ${(props) =>
         props.detached &&
         css`
-            bottom: ${pxTorem(8)};
+            bottom: 8px;
 
             > div {
                 border-radius: var(--border-radius);
@@ -444,8 +443,8 @@ export default function AutoComplete({
                                         loading="lazy"
                                         src={match.imageURL}
                                         style={{
-                                            width: `${pxTorem(20)}`,
-                                            height: `${pxTorem(20)}`,
+                                            width: '20px',
+                                            height: '20px',
                                         }}
                                     />
                                 ) : (
@@ -458,10 +457,10 @@ export default function AutoComplete({
                                                 >
                                             )[match]
                                         }
-                                        size={numTonum(20)}
+                                        size={20}
                                     />
                                 )}
-                                <span style={{ paddingLeft: `${pxTorem(4)}` }}>{`:${match instanceof CustomEmoji
+                                <span style={{ paddingLeft: '4px' }}>{`:${match instanceof CustomEmoji
                                     ? match.name
                                     : match
                                     }:`}</span>
@@ -481,7 +480,7 @@ export default function AutoComplete({
                                                     target={client.servers.get(
                                                         match.parent.id,
                                                     )}
-                                                    size={numTonum(20)}
+                                                    size={20}
                                                 />
                                             </Link>
                                         </Tooltip>
@@ -510,7 +509,7 @@ export default function AutoComplete({
                                 })
                             }
                             onClick={onClick}>
-                            <UserIcon size={numTonum(24)} target={match} status={true} />
+                            <UserIcon size={24} target={match} status={true} />
                             {match.username}
                         </button>
                     ))}
@@ -535,7 +534,7 @@ export default function AutoComplete({
                                 })
                             }
                             onClick={onClick}>
-                            <ChannelIcon size={numTonum(24)} target={match} />
+                            <ChannelIcon size={24} target={match} />
                             {match.name}
                         </button>
                     ))}

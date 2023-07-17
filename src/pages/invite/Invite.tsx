@@ -6,8 +6,7 @@ import styles from "./Invite.module.scss";
 import { Text } from "preact-i18n";
 import { useEffect, useState } from "preact/hooks";
 
-import { Button, Category, Error, Preloader } from '../../components/revoltchat';
-import { remTorem, pxTorem, numTonum } from '../../lib/calculation';
+import { Button, Category, Error, Preloader } from "../../components/revoltchat";
 
 import { TextReact } from "../../lib/i18n";
 
@@ -69,7 +68,7 @@ export default function Invite() {
                                 <div style="cursor: pointer;">
                                     <Button palette="secondary">
                                         <ArrowBack
-                                            size={numTonum(32)}
+                                            size={32}
                                             onClick={() =>
                                                 history.push(
                                                     layout.getLastPath(),
@@ -100,7 +99,7 @@ export default function Invite() {
             }}>
             <div className={styles.leave}>
                 <ArrowBack
-                    size={numTonum(32)}
+                    size={32}
                     onClick={() => history.push(layout.getLastPath())}
                 />
             </div>
@@ -110,7 +109,7 @@ export default function Invite() {
                     <ServerIcon
                         attachment={invite.server_icon}
                         server_name={invite.server_name}
-                        size={numTonum(64)}
+                        size={64}
                     />
                 </div>
             )}
@@ -137,7 +136,7 @@ export default function Invite() {
                                     user: (
                                         <>
                                             <UserIcon
-                                                size={numTonum(24)}
+                                                size={24}
                                                 attachment={invite.user_avatar}
                                             />{" "}
                                             {invite.user_name}

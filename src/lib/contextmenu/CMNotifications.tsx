@@ -16,7 +16,6 @@ import { ContextMenuWithData, MenuItem } from "preact-context-menu";
 import { Text } from "preact-i18n";
 
 import { LineDivider } from '../../components/revoltchat';
-import { pxTorem, remTorem, numTonum } from "../../lib/calculation"
 
 import { useApplicationState } from "../../mobx/State";
 import { NotificationState } from "../../mobx/stores/NotificationOptions";
@@ -64,9 +63,9 @@ export default observer(() => {
                                 id={`app.main.channel.notifications.default`}
                             />
                             <div className="tip">
-                                {state !== undefined && <Square size={numTonum(20)} />}
+                                {state !== undefined && <Square size={20} />}
                                 {state === undefined && (
-                                    <CheckSquare size={numTonum(20)} />
+                                    <CheckSquare size={20} />
                                 )}
                             </div>
                         </MenuItem>,
@@ -94,22 +93,22 @@ export default observer(() => {
                             />
                             {state === undefined && actual === key && (
                                 <div className="tip">
-                                    <LeftArrowAlt size={numTonum(20)} />
+                                    <LeftArrowAlt size={20} />
                                 </div>
                             )}
                             {state === key && (
                                 <div className="tip">
-                                    <Check size={numTonum(20)} />
+                                    <Check size={20} />
                                 </div>
                             )}
                         </MenuItem>,
                     );
                 }
 
-                generate("all", <Bell size={numTonum(24)} />);
-                generate("mention", <At size={numTonum(24)} />);
-                generate("none", <BellOff size={numTonum(24)} />);
-                generate("muted", <Block size={numTonum(24)} />);
+                generate("all", <Bell size={24} />);
+                generate("mention", <At size={24} />);
+                generate("none", <BellOff size={24} />);
+                generate("muted", <Block size={24} />);
 
                 return elements;
             }}

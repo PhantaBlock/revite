@@ -1,7 +1,6 @@
 import React from "react";
 import { Check, Square, X } from "@styled-icons/boxicons-regular";
 import styled, { css } from "styled-components";
-import { numTonum, pxTorem, remTorem } from '../../../../lib/calculation';
 
 type State = "Allow" | "Neutral" | "Deny";
 
@@ -13,11 +12,11 @@ const SwitchContainer = styled.div.attrs({
     width: fit-content;
 
     display: flex;
-    margin: ${pxTorem(4)} 0;
+    margin: 4px 0;
     overflow: hidden;
     border-radius: var(--border-radius);
     background: var(--secondary-background);
-    border: ${pxTorem(1)} solid var(--tertiary-background);
+    border: 1px solid var(--tertiary-background);
 
     ${(props) =>
         props["aria-disabled"] &&
@@ -29,8 +28,8 @@ const SwitchContainer = styled.div.attrs({
 
 const Switch = styled.div.attrs({
     role: "radio",
-}) <{ state: State; selected: boolean }>`
-    padding: ${pxTorem(4)};
+})<{ state: State; selected: boolean }>`
+    padding: 4px;
     cursor: pointer;
     transition: 0.2s ease all;
 
@@ -38,8 +37,8 @@ const Switch = styled.div.attrs({
         props.state === "Allow"
             ? "var(--success)"
             : props.state === "Deny"
-                ? "var(--error)"
-                : "var(--tertiary-foreground)"};
+            ? "var(--error)"
+            : "var(--tertiary-foreground)"};
 
     ${(props) =>
         props.selected &&
@@ -49,8 +48,8 @@ const Switch = styled.div.attrs({
             background: ${props.state === "Allow"
                 ? "var(--success)"
                 : props.state === "Deny"
-                    ? "var(--error)"
-                    : "var(--primary-background)"};
+                ? "var(--error)"
+                : "var(--primary-background)"};
         `}
 
     &:hover {
@@ -71,19 +70,19 @@ export function OverrideSwitch({ state, disabled, onChange }: Props) {
                 onClick={() => onChange("Deny")}
                 state="Deny"
                 selected={state === "Deny"}>
-                <X size={numTonum(24)} />
+                <X size={24} />
             </Switch>
             <Switch
                 onClick={() => onChange("Neutral")}
                 state="Neutral"
                 selected={state === "Neutral"}>
-                <Square size={numTonum(24)} />
+                <Square size={24} />
             </Switch>
             <Switch
                 onClick={() => onChange("Allow")}
                 state="Allow"
                 selected={state === "Allow"}>
-                <Check size={numTonum(24)} />
+                <Check size={24} />
             </Switch>
         </SwitchContainer>
     );

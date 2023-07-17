@@ -32,9 +32,12 @@ export function microOpenUrl(url: string) {
 
     if (!SKY) return;
 
-    SKY.openUrl({
+    SKY.openUrlProportion({
         url,
         path: 'microChannel.html',
+        key: 'microChannel',
+        width: 2309,
+        height: 1843,
     });
 }
 

@@ -15,9 +15,8 @@ import {
     Checkbox,
     IconButton,
     InputBox,
-    Preloader
-} from '../../../components/revoltchat';
-import { remTorem, pxTorem, numTonum } from '../../../lib/calculation';
+    Preloader,
+} from "../../../components/revoltchat";
 
 import UserIcon from "../../../components/common/user/UserIcon";
 import { Username } from "../../../components/common/user/UserShort";
@@ -43,11 +42,11 @@ const Inner = observer(({ member }: InnerProps) => {
                 data-open={open}
                 onClick={() => setOpen(!open)}>
                 <span>
-                    <UserIcon target={user} size={numTonum(24)} />{" "}
+                    <UserIcon target={user} size={24} />{" "}
                     <Username user={member.user} showServerIdentity="both" />
                 </span>
                 <IconButton className={styles.chevron}>
-                    <ChevronDown size={numTonum(24)} />
+                    <ChevronDown size={24} />
                 </IconButton>
             </div>
             {open && (

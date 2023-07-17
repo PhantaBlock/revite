@@ -19,6 +19,7 @@ import { pxTorem, remTorem, numTonum, px2orem, num2 } from '../../../../lib/calc
 export type Action = Omit<React.HTMLAttributes<HTMLButtonElement>, "as"> &
     Omit<ButtonProps, "onClick"> & {
         confirmation?: boolean;
+        noBorder?: boolean;
         onClick: () => void | boolean | Promise<boolean>;
     };
 
@@ -105,11 +106,11 @@ const Container = styled.div<
     width: ${(props) => props.width} !important;
     height: ${(props) => props.height};
 
-    border: ${pxTorem(2)} solid;
+    border: 2px solid;
     border-image: linear-gradient(180deg, #FFBE5A, rgba(255, 226, 119, 0.3));
     border-image-slice: 1;
 
-    margin: ${pxTorem(20)};
+    margin: 1.666666667rem;
     display: flex;
     flex-direction: column;
 
@@ -142,17 +143,17 @@ const Container = styled.div<
 `;
 
 const Title = styled.div`
-    padding: 0 ${remTorem(1)};
-    min-height: ${px2orem(182)};
+    padding: 0 2.656rem;
+    min-height: 5.6875rem;
     display: flex;
     justify-content: center;
-    font-size: ${px2orem(70)};
+    font-size: 2.1875rem;
     flex-shrink: 0;
     word-break: break-word;
     display: flex;
     flex-direction: column;
 
-    border-bottom: ${pxTorem(1)} solid #FEBD5A;
+    border-bottom: 0.0625rem solid #FEBD5A;
     color: #FFE1B3;
     font-family: PingFangHK-Regular;
 `;
@@ -160,10 +161,10 @@ const Title = styled.div`
 const Content = styled.div<Pick<Props, "transparent" | "padding" | "needPadding">>`
     flex-grow: 1;
     padding-top: 0;
-    padding: ${(props) => !props.needPadding ? 0 : props.padding ?? `${remTorem(1)} ${remTorem(2)} ${remTorem(2)}`};
+    padding: ${(props) => !props.needPadding ? 0 : props.padding ?? `1rem 2rem 2rem`};
 
     overflow-y: auto;
-    font-size: ${remTorem(0.9375)};
+    font-size: 0.9375rem;
 
     display: flex;
     flex-direction: column;
@@ -178,13 +179,13 @@ const Content = styled.div<Pick<Props, "transparent" | "padding" | "needPadding"
 const Actions = styled.div<{ noBorder?: boolean }>`
     flex-shrink: 0;
     display: flex;
-    padding: ${px2orem(65)} ${px2orem(78)};
+    padding: 2.437rem 2.15625rem;
     flex-direction: row-reverse;
 
     // background: var(--secondary-background);
     border-radius: 0 0 var(--border-radius) var(--border-radius);
 
-    border-top: ${pxTorem(1)} solid #FEBD5A;
+    border-top: 0.0625rem solid #FEBD5A;
 
     ${(props) =>
         props.noBorder &&
@@ -251,42 +252,44 @@ export const Modal: (props: Props) => JSX.Element = ({
                         onClick={(e) =>
                             closeModal()
                         }>
-                        <X size={numTonum(36)} />
-                    </IconButton>
-                </IconButtonWrap>
+                        <X size={36} />
+                    </IconButton >
+                </IconButtonWrap >
                 <Content {...props} needPadding={title !== undefined || description !== undefined}>{children}</Content>
-                {actions && actions.length > 0 && (
-                    <Actions noBorder={props.noBorder}>
-                        {actions.map((x, index) => (
-                            // @ts-expect-error cope
-                            <Button
-                                disabled={disabled}
-                                key={index}
-                                skyTheme={x.skyTheme}
-                                confirmation={x.confirmation}
-                                style={x.style}
-                                {...x}
-                                onClick={async () => {
-                                    if (await x.onClick()) {
-                                        closeModal();
-                                    }
-                                }}
-                            >
-                                <div
-                                    style={{
-                                        zIndex: 1,
-                                        width: `${px2orem(692)}`,
-                                        height: `${px2orem(138)}`,
-                                        'font-size': `${px2orem(50)}`,
-                                        display: 'flex',
-                                        'align-items': 'center',
-                                        'justify-content': 'center'
-                                    }} > {x.children}</div>
-                            </Button>
-                        ))}
-                    </Actions>
-                )}
-            </Container>
+                {
+                    actions && actions.length > 0 && (
+                        <Actions noBorder={props.noBorder}>
+                            {actions.map((x, index) => (
+                                // @ts-expect-error cope
+                                <Button
+                                    disabled={disabled}
+                                    key={index}
+                                    skyTheme={x.skyTheme}
+                                    confirmation={x.confirmation}
+                                    style={x.style}
+                                    {...x}
+                                    onClick={async () => {
+                                        if (await x.onClick()) {
+                                            closeModal();
+                                        }
+                                    }}
+                                >
+                                    <div
+                                        style={{
+                                            width: '21.625rem',
+                                            height: '4.3125rem',
+                                            "font-size": '1.56rem',
+                                            zIndex: 1,
+                                            display: 'flex',
+                                            'align-items': 'center',
+                                            'justify-content': 'center'
+                                        }} > {x.children}</div>
+                                </Button>
+                            ))}
+                        </Actions>
+                    )
+                }
+            </Container >
         </Base >,
         document.body,
     );

@@ -1,8 +1,8 @@
 import { Pencil } from "@styled-icons/boxicons-regular";
 import { observer } from "mobx-react-lite";
 import styled from "styled-components/macro";
+
 import { InputBox } from "../../../../components/revoltchat";
-import { remTorem, pxTorem, numTonum } from '../../../../lib/calculation';
 
 import { useDebounceCallback } from "../../../../lib/debounce";
 
@@ -11,24 +11,24 @@ import { useApplicationState } from "../../../../mobx/State";
 import { Variables } from "../../../../context/Theme";
 
 const Container = styled.div`
-    row-gap: ${pxTorem(8)};
+    row-gap: 8px;
     display: grid;
-    column-gap: ${pxTorem(16)};
-    grid-template-columns: repeat(auto-fill, minmax(${pxTorem(200)}, 1fr));
-    margin-bottom: ${pxTorem(20)};
+    column-gap: 16px;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    margin-bottom: 20px;
 
     .entry {
-        padding: ${pxTorem(12)};
-        margin-top: ${pxTorem(8)};
-        border: ${pxTorem(1)} solid black;
+        padding: 12px;
+        margin-top: 8px;
+        border: 1px solid black;
         border-radius: var(--border-radius);
 
         span {
             flex: 1;
             display: block;
             font-weight: 600;
-            font-size: ${remTorem(0.875)};
-            margin-bottom: ${pxTorem(8)};
+            font-size: 0.875rem;
+            margin-bottom: 8px;
             text-transform: capitalize;
 
             background: inherit;
@@ -37,12 +37,12 @@ const Container = styled.div`
         }
 
         .override {
-            gap: ${pxTorem(8)};
+            gap: 8px;
             display: flex;
 
             .picker {
-                width: ${pxTorem(38)};
-                height: ${pxTorem(38)};
+                width: 38px;
+                height: 38px;
                 display: grid;
                 cursor: pointer;
                 place-items: center;
@@ -69,7 +69,7 @@ const Container = styled.div`
                 cursor: pointer;
                 position: relative;
 
-                top: ${pxTorem(48)};
+                top: 48px;
             }
         }
     }
@@ -149,7 +149,7 @@ export default observer(() => {
                                     ?.querySelector("input")
                                     ?.click()
                             }>
-                            <Pencil size={numTonum(24)} />
+                            <Pencil size={24} />
                         </div>
                         <InputBox
                             type="text"

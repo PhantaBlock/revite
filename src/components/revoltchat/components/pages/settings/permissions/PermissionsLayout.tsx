@@ -1,15 +1,14 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { Props as RoleListProps, RoleList } from "./RoleList";
-import { numTonum, pxTorem, remTorem } from '../../../../lib/calculation';
 
 const Base = styled.div`
-    gap: ${pxTorem(24)};
-    padding: ${pxTorem(8)};
+    gap: 24px;
+    padding: 8px;
     display: flex;
 
     > :nth-child(1) {
-        width: ${pxTorem(120)};
+        width: 120px;
         flex-shrink: 0;
     }
 

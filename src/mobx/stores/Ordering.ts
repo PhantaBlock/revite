@@ -1,9 +1,6 @@
 import { action, computed, makeAutoObservable } from "mobx";
 
-import {  reorder } from '../../components/revoltchat';
-import { remTorem, pxTorem, numTonum } from '../../lib/calculation';
-
-
+import { reorder } from "../../components/revoltchat";
 import { clientController } from "../../controllers/client/ClientController";
 import State from "../State";
 import Persistent from "../interfaces/Persistent";

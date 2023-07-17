@@ -1,7 +1,6 @@
 import React from "react";
 import { User } from "revolt.js";
 import styled from "styled-components";
-import { numTonum, pxTorem, remTorem } from '../../../../lib/calculation';
 
 import { Tooltip, TooltipProps } from "./Tooltip";
 
@@ -10,18 +9,18 @@ const Base = styled.div`
     flex-direction: column;
 
     .username {
-        font-size: ${pxTorem(13)};
+        font-size: 13px;
         font-weight: 600;
     }
 
     .username-new {
-        font-size: ${pxTorem(11)};
+        font-size: 11px;
         font-weight: 600;
         color: var(--secondary-foreground);
     }
 
     .status {
-        font-size: ${pxTorem(11)};
+        font-size: 11px;
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;

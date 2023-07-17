@@ -10,27 +10,26 @@ import { Swoosh } from "./Swoosh";
 import { useLink, useTrigger } from "../../../../../lib/context";
 import { Tooltip } from "../../../atoms/indicators/Tooltip";
 import { INotificationChecker } from "revolt.js/dist/util/Unreads";
-import { numTonum, pxTorem, remTorem } from '../../../../../lib/calculation';
 
 export const ItemContainer = styled.div<{ head?: boolean }>`
-    width: ${pxTorem(56)};
-    padding-left: ${pxTorem(7)};
-    padding-right: ${pxTorem(7)};
-    padding-bottom: ${pxTorem(6)};
+    width: 56px;
+    padding-left: 7px;
+    padding-right: 7px;
+    padding-bottom: 6px;
 
     cursor: pointer;
 
     ${(props) =>
         props.head &&
         css`
-            padding-top: ${pxTorem(6)};
+            padding-top: 6px;
         `}
 `;
 
 const SwooshWrapper = styled.div`
     position: absolute;
-    left: ${pxTorem(-7)};
-    top: ${pxTorem(-32)};
+    left: -7px;
+    top: -32px;
 
     z-index: -1;
 `;
@@ -56,12 +55,12 @@ const Inner = observer(({ item, permit }: InnerProps) => {
             <Trigger id="Menu" data={{ server: item._id, unread }}>
                 <Link to={"/server/" + item._id}>
                     <Avatar
-                        size={numTonum(42)}
+                        size={42}
                         interactive
                         fallback={item.name}
                         holepunch={(unread || count > 0) && "top-right"}
                         overlay={<Unreads unread={unread} count={count} />}
-                        src={item.generateIconURL({ max_side: numTonum(256) }, false)}
+                        src={item.generateIconURL({ max_side: 256 }, false)}
                     />
                 </Link>
             </Trigger>

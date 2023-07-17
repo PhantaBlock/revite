@@ -4,7 +4,6 @@ import { Trash } from "@styled-icons/boxicons-solid";
 import { Text } from "preact-i18n";
 
 import { CategoryButton } from "../../../components/revoltchat";
-import { remTorem, pxTorem, numTonum } from '../../../lib/calculation';
 
 import {
     clientController,
@@ -38,7 +37,7 @@ export default function AccountManagement() {
                 <Text id="app.settings.pages.account.manage.description" />
             </h5>
             <CategoryButton
-                icon={<Block size={numTonum(24)} color="var(--error)" />}
+                icon={<Block size={24} color="var(--error)" />}
                 description={
                     "Disable your account. You won't be able to access it unless you contact support."
                 }
@@ -48,7 +47,7 @@ export default function AccountManagement() {
             </CategoryButton>
 
             <CategoryButton
-                icon={<Trash size={numTonum(24)} color="var(--error)" />}
+                icon={<Trash size={24} color="var(--error)" />}
                 description={
                     "Your account will be queued for deletion, a confirmation email will be sent."
                 }

@@ -1,5 +1,4 @@
 import React from "react";
-import { numTonum } from '../../../../lib/calculation';
 
 export type Props = {
     unread: boolean;
@@ -13,13 +12,13 @@ export function Unreads({ unread, count }: Props) {
     if (count > 0) {
         return (
             <>
-                <circle cx={numTonum(27)} cy={numTonum(5)} r={numTonum(5)} fill={"var(--error)"} />
+                <circle cx="27" cy="5" r="5" fill={"var(--error)"} />
                 <text
-                    x={numTonum(27)}
-                    y={numTonum(5)}
-                    r={numTonum(5)}
+                    x="27"
+                    y="5"
+                    r="5"
                     fill={"white"}
-                    fontSize={numTonum(7.5)}
+                    fontSize={"7.5"}
                     fontWeight={600}
                     text-anchor="middle"
                     alignmentBaseline={"middle"}
@@ -31,7 +30,7 @@ export function Unreads({ unread, count }: Props) {
     }
 
     if (unread) {
-        return <circle cx={numTonum(27)} cy={numTonum(5)} r={numTonum(5)} fill={"white"} />;
+        return <circle cx="27" cy="5" r="5" fill={"white"} />;
     }
 
     return null;

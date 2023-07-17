@@ -5,9 +5,7 @@ import { Link } from "react-router-dom";
 import styles from "./Panes.module.scss";
 import { Text } from "preact-i18n";
 
-import { CategoryButton, Column, Tip } from '../../../components/revoltchat';
-import { remTorem, pxTorem, numTonum } from '../../../lib/calculation';
-
+import { CategoryButton, Column, Tip } from "../../../components/revoltchat";
 export function Feedback() {
     return (
         <Column>
@@ -32,7 +30,7 @@ export function Feedback() {
                     rel="noreferrer">
                     <CategoryButton
                         action="external"
-                        icon={<Github size={numTonum(24)} />}
+                        icon={<Github size={24} />}
                         description={
                             <Text id="app.settings.pages.feedback.suggest_desc" />
                         }>
@@ -45,7 +43,7 @@ export function Feedback() {
                     rel="noreferrer">
                     <CategoryButton
                         action="external"
-                        icon={<ListOl size={numTonum(24)} />}
+                        icon={<ListOl size={24} />}
                         description={
                             <Text id="app.settings.pages.feedback.issue_desc" />
                         }>
@@ -58,7 +56,7 @@ export function Feedback() {
                     rel="noreferrer">
                     <CategoryButton
                         action="external"
-                        icon={<BugAlt size={numTonum(24)} />}
+                        icon={<BugAlt size={24} />}
                         description={
                             <Text id="app.settings.pages.feedback.bug_desc" />
                         }>
@@ -69,7 +67,7 @@ export function Feedback() {
                     <a>
                         <CategoryButton
                             action="chevron"
-                            icon={<Group size={numTonum(24)} />}
+                            icon={<Group size={24} />}
                             description="You can report issues and discuss improvements with us directly here.">
                             {"Join the Revolt Lounge"}
                         </CategoryButton>

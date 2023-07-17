@@ -9,14 +9,15 @@ export interface Props {
 
     readonly withBackground?: boolean;
     readonly withTransparency?: boolean;
+    isMicro?: boolean;
 }
 
 export const Header = styled.div<Props>`
-    gap: ${pxTorem(10)};
+    gap: 10px;
     flex: 0 auto;
     display: flex;
     flex-shrink: 0;
-    padding: ${pxTorem(45)} ${pxTorem(16)} 0;
+    padding: 0 16px;
     align-items: center;
 
     font-weight: 600;
@@ -39,7 +40,7 @@ export const Header = styled.div<Props>`
                       var(--${props.palette}-header-rgb),
                       max(var(--min-opacity), 0.75)
                   );
-                  backdrop-filter: blur(${pxTorem(20)});
+                  backdrop-filter: blur(20px);
 
                   width: 100%;
                   z-index: 20;
@@ -53,21 +54,28 @@ export const Header = styled.div<Props>`
         props.withBackground &&
         css`
             align-items: flex-end;
-            height: ${pxTorem(120)} !important;
+            height: 120px !important;
 
-            text-shadow: 0px 0px ${pxTorem(1)} black;
+            text-shadow: 0px 0px 1px black;
         `}
 
     ${(props) =>
         props.topBorder &&
         css`
-            border-start-start-radius: ${pxTorem(8)};
+            border-start-start-radius: 8px;
+        `}
+        
+    ${(props) =>
+        props.isMicro &&
+        css`
+            background-color: transparent;
+            border-bottom: 1px solid #766A58;
         `}
 
     ${(props) =>
         props.bottomBorder &&
         css`
-            border-end-start-radius: ${pxTorem(8)};
+            border-end-start-radius: 8px;
         `}
 
     ${(props) =>

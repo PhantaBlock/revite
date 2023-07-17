@@ -3,7 +3,6 @@ import styled, { css } from "styled-components";
 import { Check } from "@styled-icons/boxicons-regular";
 import { Palette } from "@styled-icons/boxicons-solid";
 import { useDebounceCallback } from "../../../../lib/debounce";
-import { numTonum, pxTorem, remTorem } from '../../../../lib/calculation';
 
 interface Props {
     readonly presets?: string[][];
@@ -44,7 +43,7 @@ const Base = styled.div`
         border: 0;
         margin: 0;
         height: 0;
-        top: ${pxTorem(72)};
+        top: 72px;
         opacity: 0;
         position: relative;
         pointer-events: none;
@@ -55,8 +54,8 @@ const Base = styled.div`
         width: 0;
 
         div {
-            width: ${pxTorem(8)};
-            height: ${pxTorem(68)};
+            width: 8px;
+            height: 68px;
             background: linear-gradient(
                 to right,
                 var(--primary-background),
@@ -69,7 +68,7 @@ const Base = styled.div`
 const Swatch = styled.div<{ type: "small" | "large"; colour: string }>`
     flex-shrink: 0;
     cursor: pointer;
-    border: ${pxTorem(2)} solid transparent;
+    border: 2px solid transparent;
     border-radius: var(--border-radius);
     background-color: ${(props) => props.colour};
 
@@ -79,7 +78,7 @@ const Swatch = styled.div<{ type: "small" | "large"; colour: string }>`
     transition: 0.1s ease-in-out all;
 
     &:hover {
-        border: ${pxTorem(2)} solid var(--foreground);
+        border: 2px solid var(--foreground);
     }
 
     svg {
@@ -90,27 +89,27 @@ const Swatch = styled.div<{ type: "small" | "large"; colour: string }>`
     ${(props) =>
         props.type === "small"
             ? css`
-                  width: ${pxTorem(30)};
-                  height: ${pxTorem(30)};
+                  width: 30px;
+                  height: 30px;
               `
             : css`
-                  width:${pxTorem(68)};
-                  height:${pxTorem(68)};
+                  width: 68px;
+                  height: 68px;
               `}
 `;
 
 const Rows = styled.div`
-    gap: ${pxTorem(8)};
+    gap: 8px;
     display: flex;
     flex-direction: column;
     overflow: auto;
-    padding-bottom: ${pxTorem(4)};
+    padding-bottom: 4px;
 
     > div {
-        gap: ${pxTorem(8)};
+        gap: 8px;
         display: flex;
         flex-direction: row;
-        padding-inline-start: ${pxTorem(8)};
+        padding-inline-start: 8px;
     }
 `;
 
@@ -134,7 +133,7 @@ export function ColourSwatches({ value, onChange, presets }: Props) {
                 colour={value}
                 type="large"
                 onClick={() => ref.current?.click()}>
-                <Palette size={numTonum(32)} />
+                <Palette size={32} />
             </Swatch>
 
             <div className="overlay">
@@ -150,7 +149,7 @@ export function ColourSwatches({ value, onChange, presets }: Props) {
                                 type="small"
                                 key={i}
                                 onClick={() => onChange(swatch)}>
-                                {swatch === value && <Check size={numTonum(22)} />}
+                                {swatch === value && <Check size={22} />}
                             </Swatch>
                         ))}
                     </div>

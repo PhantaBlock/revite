@@ -2,8 +2,7 @@ import { useHistory, useParams } from "react-router-dom";
 
 import { useEffect, useState } from "preact/hooks";
 
-import { Button, Category, Preloader, Tip } from '../../../components/revoltchat';
-import { remTorem, pxTorem, numTonum } from '../../../lib/calculation';
+import { Category, Preloader } from "../../../components/revoltchat";
 
 import { I18nError } from "../../../context/Locale";
 

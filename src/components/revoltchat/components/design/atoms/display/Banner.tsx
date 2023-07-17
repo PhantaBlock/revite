@@ -1,9 +1,8 @@
 import styled from "styled-components";
-import { remTorem, pxTorem } from '../../../../lib/calculation';
 
 export const Banner = styled.div`
-    padding: ${pxTorem(8)};
-    font-size: ${remTorem(0.775)};
+    padding: 8px;
+    font-size: 0.875rem;
     text-align: center;
 
     color: var(--accent);

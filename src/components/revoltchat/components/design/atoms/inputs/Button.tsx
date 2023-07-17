@@ -1,5 +1,4 @@
 import styled, { css } from "styled-components";
-import { numTonum, pxTorem, remTorem, px2orem } from '../../../../lib/calculation';
 
 export interface Props {
     readonly compact?: boolean | "icon";
@@ -40,45 +39,47 @@ export const Button = styled.button<Props>`
     ${(props) =>
         props.compact === "icon"
             ? css`
-                height: ${pxTorem(38)};
-                width: ${pxTorem(38)};
-            `
+                  height: 38px;
+                  width: 38px;
+              `
             : props.compact
                 ? css`
-            min-width: ${pxTorem(96)};
-            font-size: ${remTorem(0.8125)};
-            height: ${pxTorem(32)} !important;
-            padding:  ${pxTorem(2)} ${pxTorem(12)} !important;
-            `
+                  min-width: 96px;
+                  font-size: 0.8125rem;
+                  height: 32px !important;
+                  padding: 2px 12px !important;
+              `
                 : css`
-            height: ${pxTorem(38)};
-            min-width: ${pxTorem(96)};
-            padding: ${pxTorem(2)} ${pxTorem(16)};
-            font-size: ${remTorem(0.8125)};
-    `}
-    ${(props) =>
+                  height: 38px;
+                  min-width: 96px;
+                  padding: 2px 16px;
+                  font-size: 0.8125rem;
+              `}
+            ${(props) =>
         props.confirmation && css`
-        font-weight: 700;
-        border-radius: 0 !important;
-        flex-direction: column;
-        background: #FED06D !important;
-        background-image: linear-gradient(0deg, #FED06D, #FED77D) !important;
-        position: relative;
-        color: #1C1616 !important;
-        width: ${px2orem(692)};
-        height: ${px2orem(138)};
-        padding: 0;
-        &::before {
-            content: '';
-            width: 100%;
-            height: 50%;
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            background-image: linear-gradient(180deg, #FFB65A, rgba(239, 176, 97, 0));
-        }
-        `
+            font-weight: 700;
+            border-radius: 0 !important;
+            flex-direction: column;
+            background: #FED06D !important;
+            background-image: linear-gradient(0deg, #FED06D, #FED77D) !important;
+            position: relative;
+            color: #1C1616 !important;
+            width: 21.625rem;
+            height: 4.3125rem;
+            font-size: 1.56rem;
+            padding: 0;
+            &::before {
+                content: '';
+                width: 100%;
+                height: 50%;
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                background-image: linear-gradient(180deg, #FFB65A, rgba(239, 176, 97, 0));
+            }
+            `
     }
+        
 
     ${(props) => {
         if (props.confirmation)
@@ -86,7 +87,7 @@ export const Button = styled.button<Props>`
         switch (props.palette) {
             case "secondary":
                 return css`
-                    font-weight: 400;
+                    font-weight: 500;
                     color: var(--foreground);
                     background: var(--secondary-header);
 
@@ -105,7 +106,6 @@ export const Button = styled.button<Props>`
             case "plain":
             case "plain-secondary":
                 return css`
-                    font-weight: 500;
                     color: ${props.palette === "plain"
                         ? "var(--foreground)"
                         : "var(--secondary-foreground)"};
@@ -147,23 +147,22 @@ export const Button = styled.button<Props>`
             default:
             case "primary":
                 return css`
-                    
-                    // color: var(--foreground);
-                    // background: var(--primary-background);
+                    font-weight: 500;
+                    color: var(--foreground);
+                    background: var(--primary-background);
 
-                    // &:hover {
-                    //     background: var(--secondary-header);
-                    // }
+                    &:hover {
+                        background: var(--secondary-header);
+                    }
 
-                    // &:disabled {
-                    //     background: var(--primary-background);
-                    // }
+                    &:disabled {
+                        background: var(--primary-background);
+                    }
 
-                    // &:active {
-                    //     background: var(--secondary-background);
-                    // }
+                    &:active {
+                        background: var(--secondary-background);
+                    }
                 `;
         }
-    }
-    }
+    }}
 `;

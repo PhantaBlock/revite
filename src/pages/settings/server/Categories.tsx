@@ -8,10 +8,7 @@ import { ulid } from "ulid";
 import { Text } from "preact-i18n";
 import { useCallback, useEffect, useMemo, useState } from "preact/hooks";
 
-import {
-    SaveStatus
-} from '../../../components/revoltchat';
-import { remTorem, pxTorem, numTonum } from '../../../lib/calculation';
+import { SaveStatus } from "../../../components/revoltchat";
 
 import { useAutosave } from "../../../lib/debounce";
 import { Draggable, Droppable } from "../../../lib/dnd";
@@ -21,15 +18,15 @@ import ChannelIcon from "../../../components/common/ChannelIcon";
 import { modalController } from "../../../controllers/modals/ModalController";
 
 const KanbanEntry = styled.div`
-    padding: ${pxTorem(2)} ${pxTorem(4)};
+    padding: 2px 4px;
 
     > .inner {
         display: flex;
         align-items: center;
 
-        gap: ${pxTorem(4)};
-        height: ${pxTorem(40)};
-        padding: ${pxTorem(8)};
+        gap: 4px;
+        height: 40px;
+        padding: 8px;
         flex-shrink: 0;
         font-size: 0.9em;
         background: var(--primary-background);
@@ -52,15 +49,16 @@ const KanbanList = styled.div<{ last: boolean }>`
     ${(props) =>
         !props.last &&
         css`
-            padding-inline-end: ${pxTorem(4)};
+            padding-inline-end: 4px;
         `}
 
     > .inner {
-        width: ${pxTorem(180)};
+        width: 180px;
         display: flex;
         flex-shrink: 0;
         overflow-y: auto;
-        padding-bottom: ${pxTorem(2)};${pxTorem(4)}      flex-direction: column;
+        padding-bottom: 2px;
+        flex-direction: column;
         background: var(--secondary-background);
 
         input {
@@ -74,14 +72,14 @@ const KanbanList = styled.div<{ last: boolean }>`
         }
 
         > [data-rbd-droppable-id] {
-            min-height: ${pxTorem(24)};
+            min-height: 24px;
         }
     }
 `;
 
 const Row = styled.div`
-    gap: ${pxTorem(2)};
-    margin: ${pxTorem(4)};
+    gap: 2px;
+    margin: 4px;
     display: flex;
 
     > :first-child {
@@ -90,9 +88,9 @@ const Row = styled.div`
 `;
 
 const KanbanListHeader = styled.div`
-    height: ${pxTorem(34)};
+    height: 34px;
     display: grid;
-    min-width: ${pxTorem(34)};
+    min-width: 34px;
     place-items: center;
     cursor: pointer !important;
     transition: 0.2s ease background-color;
@@ -393,7 +391,7 @@ function ListElement({
                                 </KanbanListHeader>
                                 {deleteSelf && (
                                     <KanbanListHeader onClick={deleteSelf}>
-                                        <X size={numTonum(24)} />
+                                        <X size={24} />
                                     </KanbanListHeader>
                                 )}
                             </Row>
@@ -427,7 +425,9 @@ function ListElement({
                                                                         target={
                                                                             channel
                                                                         }
-                                                                        size={numTonum(24)}
+                                                                        size={
+                                                                            24
+                                                                        }
                                                                     />
                                                                     <span>
                                                                         {
@@ -453,7 +453,7 @@ function ListElement({
                                         cb: addChannel,
                                     })
                                 }>
-                                <Plus size={numTonum(24)} />
+                                <Plus size={24} />
                             </KanbanListHeader>
                         </div>
                     </KanbanList>

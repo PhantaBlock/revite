@@ -12,8 +12,7 @@ import styled from "styled-components/macro";
 import { Text } from "preact-i18n";
 import { useMemo } from "preact/hooks";
 
-import { Button } from '../../../components/revoltchat';
-import { remTorem, pxTorem, numTonum } from '../../../lib/calculation';
+import { Button } from "../../../components/revoltchat";
 
 import { voiceState, VoiceStatus } from "../../../lib/vortex/VoiceState";
 
@@ -27,8 +26,8 @@ interface Props {
 }
 
 const VoiceBase = styled.div`
-    margin-top: ${pxTorem(48)};
-    padding: ${pxTorem(20)};
+    margin-top: 48px;
+    padding: 20px;
     background: var(--secondary-background);
     flex-grow: 1;
 
@@ -38,11 +37,11 @@ const VoiceBase = styled.div`
         position: absolute;
         align-items: center;
 
-        padding: ${pxTorem(10)};
-        font-size: ${pxTorem(13)};
+        padding: 10px;
+        font-size: 13px;
         font-weight: 500;
         user-select: none;
-        gap: ${pxTorem(6)};
+        gap: 6px;
 
         color: var(--success);
         border-radius: var(--border-radius);
@@ -57,12 +56,12 @@ const VoiceBase = styled.div`
     flex-direction: column;
 
     .participants {
-        margin: ${pxTorem(40)} ${pxTorem(20)};
+        margin: 40px 20px;
         justify-content: center;
         user-select: none;
         display: flex;
         flex-flow: row wrap;
-        gap: ${pxTorem(16)};
+        gap: 16px;
 
         div:hover img {
             opacity: 0.8;
@@ -76,7 +75,7 @@ const VoiceBase = styled.div`
     .actions {
         display: flex;
         justify-content: center;
-        gap: ${pxTorem(10)};
+        gap: 10px;
     }
 `;
 
@@ -101,7 +100,7 @@ export default observer(({ id }: Props) => {
                         return (
                             <div key={user_id}>
                                 <UserIcon
-                                    size={numTonum(80)}
+                                    size={80}
                                     target={user}
                                     status={false}
                                     voice={
@@ -127,7 +126,7 @@ export default observer(({ id }: Props) => {
                     : self !== undefined && (
                         <div key={self._id} className="disconnected">
                             <UserIcon
-                                size={numTonum(80)}
+                                size={80}
                                 target={self}
                                 status={false}
                             />
@@ -135,7 +134,7 @@ export default observer(({ id }: Props) => {
                     )}
             </div>
             <div className="status">
-                <BarChartAlt2 size={numTonum(16)} />
+                <BarChartAlt2 size={16} />
                 {voiceState.status === VoiceStatus.CONNECTED && (
                     <Text id="app.main.channel.voice.connected" />
                 )}
@@ -143,34 +142,34 @@ export default observer(({ id }: Props) => {
             <div className="actions">
                 <Tooltip content={"Leave call"} placement={"top"}>
                     <Button palette="error" onClick={voiceState.disconnect}>
-                        <PhoneOff width={numTonum(20)} />
+                        <PhoneOff width={20} />
                     </Button>
                 </Tooltip>
                 {voiceState.isProducing("audio") ? (
                     <Tooltip content={"Mute microphone"} placement={"top"}>
                         <Button
                             onClick={() => voiceState.stopProducing("audio")}>
-                            <Microphone width={numTonum(20)} />
+                            <Microphone width={20} />
                         </Button>
                     </Tooltip>
                 ) : (
                     <Tooltip content={"Unmute microphone"} placement={"top"}>
                         <Button
                             onClick={() => voiceState.startProducing("audio")}>
-                            <MicrophoneOff width={numTonum(20)} />
+                            <MicrophoneOff width={20} />
                         </Button>
                     </Tooltip>
                 )}
                 {voiceState.isDeaf() ? (
                     <Tooltip content={"Undeafen"} placement={"top"}>
                         <Button onClick={() => voiceState.stopDeafen()}>
-                            <VolumeMute width={numTonum(20)} />
+                            <VolumeMute width={20} />
                         </Button>
                     </Tooltip>
                 ) : (
                     <Tooltip content={"Deafen"} placement={"top"}>
                         <Button onClick={() => voiceState.startDeafen()}>
-                            <VolumeFull width={numTonum(20)} />
+                            <VolumeFull width={20} />
                         </Button>
                     </Tooltip>
                 )}
