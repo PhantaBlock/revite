@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { remTorem, pxTorem } from '../../../../lib/calculation';
+import { pxTorem } from '../../../../lib/calculation';
 
 export interface Props {
     readonly palette: "primary" | "secondary";
@@ -82,5 +82,7 @@ export const Header = styled.div<Props>`
         props.height &&
         css`
             height: ${props.height};
+            gap: ${pxTorem(10)};
+            padding: ${pxTorem(45)} ${pxTorem(16)} 0;
         `}
 `;

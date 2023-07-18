@@ -148,7 +148,7 @@
     height: 6px;
     margin: 9px;
     flex-shrink: 0;
-    background: var(--foreground);
+    background: var(--accent);
     border-radius: var(--border-radius-half);
 
     display: grid;
@@ -187,10 +187,9 @@
     height: 90px;
     display: flex;
     user-select: none;
-    border-radius: var(--border-radius);
     padding: 0 40px;
     box-sizing: border-box;
-
+    border-radius: 0;
     align-items: center;
     flex-direction: row;
 
@@ -200,14 +199,27 @@
 
     color: var(--tertiary-foreground);
 
-    &.normal {
-        height: 5.625rem;
+    &:hover {
+        background: rgba(216, 216, 216, 0.1) !important;
     }
 
-    &.compact {
-        /* TOFIX: Introduce two separate compact items, one for settings, other for channels. */
-        height: 2.6rem;
+    &.isCurrent {
+        background: rgba(216, 216, 216, 0.1) !important;
+        position: relative;
+
+        &::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0px;
+            width: 7px;
+            height: 100%;
+            opacity: 1;
+            z-index: 1;
+            background: #EBB257;
+        }
     }
+
 
     &.user {
         opacity: 0.4;
@@ -218,10 +230,6 @@
         &:hover {
             opacity: 1;
         }
-    }
-
-    &:hover {
-        background: var(--hove);
     }
 
     div {
@@ -272,12 +280,12 @@
             margin-left: 20px;
             flex-grow: 1;
             display: flex;
-            font-weight: 600;
             font-size: 22px;
             line-height: 26.5px;
             flex-direction: column;
 
             .subText {
+                margin-top: 4px;
                 font-weight: 500;
                 font-size: 17px;
                 line-height: 20px;
@@ -294,44 +302,6 @@
                 transition: 0.1s ease-in-out opacity;
             }
         }
-    }
-
-    &:not(.compact):hover {
-        div.button .alert {
-            display: none;
-        }
-
-        div.button svg {
-            opacity: 1;
-            display: block;
-        }
-    }
-
-    &[data-active="true"] {
-        cursor: default;
-        background: var(--hover);
-
-        .unread {
-            display: none;
-        }
-    }
-
-    &[data-muted="true"] {
-        opacity: 0.4;
-    }
-
-    &[data-alert="true"],
-    &[data-active="true"],
-    &:hover {
-        color: var(--foreground);
-
-        .subText {
-            color: var(--secondary-foreground) !important;
-        }
-    }
-
-    &[data-margin="true"] {
-        margin: 0 0.2rem;
     }
 }
 
