@@ -10,16 +10,13 @@ import AttachmentActions from "./AttachmentActions";
 import { SizedGrid } from "./Grid";
 import ImageFile from "./ImageFile";
 import Spoiler from "./Spoiler";
-import TextFile from "./TextFile";
-import { remTorem, pxTorem, numTonum } from '../../../../lib/calculation';
-
 
 interface Props {
     attachment: API.File;
     hasContent?: boolean;
 }
 
-const MAX_ATTACHMENT_WIDTH = numTonum(480);
+const MAX_ATTACHMENT_WIDTH = 480;
 
 export default function Attachment({ attachment, hasContent }: Props) {
     const client = useClient();

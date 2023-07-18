@@ -210,7 +210,7 @@ export const TextChannel = observer(({ channel, tempMode }: { channel: ChannelI,
                 <ErrorBoundary section="renderer">
                     <ChannelContent isMicro={isMicro}>
                         <VoiceHeader id={channel._id} />
-                        <NewMessages channel={channel} last_id={lastId} />
+                        {!isMicro && <NewMessages channel={channel} last_id={lastId} />}
                         <MessageArea channel={channel} last_id={lastId} tempMode={tempMode!} />
                         <TypingIndicator channel={channel} />
                         <JumpToBottom channel={channel} />

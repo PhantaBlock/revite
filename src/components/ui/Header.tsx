@@ -13,6 +13,7 @@ import { isTouchscreenDevice } from "../../lib/isTouchscreenDevice";
 
 import { useApplicationState } from "../../mobx/State";
 import { SIDEBAR_CHANNELS } from "../../mobx/stores/Layout";
+import { isMicroMode, openMicroChannelPage } from "../../lib/global";
 
 interface Props {
     topBorder?: boolean;
@@ -61,7 +62,7 @@ export const PageHeader = observer(
                 {...props}
                 palette="primary"
                 topBorder={!visible}
-                bottomBorder={!pathname.includes("/server")}>
+                bottomBorder={!pathname.includes("/server") && !isMicroMode()}>
                 {!noBurger && <HamburgerAction />}
                 {!props.height && <IconContainer
                     onClick={() =>
@@ -92,7 +93,7 @@ export function HamburgerAction() {
 
     return (
         <div className="menu" onClick={openSidebar}>
-            <Menu size={numTonum(27)} />
+            <Menu size={27} />
         </div>
     );
 }

@@ -7,7 +7,7 @@ import styles from "./Item.module.scss";
 import classNames from "classnames";
 import { useTriggerEvents } from "preact-context-menu";
 import { Localizer, Text } from "preact-i18n";
-
+import { Redirect, useParams, useLocation } from "react-router-dom";
 
 import { isTouchscreenDevice } from "../../../lib/isTouchscreenDevice";
 import { stopPropagation } from "../../../lib/stopPropagation";
@@ -19,7 +19,6 @@ import UserIcon from "../../common/user/UserIcon";
 import { Username } from "../../common/user/UserShort";
 import UserStatus from "../../common/user/UserStatus";
 import { IconButton } from "../../../components/revoltchat";
-import { remTorem, pxTorem, numTonum } from '../../../lib/calculation';
 import { isMicroMode } from "../../../lib/global";
 
 type CommonProps = Omit<
@@ -104,7 +103,7 @@ export const UserButton = observer((props: UserProps) => {
                         <Localizer>
                             <Tooltip
                                 content={<Text id="app.main.groups.owner" />}>
-                                <Crown size={numTonum(20)} />
+                                <Crown size={20} />
                             </Tooltip>
                         </Localizer>
                     )}
@@ -123,7 +122,7 @@ export const UserButton = observer((props: UserProps) => {
                                 target: channel,
                             })
                         }>
-                        <X size={numTonum(24)} />
+                        <X size={24} />
                     </IconButton>
                 )}
             </div>
@@ -149,6 +148,7 @@ export const ChannelButton = observer((props: ChannelProps) => {
         ...divProps
     } = props;
 
+
     if (channel.channel_type === "SavedMessages") throw "Invalid channel type.";
     if (channel.channel_type === "DirectMessage") {
         if (typeof user === "undefined") throw "No user provided.";
@@ -156,7 +156,8 @@ export const ChannelButton = observer((props: ChannelProps) => {
     }
 
     const alerting = alert && !muted && !active;
-
+    const { pathname } = useLocation();
+    console.warn(active, '========')
 
     return (
         <div
@@ -168,6 +169,7 @@ export const ChannelButton = observer((props: ChannelProps) => {
             className={classNames(styles.item, {
                 [styles.compact]: compact,
                 [styles.isMicro]: isMicroMode(),
+                [styles.isCurrent]: pathname.includes(channel._id)
             })}
             {...useTriggerEvents("Menu", {
                 channel: channel._id,
@@ -211,7 +213,7 @@ export const ChannelButton = observer((props: ChannelProps) => {
                                 target: channel,
                             })
                         }>
-                        <X size={numTonum(24)} />
+                        <X size={24} />
                     </IconButton>
                 )}
             </div>
