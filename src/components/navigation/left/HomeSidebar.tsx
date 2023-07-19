@@ -138,14 +138,14 @@ export default observer(() => {
                 )}
                 <Category>
                     {!isMicro && (<Text id="app.main.categories.conversations" />)}
-                    <IconButton
+                    {!isMicro && <IconButton
                         onClick={() =>
                             modalController.push({
                                 type: "create_group",
                             })
                         }>
                         <Plus size={26} />
-                    </IconButton>
+                    </IconButton>}
                 </Category>
                 {channels.length === 0 && (
                     <img src="https://skyvs.oss-cn-hangzhou.aliyuncs.com/resources/revite/placeholder.svg" loading="eager" />

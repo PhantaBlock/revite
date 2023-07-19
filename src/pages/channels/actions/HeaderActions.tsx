@@ -113,7 +113,7 @@ export default function HeaderActions({ channel }: ChannelHeaderProps) {
                 <UpdateIndicator style="channel" />
                 {channel.channel_type === "Group" && (
                     <>
-                        <IconButton
+                        {!isMicro && <IconButton
                             onClick={() =>
                                 modalController.push({
                                     type: "user_picker",
@@ -126,7 +126,7 @@ export default function HeaderActions({ channel }: ChannelHeaderProps) {
                                 })
                             }>
                             <UserPlus size={27} />
-                        </IconButton>
+                        </IconButton>}
                         {!isMicro && <IconButton
                             onClick={() =>
                                 history.push(`/channel/${channel._id}/settings`)

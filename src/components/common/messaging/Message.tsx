@@ -114,6 +114,7 @@ const Message = observer(
                     ))}
                 <MessageBase
                     highlight={highlight}
+                    isMicro={isMicroMode()}
                     head={
                         hideReply
                             ? false
@@ -141,7 +142,7 @@ const Message = observer(
                         : undefined)}
                     onMouseEnter={() => setAnimate(true)}
                     onMouseLeave={() => setAnimate(false)}>
-                    {!tempMode && <MessageInfo click={typeof head !== "undefined"}>
+                    {!tempMode && <MessageInfo click={typeof head !== "undefined"} isMicro={isMicroMode()}>
                         {head ? (
                             <UserIcon
                                 className="avatar"

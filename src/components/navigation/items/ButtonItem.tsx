@@ -48,7 +48,8 @@ export const UserButton = observer((props: UserProps) => {
         user,
         context,
         channel,
-        ...divProps
+        ...divProps,
+        rightSidebar
     } = props;
     const isMicro = isMicroMode();
 
@@ -65,7 +66,8 @@ export const UserButton = observer((props: UserProps) => {
         <div
             {...divProps}
             className={classNames(styles.item, styles.user, {
-                [styles.isMicro]: isMicro
+                [styles.isMicro]: isMicro,
+                [styles.rightSidebar]: isMicro && rightSidebar
             })}
             data-active={active}
             data-margin={margin}

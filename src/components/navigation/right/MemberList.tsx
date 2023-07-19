@@ -20,7 +20,7 @@ export type MemberListGroup = {
     users: User[];
 };
 
-const ListCategory = styled.div<{ first?: boolean }>`
+const ListCategory = styled.div<{ first?: boolean, isMicro?: boolean }>`
     opacity: 0.8;
     font-size: 0.8em;
     font-weight: 600;
@@ -36,6 +36,11 @@ const ListCategory = styled.div<{ first?: boolean }>`
         !props.first &&
         css`
             padding-top: ${pxTorem(16)};
+        `}
+    ${(props) =>
+        props.isMicro &&
+        css`
+            font-size: 1rem;
         `}
 `;
 
@@ -56,11 +61,13 @@ const NoOomfie = styled.div`
 const ItemContent = memo(
     ({ item, context }: { item: User; context: Channel }) => (
         <UserButton
+            rightSidebar
             key={item._id}
             user={item}
             margin
             context={context}
             onClick={(e) => {
+                if (isMicroMode()) return;
                 if (e.shiftKey) {
                     internalEmit(
                         "MessageBox",
@@ -95,7 +102,7 @@ export default function MemberList({
                 const entry = entries[index];
 
                 return (
-                    <ListCategory first={index === 0 && !isMicro}>
+                    <ListCategory first={index === 0 && !isMicro} isMicro={isMicro}>
                         {entry.type === "role" ? (
                             <>{entry.name}</>
                         ) : entry.type === "online" ? (

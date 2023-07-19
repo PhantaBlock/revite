@@ -52,6 +52,8 @@ const ChannelContent = styled.div.attrs({
         props.isMicro &&
         css`
             background: transparent !important;
+            padding-top: 8.2815rem;
+            box-sizing: border-box;
         `
     }
 
