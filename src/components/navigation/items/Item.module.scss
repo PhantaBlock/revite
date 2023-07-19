@@ -187,11 +187,15 @@
     height: 90px;
     display: flex;
     user-select: none;
-    padding: 0 40px;
+    padding: 0 20px 0 40px;
     box-sizing: border-box;
     border-radius: 0;
     align-items: center;
     flex-direction: row;
+
+    &.rightSidebar {
+        padding-left: 0;
+    }
 
     cursor: pointer;
     font-size: 1.3725rem;
@@ -306,11 +310,12 @@
 }
 
 .alert {
-    width: 0.2rem;
-    height: 0.2rem;
+    width: 0.4rem;
+    height: 0.4rem;
     margin: 0.75rem;
     flex-shrink: 0;
-    background: var(--foreground);
+    background: var(--accent);
+    color: var(--accent);
     border-radius: var(--border-radius-half);
 
     display: grid;
@@ -319,8 +324,8 @@
     place-items: center;
 
     &[data-style="mention"] {
-        width: 1.33rem;
-        height: 1.33rem;
+        width: 1.75rem;
+        height: 1.75rem;
         color: white;
         background: var(--error);
     }

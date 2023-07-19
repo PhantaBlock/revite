@@ -13,7 +13,7 @@ import {
 } from "@styled-icons/boxicons-solid";
 import { observer } from "mobx-react-lite";
 import { Message, API } from "revolt.js";
-import styled from "styled-components/macro";
+import styled, { css } from "styled-components/macro";
 import { decodeTime } from "ulid";
 
 import { useTriggerEvents } from "preact-context-menu";
@@ -34,7 +34,7 @@ import UserShort from "../user/UserShort";
 import MessageBase, { MessageDetail, MessageInfo } from "./MessageBase";
 import { isMicroMode } from "../../../lib/global";
 
-const SystemContent = styled.div`
+const SystemContent = styled.div<{ isMicro?: boolean }>`
     gap: ${pxTorem(4)};
     display: flex;
     padding: ${pxTorem(2)} 0;
@@ -61,6 +61,26 @@ const SystemContent = styled.div`
     span:hover {
         text-decoration: underline;
     }
+
+    ${(props) =>
+        props.isMicro &&
+        css`
+            padding: 0;
+            justify-content: center;
+            display: flex;
+            align-items: center;
+            span {
+                font-weight: normal;
+                color: var(--secondary-foreground);
+            }
+            svg {
+                width: 2rem !important;
+                height: 2rem !important;
+                margin-inline-end: 0.5rem;
+                flex-shrink: 0;
+                display: none;
+            }
+    `}
 `;
 
 interface Props {
@@ -100,18 +120,23 @@ export const SystemMessage = observer(
         switch (data.type) {
             case "user_added":
             case "user_remove":
-                children = (
-                    <TextReact
-                        id={`app.main.channel.system.${data.type === "user_added"
-                            ? "added_by"
-                            : "removed_by"
-                            }`}
-                        fields={{
-                            user: <UserShort user={data.user} />,
-                            other_user: <UserShort user={data.by} />,
-                        }}
-                    />
-                );
+                if (data.type === "user_added" && data.user?._id === data.by?._id) {
+                    children = `${data.user?.username} 加入了房间`
+                } else {
+                    children = (
+                        <TextReact
+                            id={`app.main.channel.system.${data.type === "user_added"
+                                ? "added_by"
+                                : "removed_by"
+                                }`}
+                            fields={{
+                                user: <UserShort user={data.user} />,
+                                other_user: <UserShort user={data.by} />,
+                            }}
+                        />
+                    );
+                }
+
                 break;
             case "user_joined":
             case "user_left":
@@ -191,20 +216,23 @@ export const SystemMessage = observer(
 
         return (
             <MessageBase
+                isMicro={isMicro}
+                head={false}
                 highlight={highlight}
+                system={isMicro}
                 {...((attachContext && !isMicro)
                     ? useTriggerEvents("Menu", {
                         message,
                         contextualChannel: message.channel,
                     })
                     : undefined)}>
-                {!hideInfo && (
-                    <MessageInfo click={false}>
+                {(!hideInfo && !isMicro) && (
+                    <MessageInfo click={false} isMicro={isMicro} system={isMicro}>
                         <MessageDetail message={message} position="left" />
                         <SystemMessageIcon className="systemIcon" />
                     </MessageInfo>
                 )}
-                <SystemContent>{children}</SystemContent>
+                <SystemContent isMicro={isMicro}>{children}</SystemContent>
             </MessageBase>
         );
     },

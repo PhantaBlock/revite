@@ -31,7 +31,7 @@ export default function RightSidebar() {
         );
 
     return (
-        <SidebarBase paddingTop={isMicro ? '5.4687rem' : ""} borderLeft={isMicro ? '1px solid #766A58' : ''}>
+        <SidebarBase paddingTop={isMicro ? '5.4687rem' : ""} borderLeft={isMicro ? '1px solid #766A58' : ''} >
             <Switch>
                 <Route path="/server/:server/channel/:channel">{content}</Route>
                 <Route path="/channel/:channel">{content}</Route>

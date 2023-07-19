@@ -22,6 +22,8 @@ export interface BaseMessageProps {
     sending?: boolean;
     contrast?: boolean;
     highlight?: boolean;
+    isMicro?: boolean;
+    system?: boolean;
 }
 
 const highlight = keyframes`
@@ -129,15 +131,52 @@ export default styled.div<BaseMessageProps>`
 
         time {
             opacity: 1;
+            line-height: 1.0.25rem;
         }
 
         .system-message-icon {
             display: none;
         }
     }
+
+    ${(props) =>
+        props.isMicro &&
+        css`
+            margin-top: 3.75rem;
+            padding: 0;
+            .detail {
+                gap: 1.15625rem;
+                padding-bottom: 1.2rem;
+                margin-top: 0.2rem;
+                .author {
+                    font-size: 1.0625rem;
+                    line-height: 1.0.25rem;
+                }
+                time {
+                    font-size: 0.875rem;
+                    line-height: 1.0.25rem;
+                }
+            }
+    `}
+
+    ${(props) =>
+        props.isMicro && !props.head &&
+        css`
+            margin-top: 1.75rem;
+        `}
+
+    ${(props) =>
+        props.system &&
+        css`
+            margin-top: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-flow: row;
+        `}
 `;
 
-export const MessageInfo = styled.div<{ click: boolean }>`
+export const MessageInfo = styled.div<{ click: boolean, isMicro?: boolean, system?: boolean }>`
     width: ${pxTorem(62)};
     display: flex;
     flex-shrink: 0;
@@ -194,6 +233,37 @@ export const MessageInfo = styled.div<{ click: boolean }>`
         margin-right: 0.5em;
         color: var(--tertiary-foreground);
     }
+
+    ${(props) =>
+        props.isMicro &&
+        css`
+            padding: 0;
+            flex-shrink: 0;
+            width: 3.75rem;
+            margin-right: 1rem;
+            .avatar {
+                width: 3.75rem !important;
+                height: 3.75rem !important;
+        }
+    `}
+
+    ${(props) =>
+        props.system &&
+        css`
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            time {
+                display: none;
+            }
+            .systemIcon {
+                height: 1.75rem;
+                width: 1.75rem;
+                margin-right: 0;
+                color: var(--tertiary-foreground);
+                opacity: 0.5;
+            }
+        `}
 
     /*${(props) =>
         props.click &&

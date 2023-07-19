@@ -29,8 +29,9 @@ import RequiresOnline from "../../../controllers/client/jsx/RequiresOnline";
 import { modalController } from "../../../controllers/modals/ModalController";
 import ConversationStart from "./ConversationStart";
 import MessageRenderer from "./MessageRenderer";
+import { isMicroMode } from '../../../lib/global';
 
-const Area = styled.div.attrs({ "data-scroll-offset": "with-padding" })`
+const Area = styled.div.attrs({ "data-scroll-offset": "with-padding" }) <{ isMicro?: boolean, tempMode?: boolean }>`
     height: 100%;
     flex-grow: 1;
     min-height: 0;
@@ -49,6 +50,14 @@ const Area = styled.div.attrs({ "data-scroll-offset": "with-padding" })`
         padding-bottom: 26px;
         flex-direction: column;
         justify-content: flex-end;
+    }
+
+    ${(props) =>
+        props.isMicro && !props.tempMode &&
+        css`
+            padding-left: 2.5rem;
+            padding-right: 2.5rem;
+        `
     }
 `;
 
@@ -316,7 +325,7 @@ export const MessageArea = observer(({ last_id, channel, tempMode }: Props) => {
     return (
         <MessageAreaWidthContext.Provider
             value={(width ?? 0) - MESSAGE_AREA_PADDING}>
-            <Area ref={ref} tempMode>
+            <Area ref={ref} tempMode={tempMode} isMicro={isMicroMode()}>
                 <div className={tempMode && styles.areaInner}>
                     {renderer.state === "LOADING" && <Preloader type="ring" />}
                     {renderer.state === "WAITING_FOR_NETWORK" && (
