@@ -121,18 +121,23 @@ export const SystemMessage = observer(
         switch (data.type) {
             case "user_added":
             case "user_remove":
-                children = (
-                    <TextReact
-                        id={`app.main.channel.system.${data.type === "user_added"
-                            ? "added_by"
-                            : "removed_by"
-                            }`}
-                        fields={{
-                            user: <UserShort user={data.user} />,
-                            other_user: <UserShort user={data.by} />,
-                        }}
-                    />
-                );
+                if (data.type === "user_added" && data.user?._id === data.by?._id) {
+                    children = `${data.user?.username} 加入了房间`
+                } else {
+                    children = (
+                        <TextReact
+                            id={`app.main.channel.system.${data.type === "user_added"
+                                ? "added_by"
+                                : "removed_by"
+                                }`}
+                            fields={{
+                                user: <UserShort user={data.user} />,
+                                other_user: <UserShort user={data.by} />,
+                            }}
+                        />
+                    );
+                }
+
                 break;
             case "user_joined":
             case "user_left":

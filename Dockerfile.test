@@ -1,0 +1,7 @@
+FROM nginx:alpine
+
+COPY ./dist /usr/share/nginx/html/revite
+
+COPY ./nginx-conf.d/revite-test.conf /etc/nginx/conf.d/revite-test.conf
+
+CMD ["nginx", "-g", "daemon off;"]

@@ -676,7 +676,6 @@ export default observer(({ channel, tempMode }: Props) => {
                     id="message"
                     tempMode={tempMode}
                     maxLength={2000}
-                    tempMode={tempMode}
                     onKeyUp={onKeyUp}
                     value={state.draft.get(channel._id)?.content ?? ""}
                     padding="var(--message-box-padding)"
