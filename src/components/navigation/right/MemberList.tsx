@@ -13,6 +13,7 @@ import { UserButton } from "../items/ButtonItem";
 import { isMicroMode } from "../../../lib/global";
 
 import { remTorem, pxTorem, numTonum } from '../../../lib/calculation';
+import { useClient } from "../../../controllers/client/ClientController";
 
 export type MemberListGroup = {
     type: "online" | "offline" | "role" | "no_offline";
@@ -59,7 +60,7 @@ const NoOomfie = styled.div`
 `;
 
 const ItemContent = memo(
-    ({ item, context }: { item: User; context: Channel }) => (
+    ({ item, context, client }: { item: User; context: Channel, client: any }) => (
         <UserButton
             rightSidebar
             key={item._id}
@@ -67,7 +68,9 @@ const ItemContent = memo(
             margin
             context={context}
             onClick={(e) => {
-                if (isMicroMode()) return;
+                if (isMicroMode()) {
+                    return window?.__OPEN_USER_PROFILE__?.(item._id, client);
+                }
                 if (e.shiftKey) {
                     internalEmit(
                         "MessageBox",
@@ -94,6 +97,7 @@ export default function MemberList({
     context: Channel;
 }) {
     const isMicro = isMicroMode();
+    const client = useClient();
 
     return (
         <GroupedVirtuoso
@@ -157,7 +161,7 @@ export default function MemberList({
 
                 return (
                     <div>
-                        <ItemContent item={item} context={context} />
+                        <ItemContent item={item} context={context} client={client} />
                     </div>
                 );
             }}
