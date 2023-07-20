@@ -50,7 +50,7 @@ export const UserButton = observer((props: UserProps) => {
         context,
         channel,
         rightSidebar,
-        ...divProps,
+        ...divProps
     } = props;
     const isMicro = isMicroMode();
 

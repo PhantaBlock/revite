@@ -22,7 +22,7 @@
 :root {
     --ligatures: none;
     --text-size: 14px;
-    --font: "Open Sans";
+    --font: "Microsoft YaHei, 'Source Han Sans CN', PingFangSC-Regular, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif";
     --sidebar-active: var(--secondary-background);
     --titlebar-height: 29px;
     --titlebar-action-padding: 8px;

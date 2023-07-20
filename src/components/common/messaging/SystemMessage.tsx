@@ -70,6 +70,7 @@ const SystemContent = styled.div<{ isMicro?: boolean }>`
             display: flex;
             align-items: center;
             span {
+                font-size: ${pxTorem(20)};
                 font-weight: normal;
                 color: var(--secondary-foreground);
             }
