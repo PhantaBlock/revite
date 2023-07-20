@@ -163,7 +163,7 @@ const Message = observer(
                             <MessageDetail message={message} position="left" />
                         )}
                     </MessageInfo>}
-                    <MessageContent>
+                    <MessageContent isMicro={isMicroMode() && !tempMode}>
                         {
                             tempMode ? (
                                 <div className="detail">

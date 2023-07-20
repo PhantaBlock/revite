@@ -43,6 +43,8 @@ export default styled.div<{
         css`
             border-left: ${props.borderLeft};
             background: transparent !important;
+            padding-left: 0.625rem;
+            padding-right: 0.625rem;
 
             .isMicro.item {
                 padding-left: 0 !important;

@@ -8,6 +8,7 @@ import type { TextAreaProps } from "../components/revoltchat/components/design/a
 
 import { internalSubscribe } from "./eventEmitter";
 import { isTouchscreenDevice } from "./isTouchscreenDevice";
+import { isMicroMode } from "./global";
 
 type TextAreaAutoSizeProps = Omit<
     JSX.HTMLAttributes<HTMLTextAreaElement>,

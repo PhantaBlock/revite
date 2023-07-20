@@ -272,7 +272,7 @@ export const MessageInfo = styled.div<{ click: boolean, isMicro?: boolean, syste
         `}*/
 `;
 
-export const MessageContent = styled.div`
+export const MessageContent = styled.div<{ isMicro?: boolean }>`
     // Position relatively so we can put
     // the overlay in the right place.
     position: relative;
@@ -284,6 +284,12 @@ export const MessageContent = styled.div`
     flex-direction: column;
     justify-content: center;
     font-size: var(--text-size);
+
+    ${(props) =>
+        props.isMicro &&
+        css`
+            font-size: ${pxTorem(20)};
+        `}
 `;
 
 export const DetailBase = styled.div`

@@ -65,7 +65,7 @@ export type UploadState =
     | { type: "sending"; files: File[] }
     | { type: "failed"; files: File[]; error: string };
 
-const Base = styled.div`
+const Base = styled.div<{ isMicro?: boolean }>`
     z-index: 1;
     display: flex;
     align-items: flex-start;
@@ -81,6 +81,18 @@ const Base = styled.div`
             text-overflow: ellipsis;
         }
     }
+    ${(props) =>
+        props.isMicro &&
+        css`
+            background: transparent;
+            border: 0.125rem solid;
+            border-image: linear-gradient(180deg, #FFBE5A, rgba(255, 226, 119, 0.3));
+            border-image-slice: 1;
+            textarea {
+                font-size: 1.25rem;
+                color: #C8B597;
+            }
+        `}
 `;
 
 const Blocked = styled.div`
@@ -628,7 +640,7 @@ export default observer(({ channel, tempMode }: Props) => {
                     />
                 )}
             </FloatingLayer>
-            <Base>
+            <Base isMicro={isMicro}>
                 {/* {channel.havePermission("UploadFiles") ? (
                     <FileAction>
                         <FileUploader

@@ -116,8 +116,13 @@ const Info1 = styled.div`
 const ImageWrap = styled.div`
     display: flex;
     flexShrink: 0;
-    width: 3.75rem;
-    height: 3.75rem;
+    width: 4rem;
+    height: 4rem;
+
+    img {
+        width: 100%;
+        height: 100%;
+    }
     margin-left: ${pxTorem(20)};
     margin-right: ${pxTorem(20)};
 `

@@ -69,8 +69,8 @@ const SystemContent = styled.div<{ isMicro?: boolean }>`
             justify-content: center;
             display: flex;
             align-items: center;
+            font-size: ${pxTorem(20)};
             span {
-                font-size: ${pxTorem(20)};
                 font-weight: normal;
                 color: var(--secondary-foreground);
             }
