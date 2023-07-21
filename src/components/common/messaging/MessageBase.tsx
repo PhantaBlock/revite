@@ -144,6 +144,9 @@ export default styled.div<BaseMessageProps>`
         css`
             margin-top: 3.75rem;
             padding: 0;
+            &:hover {
+                background: transparent;
+            }
             .detail {
                 gap: 1.15625rem;
                 padding-bottom: 1.2rem;
