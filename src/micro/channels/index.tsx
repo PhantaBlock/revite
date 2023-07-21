@@ -57,7 +57,7 @@ export default observer(() => {
                 <OverlappingPanels
                     width="100vw"
                     height={"var(--app-height)"}
-                    leftPanel={isOpen ? { width: 322, component: <HomeSidebar /> } : undefined}
+                    leftPanel={isOpen ? { width: 310, component: <HomeSidebar /> } : undefined}
                     docked={isTouchscreenDevice ? Docked.None : Docked.Left}
                 >
                     <Routes>

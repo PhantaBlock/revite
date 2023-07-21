@@ -107,6 +107,10 @@ const Blocked = styled.div`
     .text {
         padding: var(--message-box-padding);
     }
+    .text_isMicro {
+        padding: 1.5rem 1rem;
+        font-size: 1.25rem;
+    }
 
     > div > div {
         cursor: default;
@@ -275,17 +279,17 @@ export default observer(({ channel, tempMode }: Props) => {
 
     if (!channel.havePermission("SendMessage")) {
         return (
-            <Base>
+            <Base isMicro={isMicroMode()}>
                 <Blocked>
-                    <Action>
+                    {!isMicroMode() && <Action>
                         <PermissionTooltip
                             permission="SendMessages"
                             placement="top">
                             <ShieldX size={numTonum(22)} />
                         </PermissionTooltip>
-                    </Action>
-                    <div className="text">
-                        <Text id="app.main.channel.misc.no_sending" />
+                    </Action>}
+                    <div className={!isMicroMode() ? "text" : 'text_isMicro'}>
+                        {!isMicroMode() ? <Text id="app.main.channel.misc.no_sending" /> : '该频道目前为只读模式'}
                     </div>
                 </Blocked>
             </Base>

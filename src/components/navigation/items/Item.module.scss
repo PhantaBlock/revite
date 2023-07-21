@@ -187,14 +187,15 @@
     height: 90px;
     display: flex;
     user-select: none;
-    padding: 0 20px 0 40px;
+    padding: 0 20px 0 30px;
     box-sizing: border-box;
     border-radius: 0;
     align-items: center;
     flex-direction: row;
 
     &.rightSidebar {
-        padding-left: 0;
+        padding-left: 1rem;
+        margin: 0 !important;
     }
 
     cursor: pointer;
@@ -281,7 +282,7 @@
         }
 
         &.name {
-            margin-left: 20px;
+            margin-left: 16px;
             flex-grow: 1;
             display: flex;
             font-size: 22px;

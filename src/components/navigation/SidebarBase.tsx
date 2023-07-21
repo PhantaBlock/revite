@@ -43,11 +43,9 @@ export default styled.div<{
         css`
             border-left: ${props.borderLeft};
             background: transparent !important;
-            padding-left: 0.625rem;
-            padding-right: 0.625rem;
-
-            .isMicro.item {
-                padding-left: 0 !important;
+            > div {
+                background: transparent;
+                width: ${pxTorem(250)};
             }
         `
     }
@@ -60,7 +58,7 @@ export const GenericSidebarBase = styled.div<{
     borderLeft?: string;
 }>`
     height: 100%;
-    width: ${pxTorem(322)};
+    width: ${pxTorem(310)};
     display: flex;
     flex-shrink: 0;
     flex-direction: column;
@@ -76,22 +74,6 @@ export const GenericSidebarBase = styled.div<{
         margin-top: ${pxTorem(48)};
         background: red;
     }*/
-
-    ${(props) =>
-        props.isMicro &&
-        css`
-            background: transparent !important;
-            border-right: 1px solid #766A58  !important;
-        `
-    }
-
-    ${(props) =>
-        props.borderLeft &&
-        css`
-            border-left: ${props.borderLeft};
-            background: transparent !important;
-        `
-    }
 
     ${(props) =>
         props.paddingTop &&

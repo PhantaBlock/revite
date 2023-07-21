@@ -23,7 +23,7 @@ import { remTorem, pxTorem, numTonum } from '../../../lib/calculation';
 
 const ServerBase = styled.div`
     height: 100%;
-    width: ${pxTorem(322)};
+    width: ${pxTorem(310)};
     display: flex;
     flex-shrink: 0;
     flex-direction: column;
