@@ -37,6 +37,7 @@ type UserProps = CommonProps & {
     context?: Channel;
     channel?: Channel;
     rightSidebar?: boolean;
+    pathname?: any;
 };
 
 // TODO: Gray out blocked names.
@@ -50,6 +51,7 @@ export const UserButton = observer((props: UserProps) => {
         context,
         channel,
         rightSidebar,
+        pathname,
         ...divProps
     } = props;
     const isMicro = isMicroMode();
@@ -68,7 +70,8 @@ export const UserButton = observer((props: UserProps) => {
             {...divProps}
             className={classNames(styles.item, styles.user, {
                 [styles.isMicro]: isMicro,
-                [styles.rightSidebar]: isMicro && rightSidebar
+                [styles.rightSidebar]: isMicro && rightSidebar,
+                [styles.isCurrent]: pathname?.includes(channel?._id)
             })}
             data-active={active}
             data-margin={margin}
@@ -153,15 +156,15 @@ export const ChannelButton = observer((props: ChannelProps) => {
         ...divProps
     } = props;
 
+    const { pathname } = useLocation();
 
     if (channel.channel_type === "SavedMessages") throw "Invalid channel type.";
     if (channel.channel_type === "DirectMessage") {
         if (typeof user === "undefined") throw "No user provided.";
-        return <UserButton {...{ active, alert, channel, user, rightSidebar }} />;
+        return <UserButton {...{ active, alert, channel, user, rightSidebar, pathname }} />;
     }
 
     const alerting = alert && !muted && !active;
-    const { pathname } = useLocation();
 
     return (
         <div

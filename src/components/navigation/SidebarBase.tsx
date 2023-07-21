@@ -41,9 +41,9 @@ export default styled.div<{
     ${(props) =>
         props.borderLeft &&
         css`
-            border-left: ${props.borderLeft};
-            background: transparent !important;
-            > div {
+        background: transparent !important;
+        > div {
+                border-left: ${props.borderLeft};
                 background: transparent;
                 width: ${pxTorem(250)};
             }
