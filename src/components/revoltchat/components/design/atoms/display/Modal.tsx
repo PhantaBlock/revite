@@ -156,6 +156,10 @@ const Title = styled.div`
     border-bottom: 0.0625rem solid #FEBD5A;
     color: #FFE1B3;
     font-family: PingFangHK-Regular;
+
+    h4 {
+        font-size: 1.25rem;
+    }
 `;
 
 const Content = styled.div<Pick<Props, "transparent" | "padding" | "needPadding">>`
@@ -164,10 +168,22 @@ const Content = styled.div<Pick<Props, "transparent" | "padding" | "needPadding"
     padding: ${(props) => !props.needPadding ? 0 : props.padding ?? `1rem 2rem 2rem`};
 
     overflow-y: auto;
-    font-size: 0.9375rem;
+    font-size: 1.25rem;
 
     display: flex;
     flex-direction: column;
+
+    form {
+        div {
+            font-size: 1.25rem;
+        }
+
+        label {
+            &:hover {
+                background: transparent;
+            }
+        }
+    }
 
     ${(props) =>
         !props.transparent &&
@@ -181,6 +197,7 @@ const Actions = styled.div<{ noBorder?: boolean }>`
     display: flex;
     padding: 2.437rem 2.15625rem;
     flex-direction: row-reverse;
+    align-items: center;
 
     // background: var(--secondary-background);
     border-radius: 0 0 var(--border-radius) var(--border-radius);
