@@ -76,6 +76,22 @@ export const GenericSidebarBase = styled.div<{
     }*/
 
     ${(props) =>
+        props.isMicro &&
+        css`
+            background: transparent !important;
+            border-right: 1px solid #766A58  !important;
+        `
+    }
+
+    ${(props) =>
+        props.borderLeft &&
+        css`
+            border-left: ${props.borderLeft};
+            background: transparent !important;
+        `
+    }
+
+    ${(props) =>
         props.paddingTop &&
         css`
             padding-top: ${props.paddingTop};

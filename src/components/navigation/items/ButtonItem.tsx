@@ -162,7 +162,6 @@ export const ChannelButton = observer((props: ChannelProps) => {
 
     const alerting = alert && !muted && !active;
     const { pathname } = useLocation();
-    console.warn(active, '========')
 
     return (
         <div
@@ -212,12 +211,14 @@ export const ChannelButton = observer((props: ChannelProps) => {
                 {!isTouchscreenDevice && channel.channel_type === "Group" && (
                     <IconButton
                         className={styles.icon}
-                        onClick={() =>
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            e.preventDefault();
                             modalController.push({
                                 type: "leave_group",
                                 target: channel,
                             })
-                        }>
+                        }}>
                         <X size={24} />
                     </IconButton>
                 )}
