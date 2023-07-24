@@ -54,7 +54,8 @@ export default observer(() => {
 
     const channels = [...client.channels.values()].filter(
         (x) =>
-            ((x.channel_type === "DirectMessage" && x.active) ||
+            // ((x.channel_type === "DirectMessage" && x.active) ||
+            (x.channel_type === "DirectMessage" ||
                 x.channel_type === "Group") && !x.name?.startsWith('#TEAMUP_ROOM_CHANNEL')
     );
 
@@ -152,8 +153,9 @@ export default observer(() => {
                 )}
                 {channels.map((channel) => {
                     let user;
+
                     if (channel.channel_type === "DirectMessage") {
-                        if (!channel.active) return null;
+                        if (!channel.active && !pathname.includes(channel._id)) return null;
                         user = channel.recipient;
 
                         if (!user) return null;
