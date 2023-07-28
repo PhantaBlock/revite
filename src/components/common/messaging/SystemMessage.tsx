@@ -148,9 +148,9 @@ export const SystemMessage = observer(
 
                 if (data.user) {
                     try {
-                        createdAt = decodeTime(data.user._id);
+                        createdAt = decodeTime(data.user?._id);
                     } catch (e) {
-                        console.error('【decodeTime】', e, data.user._id);
+                        console.error('【decodeTime】', e, data.user);
                     }
                 }
 
