@@ -143,7 +143,17 @@ export const SystemMessage = observer(
             case "user_left":
             case "user_kicked":
             case "user_banned": {
-                const createdAt = data.user ? decodeTime(data.user._id) : null;
+                // const createdAt = data.user ? decodeTime(data.user._id) : null;
+                let createdAt = null;
+
+                if (data.user) {
+                    try {
+                        createdAt = decodeTime(data.user._id);
+                    } catch (e) {
+                        console.log('##', e);
+                    }
+                }
+
                 children = (
                     <Row centred>
                         <TextReact
