@@ -150,7 +150,7 @@ export const SystemMessage = observer(
                     try {
                         createdAt = decodeTime(data.user._id);
                     } catch (e) {
-                        console.log('##', e);
+                        console.error('【decodeTime】', e, data.user._id);
                     }
                 }
 
