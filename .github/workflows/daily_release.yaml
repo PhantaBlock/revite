@@ -13,7 +13,7 @@ jobs:
       - name: Checkout to test_release branch
         uses: actions/checkout@v3
         with:
-          ref: test_release
+          ref: sky001
 
       - name: Checkout
         uses: actions/checkout@v2
