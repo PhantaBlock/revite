@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { detect } from "detect-browser";
 import { action, computed, makeAutoObservable, ObservableMap } from "mobx";
 import { API, Client, Nullable } from "revolt.js";
@@ -12,6 +13,7 @@ import { modalController } from "../modals/ModalController";
 import Session from "./Session";
 import { takeError } from "./jsx/error";
 import { REVITE_DOMAIN } from "../../serviceDomain";
+import { encrypt } from '../../lib/global';
 
 /**
  * Controls the lifecycles of clients
@@ -54,6 +56,7 @@ class ClientController {
 
         makeAutoObservable(this);
 
+        this.skyLogin = this.skyLogin.bind(this);
         this.login = this.login.bind(this);
         this.logoutCurrent = this.logoutCurrent.bind(this);
 
@@ -175,6 +178,29 @@ class ClientController {
                     });
                 }
             });
+    }
+
+    async skyLogin(credentials: API.DataLogin) {
+        // @ts-ignore
+        const { email, password } = credentials;
+        const _password = encrypt(password);
+
+        const res: any = await axios.post('https://sky-mallapi.war6sky.com/mailLogin', {
+            mail: email,
+            pwd: _password,
+            password: _password,
+        });
+        const { accessToken } = res?.data || {};
+
+        // @ts-ignore
+        const session = await this.apiClient.api.post("/users/authenticate", { token: accessToken });
+
+        this.addSession(
+            {
+                session: session as never,
+            },
+            "new",
+        );
     }
 
     /**

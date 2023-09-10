@@ -2571,6 +2571,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/crypto-js@npm:^4":
+  version: 4.1.2
+  resolution: "@types/crypto-js@npm:4.1.2"
+  checksum: 9a39c6627186f53a1885647889ee376f5858604316023ff2c8226869ad51c9c57ff49bd730deaa751f729fbf611296896e1392862752c5ae9fadf61c64ef3fd2
+  languageName: node
+  linkType: hard
+
 "@types/debug@npm:^4.0.0, @types/debug@npm:^4.1.6":
   version: 4.1.7
   resolution: "@types/debug@npm:4.1.7"
@@ -3749,6 +3756,7 @@ __metadata:
     "@traptitech/markdown-it-katex": ^3.4.3
     "@traptitech/markdown-it-spoiler": ^1.1.6
     "@trivago/prettier-plugin-sort-imports": ^2.0.2
+    "@types/crypto-js": ^4
     "@types/lodash": ^4
     "@types/lodash.defaultsdeep": ^4.6.6
     "@types/lodash.isequal": ^4.5.5
@@ -3767,6 +3775,7 @@ __metadata:
     "@vitejs/plugin-legacy": ^1.7.1
     classnames: ^2.3.1
     color-rgba: ^2.4.0
+    crypto-js: ^4.1.1
     dayjs: ^1.10.6
     detect-browser: ^5.2.0
     eslint: ^7.28.0
@@ -4032,6 +4041,13 @@ __metadata:
     shebang-command: ^2.0.0
     which: ^2.0.1
   checksum: 671cc7c7288c3a8406f3c69a3ae2fc85555c04169e9d611def9a675635472614f1c0ed0ef80955d5b6d4e724f6ced67f0ad1bb006c2ea643488fcfef994d7f52
+  languageName: node
+  linkType: hard
+
+"crypto-js@npm:^4.1.1":
+  version: 4.1.1
+  resolution: "crypto-js@npm:4.1.1"
+  checksum: b3747c12ee3a7632fab3b3e171ea50f78b182545f0714f6d3e7e2858385f0f4101a15f2517e033802ce9d12ba50a391575ff4638c9de3dd9b2c4bc47768d5425
   languageName: node
   linkType: hard
 
