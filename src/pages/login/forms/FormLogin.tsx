@@ -2,8 +2,8 @@ import { clientController } from "../../../controllers/client/ClientController";
 import { Form } from "./Form";
 
 const params = new URLSearchParams(location.search);
-const skyLogin = params.get('skyLogin');
+const originLogin = params.get('originLogin');
 
 export function FormLogin() {
-    return <Form page="login" callback={skyLogin ? clientController.skyLogin : clientController.login} />;
+    return <Form page="login" callback={originLogin ? clientController.login : clientController.skyLogin} />;
 }
