@@ -206,6 +206,15 @@
 
     &:hover {
         background: rgba(216, 216, 216, 0.1) !important;
+
+        div.button .alert {
+            display: none;
+        }
+
+        div.button svg {
+            opacity: 1;
+            display: block;
+        }
     }
 
     &.isCurrent {
@@ -302,7 +311,8 @@
             flex-shrink: 0;
 
             svg {
-                opacity: 0;
+                width: 2rem;
+                opacity: 2rem;
                 display: none;
                 transition: 0.1s ease-in-out opacity;
             }
@@ -311,9 +321,9 @@
 }
 
 .alert {
-    width: 0.4rem;
-    height: 0.4rem;
-    margin: 0.75rem;
+    width: 0.8rem;
+    height: 0.8rem;
+    margin: 0 0.6rem;
     flex-shrink: 0;
     background: var(--accent);
     color: var(--accent);

@@ -224,7 +224,7 @@ const Message = observer(
                             <Embed key={index} embed={embed} />
                         ))}
                         <Reactions message={message} />
-                        {(mouseHovering || reactionsOpen) &&
+                        {/* {(mouseHovering || reactionsOpen) &&
                             !replacement &&
                             !isTouchscreenDevice && !isMicro && (
                                 <MessageOverlayBar
@@ -233,7 +233,7 @@ const Message = observer(
                                     message={message}
                                     queued={queued}
                                 />
-                            )}
+                            )} */}
                     </MessageContent>
                 </MessageBase>
             </div>
