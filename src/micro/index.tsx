@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useState } from "preact/compat";
+import { lazy, Suspense } from "preact/compat";
 import { Masks, Preloader } from "../components/revoltchat";
 
 import Context from "../context";
