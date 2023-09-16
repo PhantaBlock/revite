@@ -47,6 +47,7 @@ function getVersion() {
 function getBase(mode) {
     return (
         {
+            daily: "https://sky-revite-dev.war6sky.com/",
             test: "https://sky-revite-test.war6sky.com/",
             online: "https://sky-revite.war6sky.com/",
         }[mode] || "https://sky-revite.war6sky.com/"
