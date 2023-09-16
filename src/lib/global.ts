@@ -1,5 +1,6 @@
 import localforage from "localforage";
 import { qiankunWindow } from "vite-plugin-qiankun/dist/helper";
+import CryptoJS from 'crypto-js';
 
 export function isMicroMode() {
     return !!qiankunWindow.__POWERED_BY_QIANKUN__;
@@ -47,4 +48,18 @@ export function delayTime(time = 0) {
             resolve();
         }, time);
     });
+}
+
+const keyStr = '-mall4j-password'; // 解密用的key
+
+export const encrypt = (word: string) => {
+    const time = Date.now();
+
+    const key = CryptoJS.enc.Utf8.parse(keyStr);
+    const srcs = CryptoJS.enc.Utf8.parse(time + word);
+    const encrypted = CryptoJS.AES.encrypt(srcs, key, {
+        mode: CryptoJS.mode.ECB,
+        padding: CryptoJS.pad.Pkcs7,
+    });
+    return encrypted.toString();
 }

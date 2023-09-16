@@ -20,6 +20,7 @@ import { Username } from "../../common/user/UserShort";
 import UserStatus from "../../common/user/UserStatus";
 import { IconButton } from "../../../components/revoltchat";
 import { isMicroMode } from "../../../lib/global";
+import { officialChannelId } from "../../../skyConstant";
 
 type CommonProps = Omit<
     JSX.HTMLAttributes<HTMLDivElement>,
@@ -211,20 +212,23 @@ export const ChannelButton = observer((props: ChannelProps) => {
                         {alertCount}
                     </div>
                 )}
-                {!isTouchscreenDevice && channel.channel_type === "Group" && (
-                    <IconButton
-                        className={styles.icon}
-                        onClick={(e) => {
-                            e.stopPropagation();
-                            e.preventDefault();
-                            modalController.push({
-                                type: "leave_group",
-                                target: channel,
-                            })
-                        }}>
-                        <X size={24} />
-                    </IconButton>
-                )}
+                {!isTouchscreenDevice
+                    && channel.channel_type === "Group"
+                    && channel._id !== officialChannelId
+                    && (
+                        <IconButton
+                            className={styles.icon}
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                e.preventDefault();
+                                modalController.push({
+                                    type: "leave_group",
+                                    target: channel,
+                                })
+                            }}>
+                            <X size={24} />
+                        </IconButton>
+                    )}
             </div>
         </div>
     );
