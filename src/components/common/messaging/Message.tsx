@@ -177,7 +177,7 @@ const Message = observer(
                                         {...userContext}
                                     />:
                                     {replacement ??
-                                        (content && <Markdown content={content} />)}
+                                        (content && <Markdown content={content} author={message.author} />)}
                                 </div>
                             ) :
                                 (
@@ -202,7 +202,7 @@ const Message = observer(
                         }
                         {!tempMode && (
                             replacement ??
-                            (content && <Markdown content={content} />)
+                            (content && <Markdown content={content} author={message.author} />)
                         )}
                         {!queued && <InviteList message={message} />}
                         {queued?.error && (

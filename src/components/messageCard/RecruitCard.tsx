@@ -19,13 +19,13 @@ const matchModeMap: any = {
     FourVsFour: '4v4',
 };
 
-const RecruitCard = ({ data }: { data: IMessage }) => {
+const RecruitCard = ({ data, author }: { data: IMessage, author?: any }) => {
     const isQuickMatch = data.roomType === 'QuickMatch';
 
     const handleClick = () => {
-        window.__JOIN_ROOM__?.({
-            game_type: data.gameType,
+        window.__ACCEPT_INVITE__?.({
             room_id: Number(data.roomId),
+            inviter_id: author?._id,
         }).then((res: any) => {
             window.__TOAST__?.('加入成功');
 

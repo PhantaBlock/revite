@@ -36,6 +36,7 @@ import { modalController } from "../controllers/modals/ModalController";
 import { internalEmit } from "./eventEmitter";
 import { getRenderer } from "./renderer/Singleton";
 import { isMicroMode } from "./global";
+import { remTorem, pxTorem, numTonum } from './calculation';
 
 interface ContextMenuData {
     user?: string;

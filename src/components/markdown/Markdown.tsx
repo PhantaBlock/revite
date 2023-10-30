@@ -6,6 +6,7 @@ const Renderer = lazy(() => import("./RemarkRenderer"));
 export interface MarkdownProps {
     content: string;
     disallowBigEmoji?: boolean;
+    author?: any;
 }
 
 export default function Markdown(props: MarkdownProps) {
@@ -15,7 +16,7 @@ export default function Markdown(props: MarkdownProps) {
     const res = props.content.match(regex);
 
     if (res) {
-        return <MessageCard type={res[1]} message={res[2]} />;
+        return <MessageCard type={res[1]} message={res[2]} author={props.author} />;
     }
 
     return (
