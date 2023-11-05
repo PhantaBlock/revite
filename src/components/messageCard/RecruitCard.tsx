@@ -21,6 +21,15 @@ const matchModeMap: any = {
 
 const RecruitCard = ({ data, author }: { data: IMessage, author?: any }) => {
     const isQuickMatch = data.roomType === 'QuickMatch';
+    const isLadder = data.roomType === 'Ladder';
+
+    let mapName = data.mapName;
+
+    if (isQuickMatch) {
+        mapName = 'RTS娱乐匹配';
+    } else if (isLadder) {
+        mapName = '天梯排位';
+    }
 
     const handleClick = () => {
         window.__ACCEPT_INVITE__?.({
@@ -44,11 +53,11 @@ const RecruitCard = ({ data, author }: { data: IMessage, author?: any }) => {
     return (
         <div className={styles.RecruitCard} onClick={handleClick}>
             <div className={styles.imgWrap}>
-                <img src={isQuickMatch ? QuickMatchImg : data.mapImg} alt=" " />
+                <img src={(isQuickMatch || isLadder) ? QuickMatchImg : data.mapImg} alt=" " />
             </div>
             <div className={styles.infoWrap}>
                 <div className={styles.mapName}>
-                    <div className={styles.ellipsis}>{isQuickMatch ? 'RTS娱乐匹配' : data.mapName}</div>
+                    <div className={styles.ellipsis}>{mapName}</div>
                     <div className={styles.fixed}>(<span>{data.currentPlayer}</span>/{data.maxPlayer})</div>
                 </div>
                 <div className={styles.otherInfo}>
