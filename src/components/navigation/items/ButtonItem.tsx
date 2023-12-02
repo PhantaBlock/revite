@@ -33,8 +33,14 @@ type CommonProps = Omit<
     muted?: boolean;
 };
 
+interface UserWithVIP extends User {
+    vip?: {
+        term_type?: number;
+    };
+}
+
 type UserProps = CommonProps & {
-    user: User;
+    user: UserWithVIP;
     context?: Channel;
     channel?: Channel;
     rightSidebar?: boolean;
@@ -66,6 +72,10 @@ export const UserButton = observer((props: UserProps) => {
         })
     }
 
+    const isVIP = !!user?.vip;
+    const { term_type = 0 } = user?.vip || {};
+    const VIPConfig = window.__VIP_CONFIG_MAP__?.[term_type];
+
     return (
         <div
             {...divProps}
@@ -90,7 +100,12 @@ export const UserButton = observer((props: UserProps) => {
                 showServerIdentity
             />
             <div className={styles.name}>
-                <div>
+                <div
+                    className={classNames(styles.nameWrap, {
+                        [styles.isVIP]: isVIP,
+                    })}
+                >
+                    {!!VIPConfig && <div className={styles.vipTag} style={{ backgroundImage: `url(${VIPConfig.icon})` }} />}
                     <Username user={user} showServerIdentity />
                 </div>
                 {

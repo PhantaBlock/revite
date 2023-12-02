@@ -1,15 +1,62 @@
 .RecruitCard {
     display: flex;
-    flex-direction: row;
-    align-items: center;
+    flex-direction: column;
+    align-items: stretch;
     width: 556px;
-    height: 122px;
     border-radius: 5px;
     background: rgba($color: #000000, $alpha: 0.4);
     box-sizing: border-box;
     border: 2px solid rgba($color: #979797, $alpha: 0.4);
     cursor: pointer;
-    padding-right: 24px;
+
+    .vipRoomWrap {
+        height: 32px;
+        border-bottom: 1px solid rgba($color: #979797, $alpha: 0.4);
+        position: relative;
+    }
+
+    .vipRoomInfo {
+        position: absolute;
+        left: -2px;
+        top: -2px;
+        width: 208px;
+        height: 34px;
+        background: url('https://img.war6sky.com/2023/11/98204655656c4c9e9c4bbec2ed1230d2.png') no-repeat center center / contain;
+        display: flex;
+        align-items: center;
+
+
+        .roomNum {
+            width: 90px;
+            font-family: Oswald;
+            font-size: 24px;
+            text-align: center;
+            line-height: 34px;
+            font-feature-settings: "kern" on;
+            color: #FFFFFF;
+        }
+
+        .roomRights {
+            height: 100%;
+            flex: 1;
+            font-family: PingFang SC;
+            font-size: 20px;
+            font-weight: 500;
+            line-height: 34px;
+            text-align: center;
+            color: #FFFFFF;
+            border-left: 1px solid rgba($color: #D8D8D8, $alpha: 0.3);
+        }
+    }
+
+    .row {
+        padding-right: 24px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        width: 100%;
+        height: 122px;
+    }
 
     .imgWrap {
         width: 125px;

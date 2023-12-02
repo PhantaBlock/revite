@@ -1,0 +1,24 @@
+.nameWrap {
+    gap: 10px !important;
+    background-repeat: no-repeat;
+    background-position: right top;
+    background-size: auto 75%;
+
+    &.isVIP {
+        :global {
+            .author {
+                background: linear-gradient(180deg, #FF5151 19%, #FFB829 86%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+            }
+        }
+    }
+
+    .vipTag {
+        width: 42px;
+        height: 13px;
+        background: url(https://img.war6sky.com/2023/11/385d4479af334432af9f5b485acef1ae.png) no-repeat center center;
+        background-size: 100% 100%;
+    }
+}

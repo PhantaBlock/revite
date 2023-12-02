@@ -31,6 +31,8 @@ import { MessageOverlayBar } from "./bars/MessageOverlayBar";
 import Embed from "./embed/Embed";
 import InviteList from "./embed/EmbedInvite";
 import { inSingleWebView, isMicroMode } from "../../../lib/global";
+import classNames from "classnames";
+import styles from './index.module.scss';
 
 interface Props {
     attachContext?: boolean;
@@ -99,6 +101,10 @@ const Message = observer(
         const [mouseHovering, setAnimate] = useState(false);
         const [reactionsOpen, setReactionsOpen] = useState(false);
         useEffect(() => setAnimate(false), [replacement]);
+
+        const isVIP = !!message.author?.vip;
+        const { term_type = 0 } = message.author?.vip || {};
+        const VIPConfig = window.__VIP_CONFIG_MAP__?.[term_type];
 
         return (
             <div id={message._id}>
@@ -182,7 +188,10 @@ const Message = observer(
                             ) :
                                 (
                                     head && (
-                                        <span className="detail">
+                                        <span
+                                            className={classNames('detail', styles.nameWrap, { [styles.isVIP]: isVIP })}
+                                            style={{ backgroundImage: `url(${VIPConfig.tail})` }}
+                                        >
                                             <Username
                                                 user={user}
                                                 className="author"
@@ -192,6 +201,7 @@ const Message = observer(
                                                 override={message.webhook?.name}
                                                 {...userContext}
                                             />
+                                            {!!VIPConfig && <div className={styles.vipTag} style={{ backgroundImage: `url(${VIPConfig.icon})` }} />}
                                             <MessageDetail
                                                 message={message}
                                                 position="top"

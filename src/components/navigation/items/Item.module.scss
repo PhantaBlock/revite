@@ -341,3 +341,32 @@
         background: var(--error);
     }
 }
+
+.nameWrap {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    &.isVIP {
+        span {
+            background: linear-gradient(180deg, #FF5151 19%, #FFB829 86%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+            flex: 1;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+    }
+
+    .vipTag {
+        width: 42px;
+        height: 13px;
+        margin-right: 6px;
+        background: url(https://img.war6sky.com/2023/11/385d4479af334432af9f5b485acef1ae.png) no-repeat center center;
+        background-size: 100% 100%;
+    }
+}
