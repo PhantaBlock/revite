@@ -190,7 +190,7 @@ const Message = observer(
                                     head && (
                                         <span
                                             className={classNames('detail', styles.nameWrap, { [styles.isVIP]: isVIP })}
-                                            style={{ backgroundImage: `url(${VIPConfig.tail})` }}
+                                            style={VIPConfig ? { backgroundImage: `url(${VIPConfig.tail})` } : {}}
                                         >
                                             <Username
                                                 user={user}
