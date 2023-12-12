@@ -14,6 +14,11 @@ import IconBase, { IconBaseProps } from "../IconBase";
 import { Header, IconButton } from "../../../components/revoltchat";
 import { remTorem, pxTorem, num2 } from '../../../lib/calculation';
 
+import styles from './UserIcon.module.scss';
+import PreImg from "../../preImg";
+import { preImgLoad } from "../../../lib/img";
+import { useRef } from "preact/hooks";
+
 type VoiceStatus = "muted" | "deaf";
 interface Props extends IconBaseProps<User> {
     status?: boolean;
@@ -62,7 +67,7 @@ export default observer(
             >,
     ) => {
         const client = useClient();
-
+        const ImgEle: any = useRef(null);
         const {
             target,
             attachment,
@@ -106,6 +111,21 @@ export default observer(
                     { max_side: num2(256) },
                     animate,
                 ) ?? (target ? target.defaultAvatarURL : fallback));
+
+            // @ts-ignore-next-line
+            if (target?.avatar_url) {
+                return (
+                    <div class={styles.UserIcon}>
+                        <img
+                            ref={ImgEle}
+                            src={preImgLoad(url || '', ImgEle, { w: 90, h: 90, q: 80 })}
+                        />
+                        {props.status && (
+                            <div class={styles.status} style={{ background: useStatusColour(target) }} />
+                        )}
+                    </div>
+                );
+            }
         }
 
         return (

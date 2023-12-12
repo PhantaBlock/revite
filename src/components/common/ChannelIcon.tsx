@@ -6,6 +6,9 @@ import { Channel } from "revolt.js";
 
 import { useClient } from "../../controllers/client/ClientController";
 import { ImageIconBase, IconBaseProps } from "./IconBase";
+import PreImg from "../preImg";
+import { preImgLoad } from "../../lib/img";
+import { useRef } from "preact/hooks";
 
 interface Props extends IconBaseProps<Channel> {
     isServerChannel?: boolean;
@@ -19,6 +22,7 @@ export default observer(
                 keyof Props | "children" | "as"
             >,
     ) => {
+        const ImgEle = useRef();
         const client = useClient();
 
         const {
@@ -59,12 +63,13 @@ export default observer(
             // ! TODO: replace fallback with <picture /> + <source />
             <ImageIconBase
                 {...imgProps}
+                ref={ImgEle}
                 width={size}
                 height={size}
                 loading="lazy"
                 aria-hidden="true"
                 borderRadius={borderRadius}
-                src={iconURL ?? 'https://skyvs.oss-cn-hangzhou.aliyuncs.com/resources/revite/groupIcon.jpeg'}
+                src={preImgLoad(iconURL ?? 'https://skyvs.oss-cn-hangzhou.aliyuncs.com/resources/revite/groupIcon.jpeg', ImgEle, { w: 90, h: 90, q: 80 })}
             />
         );
     },

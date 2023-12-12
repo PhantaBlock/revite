@@ -14,8 +14,6 @@ interface Props {
  * Channel display name
  */
 export function ChannelName({ channel, prefix }: Props) {
-    console.log('##', channel);
-
     if (!channel) return <></>;
 
     if (channel.channel_type === "SavedMessages")

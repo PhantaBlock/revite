@@ -28,8 +28,6 @@ const RecruitCard = ({ data, author }: { data: IMessage, author?: any }) => {
     const { term_type = 0 } = author?.vip || {};
     const VIPConfig = window.__VIP_CONFIG_MAP__?.[term_type];
 
-    console.log('##', isVIP);
-
     let mapName = data.mapName;
 
     if (isQuickMatch) {
