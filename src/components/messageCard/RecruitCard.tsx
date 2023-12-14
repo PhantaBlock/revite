@@ -24,9 +24,9 @@ const RecruitCard = ({ data, author }: { data: IMessage, author?: any }) => {
     const isQuickMatch = data.roomType === 'QuickMatch';
     const isLadder = data.roomType === 'Ladder';
 
-    const isVIP = !!author?.vip;
-    const { term_type = 0 } = author?.vip || {};
-    const VIPConfig = window.__VIP_CONFIG_MAP__?.[term_type];
+    const { term_type = 0, level_type = 0 } = author?.vip || {};
+    const isVIP = level_type === 1;
+    const VIPConfig = isVIP ? window.__VIP_CONFIG_MAP__?.[term_type] : undefined;
 
     let mapName = data.mapName;
 

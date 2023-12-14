@@ -20,7 +20,7 @@ export function ChannelName({ channel, prefix }: Props) {
         return <Text id="app.navigation.tabs.saved" />;
 
     if (channel.channel_type === "DirectMessage") {
-        if (channel.recipient?.vip) {
+        if (channel.recipient?.vip?.level_type === 1) {
             const { term_type = 0 } = channel.recipient?.vip || {};
             const VIPConfig = window.__VIP_CONFIG_MAP__?.[term_type];
 

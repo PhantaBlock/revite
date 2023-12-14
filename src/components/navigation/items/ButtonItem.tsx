@@ -36,6 +36,7 @@ type CommonProps = Omit<
 interface UserWithVIP extends User {
     vip?: {
         term_type?: number;
+        level_type?: number;
     };
 }
 
@@ -72,9 +73,9 @@ export const UserButton = observer((props: UserProps) => {
         })
     }
 
-    const isVIP = !!user?.vip;
-    const { term_type = 0 } = user?.vip || {};
-    const VIPConfig = window.__VIP_CONFIG_MAP__?.[term_type];
+    const { term_type = 0, level_type = 0 } = user?.vip || {};
+    const isVIP = level_type === 1;
+    const VIPConfig = isVIP ? window.__VIP_CONFIG_MAP__?.[term_type] : undefined;
 
     return (
         <div

@@ -102,9 +102,9 @@ const Message = observer(
         const [reactionsOpen, setReactionsOpen] = useState(false);
         useEffect(() => setAnimate(false), [replacement]);
 
-        const isVIP = !!message.author?.vip;
-        const { term_type = 0 } = message.author?.vip || {};
-        const VIPConfig = window.__VIP_CONFIG_MAP__?.[term_type];
+        const { term_type = 0, level_type = 0 } = message.author?.vip || {};
+        const isVIP = level_type === 1;
+        const VIPConfig = isVIP ? window.__VIP_CONFIG_MAP__?.[term_type] : undefined;
 
         return (
             <div id={message._id}>
