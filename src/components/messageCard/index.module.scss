@@ -9,6 +9,10 @@
     border: 2px solid rgba($color: #979797, $alpha: 0.4);
     cursor: pointer;
 
+    &.isSelf {
+        cursor: default;
+    }
+
     .vipRoomWrap {
         height: 32px;
         border-bottom: 1px solid rgba($color: #979797, $alpha: 0.4);
@@ -123,6 +127,52 @@
     }
 
     .joinBtn {
+        width: 64px;
+        height: 42px;
+        border: 2px solid #EDCD7E;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: PingFangSC-Semibold;
+        font-size: 24px;
+        font-weight: normal;
+        line-height: 30px;
+        color: #EDCD7E;
+    }
+}
+
+.RequestInvite {
+    display: flex;
+    align-items: center;
+    width: 556px;
+    border-radius: 5px;
+    background: rgba($color: #000000, $alpha: 0.4);
+    box-sizing: border-box;
+    border: 2px solid rgba($color: #979797, $alpha: 0.4);
+    cursor: pointer;
+    padding: 20px 23px 20px 40px;
+
+    &.isSelf {
+        cursor: default;
+    }
+
+    .descWrap {
+        flex: 1;
+        flex-direction: column;
+        align-items: flex-start;
+
+        font-size: 22px;
+        font-weight: 500;
+        line-height: 38px;
+        color: #FFA911;
+
+        .title {
+            font-size: 25px;
+            color: #DBDCDC;
+        }
+    }
+
+    .actionBtn {
         width: 64px;
         height: 42px;
         border: 2px solid #EDCD7E;

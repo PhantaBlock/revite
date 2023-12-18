@@ -1,4 +1,5 @@
 import styles from './index.module.scss';
+import Cls from 'classnames';
 
 interface IMessage {
     roomId: number;
@@ -21,6 +22,7 @@ const matchModeMap: any = {
 };
 
 const RecruitCard = ({ data, author }: { data: IMessage, author?: any }) => {
+    const isSelf = author?.relationship === 'User';
     const isQuickMatch = data.roomType === 'QuickMatch';
     const isLadder = data.roomType === 'Ladder';
 
@@ -56,7 +58,7 @@ const RecruitCard = ({ data, author }: { data: IMessage, author?: any }) => {
     };
 
     return (
-        <div className={styles.RecruitCard} onClick={handleClick}>
+        <div className={Cls(styles.RecruitCard, { [styles.isSelf]: isSelf })} onClick={handleClick}>
             {isVIP && !!VIPConfig && !!data.roomNum && (
                 <div className={styles.vipRoomWrap}>
                     <div className={styles.vipRoomInfo} style={{ backgroundImage: `url(${VIPConfig.inviteTag})` }}>
@@ -79,7 +81,7 @@ const RecruitCard = ({ data, author }: { data: IMessage, author?: any }) => {
                         <div>{matchModeMap[data.matchMode]}</div>
                     </div>
                 </div>
-                <div className={styles.joinBtn}>加入</div>
+                {!isSelf && <div className={styles.joinBtn}>加入</div>}
             </div>
         </div>
     );

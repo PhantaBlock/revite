@@ -1,4 +1,5 @@
 import RecruitCard from "./RecruitCard";
+import RequestInvite from './RequestInvite';
 
 interface IMessageCard {
     type: string;
@@ -11,6 +12,10 @@ const MessageCard = ({ type, message, author }: IMessageCard) => {
 
     if (type === 'ROOM_RECRUIT') {
         return <RecruitCard data={data} author={author} />
+    }
+
+    if (type === 'REQUEST_INVITE') {
+        return <RequestInvite author={author} />
     }
 
     return null;
