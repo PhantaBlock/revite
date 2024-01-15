@@ -31,15 +31,14 @@ const RE_ULID = /^[0123456789ABCDEFGHJKMNPQRSTVWXYZ]{26}$/;
 export function RenderEmoji({ match }: CustomComponentProps) {
     const [fail, setFail] = useState(false);
     const url = RE_ULID.test(match)
-        ? `${
-              clientController.getAvailableClient().configuration?.features
-                  .autumn.url
-          }/emojis/${match}`
+        ? `${clientController.getAvailableClient().configuration?.features
+            .autumn.url
+        }/emojis/${match}`
         : parseEmoji(
-              match in emojiDictionary
-                  ? emojiDictionary[match as keyof typeof emojiDictionary]
-                  : match,
-          );
+            match in emojiDictionary
+                ? emojiDictionary[match as keyof typeof emojiDictionary]
+                : match,
+        );
 
     if (fail) return <span>{`:${match}:`}</span>;
 
@@ -62,5 +61,5 @@ export const remarkEmoji = createComponent(
 );
 
 export function isOnlyEmoji(text: string) {
-    return text.replaceAll(RE_EMOJI, "").trim().length === 0;
+    return text.replace(RE_EMOJI, "").trim().length === 0;
 }

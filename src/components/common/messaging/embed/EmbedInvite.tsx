@@ -176,7 +176,7 @@ const INVITE_PATHS = [
 ];
 
 const RE_INVITE = new RegExp(
-    `(?:${INVITE_PATHS.map((x) => x.replaceAll(".", "\\.")).join(
+    `(?:${INVITE_PATHS.map((x) => x.replace(/\./g, "\\.")).join(
         "|",
     )})/([A-Za-z0-9]*)`,
     "g",
