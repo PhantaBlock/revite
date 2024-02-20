@@ -37,7 +37,7 @@ export default observer(
             target?.icon ?? attachment ?? undefined,
             { max_side: 256 },
             animate,
-        ) || (target?.channel_type === 'DirectMessage' ? target?.recipient?.avatarURL : 'https://skyvs.oss-cn-hangzhou.aliyuncs.com/resources/revite/groupIcon.jpeg');
+        ) || (target?.channel_type === 'DirectMessage' ? target?.recipient?.avatarURL : 'https://img.war6sky.com/resources/revite/groupIcon.jpeg');
         const isServerChannel =
             server ||
             (target &&
@@ -69,7 +69,7 @@ export default observer(
                 loading="lazy"
                 aria-hidden="true"
                 borderRadius={borderRadius}
-                src={preImgLoad(iconURL ?? 'https://skyvs.oss-cn-hangzhou.aliyuncs.com/resources/revite/groupIcon.jpeg', ImgEle, { w: 90, h: 90, q: 80 })}
+                src={preImgLoad(iconURL ?? 'https://img.war6sky.com/resources/revite/groupIcon.jpeg', ImgEle, { w: 90, h: 90, q: 80 })}
             />
         );
     },

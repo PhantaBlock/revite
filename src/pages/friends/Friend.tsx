@@ -38,7 +38,7 @@ export const Friend = observer(({ user, onInviteFriend, pendingMode }: Props) =>
 
         if (isMicro) {
             actions.push(
-                <img src="https://skyvs.oss-cn-hangzhou.aliyuncs.com/resources/images/message.png" alt="" className={styles.message} />
+                <img src="https://img.war6sky.com/resources/images/message.png" alt="" className={styles.message} />
             )
             if (user.online) {
                 actions.push(

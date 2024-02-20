@@ -17,7 +17,7 @@ import UserIcon from "../../../components/common/user/UserIcon";
 
 const avatarList = new Array(41).fill('').map((item, index) => {
     const _index = index < 9 ? `0${index + 1}` : index + 1;
-    return `https://skyvs.oss-cn-hangzhou.aliyuncs.com/avatars/default/0${_index}.png`;
+    return `https://img.war6sky.com/avatars/default/0${_index}.png`;
 })
 
 const ProfileSetting = observer(({ ...props }: ModalProps<"profile_setting">) => {

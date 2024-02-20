@@ -14,7 +14,7 @@ interface IMessage {
     mapImg: string;
 }
 
-const QuickMatchImg = 'https://skyvs.oss-cn-hangzhou.aliyuncs.com/resources/images/icons.jpeg';
+const QuickMatchImg = 'https://img.war6sky.com/resources/images/icons.jpeg';
 const matchModeMap: any = {
     OneVsOne: '1v1',
     TwoVsTwo: '2v2',

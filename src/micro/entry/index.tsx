@@ -26,7 +26,7 @@ export default observer(({ onInviteFriend, token, onUpdateProfile }: {
             // 静默直塞一个默认头像，数据更新依赖webSocket,这里粗暴的加个延时先用下
             setTimeout(() => {
                 session?.client?.users.edit({
-                    avatar_url: "https://skyvs.oss-cn-hangzhou.aliyuncs.com/avatars/default/002.png",
+                    avatar_url: "https://img.war6sky.com/avatars/default/002.png",
                     profile: {},
                     token: token,
                 });

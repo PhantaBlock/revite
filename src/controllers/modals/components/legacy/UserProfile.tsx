@@ -140,7 +140,7 @@ export const UserProfile = observer(
                 profile.background as any,
                 { width: numTonum(1000) },
                 true,
-            ) || 'https://skyvs.oss-cn-hangzhou.aliyuncs.com/resources/images/IM-Bg.jpeg';
+            ) || 'https://img.war6sky.com/resources/images/IM-Bg.jpeg';
 
         const badges = user.badges ?? 0;
         const flags = user.flags ?? 0;

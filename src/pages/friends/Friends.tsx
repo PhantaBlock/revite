@@ -116,7 +116,7 @@ export default observer(({ onInviteFriend }: {
                     <div onClick={() => {
                         openMicroChannelPage();
                     }}>
-                        <img src="https://skyvs.oss-cn-hangzhou.aliyuncs.com/resources/images/channel.png" alt="" className={styles.goGroup} />
+                        <img src="https://img.war6sky.com/resources/images/channel.png" alt="" className={styles.goGroup} />
                     </div>
                     <div
                         className={classNames(styles.add_firend, {
@@ -245,7 +245,7 @@ export default observer(({ onInviteFriend }: {
                     {
                         lists?.length <= 0 &&
                         <div className={styles.placeholder}>
-                            <img src="https://skyvs.oss-cn-hangzhou.aliyuncs.com/resources/images/zhanwei.png" alt="" />
+                            <img src="https://img.war6sky.com/resources/images/zhanwei.png" alt="" />
                         </div>
                     }
                 </div>

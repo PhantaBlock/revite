@@ -149,7 +149,7 @@ export default observer(() => {
                     </IconButton>}
                 </Category>
                 {channels.length === 0 && (
-                    <img src="https://skyvs.oss-cn-hangzhou.aliyuncs.com/resources/revite/placeholder.svg" loading="eager" />
+                    <img src="https://img.war6sky.com/resources/revite/placeholder.svg" loading="eager" />
                 )}
                 {channels.map((channel) => {
                     let user;
