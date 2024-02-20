@@ -47,7 +47,8 @@ export const fitlterOssImg = (url: string, option?: IOption) => {
     const oss = 'https://img.war6sky.com';
     if (!url) return '';
     if (url.match('^http')) {
-        return processImgSize(url, option)
+        const _url = url.replace('https://skyvs.oss-cn-hangzhou.aliyuncs.com', oss);
+        return processImgSize(_url, option)
     } else {
         return processImgSize(`${oss}/${url}`, option)
     }
