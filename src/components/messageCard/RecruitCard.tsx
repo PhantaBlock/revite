@@ -1,5 +1,7 @@
 import styles from './index.module.scss';
 import Cls from 'classnames';
+import { preImgLoad } from "../../lib/img";
+import { useRef } from "preact/hooks";
 
 interface IMessage {
     roomId: number;
@@ -22,6 +24,8 @@ const matchModeMap: any = {
 };
 
 const RecruitCard = ({ data, author }: { data: IMessage, author?: any }) => {
+    const ImgEle: any = useRef(null);
+
     const isSelf = author?.relationship === 'User';
     const isQuickMatch = data.roomType === 'QuickMatch';
     const isLadder = data.roomType === 'Ladder';
@@ -69,7 +73,11 @@ const RecruitCard = ({ data, author }: { data: IMessage, author?: any }) => {
             )}
             <div className={styles.row}>
                 <div className={styles.imgWrap}>
-                    <img src={(isQuickMatch || isLadder) ? QuickMatchImg : data.mapImg} alt=" " />
+                    <img
+                        ref={ImgEle}
+                        src={preImgLoad((isQuickMatch || isLadder) ? QuickMatchImg : data.mapImg, ImgEle, { w: 90, h: 90, q: 80 })}
+                        alt=" "
+                    />
                 </div>
                 <div className={styles.infoWrap}>
                     <div className={styles.mapName}>

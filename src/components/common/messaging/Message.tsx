@@ -106,6 +106,8 @@ const Message = observer(
         const isVIP = level_type === 1;
         const VIPConfig = isVIP ? window.__VIP_CONFIG_MAP__?.[term_type] : undefined;
 
+        const isMessageCard = !!content && /##([^#]+)##([^]+)/.test(content);
+
         return (
             <div id={message._id}>
                 {!hideReply &&
@@ -230,7 +232,7 @@ const Message = observer(
                                 }
                             />
                         ))}
-                        {message.embeds?.map((embed, index) => (
+                        {!isMessageCard && message.embeds?.map((embed, index) => (
                             <Embed key={index} embed={embed} />
                         ))}
                         <Reactions message={message} />
