@@ -68,6 +68,7 @@ export const preImgLoad = (sourceUrl: string, imageEl: any, option?: IPreImgOpt)
         h,
         q,
     } = option || {};
+    if (!sourceUrl) return '';
     // 第一批webp头像 处理一下
     const mathWebpAvatar = sourceUrl.match(/\/gift\/prod\/20231207\/avatar[0-2].webp/i);
     if (mathWebpAvatar) {

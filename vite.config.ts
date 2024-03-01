@@ -56,6 +56,9 @@ function getBase(mode) {
 
 export default defineConfig(({ mode }) => {
     return {
+        server: {
+            port: 5000,
+        },
         base: getBase(mode),
         plugins: [
             qiankun("ChatRoom", {
