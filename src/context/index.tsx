@@ -33,6 +33,10 @@ export default function Context({ children, beforeHydrate }: {
     const [ready, setReady] = useState(false);
 
     const _hydrate = async () => {
+        try {
+            state.settings.sounds.setAllEnabled?.(false);
+        } catch { }
+
         await beforeHydrate?.();
         await state.hydrate();
 
